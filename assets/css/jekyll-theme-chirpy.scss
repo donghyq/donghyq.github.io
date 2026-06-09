@@ -1,0 +1,66 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* =============================================
+   侧边栏背景图定制
+   ============================================= */
+#sidebar {
+  background-image: url('/assets/img/sidebar-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* 在图片上叠加半透明深色遮罩，保证文字可读 */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 0;
+  }
+
+  /* 让侧边栏内所有子元素浮在遮罩之上 */
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 头像边框加白色光晕，在深色背景上更突出 */
+  .site-avatar img {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  }
+
+  /* 站点标题和副标题颜色调亮 */
+  .site-title a {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .site-subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  }
+
+  /* 导航链接颜色 */
+  .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+
+    &:hover,
+    &.active {
+      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+  }
+
+  /* 底部社交图标 */
+  .sidebar-bottom a {
+    color: rgba(255, 255, 255, 0.75) !important;
+
+    &:hover {
+      color: #ffffff !important;
+    }
+  }
+}
