@@ -1,10 +1,11 @@
 ---
 ---
 
-@import "jekyll-theme-chirpy";
+/* prettier-ignore */
+@use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
 /* =============================================
-   侧边栏背景图定制
+   侧边栏背景图定制（append custom style below）
    ============================================= */
 
 #sidebar {
