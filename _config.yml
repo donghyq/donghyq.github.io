@@ -24,7 +24,10 @@ permalink: /posts/:title/
 
 toc: true
 
+baseurl: ""
+
 paginate: 10
+paginate_path: "/posts/page:num/"
 
 kramdown:
   footnote_backlink: "&#8617;&#xfe0e;"
@@ -82,6 +85,12 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-archives
 
 jekyll-archives:
   enabled: [categories, tags]
