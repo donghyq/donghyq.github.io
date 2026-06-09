@@ -1,34 +1,23 @@
 ---
 ---
 
+@import "{{ site.theme }}";
+
 /* =============================================
    侧边栏背景图定制
    ============================================= */
 
+/* 不覆盖 position，只加背景图 */
 #sidebar {
   background-image: url('/assets/img/sidebar-bg.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  position: relative;
 }
 
-/* 半透明深色遮罩，保证文字可读 */
-#sidebar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 0;
-}
-
-/* 让侧边栏内所有直接子元素浮在遮罩之上 */
-#sidebar > * {
-  position: relative;
-  z-index: 1;
+/* 用 box-shadow inset 模拟半透明遮罩，不影响布局 */
+#sidebar {
+  box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.5);
 }
 
 /* 头像边框加白色光晕 */
