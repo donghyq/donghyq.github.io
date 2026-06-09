@@ -20,6 +20,8 @@ social:
 
 avatar: /assets/img/avatar.jpg
 
+permalink: /posts/:title/
+
 toc: true
 
 paginate: 10
