@@ -289,7 +289,26 @@ class HiCacheController:
 
 `write_stream` 负责将 GPU 数据拷贝到 Host（write_backup 时使用）。`load_stream` 负责将 Host 数据拷贝回 GPU（load_back 时使用）。两者互不干扰，也不阻塞默认计算流上的前向传播。
 
-### 7.2 LayerDoneCounter 逐层同步
+### 7.2 整体流程：逐层流水线如何运转
+
+假设一个请求命中了 L2（Host 内存）中的 KV Cache，需要搬回 GPU 并同时做 Attention 计算。三条 Stream 对应三个硬件单元（SM 计算核心 + 两个 Copy Engine），以一个 32 层模型为例，时序如下：
+
+```
+时间 →
+
+load_stream (Copy Engine):  [搬 layer 0][搬 layer 1][搬 layer 2][搬 layer 3] ...
+                                ↓ event     ↓ event     ↓ event     ↓ event
+compute stream (SM):         wait(0)→[算 L0] wait(1)→[算 L1] wait(2)→[算 L2] ...
+```
+
+具体步骤：
+
+1. **Scheduler 发起 load_back**：检测到请求所需的 KV Cache 在 Host 上（TreeNode 状态 C：有 `host_value`，无 `gpu_value`），调用 `start_loading(host_indices, device_indices)`。
+2. **load_stream 逐层搬运**：在 `load_stream` 上循环 32 层，每层执行一次 `cudaMemcpyAsync(HostToDevice)`。搬完一层立即 `record` 一个 CUDA Event 标记"第 i 层到位"。整个过程由 Copy Engine 执行，不占用 SM。
+3. **Forward 逐层计算**：同时在 default stream 上启动前向传播。算到第 i 层时，先 `wait(layer_i)` 查询对应的 CUDA Event——若 DMA 已完成则瞬间通过，否则短暂等待（通常只需几十微秒，因为 DMA 已提前启动并领先若干层）。
+4. **流水线效果**：由于 load_stream 比 compute 先启动，正常情况下 DMA 总是领先于计算。理想状态下 compute 侧的 `wait()` 几乎不产生等待，总延迟 ≈ max(DMA 总时间, Compute 总时间)，远优于"先搬完再算"的串行模式（延迟 = DMA + Compute）。
+
+### 7.3 LayerDoneCounter 逐层同步
 
 逐层 Overlap 的核心在于 `LayerDoneCounter`。它管理一组 `LayerLoadingEvent`，每个 Event 包含每一层的 CUDA Event：
 
@@ -318,7 +337,7 @@ class LayerDoneCounter:
 
 ![DMA 与计算的逐层流水线](/assets/img/posts/sglang-hicache/fig-5-1-layer-pipeline.svg)
 
-### 7.3 writing_check 与 DMA 确认
+### 7.4 writing_check 与 DMA 确认
 
 Write-Through 的 DMA（GPU→Host）也运行在独立的 `write_stream` 上。每个 Step 结束时，Scheduler 调用 `writing_check()` 非阻塞地查询已完成的 DMA：
 
