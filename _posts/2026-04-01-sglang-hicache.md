@@ -68,7 +68,7 @@ HiCache 的解法是：不丢弃，降级存储。当 GPU 显存不够时，把 
 | L2 | Host Pinned Memory | ~200 GB/s (内存带宽) | 256-1024 GB | `MHATokenToKVPoolHost`，结构与 L1 对齐 |
 | L3 | SSD / RDMA 内存池 | ~7 GB/s (NVMe) 或 ~100 GB/s (RDMA) | 近乎无限 | Content-Addressable，SHA256 hash 寻址 |
 
-层间搬运全部异步：L1↔L2 通过 `cudaMemcpyAsync` 走 PCIe/NVLink（~32 GB/s），L2↔L3 通过独立 Python 线程做文件或 RDMA IO。两者都不阻塞 GPU 的前向计算。
+层间搬运全部异步：L1↔L2 通过 `cudaMemcpyAsync` 走 PCIe（~32 GB/s），L2↔L3 通过独立 Python 线程做文件或 RDMA IO。两者都不阻塞 GPU 的前向计算。
 
 ---
 

@@ -6,7 +6,7 @@
 
   <line x1="300" y1="110" x2="300" y2="155" stroke="#546e7a" stroke-width="2"/>
   <polygon points="296,152 300,162 304,152" fill="#546e7a"/>
-  <text x="310" y="138" font-size="9" fill="#546e7a">cudaMemcpyAsync (PCIe/NVLink)</text>
+  <text x="310" y="138" font-size="9" fill="#546e7a">cudaMemcpyAsync (PCIe)</text>
   <text x="310" y="150" font-size="9" fill="#78909c">~32 GB/s (PCIe 4.0 x16)</text>
 
   <rect x="130" y="165" width="340" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
