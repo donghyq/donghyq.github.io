@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 440" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+  <rect x="130" y="30" width="340" height="80" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="300" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#1b5e20">L1: GPU HBM</text>
+  <text x="300" y="78" text-anchor="middle" font-size="11" fill="#388e3c">MHATokenToKVPool</text>
+  <text x="300" y="96" text-anchor="middle" font-size="11" font-weight="600" fill="#1b5e20">3.35 TB/s | 80 GB (H100)</text>
+
+  <line x1="300" y1="110" x2="300" y2="155" stroke="#546e7a" stroke-width="2"/>
+  <polygon points="296,152 300,162 304,152" fill="#546e7a"/>
+  <text x="310" y="138" font-size="9" fill="#546e7a">cudaMemcpyAsync (PCIe/NVLink)</text>
+  <text x="310" y="150" font-size="9" fill="#78909c">~32 GB/s (PCIe 4.0 x16)</text>
+
+  <rect x="130" y="165" width="340" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="300" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#0d47a1">L2: Host DRAM</text>
+  <text x="300" y="213" text-anchor="middle" font-size="11" fill="#1976d2">Pinned Memory (MHATokenToKVPoolHost)</text>
+  <text x="300" y="231" text-anchor="middle" font-size="11" font-weight="600" fill="#0d47a1">~200 GB/s | 256-1024 GB</text>
+
+  <line x1="300" y1="245" x2="300" y2="290" stroke="#546e7a" stroke-width="2"/>
+  <polygon points="296,287 300,297 304,287" fill="#546e7a"/>
+  <text x="310" y="273" font-size="9" fill="#546e7a">IO (SSD/RDMA)</text>
+  <text x="310" y="285" font-size="9" fill="#78909c">~7 GB/s (NVMe) / ~100 GB/s (RDMA)</text>
+
+  <rect x="130" y="300" width="340" height="80" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="300" y="328" text-anchor="middle" font-size="15" font-weight="700" fill="#bf360c">L3: Storage</text>
+  <text x="300" y="348" text-anchor="middle" font-size="11" fill="#e65100">SSD (hf3fs) / Mooncake / Nixl</text>
+  <text x="300" y="366" text-anchor="middle" font-size="11" font-weight="600" fill="#bf360c">~7 GB/s | 容量近乎无限</text>
+
+  <text x="300" y="410" text-anchor="middle" font-size="10" fill="#666">三层存储自上而下：带宽递减、容量递增。</text>
+  <text x="300" y="428" text-anchor="middle" font-size="10" fill="#666">层间搬运全部异步，不阻塞 GPU 前向计算。</text>
+</svg>

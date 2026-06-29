@@ -1,6 +1,6 @@
 ---
 title: "Search-R1：让 LLM 学会边思考边搜索"
-date: 2026-05-25 10:00:00 +0800
+date: 2026-01-25 10:00:00 +0800
 categories: [AI Infra, RL]
 tags: [search-r1, grpo, ppo, verl, rag, rl-infra, state-masking, fsdp]
 ---

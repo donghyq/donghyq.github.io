@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+  <defs>
+    <marker id="arr6" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0,0 10,3.5 0,7" fill="#546e7a"/>
+    </marker>
+  </defs>
+
+  <!-- 调度器主线程 -->
+  <rect x="20" y="40" width="220" height="230" rx="10" fill="#fafafa" stroke="#b0bec5" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="130" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#546e7a">Scheduler 主线程</text>
+
+  <rect x="40" y="60" width="180" height="36" rx="6" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="130" y="83" text-anchor="middle" font-size="11" font-weight="600" fill="#4a148c">prefetch_from_storage</text>
+
+  <rect x="40" y="110" width="180" height="36" rx="6" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="130" y="133" text-anchor="middle" font-size="11" font-weight="600" fill="#4a148c">write_backup_storage</text>
+
+  <rect x="40" y="160" width="180" height="36" rx="6" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="130" y="183" text-anchor="middle" font-size="11" font-weight="600" fill="#4a148c">drain_storage_queues</text>
+  <text x="130" y="203" text-anchor="middle" font-size="9" fill="#9c27b0">处理完成回调</text>
+
+  <!-- 箭头到 prefetch_thread -->
+  <line x1="220" y1="78" x2="310" y2="65" stroke="#546e7a" stroke-width="1.5" marker-end="url(#arr6)"/>
+  <!-- 箭头到 backup_thread -->
+  <line x1="220" y1="128" x2="310" y2="215" stroke="#546e7a" stroke-width="1.5" marker-end="url(#arr6)"/>
+
+  <!-- prefetch_thread -->
+  <rect x="320" y="35" width="340" height="105" rx="10" fill="#e8f5e9" stroke="#66bb6a" stroke-width="2"/>
+  <text x="490" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#2e7d32">prefetch_thread + prefetch_io_aux_thread</text>
+  <text x="340" y="58" font-size="10" fill="#333">1. _storage_hit_query(): 查询 hash 命中</text>
+  <text x="340" y="76" font-size="10" fill="#333">2. _storage_io_read(): 从 SSD/RDMA 读取</text>
+  <text x="340" y="94" font-size="10" fill="#333">3. _deserialize(): 反序列化写入 host_value</text>
+  <text x="340" y="112" font-size="10" fill="#333">4. 写入完成队列 (drain 消费)</text>
+  <text x="340" y="130" font-size="9" fill="#78909c">prefetch_io_aux: 并行批量 IO 加速大量读请求</text>
+
+  <!-- backup_thread -->
+  <rect x="320" y="180" width="340" height="90" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="490" y="173" text-anchor="middle" font-size="11" font-weight="700" fill="#bf360c">backup_thread</text>
+  <text x="340" y="203" font-size="10" fill="#333">1. _serialize(): 序列化 host_value</text>
+  <text x="340" y="221" font-size="10" fill="#333">2. _storage_io_write(): 写入 SSD/RDMA</text>
+  <text x="340" y="239" font-size="10" fill="#333">3. 去重 (hash 存在则跳过写入)</text>
+  <text x="340" y="257" font-size="9" fill="#78909c">backup_skip: TP 场景下仅 rank=0 写入</text>
+
+  <!-- 说明 -->
+  <text x="350" y="300" text-anchor="middle" font-size="10" fill="#666">所有 IO 线程与 Scheduler 主线程解耦，通过队列通信，无锁等待。</text>
+</svg>

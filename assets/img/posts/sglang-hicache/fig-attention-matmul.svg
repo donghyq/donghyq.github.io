@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+  <defs>
+    <marker id="arrAtt" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0,0 10,3.5 0,7" fill="#546e7a"/>
+    </marker>
+  </defs>
+
+  <!-- Q 矩阵 -->
+  <rect x="20" y="50" width="55" height="130" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="47" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#1b5e20">Q</text>
+  <text x="47" y="200" text-anchor="middle" font-size="9" fill="#388e3c">(seq, d)</text>
+
+  <!-- 乘号 -->
+  <text x="90" y="120" text-anchor="middle" font-size="18" fill="#333">x</text>
+
+  <!-- K^T 矩阵 -->
+  <rect x="105" y="75" width="130" height="55" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="170" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#bf360c">K^T</text>
+  <text x="170" y="148" text-anchor="middle" font-size="9" fill="#e65100">(d, seq)</text>
+
+  <!-- 等号 -->
+  <text x="255" y="120" text-anchor="middle" font-size="18" fill="#333">=</text>
+
+  <!-- S 矩阵 -->
+  <rect x="275" y="60" width="100" height="100" rx="4" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+  <text x="325" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#c62828">S</text>
+  <text x="325" y="180" text-anchor="middle" font-size="9" fill="#c62828">(seq, seq)</text>
+
+  <!-- Softmax 箭头 -->
+  <line x1="375" y1="110" x2="415" y2="110" stroke="#546e7a" stroke-width="2" marker-end="url(#arrAtt)"/>
+  <text x="395" y="100" text-anchor="middle" font-size="9" fill="#546e7a">softmax</text>
+
+  <!-- P 矩阵 -->
+  <rect x="420" y="60" width="100" height="100" rx="4" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+  <text x="470" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#c62828">P</text>
+  <text x="470" y="180" text-anchor="middle" font-size="9" fill="#c62828">(seq, seq)</text>
+
+  <!-- 乘号 -->
+  <text x="535" y="120" text-anchor="middle" font-size="18" fill="#333">x</text>
+
+  <!-- V 矩阵 -->
+  <rect x="550" y="50" width="55" height="130" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="577" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#0d47a1">V</text>
+  <text x="577" y="200" text-anchor="middle" font-size="9" fill="#1565c0">(seq, d)</text>
+
+  <!-- 等号 -->
+  <text x="620" y="120" text-anchor="middle" font-size="18" fill="#333">=</text>
+
+  <!-- O 矩阵 -->
+  <rect x="635" y="50" width="55" height="130" rx="4" fill="#ede7f6" stroke="#4527a0" stroke-width="2"/>
+  <text x="662" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#4527a0">O</text>
+  <text x="662" y="200" text-anchor="middle" font-size="9" fill="#4527a0">(seq, d)</text>
+
+  <!-- 公式说明 -->
+  <text x="350" y="235" text-anchor="middle" font-size="11" fill="#333">Attention(Q, K, V) = softmax(Q K^T / sqrt(d)) V</text>
+  <text x="350" y="252" text-anchor="middle" font-size="10" fill="#777">K 和 V 即为 KV Cache 的核心内容。缓存它们避免重复计算。</text>
+</svg>

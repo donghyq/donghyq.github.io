@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 540" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+  <!-- State A: GPU Only -->
+  <rect x="140" y="30" width="280" height="65" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="280" y="57" text-anchor="middle" font-size="14" font-weight="700" fill="#1b5e20">State A: GPU Only</text>
+  <text x="280" y="77" text-anchor="middle" font-size="10" fill="#388e3c">value=有, host_value=None, evicted=False</text>
+
+  <!-- 向下箭头 A→B -->
+  <line x1="280" y1="95" x2="280" y2="140" stroke="#546e7a" stroke-width="2"/>
+  <polygon points="275,137 280,148 285,137" fill="#546e7a"/>
+  <text x="290" y="123" font-size="10" fill="#333">write_backup() 完成</text>
+
+  <!-- State B: GPU + Host -->
+  <rect x="140" y="150" width="280" height="65" rx="10" fill="#fff8e1" stroke="#f9a825" stroke-width="2"/>
+  <text x="280" y="177" text-anchor="middle" font-size="14" font-weight="700" fill="#f57f17">State B: GPU + Host</text>
+  <text x="280" y="197" text-anchor="middle" font-size="10" fill="#f9a825">value=有, host_value=有, backuped=True</text>
+
+  <!-- 向下箭头 B→C -->
+  <line x1="280" y1="215" x2="280" y2="260" stroke="#546e7a" stroke-width="2"/>
+  <polygon points="275,257 280,268 285,257" fill="#546e7a"/>
+  <text x="290" y="243" font-size="10" fill="#333">_evict_backuped(): 清除 value</text>
+
+  <!-- State C: Host Only -->
+  <rect x="140" y="270" width="280" height="65" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="280" y="297" text-anchor="middle" font-size="14" font-weight="700" fill="#0d47a1">State C: Host Only</text>
+  <text x="280" y="317" text-anchor="middle" font-size="10" fill="#1976d2">value=None, host_value=有, evicted=True</text>
+
+  <!-- 向下箭头 C→D -->
+  <line x1="280" y1="335" x2="280" y2="380" stroke="#546e7a" stroke-width="2"/>
+  <polygon points="275,377 280,388 285,377" fill="#546e7a"/>
+  <text x="290" y="363" font-size="10" fill="#333">evict_host(): 清除 host_value</text>
+
+  <!-- State D: Storage Only -->
+  <rect x="140" y="390" width="280" height="65" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="280" y="417" text-anchor="middle" font-size="14" font-weight="700" fill="#bf360c">State D: Storage Only</text>
+  <text x="280" y="437" text-anchor="middle" font-size="10" fill="#e65100">value=None, host_value=None, hash_value=有</text>
+
+  <!-- 回升路径：左侧虚线 D→B，向上箭头 -->
+  <!-- 从 State D 左边中点出发，向左拐，垂直向上，到 State B 左边中点 -->
+  <path d="M140,422 L80,422 L80,182 L138,182" fill="none" stroke="#1565c0" stroke-width="2" stroke-dasharray="7,4"/>
+  <!-- 向右的三角箭头，指向 State B -->
+  <polygon points="135,177 135,187 145,182" fill="#1565c0"/>
+
+  <!-- 回升路径标注：横排放在左侧线旁边 -->
+  <text x="50" y="280" text-anchor="middle" font-size="10" fill="#1565c0" writing-mode="tb">prefetch + load_back 回升</text>
+
+  <!-- 说明 -->
+  <text x="280" y="490" text-anchor="middle" font-size="10" fill="#666">节点从 State A 逐步降级到 State D。</text>
+  <text x="280" y="508" text-anchor="middle" font-size="10" fill="#666">回升时通过 prefetch (D→C) 和 load_back (C→B) 逆向攀升。</text>
+</svg>

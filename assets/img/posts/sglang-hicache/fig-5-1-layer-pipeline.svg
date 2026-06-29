@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+  <!-- load_stream 行 -->
+  <text x="10" y="40" font-size="12" font-weight="700" fill="#1565c0">load_stream:</text>
+  <rect x="120" y="22" width="90" height="30" rx="4" fill="#bbdefb" stroke="#1565c0" stroke-width="1"/>
+  <text x="165" y="42" text-anchor="middle" font-size="11" fill="#0d47a1">L0 DMA</text>
+  <rect x="215" y="22" width="90" height="30" rx="4" fill="#bbdefb" stroke="#1565c0" stroke-width="1"/>
+  <text x="260" y="42" text-anchor="middle" font-size="11" fill="#0d47a1">L1 DMA</text>
+  <rect x="310" y="22" width="90" height="30" rx="4" fill="#bbdefb" stroke="#1565c0" stroke-width="1"/>
+  <text x="355" y="42" text-anchor="middle" font-size="11" fill="#0d47a1">L2 DMA</text>
+  <rect x="405" y="22" width="90" height="30" rx="4" fill="#bbdefb" stroke="#1565c0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="11" fill="#0d47a1">L3 DMA</text>
+  <text x="510" y="42" font-size="9" fill="#78909c">...</text>
+
+  <!-- compute 行 -->
+  <text x="10" y="100" font-size="12" font-weight="700" fill="#2e7d32">compute:</text>
+  <rect x="120" y="82" width="70" height="30" rx="4" fill="#eeeeee" stroke="#bdbdbd" stroke-width="1"/>
+  <text x="155" y="102" text-anchor="middle" font-size="10" fill="#999">wait(0)</text>
+  <rect x="195" y="82" width="90" height="30" rx="4" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="240" y="102" text-anchor="middle" font-size="11" fill="#1b5e20">L0 FWD</text>
+  <rect x="290" y="82" width="90" height="30" rx="4" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="335" y="102" text-anchor="middle" font-size="11" fill="#1b5e20">L1 FWD</text>
+  <rect x="385" y="82" width="90" height="30" rx="4" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="430" y="102" text-anchor="middle" font-size="11" fill="#1b5e20">L2 FWD</text>
+  <rect x="480" y="82" width="90" height="30" rx="4" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="525" y="102" text-anchor="middle" font-size="11" fill="#1b5e20">L3 FWD</text>
+
+  <!-- 说明 -->
+  <text x="340" y="142" text-anchor="middle" font-size="10" fill="#666">上行：load_stream 逐层搬运。下行：计算流在每层开始前 wait() 对应层的 DMA 完成事件。</text>
+  <text x="340" y="156" text-anchor="middle" font-size="10" fill="#666">两条流完美交错，DMA 延迟被计算时间掩盖。</text>
+</svg>
