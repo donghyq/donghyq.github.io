@@ -1,7 +1,7 @@
 ---
 title: "Search-R1：让 LLM 学会边思考边搜索"
 date: 2026-01-25 10:00:00 +0800
-categories: [AI Infra, RL]
+categories: [LLM Infra, RL]
 tags: [search-r1, grpo, ppo, verl, rag, rl-infra, state-masking, fsdp]
 ---
 
@@ -259,4 +259,6 @@ vLLM 在这个项目里只用于训练阶段的 rollout 生成（`verl/workers/r
 
 ---
 
-参考资料：项目地址 [PeterJinGo/Search-R1](https://github.com/PeterJinGo/Search-R1)，论文 [Search-R1: Training LLMs to Reason and Search with Reinforcement Learning](https://arxiv.org/abs/2503.09516)。
+参考资料：
+- 项目地址 [PeterJinGo/Search-R1](https://github.com/PeterJinGo/Search-R1)，
+- 论文 [Search-R1: Training LLMs to Reason and Search with Reinforcement Learning](https://arxiv.org/abs/2503.09516)。
