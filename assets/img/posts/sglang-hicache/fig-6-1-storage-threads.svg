@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="320" viewBox="0 0 700 320" font-family="SF Pro Text, PingFang SC, -apple-system, sans-serif">
   <defs>
     <marker id="arr6" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0,0 10,3.5 0,7" fill="#546e7a"/>
