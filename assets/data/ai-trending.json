@@ -1,0 +1,280 @@
+{
+  "generated_at": "2026-07-20T04:36:57.082147+00:00Z",
+  "lookback_days": 30,
+  "digest": "过去 30 天，GitHub 上共涌现 16 个值得关注的 AI 开源项目，主力语言为 Python, TypeScript, HTML。最热门方向是「Agent 技能与工具」。",
+  "categories": [
+    {
+      "id": "agent-tools",
+      "name": "🧩 Agent 技能与工具",
+      "desc": "把工程、产品、设计能力封装成可复用的 Skill / 工具模块",
+      "repos": [
+        {
+          "name": "elder-plinius/T3MP3ST",
+          "url": "https://github.com/elder-plinius/T3MP3ST",
+          "description": "autonomous red teaming platform; multi-agent offensive-security meta-harness",
+          "summary_zh": "autonomous red teaming platform; multi-agent offensive-security meta-harness",
+          "stars": 5009,
+          "forks": 1040,
+          "language": "TypeScript",
+          "topics": [
+            "agents",
+            "ai",
+            "multi-agent",
+            "offensive-security",
+            "redteam"
+          ],
+          "created_at": "2026-07-02T17:53:55Z"
+        },
+        {
+          "name": "oomol-lab/open-connector",
+          "url": "https://github.com/oomol-lab/open-connector",
+          "description": "Open-source auth gateway connecting 1000+ SaaS providers to AI agents through SDK, CLI, MCP, HTTP, and OpenAPI.",
+          "summary_zh": "Open-source auth gateway connecting 1000+ SaaS providers to AI agents through...",
+          "stars": 3007,
+          "forks": 226,
+          "language": "TypeScript",
+          "topics": [
+            "agent-tools",
+            "ai-agents",
+            "api-gateway",
+            "automation",
+            "cli",
+            "cloudflare-workers"
+          ],
+          "created_at": "2026-06-29T10:49:36Z"
+        },
+        {
+          "name": "synthetic-sciences/openscience",
+          "url": "https://github.com/synthetic-sciences/openscience",
+          "description": "The open-source AI workbench for scientific research",
+          "summary_zh": "The open-source AI workbench for scientific research",
+          "stars": 2608,
+          "forks": 366,
+          "language": "TypeScript",
+          "topics": [
+            "agent",
+            "ai",
+            "ai-agent",
+            "bun",
+            "cli",
+            "co-scientist"
+          ],
+          "created_at": "2026-07-03T15:06:45Z"
+        },
+        {
+          "name": "isjiamu/gzh-design-skill",
+          "url": "https://github.com/isjiamu/gzh-design-skill",
+          "description": "把 Markdown 一键排成可直接粘进公众号编辑器的精致 HTML —— 6 套精选主题 + 主题生成器 + 双关卡校验。An AI-agent skill that turns Markdown into paste-ready WeChat article HTML.",
+          "summary_zh": "把 Markdown 一键排成可直接粘进公众号编辑器的精致 HTML —— 6 套精选主题 + 主题生成器 + 双关卡校验。",
+          "stars": 2355,
+          "forks": 269,
+          "language": "HTML",
+          "topics": [
+            "agent-skill",
+            "ai-agent",
+            "claude-code",
+            "codex",
+            "cursor",
+            "gongzhonghao"
+          ],
+          "created_at": "2026-07-01T04:28:03Z"
+        }
+      ]
+    },
+    {
+      "id": "info-search",
+      "name": "🔍 信息搜索与抓取",
+      "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
+      "repos": [
+        {
+          "name": "MADEVAL/FerryAI",
+          "url": "https://github.com/MADEVAL/FerryAI",
+          "description": "Native AI inference for PHP 8.3+ - run ONNX, GGUF (llama.cpp) and RubixML models directly in your PHP process via FFI. Chat, streaming, embeddings, RA",
+          "summary_zh": "Native AI inference for PHP 8.3+ - run ONNX,",
+          "stars": 56,
+          "forks": 31,
+          "language": "PHP",
+          "topics": [
+            "ai",
+            "embeddings",
+            "ffi",
+            "generative-ai",
+            "gguf",
+            "inference"
+          ],
+          "created_at": "2026-07-04T10:45:08Z"
+        },
+        {
+          "name": "phoenix-zhou/logistics-industry-RAG",
+          "url": "https://github.com/phoenix-zhou/logistics-industry-RAG",
+          "description": "This project is a local knowledge base \"Logistics Industry\" question-answering system based on the **RAG (Retrieval-Augmented Generation) technology**",
+          "summary_zh": "This project is a local knowledge base \"Logistics Industry\" question-answerin...",
+          "stars": 33,
+          "forks": 2,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-06-29T08:26:38Z"
+        },
+        {
+          "name": "phoenix-zhou/chatglm6b-social-media-ie",
+          "url": "https://github.com/phoenix-zhou/chatglm6b-social-media-ie",
+          "description": "This project leverages the ChatGLM-6B Large Language Model (LLM), combined with LoRA and P-Tuning fine-tuning techniques, to implement text classifica",
+          "summary_zh": "This project leverages the ChatGLM-6B Large Language Model (LLM),",
+          "stars": 31,
+          "forks": 2,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-07-01T14:44:52Z"
+        },
+        {
+          "name": "ruvnet/rupixel",
+          "url": "https://github.com/ruvnet/rupixel",
+          "description": "Pixel-native visual RAG ported to Rust on the ruvector ANN substrate (HNSW + IVF-Flat) — screenshot/document retrieval over visual embeddings, a Rust ",
+          "summary_zh": "Pixel-native visual RAG ported to Rust on the ruvector ANN substrate (HNSW + ...",
+          "stars": 31,
+          "forks": 7,
+          "language": "Rust",
+          "topics": [
+            "colpali",
+            "document-retrieval",
+            "embeddings",
+            "hnsw",
+            "ivf",
+            "metaharness"
+          ],
+          "created_at": "2026-06-25T20:17:50Z"
+        }
+      ]
+    },
+    {
+      "id": "context-infra",
+      "name": "🧠 上下文与推理基础设施",
+      "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
+      "repos": [
+        {
+          "name": "jmerelnyc/Talos",
+          "url": "https://github.com/jmerelnyc/Talos",
+          "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
+          "summary_zh": "GPU worker client for the Talos network.",
+          "stars": 991,
+          "forks": 17,
+          "language": "Python",
+          "topics": [
+            "ai",
+            "distributed-computing",
+            "gpu",
+            "llm",
+            "ollama",
+            "python"
+          ],
+          "created_at": "2026-07-02T14:43:11Z"
+        },
+        {
+          "name": "usedotai/dot-loom",
+          "url": "https://github.com/usedotai/dot-loom",
+          "description": "Provider-pluggable orchestration runtime for multi-model AI inference. ( Sakana Fugu style )",
+          "summary_zh": "Provider-pluggable orchestration runtime for multi-model AI inference.",
+          "stars": 239,
+          "forks": 0,
+          "language": "JavaScript",
+          "topics": [
+            "agents",
+            "ai",
+            "byok",
+            "dot",
+            "inference",
+            "llm"
+          ],
+          "created_at": "2026-06-23T17:19:53Z"
+        },
+        {
+          "name": "xiaol/wkvm",
+          "url": "https://github.com/xiaol/wkvm",
+          "description": "Inference for hybrid LLMs: Gemma, RWKV, and all kinds of hybrids.",
+          "summary_zh": "Inference for hybrid LLMs: Gemma, RWKV, and all kinds of hybrids.",
+          "stars": 167,
+          "forks": 9,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-07-03T03:57:22Z"
+        }
+      ]
+    },
+    {
+      "id": "app-frontend",
+      "name": "🎨 应用与前端",
+      "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
+      "repos": [
+        {
+          "name": "videlalvaro/inference-school",
+          "url": "https://github.com/videlalvaro/inference-school",
+          "description": "A hands-on Swift and Metal course for building LLM inference from first principles on Apple silicon, with 48 guided lessons, runnable exercises, a nat",
+          "summary_zh": "A hands-on Swift and Metal course for building LLM inference from first princ...",
+          "stars": 172,
+          "forks": 14,
+          "language": "Swift",
+          "topics": [],
+          "created_at": "2026-07-13T21:05:06Z"
+        },
+        {
+          "name": "heartsound36ham/ChatGPT-Version-Ultra-2",
+          "url": "https://github.com/heartsound36ham/ChatGPT-Version-Ultra-2",
+          "description": "Advanced large language model deployment suite featuring context-aware generation layers, multi-modal semantic indexing, and automated API orchestrati",
+          "summary_zh": "Advanced large language model deployment suite featuring context-aware genera...",
+          "stars": 68,
+          "forks": 0,
+          "language": "",
+          "topics": [
+            "chatgpt-5-5",
+            "chatgpt-5-pro",
+            "chatgpt-clone",
+            "chatgpt55",
+            "chatgptfree",
+            "free-chatgpt"
+          ],
+          "created_at": "2026-06-30T17:14:10Z"
+        },
+        {
+          "name": "Starnodes2024/comfyui-starnodes-modelconverter",
+          "url": "https://github.com/Starnodes2024/comfyui-starnodes-modelconverter",
+          "description": "Ultimate Model Converter for ComfyUI using comfyui-kitchen - Convert between  Transformers, FP32, FP16, FP8. INT8, NVFP4, INT8 Comvrot",
+          "summary_zh": "Ultimate Model Converter for ComfyUI using comfyui-kitchen",
+          "stars": 57,
+          "forks": 5,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-07-05T13:55:35Z"
+        },
+        {
+          "name": "abdhsn8/Deep-Learning-Intuition-Visualization",
+          "url": "https://github.com/abdhsn8/Deep-Learning-Intuition-Visualization",
+          "description": "Interactive deep learning visualizer covering CNNs, RNNs, LSTMs, Transformers, VAEs, GANs, and Diffusion Models. Zero-install web app (single HTML fil",
+          "summary_zh": "Interactive deep learning visualizer covering CNNs,",
+          "stars": 53,
+          "forks": 1,
+          "language": "HTML",
+          "topics": [],
+          "created_at": "2026-06-23T07:47:33Z"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "name": "📦 其他热门",
+      "desc": "值得关注的其他 AI/ML 开源项目",
+      "repos": [
+        {
+          "name": "jamesob/local-llm",
+          "url": "https://github.com/jamesob/local-llm",
+          "description": "Everything I know about running LLMs locally",
+          "summary_zh": "Everything I know about running LLMs locally",
+          "stars": 1566,
+          "forks": 97,
+          "language": "Shell",
+          "topics": [],
+          "created_at": "2026-07-03T13:06:03Z"
+        }
+      ]
+    }
+  ]
+}

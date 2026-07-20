@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanyu Dong — AI Infra & Search Engineer</title>
+    <meta name="description" content="搜索架构工程师，专注 AI Infra、KV Cache 优化、GPU 向量检索与智能搜索系统">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/homepage/style.css' | relative_url }}">
+    {% if site.avatar %}
+    <link rel="icon" href="{{ site.avatar | relative_url }}" type="image/jpeg">
+    {% endif %}
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">HYD<span class="dot">.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#publications">Blog</a></li>
+                <li><a href="{{ '/' | relative_url }}" class="nav-cta">博客首页 →</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-greeting">// Hello, I'm</p>
+            <h1 class="hero-name">Hanyu Dong</h1>
+            <h2 class="hero-title">
+                <span id="typedText"></span><span class="cursor">|</span>
+            </h2>
+            <p class="hero-desc">AI Infra · KV Cache · GPU Vector Search · Intelligent Search System</p>
+            <div class="hero-tags">
+                <span class="tag">Meituan</span>
+                <span class="tag">3 年经验</span>
+                <span class="tag">北航 CS</span>
+                <span class="tag">AI Infra / Search</span>
+            </div>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">查看项目</a>
+                <a href="{{ '/' | relative_url }}" class="btn btn-outline">博客首页</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">01. About</span>
+                <h2 class="section-title">关于我</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>搜索架构出身的 <strong>AI 存储工程师</strong>，3 年深耕异构存储下的数据搬运与带宽优化。核心方法论是"在受限的存储和带宽下做数据搬运优化"——从 ES 内核的 MMAP 零拷贝列存到 GPU 向量检索的 HBM/DRAM 分层、再到 LLM 推理的 KV Cache 三级分层存储，是同一套方法论在不同场景的实践。</p>
+                    <p>深度参与搜推大模型 <strong>KV Cache 体系建设</strong>（Cache-Aware + Load-Aware 双目标路由、L1/L2/L3 三级分层存储、PD 分离 + RDMA 传输优化），在 <strong>GPU 向量检索</strong>中负责离线构建到在线加载全链路，在 <strong>AI Search Agent</strong> 中落地分层记忆存储底座。</p>
+                    <p>具备 ES 内核级优化深度（原地列存更新 10W+ QPS、RLE 倒排编码 TP99 降 7 倍）和分布式集群管理经验（6 机房容灾、ZK 服务发现、自动切流）。</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-num">3</span>
+                            <span class="stat-label">年工作经验</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">7</span>
+                            <span class="stat-label">核心项目</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">56%</span>
+                            <span class="stat-label">TTFT 降低</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="education-cards">
+                    <div class="edu-card reveal">
+                        <div class="edu-icon">🎓</div>
+                        <div class="edu-info">
+                            <h3>北京航空航天大学</h3>
+                            <p class="edu-degree">计算机科学与技术</p>
+                            <p class="edu-period">BeiHang University</p>
+                            <div class="edu-badges">
+                                <span class="badge">Computer Science</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edu-card reveal">
+                        <div class="edu-icon">💼</div>
+                        <div class="edu-info">
+                            <h3>美团</h3>
+                            <p class="edu-degree">搜索架构工程师</p>
+                            <p class="edu-period">2021 — 至今</p>
+                            <div class="edu-badges">
+                                <span class="badge">AI Infra</span>
+                                <span class="badge">Search Arch</span>
+                                <span class="badge">KV Cache</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">02. Experience</span>
+                <h2 class="section-title">工作经历</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">美团</h3>
+                                <p class="timeline-role">搜索架构工程师 · 搜索推荐技术部</p>
+                            </div>
+                            <span class="timeline-period">2021 — 至今</span>
+                        </div>
+                        <ul class="timeline-items">
+                            <li>深度参与搜推大模型 KV Cache 体系建设，落地 Cache-Aware 路由 + 三级分层存储 + PD 分离传输优化</li>
+                            <li>负责 GPU 向量检索引擎离线构建、在线加载、流量校验全链路工程化，支撑 2 亿商品向量检索</li>
+                            <li>作为核心开发落地 AI Search Agent，构建检索-推理双向联动 + 分层 Memory 体系</li>
+                            <li>个人主导 ES 原地列存更新机制研发，支撑 10W+ QPS 秒级可见更新</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">SGLang</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">RDMA</span>
+                            <span class="tech-tag">Faiss</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">03. Projects</span>
+                <h2 class="section-title">核心项目</h2>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card wide reveal">
+                    <div class="project-main">
+                        <div class="project-header">
+                            <div class="project-icon">⚡</div>
+                            <span class="project-num">01</span>
+                        </div>
+                        <h3 class="project-title">搜推大模型 KV Cache 体系建设</h3>
+                        <p class="project-desc">基于 SGLang + LMCache/Mooncake/Dynamo 做集成与场景定制，自研 GR+LLM 双模可插拔路由、RL Rollout 跨迭代 KV 复用、语义 KV Cache 复用。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">↓56%</span>
+                                <span class="metric-label">TTFT 降低</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">2x</span>
+                                <span class="metric-label">吞吐提升</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">20+GB/s</span>
+                                <span class="metric-label">传输带宽</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="tech-tag">SGLang</span>
+                            <span class="tech-tag">PagedAttention</span>
+                            <span class="tech-tag">RDMA</span>
+                            <span class="tech-tag">HiRadixCache</span>
+                            <span class="tech-tag">PD 分离</span>
+                            <span class="tech-tag">FP8 量化</span>
+                        </div>
+                    </div>
+                    <div class="project-detail">
+                        <ul class="project-highlights">
+                            <li>设计 <strong>Cache-Aware 前缀匹配 + Load-Aware 负载感知</strong> 双模路由，Cache 命中率 40%→80%</li>
+                            <li><strong>L1 HBM / L2 DRAM / L3 NVMe+3FS</strong> 三级分层存储</li>
+                            <li>PD 分离 layer-level pipeline，RDMA MC_SLICE_SIZE 调优 <strong>12.6→20+GB/s</strong></li>
+                            <li>语义 KV Cache 复用：embedding → ANN → CacheBlend 选择性重计算</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card wide agent-card reveal">
+                    <div class="project-main">
+                        <div class="project-header">
+                            <div class="project-icon">🔬</div>
+                            <span class="project-num">02</span>
+                        </div>
+                        <h3 class="project-title">GPU 向量检索引擎全链路工程化</h3>
+                        <p class="project-desc">LBS 场景过滤比 99.5%，自研 GPU 向量检索引擎。负责离线 Spark 构建 + 在线 GPU 加载 + 流量校验 + 灰度上线全链路。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">25.4ms</span>
+                                <span class="metric-label">TP99</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">100%</span>
+                                <span class="metric-label">召回率</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">2亿</span>
+                                <span class="metric-label">商品向量</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">IVF-PQ + Refine</span>
+                            <span class="tech-tag">HBM/DRAM 分层</span>
+                            <span class="tech-tag">Spark</span>
+                            <span class="tech-tag">FP16 量化</span>
+                        </div>
+                    </div>
+                    <div class="project-detail">
+                        <ul class="project-highlights">
+                            <li><strong>离线构建</strong>：Crane → Hive 就绪 → Spark 100 分片并行 → HDFS</li>
+                            <li><strong>在线加载 4 阶段</strong>：schema 解析 → 多线程读 gzip → 多 GPU 初始化 → 标签过滤 GPU 化</li>
+                            <li><strong>HBM/DRAM 分层</strong>：向量存 HBM、标量存 DRAM，GPU→Host 传输量降 90%</li>
+                            <li>流量回放校验 → 灰度加载 → OCTO 上线安全发布流程</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card featured reveal">
+                    <div class="project-header">
+                        <div class="project-icon">🤖</div>
+                        <span class="project-num">03</span>
+                    </div>
+                    <h3 class="project-title">AI Search Agent 智能搜索系统</h3>
+                    <p class="project-desc">面向美团本地生活的 AI 搜索 Agent（GPT-4o / DeepSeek-R1），"推理驱动检索 + 检索驱动推理"双向联动。</p>
+                    <ul class="project-highlights">
+                        <li>"<strong>DAG 预编排 + ReAct 补充</strong>"混合架构，6 路并行召回</li>
+                        <li>分层 Memory：短期 + 长期（<strong>2000W 用户 / 3.4亿+ 条目</strong>）+ 缓存复用</li>
+                        <li>翻页延迟降低 65%，LLM 调用成本降低 70%</li>
+                    </ul>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-val">↑15%</span>
+                            <span class="metric-label">满意度提升</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-val">↑30%</span>
+                            <span class="metric-label">准确率提升</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-val">百万级</span>
+                            <span class="metric-label">日均会话</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tech-tag">LangGraph4j</span>
+                        <span class="tech-tag">ReAct</span>
+                        <span class="tech-tag">NL2SQL</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Fury/Kryo</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <span class="project-num">04</span>
+                    </div>
+                    <h3 class="project-title">外卖精排链路升级</h3>
+                    <p class="project-desc">项目主 R，worldtree 图编排重构为"单入口 + 图内并行"。</p>
+                    <ul class="project-highlights">
+                        <li>精排 avg <strong>110→85ms</strong>（降 23%），CPU 降低 66%</li>
+                        <li>排查 Metaspace OOM、GC 异常等稳定性问题</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tech-tag">DAG 编排</span>
+                        <span class="tech-tag">CPU Profile</span>
+                        <span class="tech-tag">JVM 调优</span>
+                        <span class="tech-tag">释放 3200 CU</span>
+                    </div>
+                </div>
+
+                <div class="project-card wide reveal">
+                    <div class="project-main">
+                        <div class="project-header">
+                            <div class="project-icon">🔧</div>
+                            <span class="project-num">05</span>
+                        </div>
+                        <h3 class="project-title">ES 搜索引擎深度优化</h3>
+                        <p class="project-desc">个人主导原地列存更新机制研发，将近线价格写入从 5000 QPS 提升到 10W+ QPS。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">7x</span>
+                                <span class="metric-label">TP99 降低</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">10W+</span>
+                                <span class="metric-label">QPS</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">80%+</span>
+                                <span class="metric-label">价格准确率</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="tech-tag">Lucene SPI</span>
+                            <span class="tech-tag">MMAP 零拷贝</span>
+                            <span class="tech-tag">RLE 编码</span>
+                            <span class="tech-tag">DocValues</span>
+                        </div>
+                    </div>
+                    <div class="project-detail">
+                        <ul class="project-highlights">
+                            <li>Lucene SPI 新列存格式，<strong>MMAP + DocID O(1) 寻址</strong>，避免 JVM 堆 GC</li>
+                            <li>Hash 字典替代 FST，兼容段合并 ID 映射</li>
+                            <li><strong>RLE + Index Sort</strong> 倒排编码，TP99 降低 7 倍</li>
+                            <li>DvTerm 查询器 + LBS Hash 分片消除倾斜</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">04. Skills</span>
+                <h2 class="section-title">技术栈</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <h3 class="skill-cat-title"><span class="skill-icon">⚡</span> AI Infra / KV Cache</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag level-expert">KV Cache 分层调度</span>
+                        <span class="skill-tag level-expert">PagedAttention</span>
+                        <span class="skill-tag level-expert">RadixAttention</span>
+                        <span class="skill-tag level-expert">SGLang / HiCache</span>
+                        <span class="skill-tag level-mid">PD 分离架构</span>
+                        <span class="skill-tag level-mid">RDMA / GDR</span>
+                        <span class="skill-tag level-mid">FP8/INT4 量化</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="skill-cat-title"><span class="skill-icon">🔍</span> 搜索 / 向量检索</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag level-expert">Elasticsearch</span>
+                        <span class="skill-tag level-expert">Lucene 内核</span>
+                        <span class="skill-tag level-expert">Faiss IVF-PQ</span>
+                        <span class="skill-tag level-expert">GPU 向量检索</span>
+                        <span class="skill-tag level-mid">MMAP 零拷贝</span>
+                        <span class="skill-tag level-mid">HBM/DRAM 分层</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="skill-cat-title"><span class="skill-icon">🤖</span> AI Agent / LLM</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag level-expert">LangGraph4j</span>
+                        <span class="skill-tag level-expert">ReAct / Tool Use</span>
+                        <span class="skill-tag level-expert">Agent Memory</span>
+                        <span class="skill-tag level-mid">NL2SQL</span>
+                        <span class="skill-tag level-mid">RAG</span>
+                        <span class="skill-tag level-mid">GPT-4o / DeepSeek</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="skill-cat-title"><span class="skill-icon">⚙️</span> 工程基础</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag level-expert">Java</span>
+                        <span class="skill-tag level-expert">Python</span>
+                        <span class="skill-tag level-expert">Redis / Kafka</span>
+                        <span class="skill-tag level-mid">CUDA</span>
+                        <span class="skill-tag level-mid">Spark / HDFS</span>
+                        <span class="skill-tag level-mid">gRPC / Thrift</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="publications" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">05. Blog</span>
+                <h2 class="section-title">技术博客</h2>
+            </div>
+            <div class="blog-intro reveal">
+                <p class="blog-desc">持续输出 AI Infra 和搜索系统方向的深度技术文章，涵盖源码精读、系统设计和实战总结。</p>
+            </div>
+            <div class="blog-grid">
+                {% for post in site.posts limit:4 %}
+                <a href="{{ post.url | relative_url }}" class="blog-card reveal">
+                    <div class="blog-card-header">
+                        <span class="blog-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                    </div>
+                    <h3 class="blog-title">{{ post.title }}</h3>
+                    {% if post.description %}
+                    <p class="blog-excerpt">{{ post.description | truncate: 120 }}</p>
+                    {% elsif post.excerpt %}
+                    <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                    {% endif %}
+                    <div class="blog-tags">
+                        {% for tag in post.tags limit:3 %}
+                        <span class="tech-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="blog-more reveal">
+                <a href="{{ '/' | relative_url }}" class="btn btn-outline">查看全部文章 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">06. Contact</span>
+                <h2 class="section-title">联系方式</h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-desc">对 AI Infra、KV Cache 优化、搜索系统感兴趣？欢迎交流 👋</p>
+                <div class="contact-links">
+                    <a href="https://github.com/donghyq" target="_blank" rel="noopener" class="contact-card reveal">
+                        <span class="contact-icon">🐙</span>
+                        <div>
+                            <p class="contact-label">GitHub</p>
+                            <p class="contact-value">donghyq</p>
+                        </div>
+                    </a>
+                    <a href="{{ '/' | relative_url }}" class="contact-card reveal">
+                        <span class="contact-icon">📝</span>
+                        <div>
+                            <p class="contact-label">Blog</p>
+                            <p class="contact-value">donghyq.github.io</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Hanyu Dong · AI Infra & Search Engineer</p>
+    </footer>
+
+    <script src="{{ '/assets/js/homepage.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} — {{ site.tagline }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/about/style.css' | relative_url }}">
+    {% if site.avatar %}
+    <link rel="icon" href="{{ site.avatar | relative_url }}" type="image/jpeg">
+    {% endif %}
+</head>
+<body>
+
+<!-- Cursor glow effect -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="wrapper">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <header class="panel-left">
+        <div>
+            <h1>Hanyu Dong</h1>
+            <h2>AI Infra &amp; Search Engineer</h2>
+            <p class="bio">
+                专注大模型 KV Cache 体系、GPU 向量检索与智能搜索系统。
+                在美团搜索推荐技术部构建面向 LLM 时代的搜索基础设施。
+            </p>
+
+            <ul class="left-nav">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#github">GitHub</a></li>
+                <li><a href="#trending">AI 热点</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://github.com/donghyq" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="{{ site.url }}" aria-label="Blog">
+                <svg viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <main class="panel-right">
+
+        <!-- ABOUT -->
+        <section id="about" class="section">
+            <div class="section-label">About</div>
+            <p>
+                我是一名搜索架构工程师，2021 年加入<a href="https://about.meituan.com" target="_blank">美团</a>搜索推荐技术部，
+                专注于构建面向大模型时代的搜索基础设施。我的工作横跨 AI Infra 与搜索引擎两个领域，
+                致力于让搜索系统更智能、更高效。
+            </p>
+            <p>
+                目前我深度参与了大模型 <strong>KV Cache</strong> 体系建设，设计了 Cache-Aware 路由、
+                三级分层存储和 PD 分离架构；同时负责 <strong>GPU 向量检索引擎</strong>的全链路构建，
+                实现了离线构建到在线加载、流量校验的完整闭环。
+            </p>
+            <p>
+                此外，我也是 <strong>AI Search Agent</strong> 智能搜索系统的核心开发者，
+                落地了分层记忆存储与"推理‑检索"双向联动链路，将搜索从传统的关键词匹配
+                推向了智能理解和多轮交互的方向。
+            </p>
+            <p>
+                工作之余，我对分布式系统、高性能计算和 LLM 推理优化保持着浓厚的兴趣，
+                喜欢在<a href="{{ site.url }}">博客</a>上分享技术心得。
+            </p>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <div class="section-label">Experience</div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2021 — 至今</div>
+                <div class="timeline-body">
+                    <h3>搜索架构工程师 · 美团</h3>
+                    <div class="subtitle">搜索推荐技术部</div>
+                    <p>
+                        深度参与搜推大模型 KV Cache 体系建设，设计 Cache-Aware 路由、三级分层存储、PD 分离架构。
+                        负责 GPU 向量检索引擎离线构建 + 在线加载 + 流量校验全链路工程化。
+                        核心开发 AI Search Agent 智能搜索系统，落地分层记忆存储与"推理‑检索"双向联动链路。
+                        作为项目主 R 完成外卖精排链路图编排升级，精排 avg 降 25%。
+                        主导 ES 搜索引擎深度优化，原地列存更新支撑 10W+ QPS 秒级生效。
+                    </p>
+                    <div class="tags">
+                        <span class="tag">KV Cache</span>
+                        <span class="tag">SGLang</span>
+                        <span class="tag">RDMA</span>
+                        <span class="tag">GPU 向量检索</span>
+                        <span class="tag">LLM Agent</span>
+                        <span class="tag">Elasticsearch</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2017 — 2021</div>
+                <div class="timeline-body">
+                    <h3>计算机科学与技术 · 北京航空航天大学</h3>
+                    <div class="subtitle">本科</div>
+                    <p>
+                        计算机科学与技术专业，打下了扎实的算法、数据结构与系统编程基础。
+                    </p>
+                    <div class="tags">
+                        <span class="tag">CS</span>
+                        <span class="tag">算法</span>
+                        <span class="tag">系统编程</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section">
+            <div class="section-label">Projects</div>
+
+            <div class="project-card">
+                <div class="project-thumb">🔬</div>
+                <div class="project-body">
+                    <h3>大模型 KV Cache 体系 <span class="arrow">↗</span></h3>
+                    <p>
+                        面向搜推场景的大模型推理加速方案。设计 Cache-Aware 路由策略，
+                        实现 DRAM → SSD → 对象存储三级分层存储，支持 PD 分离架构下的高效缓存复用。
+                    </p>
+                    <div class="metrics">
+                        <div class="metric"><div class="value">3 级</div><div class="label">分层存储</div></div>
+                        <div class="metric"><div class="value">RDMA</div><div class="label">传输协议</div></div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">SGLang</span>
+                        <span class="tag">RDMA</span>
+                        <span class="tag">RadixTree</span>
+                        <span class="tag">PD 分离</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumb">🔍</div>
+                <div class="project-body">
+                    <h3>GPU 向量检索引擎 <span class="arrow">↗</span></h3>
+                    <p>
+                        LBS 场景向量检索过滤比高达 99.5%，构建了完整的 GPU 向量检索引擎，
+                        覆盖离线 Spark 分布式构建、4 阶段在线加载、HBM/DRAM 异构分层存储。
+                    </p>
+                    <div class="metrics">
+                        <div class="metric"><div class="value">25.4ms</div><div class="label">TP99</div></div>
+                        <div class="metric"><div class="value">100%</div><div class="label">召回率</div></div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Faiss IVF-PQ</span>
+                        <span class="tag">CUDA Stream</span>
+                        <span class="tag">HBM/DRAM</span>
+                        <span class="tag">Spark</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumb">🧠</div>
+                <div class="project-body">
+                    <h3>AI Search Agent <span class="arrow">↗</span></h3>
+                    <p>
+                        面向美团本地生活的 AI 搜索 Agent（GPT-4o / DeepSeek-R1），
+                        构建"推理‑检索"双向联动链路及分层记忆存储底座。
+                    </p>
+                    <div class="metrics">
+                        <div class="metric"><div class="value">↑15%</div><div class="label">相关性</div></div>
+                        <div class="metric"><div class="value">↓65%</div><div class="label">无结果率</div></div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">LLM Agent</span>
+                        <span class="tag">Tool Use</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Memory</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumb">⚡</div>
+                <div class="project-body">
+                    <h3>外卖精排图编排升级 <span class="arrow">↗</span></h3>
+                    <p>
+                        作为项目主 R，基于 WorldTree 图编排引擎重构外卖精排链路，
+                        实现异步并发调度和热点路径优化。
+                    </p>
+                    <div class="metrics">
+                        <div class="metric"><div class="value">-25%</div><div class="label">精排 Avg</div></div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">WorldTree</span>
+                        <span class="tag">图编排</span>
+                        <span class="tag">异步并发</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumb">🔧</div>
+                <div class="project-body">
+                    <h3>ES 搜索引擎深度优化 <span class="arrow">↗</span></h3>
+                    <p>
+                        基于 ES 适配到家搜索 LBS 场景，研发原地列存更新机制支撑 10W+ QPS 秒级生效。
+                        基于 Lucene SPI 设计新列存格式，MMAP 映射 + O(1) 寻址。
+                    </p>
+                    <div class="metrics">
+                        <div class="metric"><div class="value">10W+</div><div class="label">QPS</div></div>
+                        <div class="metric"><div class="value">-7x</div><div class="label">TP99</div></div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Lucene SPI</span>
+                        <span class="tag">MMAP</span>
+                        <span class="tag">RLE 编码</span>
+                        <span class="tag">P2P 分发</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="section">
+            <div class="section-label">Skills</div>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h4>AI Infra</h4>
+                    <ul>
+                        <li>KV Cache 分层存储</li>
+                        <li>SGLang / vLLM</li>
+                        <li>RDMA 网络传输</li>
+                        <li>LLM Agent / RAG</li>
+                        <li>GPU 向量检索 (Faiss)</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>搜索引擎</h4>
+                    <ul>
+                        <li>Elasticsearch / Lucene</li>
+                        <li>倒排索引 / 列存</li>
+                        <li>图编排 (WorldTree)</li>
+                        <li>排序与召回策略</li>
+                        <li>LBS 搜索优化</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>编程语言</h4>
+                    <ul>
+                        <li>Java</li>
+                        <li>C++ / CUDA</li>
+                        <li>Python</li>
+                        <li>Go</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>基础设施</h4>
+                    <ul>
+                        <li>分布式系统</li>
+                        <li>Spark / Flink</li>
+                        <li>Kafka / RPC</li>
+                        <li>Docker / K8s</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- GITHUB -->
+        <section id="github" class="section">
+            <div class="section-label">GitHub</div>
+            <div class="github-contrib">
+                <div class="gh-profile" id="ghProfile">
+                    <div class="gh-avatar-wrap">
+                        <img id="ghAvatar" class="gh-avatar" src="" alt="">
+                    </div>
+                    <div class="gh-info">
+                        <h3 id="ghName"></h3>
+                        <p class="gh-bio" id="ghBio"></p>
+                        <div class="gh-stats">
+                            <div class="gh-stat"><span class="gh-stat-val" id="ghRepos">—</span><span class="gh-stat-label">Repos</span></div>
+                            <div class="gh-stat"><span class="gh-stat-val" id="ghFollowers">—</span><span class="gh-stat-label">Followers</span></div>
+                            <div class="gh-stat"><span class="gh-stat-val" id="ghFollowing">—</span><span class="gh-stat-label">Following</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gh-contrib-graph">
+                    <img src="https://ghchart.rshah.org/5eead4/donghyq" alt="GitHub Contribution Graph" class="gh-chart-img">
+                </div>
+                <div class="gh-recent" id="ghRecent">
+                    <h4>近期活动</h4>
+                    <div class="gh-events-list" id="ghEvents">加载中...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI TRENDING -->
+        <section id="trending" class="section">
+            <div class="section-label">AI 热点</div>
+            <p class="trending-digest" id="trendingDigest">每日自动追踪 GitHub 上最热门的 AI / LLM 开源项目，按方向分类归纳。</p>
+            <div class="trending-update-time" id="trendingTime"></div>
+            <div id="trendingCategories" class="trending-categories">加载中...</div>
+        </section>
+
+        <!-- BLOG -->
+        <section id="blog" class="section">
+            <div class="section-label">Blog</div>
+            <a href="{{ site.url }}" class="blog-link-card">
+                <div>
+                    <h3>技术博客 <span class="arrow">↗</span></h3>
+                    <p>分享 AI Infra、搜索引擎、KV Cache、分布式系统等方向的技术思考与实践总结。</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer-note">
+            <p>
+                设计灵感来自 <a href="https://brittanychiang.com" target="_blank">Brittany Chiang</a>。
+                使用 HTML &amp; CSS 手工构建，部署在 <a href="https://pages.github.com" target="_blank">GitHub Pages</a> 上。
+            </p>
+        </footer>
+
+    </main>
+</div>
+
+<script>
+// Cursor glow
+const glow = document.getElementById('cursorGlow');
+if (window.innerWidth > 900) {
+    document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+    });
+}
+
+// Active nav tracking
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.left-nav a');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active',
+                    link.getAttribute('href') === '#' + entry.target.id);
+            });
+        }
+    });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ===== GitHub Profile & Events =====
+const GH_USER = 'donghyq';
+
+fetch(`https://api.github.com/users/${GH_USER}`)
+  .then(r => r.json())
+  .then(u => {
+    document.getElementById('ghAvatar').src = u.avatar_url;
+    document.getElementById('ghAvatar').alt = u.login;
+    document.getElementById('ghName').textContent = u.name || u.login;
+    document.getElementById('ghBio').textContent = u.bio || '';
+    document.getElementById('ghRepos').textContent = u.public_repos;
+    document.getElementById('ghFollowers').textContent = u.followers;
+    document.getElementById('ghFollowing').textContent = u.following;
+  }).catch(() => {});
+
+fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=8`)
+  .then(r => r.json())
+  .then(events => {
+    const el = document.getElementById('ghEvents');
+    if (!events.length) { el.textContent = '暂无公开活动'; return; }
+    el.innerHTML = events.map(ev => {
+      const repo = ev.repo ? ev.repo.name : '';
+      const time = new Date(ev.created_at);
+      const ago = getTimeAgo(time);
+      let action = ev.type.replace('Event','');
+      if (ev.type === 'PushEvent') action = `Push ${ev.payload.commits ? ev.payload.commits.length : ''} commit(s) to`;
+      else if (ev.type === 'CreateEvent') action = `Created ${ev.payload.ref_type} in`;
+      else if (ev.type === 'WatchEvent') action = 'Starred';
+      else if (ev.type === 'ForkEvent') action = 'Forked';
+      else if (ev.type === 'IssuesEvent') action = `${ev.payload.action} issue in`;
+      else if (ev.type === 'PullRequestEvent') action = `${ev.payload.action} PR in`;
+      else if (ev.type === 'IssueCommentEvent') action = 'Commented on issue in';
+      else if (ev.type === 'DeleteEvent') action = `Deleted ${ev.payload.ref_type} in`;
+      return `<div class="gh-event">
+        <span class="gh-event-action">${action}</span>
+        <a href="https://github.com/${repo}" target="_blank" class="gh-event-repo">${repo}</a>
+        <span class="gh-event-time">${ago}</span>
+      </div>`;
+    }).join('');
+  }).catch(() => { document.getElementById('ghEvents').textContent = '加载失败'; });
+
+function getTimeAgo(date) {
+  const s = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (s < 60) return '刚刚';
+  if (s < 3600) return Math.floor(s/60) + ' 分钟前';
+  if (s < 86400) return Math.floor(s/3600) + ' 小时前';
+  return Math.floor(s/86400) + ' 天前';
+}
+
+// ===== AI Trending (from pre-generated JSON) =====
+const TRENDING_JSON = '{{ "/assets/data/ai-trending.json" | relative_url }}';
+// Fallback for local preview (Liquid not processed)
+let trendingUrl = TRENDING_JSON.includes('{') 
+  ? '/assets/data/ai-trending.json' 
+  : TRENDING_JSON;
+// file:// protocol needs absolute path
+if (location.protocol === 'file:') {
+  const base = location.pathname.replace(/\/_layouts\/.*$/, '');
+  trendingUrl = base + '/assets/data/ai-trending.json';
+}
+
+fetch(trendingUrl)
+  .then(r => r.json())
+  .then(data => {
+    // Update digest
+    if (data.digest) {
+      document.getElementById('trendingDigest').textContent = data.digest;
+    }
+    // Update time
+    if (data.generated_at) {
+      const d = new Date(data.generated_at.replace('Z',''));
+      const timeStr = d.toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric'});
+      document.getElementById('trendingTime').textContent = `更新于 ${timeStr}`;
+    }
+    // Render categories
+    const container = document.getElementById('trendingCategories');
+    if (!data.categories || !data.categories.length) {
+      container.textContent = '暂无热门项目';
+      return;
+    }
+    container.innerHTML = data.categories.map(cat => `
+      <div class="trending-cat">
+        <div class="trending-cat-header">
+          <h4>${cat.name}</h4>
+          <span class="trending-cat-desc">${cat.desc}</span>
+        </div>
+        <div class="trending-list">
+          ${cat.repos.map(repo => {
+            const lang = repo.language || '';
+            return `<a href="${repo.url}" target="_blank" class="trending-card">
+              <div class="trending-body">
+                <h3>${repo.name.split('/')[1]} <span class="arrow">↗</span></h3>
+                <p class="trending-summary">${repo.summary_zh}</p>
+                <div class="trending-meta">
+                  <span class="trending-stars">⭐ ${repo.stars.toLocaleString()}</span>
+                  ${lang ? `<span class="trending-lang">${lang}</span>` : ''}
+                  <span class="trending-forks">🍴 ${repo.forks}</span>
+                </div>
+              </div>
+            </a>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('');
+  }).catch(() => {
+    document.getElementById('trendingCategories').textContent = '加载失败';
+  });
+</script>
+
+</body>
+</html>
