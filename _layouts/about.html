@@ -309,9 +309,21 @@
         <!-- AI TRENDING -->
         <section id="trending" class="section">
             <div class="section-label">AI 热点</div>
-            <p class="trending-digest" id="trendingDigest">每日自动追踪 GitHub 上最热门的 AI / LLM 开源项目，按方向分类归纳。</p>
+            <p class="trending-digest" id="trendingDigest">每日自动追踪 GitHub 热门项目与 ArXiv 最新论文，按方向分类归纳。</p>
             <div class="trending-update-time" id="trendingTime"></div>
-            <div id="trendingCategories" class="trending-categories">加载中...</div>
+
+            <!-- Tab switcher -->
+            <div class="trending-tabs">
+                <button class="trending-tab active" data-tab="repos">🔥 GitHub 热门项目</button>
+                <button class="trending-tab" data-tab="papers">📄 ArXiv 最新论文</button>
+            </div>
+
+            <div id="trendingRepos" class="trending-tab-content active">
+                <div id="trendingCategories" class="trending-categories">加载中...</div>
+            </div>
+            <div id="trendingPapers" class="trending-tab-content" style="display:none;">
+                <div id="paperTopics" class="trending-categories">加载中...</div>
+            </div>
         </section>
 
         <!-- BLOG -->
@@ -467,9 +479,52 @@ fetch(trendingUrl)
         </div>
       </div>
     `).join('');
+    // Render papers
+    const papersEl = document.getElementById('paperTopics');
+    if (!data.papers || !data.papers.length) {
+      papersEl.textContent = '暂无最新论文';
+    } else {
+      papersEl.innerHTML = data.papers.map(topic => `
+        <div class="trending-cat">
+          <div class="trending-cat-header">
+            <h4>${topic.name}</h4>
+          </div>
+          <div class="trending-list">
+            ${topic.papers.map(paper => {
+              const authStr = paper.authors ? paper.authors.slice(0,3).join(', ') : '';
+              const catStr = paper.categories ? paper.categories.slice(0,2).join(' · ') : '';
+              const dateStr = paper.published ? new Date(paper.published).toLocaleDateString('zh-CN') : '';
+              return `<a href="${paper.url}" target="_blank" class="trending-card paper-card">
+                <div class="trending-body">
+                  <h3>${paper.title.length > 60 ? paper.title.slice(0,57) + '...' : paper.title} <span class="arrow">↗</span></h3>
+                  <p class="trending-summary">${paper.summary_zh}</p>
+                  <div class="paper-meta">
+                    ${authStr ? `<span class="paper-authors">👤 ${authStr}${paper.authors.length > 3 ? ' et al.' : ''}</span>` : ''}
+                    ${catStr ? `<span class="paper-cats">${catStr}</span>` : ''}
+                    ${dateStr ? `<span class="paper-date">${dateStr}</span>` : ''}
+                    ${paper.pdf_url ? `<span class="paper-pdf">PDF</span>` : ''}
+                  </div>
+                </div>
+              </a>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
   }).catch(() => {
     document.getElementById('trendingCategories').textContent = '加载失败';
   });
+
+// ===== Tab switching =====
+document.querySelectorAll('.trending-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.trending-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.tab;
+    document.getElementById('trendingRepos').style.display = target === 'repos' ? '' : 'none';
+    document.getElementById('trendingPapers').style.display = target === 'papers' ? '' : 'none';
+  });
+});
 </script>
 
 </body>

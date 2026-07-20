@@ -531,6 +531,38 @@ body {
   letter-spacing: 0.03em;
 }
 
+/* Tabs */
+.trending-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.trending-tab {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--ease);
+}
+.trending-tab:hover {
+  border-color: var(--accent);
+  color: var(--text-head);
+}
+.trending-tab.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.trending-tab-content {
+  /* shown/hidden via JS */
+}
+
 .trending-categories {
   display: flex;
   flex-direction: column;
@@ -624,6 +656,44 @@ body {
 }
 .trending-forks {
   color: var(--text-dim);
+}
+
+/* Paper cards */
+.paper-card .trending-summary {
+  font-style: italic;
+}
+.paper-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+.paper-authors {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.paper-cats {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+}
+.paper-date {
+  color: var(--text-dim);
+}
+.paper-pdf {
+  padding: 0.08rem 0.45rem;
+  border-radius: 3px;
+  background: rgba(94,234,212,0.15);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 /* ===== Footer note ===== */
