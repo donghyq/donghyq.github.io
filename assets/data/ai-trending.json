@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-20T09:14:33.255301+00:00Z",
+  "generated_at": "2026-07-20T09:29:51.398906+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 20 个热门 AI 开源项目（主力语言：Rust, Python, TypeScript）。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 20 个热门 AI 开源项目（主力语言：Rust, Python, TypeScript）和 16 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,9 +12,9 @@
           "name": "mattpocock/skills/stargazers",
           "url": "https://github.com/mattpocock/skills/stargazers",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "Skills for Real Engineers. Straight from my .agents directory.",
-          "stars": 178160,
-          "forks": 15252,
+          "summary_zh": "用Shell脚本管理GitHub星标用户技能。",
+          "stars": 178182,
+          "forks": 15253,
           "language": "Shell",
           "topics": [],
           "created_at": "",
@@ -25,9 +25,9 @@
           "name": "Shubhamsaboo/awesome-llm-apps/stargazers",
           "url": "https://github.com/Shubhamsaboo/awesome-llm-apps/stargazers",
           "description": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship.",
-          "summary_zh": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship.",
-          "stars": 124824,
-          "forks": 18431,
+          "summary_zh": "百多个可运行的AI代理与RAG应用，支持克隆定制部署。",
+          "stars": 124833,
+          "forks": 18432,
           "language": "Python",
           "topics": [],
           "created_at": "",
@@ -38,9 +38,9 @@
           "name": "github/spec-kit/stargazers",
           "url": "https://github.com/github/spec-kit/stargazers",
           "description": "💫 Toolkit to help you get started with Spec-Driven Development",
-          "summary_zh": "💫 Toolkit to help you get started with Spec-Driven Development",
-          "stars": 122526,
-          "forks": 10917,
+          "summary_zh": "帮助开发者快速上手规范驱动开发的工具包。",
+          "stars": 122533,
+          "forks": 10918,
           "language": "Python",
           "topics": [],
           "created_at": "",
@@ -51,9 +51,9 @@
           "name": "openai/codex/stargazers",
           "url": "https://github.com/openai/codex/stargazers",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "Lightweight coding agent that runs in your terminal",
-          "stars": 99872,
-          "forks": 14945,
+          "summary_zh": "终端内轻量级编码代理。",
+          "stars": 99880,
+          "forks": 14946,
           "language": "Rust",
           "topics": [],
           "created_at": "",
@@ -71,7 +71,7 @@
           "name": "moeru-ai/airi/stargazers",
           "url": "https://github.com/moeru-ai/airi/stargazers",
           "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's ",
-          "summary_zh": "💖🧸 Self hosted,",
+          "summary_zh": "自托管AI伴侣，支持实时语音与Minecraft交互。",
           "stars": 42874,
           "forks": 4287,
           "language": "TypeScript",
@@ -84,7 +84,7 @@
           "name": "servo/servo/stargazers",
           "url": "https://github.com/servo/servo/stargazers",
           "description": "Servo aims to empower developers with a lightweight, high-performance alternative for embedding web technologies in applications.",
-          "summary_zh": "Servo aims to empower developers with a lightweight,",
+          "summary_zh": "为应用嵌入轻量高性能Web渲染引擎。",
           "stars": 37434,
           "forks": 3715,
           "language": "Rust",
@@ -97,7 +97,7 @@
           "name": "firecrawl/open-lovable/stargazers",
           "url": "https://github.com/firecrawl/open-lovable/stargazers",
           "description": "🔥 Clone and recreate any website as a modern React app in seconds",
-          "summary_zh": "🔥 Clone and recreate any website as a modern React app in seconds",
+          "summary_zh": "一键克隆任意网站为现代React应用。",
           "stars": 28009,
           "forks": 5328,
           "language": "TypeScript",
@@ -110,8 +110,8 @@
           "name": "memvid/memvid/stargazers",
           "url": "https://github.com/memvid/memvid/stargazers",
           "description": "Memory layer for AI Agents. Replace complex RAG pipelines with a serverless, single-file memory layer. Give your agents instant retrieval and long-ter",
-          "summary_zh": "Memory layer for AI Agents.",
-          "stars": 16011,
+          "summary_zh": "为AI代理提供无服务器单文件记忆层，替代复杂RAG管道。",
+          "stars": 16012,
           "forks": 1384,
           "language": "Rust",
           "topics": [],
@@ -130,7 +130,7 @@
           "name": "upstash/context7/stargazers",
           "url": "https://github.com/upstash/context7/stargazers",
           "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
-          "summary_zh": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
+          "summary_zh": "为LLM和AI编辑器提供实时更新的代码文档。",
           "stars": 59464,
           "forks": 2843,
           "language": "TypeScript",
@@ -143,8 +143,8 @@
           "name": "kvcache-ai/ktransformers/stargazers",
           "url": "https://github.com/kvcache-ai/ktransformers/stargazers",
           "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
-          "summary_zh": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune O...",
-          "stars": 18547,
+          "summary_zh": "异构LLM推理与微调优化的灵活框架。",
+          "stars": 18552,
           "forks": 1459,
           "language": "Python",
           "topics": [],
@@ -156,7 +156,7 @@
           "name": "ai-dynamo/dynamo/stargazers",
           "url": "https://github.com/ai-dynamo/dynamo/stargazers",
           "description": "A Datacenter Scale Distributed Inference Serving Framework",
-          "summary_zh": "A Datacenter Scale Distributed Inference Serving Framework",
+          "summary_zh": "数据中心级分布式推理服务框架。",
           "stars": 7540,
           "forks": 1349,
           "language": "Rust",
@@ -169,7 +169,7 @@
           "name": "jmerelnyc/Talos",
           "url": "https://github.com/jmerelnyc/Talos",
           "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
-          "summary_zh": "GPU worker client for the Talos network.",
+          "summary_zh": "为Talos网络提供GPU算力，运行开源模型推理并赚取报酬。",
           "stars": 990,
           "forks": 17,
           "language": "Python",
@@ -196,9 +196,9 @@
           "name": "emilk/egui/stargazers",
           "url": "https://github.com/emilk/egui/stargazers",
           "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
-          "summary_zh": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
+          "summary_zh": "Rust编写的即时模式GUI库，支持Web与原生平台。",
           "stars": 29756,
-          "forks": 2070,
+          "forks": 2071,
           "language": "Rust",
           "topics": [],
           "created_at": "",
@@ -209,9 +209,9 @@
           "name": "agentscope-ai/QwenPaw/stargazers",
           "url": "https://github.com/agentscope-ai/QwenPaw/stargazers",
           "description": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabiliti",
-          "summary_zh": "Your Personal AI Assistant; easy to install,",
-          "stars": 23547,
-          "forks": 2823,
+          "summary_zh": "个人AI助手，易安装部署，支持多聊天应用与扩展。",
+          "stars": 23557,
+          "forks": 2822,
           "language": "Python",
           "topics": [],
           "created_at": "",
@@ -222,7 +222,7 @@
           "name": "AIEraDev/Clypra/stargazers",
           "url": "https://github.com/AIEraDev/Clypra/stargazers",
           "description": "A modern video editor built with Tauri, React, and TypeScript. Focus on building free capabilities of premium capcut functionalities",
-          "summary_zh": "A modern video editor built with Tauri, React, and TypeScript.",
+          "summary_zh": "基于Tauri和React构建的免费版剪映视频编辑器。",
           "stars": 2893,
           "forks": 286,
           "language": "TypeScript",
@@ -235,7 +235,7 @@
           "name": "videlalvaro/inference-school",
           "url": "https://github.com/videlalvaro/inference-school",
           "description": "A hands-on Swift and Metal course for building LLM inference from first principles on Apple silicon, with 48 guided lessons, runnable exercises, a nat",
-          "summary_zh": "A hands-on Swift and Metal course for building LLM inference from first princ...",
+          "summary_zh": "用Swift和Metal在Apple芯片上从零构建LLM推理的实践课程。",
           "stars": 172,
           "forks": 14,
           "language": "Swift",
@@ -255,7 +255,7 @@
           "name": "oven-sh/bun/stargazers",
           "url": "https://github.com/oven-sh/bun/stargazers",
           "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
-          "summary_zh": "Incredibly fast JavaScript runtime,",
+          "summary_zh": "极速全栈JavaScript工具集：运行时、打包、测试、包管理。",
           "stars": 94891,
           "forks": 4889,
           "language": "Rust",
@@ -268,7 +268,7 @@
           "name": "astral-sh/uv/stargazers",
           "url": "https://github.com/astral-sh/uv/stargazers",
           "description": "An extremely fast Python package and project manager, written in Rust.",
-          "summary_zh": "An extremely fast Python package and project manager, written in Rust.",
+          "summary_zh": "极速Python包与项目管理器，Rust编写。",
           "stars": 87665,
           "forks": 3357,
           "language": "Rust",
@@ -281,9 +281,9 @@
           "name": "zed-industries/zed/stargazers",
           "url": "https://github.com/zed-industries/zed/stargazers",
           "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
-          "summary_zh": "Code at the speed of thought – Zed is a high-performance,",
-          "stars": 87266,
-          "forks": 9619,
+          "summary_zh": "高性能多人协作代码编辑器，支持实时协同编程。",
+          "stars": 87268,
+          "forks": 9621,
           "language": "Rust",
           "topics": [],
           "created_at": "",
@@ -294,8 +294,8 @@
           "name": "OpenCut-app/OpenCut/stargazers",
           "url": "https://github.com/OpenCut-app/OpenCut/stargazers",
           "description": "The open-source CapCut alternative",
-          "summary_zh": "The open-source CapCut alternative",
-          "stars": 76124,
+          "summary_zh": "开源版CapCut视频编辑工具。",
+          "stars": 76130,
           "forks": 7647,
           "language": "TypeScript",
           "topics": [],
@@ -306,5 +306,312 @@
       ]
     }
   ],
-  "papers": []
+  "papers": [
+    {
+      "id": "llm-reasoning",
+      "name": "🧠 LLM 推理与优化",
+      "papers": [
+        {
+          "title": "PagedWeight: Efficient MoE LLM Serving with Dynamic Quality-Aware Weight Quantization",
+          "url": "http://arxiv.org/abs/2607.16184v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16184v1",
+          "abstract": "Mixture-of-Experts (MoE) is a popular class of large language models (LLMs), offering high efficiency and accuracy. However, in KV-cache-intensive serving scenarios, MoEs often exhibit a tension betwe",
+          "summary_zh": "PagedWeight通过动态质量感知权重量化，高效缓解MoE模型服务中权重与KV缓存间的GPU内存矛盾。",
+          "authors": [
+            "Yuchen Yang",
+            "Yifan Zhao",
+            "Anisha Dasgupta"
+          ],
+          "categories": [
+            "cs.LG"
+          ],
+          "published": "2026-07-17T17:58:29Z"
+        },
+        {
+          "title": "A Blueprint for Equilibrium-Based Differentiable Continuous-Variable Thermodynamic Computing",
+          "url": "http://arxiv.org/abs/2607.16183v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16183v1",
+          "abstract": "To address the escalating energy and latency demands of machine-learning workloads, we introduce a blueprint for an energy-efficient and fast thermodynamic computing stack that leverages stochastic an",
+          "summary_zh": "提出一种基于平衡态可微连续变量热力学计算的硬件蓝图，实现节能高效的机器学习。",
+          "authors": [
+            "Owen Lockwood",
+            "Jérémy Béjanin",
+            "Joost Bus"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.ET",
+            "physics.app-ph"
+          ],
+          "published": "2026-07-17T17:57:49Z"
+        },
+        {
+          "title": "Physics-enhanced reinforcement learning for real-time optimal control of dynamical systems",
+          "url": "http://arxiv.org/abs/2607.16177v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16177v1",
+          "abstract": "Reinforcement learning (RL) has recently emerged as a promising feedback control strategy for nonlinear and complex dynamical systems. However, RL algorithms are sample inefficient and require a large",
+          "summary_zh": "提出物理增强强化学习方法，提升非线性动态系统实时最优控制的样本效率。",
+          "authors": [
+            "Matteo Tomasetto",
+            "Nicolò Botteghi",
+            "Gabriele Bruni"
+          ],
+          "categories": [
+            "cs.LG",
+            "math.OC"
+          ],
+          "published": "2026-07-17T17:56:05Z"
+        }
+      ]
+    },
+    {
+      "id": "rag-retrieval",
+      "name": "🔍 RAG 与检索增强",
+      "papers": [
+        {
+          "title": "Evaluating Open-Weight LLMs for Generating Structured Threat Information for Autonomous Vehicle Vulnerabilities",
+          "url": "http://arxiv.org/abs/2607.16175v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16175v1",
+          "abstract": "Connected and Autonomous Vehicles (CAVs) rely on interconnected software and hardware components, including sensors, Electronic Control Units, in-vehicle infotainment systems, and telematics units, wh",
+          "summary_zh": "评估开源大模型在生成自动驾驶汽车结构化威胁信息方面的能力与局限性。",
+          "authors": [
+            "Md Erfan",
+            "Ahmed Ryan",
+            "Md Kamal Hossain Chowdhury"
+          ],
+          "categories": [
+            "cs.CR",
+            "cs.AI"
+          ],
+          "published": "2026-07-17T17:55:19Z"
+        },
+        {
+          "title": "A Methodology for Auditable Trustworthiness Levels in AI Lifecycle Governance",
+          "url": "http://arxiv.org/abs/2607.16130v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16130v1",
+          "abstract": "AI governance increasingly requires judgments about whether an AI system remains adequately trustworthy over time, whether observed changes are tolerable, and how such judgments should be documented i",
+          "summary_zh": "提出一种可审计的AI生命周期信任度评估方法，支持动态监控与透明记录。",
+          "authors": [
+            "Andrea Ferrario"
+          ],
+          "categories": [
+            "cs.CY",
+            "cs.AI",
+            "eess.SY"
+          ],
+          "published": "2026-07-17T17:11:22Z"
+        }
+      ]
+    },
+    {
+      "id": "agent-planning",
+      "name": "🤖 Agent 与规划",
+      "papers": [
+        {
+          "title": "When Does Muon Help Agentic Reinforcement Learning?",
+          "url": "http://arxiv.org/abs/2607.16169v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16169v1",
+          "abstract": "Muon is competitive with AdamW in large-scale pre-training, but its value for reinforcement-learning (RL) post-training remains unclear. We study vanilla Muon in sparse-reward agentic RL through match",
+          "summary_zh": "Muon在稀疏奖励的智能体强化学习中表现与AdamW相当，未显著提升性能。",
+          "authors": [
+            "Kai Ruan",
+            "Jinghao Lin",
+            "Zihe Huang"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI"
+          ],
+          "published": "2026-07-17T17:49:05Z"
+        },
+        {
+          "title": "PRISA: Proactive Infrastructure LiDAR Framework for Intersection Safety Assessment",
+          "url": "http://arxiv.org/abs/2607.16156v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16156v1",
+          "abstract": "Urban intersections are among the most hazardous locations in road networks, posing significant risks to vehicles and vulnerable road users (VRUs) such as pedestrians and cyclists. The complexity of m",
+          "summary_zh": "提出PRISA框架，利用LiDAR主动监测路口，提升多类道路使用者安全评估的实时性与预见性。",
+          "authors": [
+            "Tam Bang",
+            "Hussam Abubakr",
+            "Emiliano de la Garza Villarreal"
+          ],
+          "categories": [
+            "cs.LG",
+            "eess.SY"
+          ],
+          "published": "2026-07-17T17:35:23Z"
+        },
+        {
+          "title": "When Do Multi-Agent Systems Help? An Information Bottleneck Perspective",
+          "url": "http://arxiv.org/abs/2607.16133v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16133v1",
+          "abstract": "LLM powered multi-agent systems (MAS) have emerged as a promising paradigm for complex tasks. However, their advantages over single-agent systems (SAS) remain unclear, with performance varying inconsi",
+          "summary_zh": "从信息瓶颈视角揭示了多智能体系统优于单智能体的条件与边界。",
+          "authors": [
+            "Wendi Yu",
+            "Lianhao Zhou",
+            "Xiangjue Dong"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI"
+          ],
+          "published": "2026-07-17T17:13:44Z"
+        }
+      ]
+    },
+    {
+      "id": "multimodal",
+      "name": "🖼️ 多模态",
+      "papers": [
+        {
+          "title": "An Exam for Active Observers",
+          "url": "http://arxiv.org/abs/2607.16165v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16165v1",
+          "abstract": "Human vision is a closed loop: gaze is continuously redirected by intermediate hypotheses rather than a single snapshot. Decades of psychophysics and cognitive science have argued that this active obs",
+          "summary_zh": "该论文提出“主动观察者考试”，检验多模态大模型在闭环视觉任务中是否具备类似人类的主动观察能力。",
+          "authors": [
+            "Jiarui Zhang",
+            "Muzi Tao",
+            "Shangshang Wang"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.CL"
+          ],
+          "published": "2026-07-17T17:46:23Z"
+        },
+        {
+          "title": "ToolSciVer: Multimodal Scientific Claim Verification with Visual Tool Augmented Reinforcement Learning",
+          "url": "http://arxiv.org/abs/2607.16131v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16131v1",
+          "abstract": "Multimodal Scientific Claim Verification (MSCV) requires models to verify scientific claims using visually grounded evidence from papers, including figures, tables, charts, and textual context. Howeve",
+          "summary_zh": "提出ToolSciVer，用视觉工具增强强化学习，提升多模态科学声明验证中视觉证据定位与准确性。",
+          "authors": [
+            "Binglin Zhou",
+            "Peng Shi",
+            "Ryo Kamoi"
+          ],
+          "categories": [
+            "cs.CL",
+            "cs.AI"
+          ],
+          "published": "2026-07-17T17:11:50Z"
+        },
+        {
+          "title": "DADiff: Diffusion-Driven Cross-Domain Policy Adaptation for Reinforcement Learning",
+          "url": "http://arxiv.org/abs/2607.16090v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16090v1",
+          "abstract": "Transferring policies across domains poses a vital challenge in reinforcement learning, due to the dynamics mismatch between the source and target domains. In this paper, we consider the setting of on",
+          "summary_zh": "提出DADiff，用扩散模型生成跨域动态转移，实现源域到目标域的策略高效在线适应。",
+          "authors": [
+            "Hanyang Chen",
+            "Anirudh Satheesh",
+            "Longchao Da"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI"
+          ],
+          "published": "2026-07-17T16:20:08Z"
+        }
+      ]
+    },
+    {
+      "id": "alignment-safety",
+      "name": "🛡️ 对齐与安全",
+      "papers": [
+        {
+          "title": "Cluster-Aware Matching via Laplacian Optimal Transport",
+          "url": "http://arxiv.org/abs/2607.16178v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16178v1",
+          "abstract": "In many applications of matching, the point clouds to be matched are not merely unstructured sets of points but rather samples from distributions with an intrinsic cluster structure. In such cases, as",
+          "summary_zh": "提出拉普拉斯最优传输方法，实现保留聚类结构的点云匹配，提升区域对应鲁棒性。",
+          "authors": [
+            "Gabriel Samberg",
+            "YoonHaeng Hur",
+            "Yuehaw Khoo"
+          ],
+          "categories": [
+            "stat.ML",
+            "cs.LG",
+            "math.NA"
+          ],
+          "published": "2026-07-17T17:56:51Z"
+        },
+        {
+          "title": "Harmonizing AI Safety Thresholds",
+          "url": "http://arxiv.org/abs/2607.16112v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16112v1",
+          "abstract": "Frontier AI companies have published capability thresholds that differ substantially, making it difficult for third parties to verify whether a threshold has been crossed or to compare requirements ac",
+          "summary_zh": "提出统一AI安全阈值标准，解决当前各公司阈值差异大、难以验证和比较的问题。",
+          "authors": [
+            "Wilber Sean Anterola",
+            "Matthew Ball",
+            "Luis F. Lafuerza"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "published": "2026-07-17T16:45:30Z"
+        }
+      ]
+    },
+    {
+      "id": "other-paper",
+      "name": "📝 其他前沿",
+      "papers": [
+        {
+          "title": "Behaviour-Conditioned Neural Processes for Adaptive Residential Short-Term Load Forecasting",
+          "url": "http://arxiv.org/abs/2607.16168v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16168v1",
+          "abstract": "Residential short-term load forecasting (STLF) is challenging because household demand is heterogeneous, temporally variable, and shaped by diverse behavioural routines. This work investigates whether",
+          "summary_zh": "提出行为条件神经过程，将推断的用户行为模式嵌入预测机制，提升住宅短期负荷预测适应性。",
+          "authors": [
+            "Ramin Soleimani",
+            "Andrea Visentin",
+            "Dirk Pesch"
+          ],
+          "categories": [
+            "cs.LG"
+          ],
+          "published": "2026-07-17T17:48:22Z"
+        },
+        {
+          "title": "Learning Standard Model structure from LHC data with Riemannian flow matching",
+          "url": "http://arxiv.org/abs/2607.16144v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16144v1",
+          "abstract": "In this work we demonstrate that a single transformer-based generative model can capture Standard Model structure spanning five decades of invariant mass, from the sub-GeV regime to the TeV continuum,",
+          "summary_zh": "ShellFlow利用黎曼流匹配生成模型，首次从LHC数据中统一学习跨越五个量级的标准模型结构。",
+          "authors": [
+            "Midori Kato",
+            "Kevin A. Urquía-Calderón",
+            "Inar Timiryasov"
+          ],
+          "categories": [
+            "hep-ph",
+            "cs.LG",
+            "hep-ex"
+          ],
+          "published": "2026-07-17T17:23:22Z"
+        },
+        {
+          "title": "Improving Improved Kernel PLS",
+          "url": "http://arxiv.org/abs/2607.16138v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.16138v1",
+          "abstract": "Improved Kernel Partial Least Squares (IKPLS) algorithms 1 and 2 are among the fastest PLS calibration algorithms. This article focuses on two shared steps, the computation of the $\\mathbf{X}$ rotatio",
+          "summary_zh": "提出加速IKPLS算法中X旋转矩阵R与Y载荷矩阵Q计算的方法。",
+          "authors": [
+            "Ole-Christian Galbo Engstrøm"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.DS"
+          ],
+          "published": "2026-07-17T17:19:04Z"
+        }
+      ]
+    }
+  ]
 }
