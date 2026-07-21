@@ -224,7 +224,7 @@ def _rule_summary(item: dict, item_type: str = "repo") -> str:
     """Fallback rule-based summary.
     
     When no LLM API is available, generate a brief Chinese-wrapped summary
-    using the repo/paper metadata.
+    using keyword-based templates to produce natural Chinese descriptions.
     """
     if item_type == "paper":
         title = item.get("title", "")
@@ -238,26 +238,94 @@ def _rule_summary(item: dict, item_type: str = "repo") -> str:
         return f"基于 {lang} 的 {name} 开源项目" if lang else f"{name} 开源项目"
 
     # Clean up emoji at the start
-    clean_desc = re.sub(r'^[\U0001F300-\U0001FAFF\U00002702-\U000027B0\s]+', '', desc).strip()
+    clean_desc = re.sub(r'^[\U0001F300-\U0001FAFF\U00002702-\U000027B0\u2600-\u27FF\s]+', '', desc).strip()
     if not clean_desc:
         clean_desc = desc
 
-    # Truncate at first sentence boundary
+    # If already Chinese, truncate and return
+    if re.search(r'[\u4e00-\u9fff]', clean_desc):
+        if len(clean_desc) <= 80:
+            return clean_desc
+        for sep in ["。", "，", "；", "、"]:
+            idx = clean_desc.find(sep)
+            if 5 < idx < 80:
+                return clean_desc[:idx + len(sep)].strip()
+        return clean_desc[:77] + "..."
+
+    # ── Keyword-based Chinese template generation ──
+    text = f"{name} {clean_desc}".lower()
+
+    # Template patterns: (keywords_any_match, chinese_template)
+    # The template uses {lang} and {short_desc} placeholders
+    _TEMPLATES = [
+        # Agent / Skill / Tool
+        (["coding agent", "code agent", "ai coding"],
+         "AI 编程助手，{short_desc}"),
+        (["agent skill", "skill for", "agent-skill", "skills for"],
+         "面向 AI Agent 的技能模块库"),
+        (["multi-agent", "multi agent"],
+         "多 Agent 协作框架，{short_desc}"),
+        (["ai agent", "autonomous agent"],
+         "AI Agent 框架，{short_desc}"),
+        (["mcp server", "mcp tool"],
+         "MCP 协议工具服务，{short_desc}"),
+        (["workflow", "orchestrat"],
+         "AI 工作流编排工具，{short_desc}"),
+
+        # Search / RAG / Retrieval
+        (["rag", "retrieval augmented", "retrieval-augmented"],
+         "检索增强生成（RAG）框架，{short_desc}"),
+        (["vector search", "vector database", "similarity search"],
+         "向量检索引擎，{short_desc}"),
+        (["web search", "search engine", "web scrape", "crawler"],
+         "AI 搜索/数据抓取工具，{short_desc}"),
+
+        # LLM / Inference
+        (["llm inference", "inference engine", "serving", "inference serv"],
+         "LLM 推理服务引擎，{short_desc}"),
+        (["kv cache", "kv-cache"],
+         "LLM KV Cache 优化方案，{short_desc}"),
+        (["quantiz", "gguf", "ggml"],
+         "模型量化/压缩工具，{short_desc}"),
+        (["context window", "context compress", "long context"],
+         "长上下文/上下文压缩方案，{short_desc}"),
+        (["fine-tun", "finetun", "lora"],
+         "模型微调框架，{short_desc}"),
+        (["llm", "large language model", "language model"],
+         "大语言模型工具，{short_desc}"),
+
+        # App / UI / Chat
+        (["chat", "chatbot", "assistant", "copilot"],
+         "AI 对话/助手应用，{short_desc}"),
+        (["ui", "frontend", "interface", "gui", "desktop app"],
+         "AI 应用界面/前端工具，{short_desc}"),
+
+        # General
+        (["open source", "open-source", "framework"],
+         "{short_desc}"),
+    ]
+
+    # Build short_desc: truncate English to ~50 chars at word boundary
     short = clean_desc
-    if len(short) > 80:
-        for sep in [". ", "。", "，", ", ", " - ", " — "]:
+    if len(short) > 50:
+        # Try to cut at sentence boundary first
+        for sep in [". ", ", ", " - ", " — "]:
             idx = short.find(sep)
-            if 10 < idx < 80:
-                short = short[:idx + (1 if sep.endswith(" ") else len(sep))].strip()
+            if 10 < idx < 55:
+                short = short[:idx].strip()
                 break
         else:
-            short = short[:77] + "..."
+            # Cut at word boundary
+            short = short[:50].rsplit(" ", 1)[0] + "..."
 
-    # If already Chinese, return as-is
-    if re.search(r'[\u4e00-\u9fff]', short):
-        return short
+    for keywords, template in _TEMPLATES:
+        if any(kw in text for kw in keywords):
+            result = template.replace("{short_desc}", short)
+            if lang and f"（{lang}）" not in result:
+                result += f"（{lang}）"
+            return result
 
-    # Wrap English description with Chinese context
+    # Final fallback
     if lang:
         return f"{short}（{lang}）"
     return short
