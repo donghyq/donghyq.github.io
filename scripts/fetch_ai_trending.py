@@ -175,10 +175,12 @@ def _llm_summary(item: dict, api_key: str, item_type: str) -> str:
         title = item.get("title", "")
         abstract = item.get("abstract", "")[:300]
         prompt = (
-            f"请用一句简洁的中文（40字以内）概括这篇论文的核心贡献：\n"
+            f"请用一句简洁的中文（30-50字）概括这篇 AI 论文的核心贡献和亮点。\n"
             f"标题：{title}\n"
             f"摘要：{abstract}\n"
-            f"只输出摘要，不要加引号或前缀。"
+            f"要求：纯中文输出，突出方法创新点和关键结果数据（如有），"
+            f"不要加引号、句号或任何前缀。\n"
+            f"示例风格：提出基于注意力蒸馏的长文本压缩方法，将上下文窗口扩展至 128K 且推理速度提升 3 倍"
         )
     else:
         desc = (item.get("description") or "")[:200]
@@ -187,10 +189,15 @@ def _llm_summary(item: dict, api_key: str, item_type: str) -> str:
         topics = ", ".join((item.get("topics") or [])[:5])
         stars = item.get("stargazers_count") or item.get("stars", 0)
         prompt = (
-            f"请用一句简洁的中文（30字以内）概括这个 GitHub 项目的核心功能：\n"
+            f"请用一句简洁的中文（20-40字）介绍这个 GitHub 开源项目的核心功能和亮点。\n"
             f"项目：{name}\n描述：{desc}\n"
             f"语言：{lang}，标签：{topics}，Stars：{stars}\n"
-            f"只输出摘要，不要加引号或前缀。"
+            f"要求：纯中文输出，像科技博主写的一句话点评，突出这个项目解决什么问题、有什么独特之处。"
+            f"不要加引号、句号或任何前缀。不要以「这是」「该项目」开头。\n"
+            f"示例风格：\n"
+            f"- 面向 AI 编码 Agent 的生产级工程技能库，让 AI 更像成熟工程师\n"
+            f"- AI Agent 上下文压缩工具，可减少 60-95% Token 消耗同时保持答案质量\n"
+            f"- 微软开源的文件转 Markdown 工具，适合把 Office、PDF 等资料转成 RAG 可读格式"
         )
 
     body = json.dumps({
@@ -255,80 +262,82 @@ def _rule_summary(item: dict, item_type: str = "repo") -> str:
     # ── Keyword-based Chinese template generation ──
     text = f"{name} {clean_desc}".lower()
 
-    # Template patterns: (keywords_any_match, chinese_template)
-    # The template uses {lang} and {short_desc} placeholders
+    # Template patterns: (keywords_any_match, chinese_summary)
+    # Pure Chinese descriptions, no English text mixed in
     _TEMPLATES = [
         # Agent / Skill / Tool
         (["coding agent", "code agent", "ai coding"],
-         "AI 编程助手，{short_desc}"),
+         "AI 编程助手，在终端中运行的轻量级智能编码工具"),
         (["agent skill", "skill for", "agent-skill", "skills for"],
-         "面向 AI Agent 的技能模块库"),
+         "面向 AI Agent 的生产级技能模块库，让 AI 更像成熟工程师"),
         (["multi-agent", "multi agent"],
-         "多 Agent 协作框架，{short_desc}"),
+         "多 Agent 协作框架，支持多智能体协同完成复杂任务"),
+        (["red team", "security", "offensive"],
+         "AI 安全攻防平台，自动化红队测试与漏洞发现"),
         (["ai agent", "autonomous agent"],
-         "AI Agent 框架，{short_desc}"),
+         "AI Agent 开发框架，构建自主智能体应用"),
         (["mcp server", "mcp tool"],
-         "MCP 协议工具服务，{short_desc}"),
+         "MCP 协议工具服务，为 AI Agent 提供标准化工具接口"),
         (["workflow", "orchestrat"],
-         "AI 工作流编排工具，{short_desc}"),
+         "AI 工作流编排引擎，支持灵活的任务调度与自动化"),
+        (["auth gateway", "connector", "oauth"],
+         "开源认证网关，一键连接 1000+ SaaS 服务到 AI Agent"),
 
         # Search / RAG / Retrieval
-        (["rag", "retrieval augmented", "retrieval-augmented"],
-         "检索增强生成（RAG）框架，{short_desc}"),
-        (["vector search", "vector database", "similarity search"],
-         "向量检索引擎，{short_desc}"),
+        (["rag", "retrieval augmented", "retrieval-augmented", "knowledge base"],
+         "检索增强生成（RAG）框架，构建本地知识库问答系统"),
+        (["vector search", "vector database", "similarity search", "embedding"],
+         "向量检索引擎，支持高性能相似度搜索"),
         (["web search", "search engine", "web scrape", "crawler"],
-         "AI 搜索/数据抓取工具，{short_desc}"),
+         "AI 驱动的网页搜索与数据抓取工具"),
 
         # LLM / Inference
-        (["llm inference", "inference engine", "serving", "inference serv"],
-         "LLM 推理服务引擎，{short_desc}"),
+        (["llm inference", "inference engine", "serving", "inference serv", "distributed inference"],
+         "LLM 分布式推理框架，支持大规模模型高效部署"),
         (["kv cache", "kv-cache"],
-         "LLM KV Cache 优化方案，{short_desc}"),
+         "LLM KV Cache 优化方案，加速大模型推理"),
         (["quantiz", "gguf", "ggml"],
-         "模型量化/压缩工具，{short_desc}"),
-        (["context window", "context compress", "long context"],
-         "长上下文/上下文压缩方案，{short_desc}"),
+         "模型量化压缩工具，降低部署成本同时保持模型质量"),
+        (["context window", "context compress", "long context", "context7"],
+         "上下文管理工具，为 AI 提供最新的代码文档与上下文"),
         (["fine-tun", "finetun", "lora"],
-         "模型微调框架，{short_desc}"),
+         "模型微调框架，支持低资源高效训练"),
+        (["heterogeneous", "cpu.*gpu", "gpu.*cpu"],
+         "异构计算推理框架，支持 CPU/GPU 混合部署大模型"),
+        (["local.*llm", "llm.*local", "run.*local"],
+         "本地 LLM 运行指南，涵盖本地大模型部署全流程"),
         (["llm", "large language model", "language model"],
-         "大语言模型工具，{short_desc}"),
+         "大语言模型应用工具，简化 LLM 开发与集成"),
 
         # App / UI / Chat
         (["chat", "chatbot", "assistant", "copilot"],
-         "AI 对话/助手应用，{short_desc}"),
-        (["ui", "frontend", "interface", "gui", "desktop app"],
-         "AI 应用界面/前端工具，{short_desc}"),
+         "AI 智能助手应用，支持本地部署的对话式 AI"),
+        (["video editor", "video edit"],
+         "AI 视频编辑工具，开源免费的智能剪辑方案"),
+        (["gui", "desktop app", "immediate mode gui"],
+         "轻量级即时模式 GUI 框架，适合快速构建桌面应用"),
+        (["roadmap", "learning", "tutorial"],
+         "开发者学习路线图，交互式技术成长指南"),
+        (["ui", "frontend", "interface"],
+         "AI 前端工具，构建智能交互界面"),
 
-        # General
-        (["open source", "open-source", "framework"],
-         "{short_desc}"),
+        # Infra
+        (["javascript runtime", "runtime"],
+         "高性能 JavaScript 运行时，极速的开发体验"),
+        (["python package", "package manager", "linter", "formatter"],
+         "高性能 Python 开发工具链，极速的包管理与代码格式化"),
+        (["container", "docker", "kubernetes"],
+         "容器化工具，轻量级虚拟化与部署方案"),
     ]
 
-    # Build short_desc: truncate English to ~50 chars at word boundary
-    short = clean_desc
-    if len(short) > 50:
-        # Try to cut at sentence boundary first
-        for sep in [". ", ", ", " - ", " — "]:
-            idx = short.find(sep)
-            if 10 < idx < 55:
-                short = short[:idx].strip()
-                break
-        else:
-            # Cut at word boundary
-            short = short[:50].rsplit(" ", 1)[0] + "..."
-
-    for keywords, template in _TEMPLATES:
+    for keywords, summary in _TEMPLATES:
         if any(kw in text for kw in keywords):
-            result = template.replace("{short_desc}", short)
-            if lang and f"（{lang}）" not in result:
-                result += f"（{lang}）"
-            return result
+            return summary
 
-    # Final fallback
+    # Final fallback: generic Chinese description
     if lang:
-        return f"{short}（{lang}）"
-    return short
+        return f"基于 {lang} 的开源项目，{name.split('/')[-1] if '/' in name else name}"
+    return f"开源项目 {name.split('/')[-1] if '/' in name else name}"
 
 
 # ══════════════════════════════════════════════════════════════════════════
