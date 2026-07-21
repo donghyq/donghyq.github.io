@@ -162,7 +162,10 @@ def generate_summary(item: dict, item_type: str = "repo") -> str:
     """Generate Chinese summary. Uses DeepSeek if available."""
     api_key = os.environ.get("DEEPSEEK_API_KEY", "")
     if api_key:
-        return _llm_summary(item, api_key, item_type)
+        result = _llm_summary(item, api_key, item_type)
+        return result
+    else:
+        print("  ℹ No DEEPSEEK_API_KEY, using rule-based summary", file=sys.stderr)
     return _rule_summary(item, item_type)
 
 
@@ -204,20 +207,17 @@ def _llm_summary(item: dict, api_key: str, item_type: str) -> str:
             "Content-Type": "application/json",
             "Authorization": f"Bearer {api_key}",
         },
+        method="POST",
     )
     try:
-        data = json.loads(_http_get(req.full_url, dict(req.header_items()), 20).decode())
-        return data["choices"][0]["message"]["content"].strip()
-    except Exception:
-        pass
-    # Fallback: try with urllib directly
-    try:
-        with urllib.request.urlopen(req, timeout=20, context=_ssl_ctx) as resp:
-            data = json.loads(resp.read().decode())
-            return data["choices"][0]["message"]["content"].strip()
+        with urllib.request.urlopen(req, timeout=30, context=_ssl_ctx) as resp:
+            result = json.loads(resp.read().decode())
+            summary = result["choices"][0]["message"]["content"].strip()
+            if summary:
+                return summary
     except Exception as e:
         print(f"  ⚠ LLM summary failed: {e}", file=sys.stderr)
-        return _rule_summary(item, item_type)
+    return _rule_summary(item, item_type)
 
 
 def _rule_summary(item: dict, item_type: str = "repo") -> str:
