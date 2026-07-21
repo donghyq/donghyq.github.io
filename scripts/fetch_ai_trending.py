@@ -221,24 +221,46 @@ def _llm_summary(item: dict, api_key: str, item_type: str) -> str:
 
 
 def _rule_summary(item: dict, item_type: str = "repo") -> str:
-    """Fallback rule-based summary."""
+    """Fallback rule-based summary.
+    
+    When no LLM API is available, generate a brief Chinese-wrapped summary
+    using the repo/paper metadata.
+    """
     if item_type == "paper":
         title = item.get("title", "")
         return title[:80] if len(title) <= 80 else title[:77] + "..."
 
     desc = (item.get("description") or "").strip()
-    name = item.get("name", "")
+    name = item.get("name") or item.get("full_name", "")
     lang = item.get("language") or ""
 
     if not desc:
-        return f"基于 {lang} 的 {name} 项目" if lang else f"{name} 开源项目"
-    if len(desc) <= 80:
-        return desc
-    for sep in [". ", "。", "，", ", ", " - ", " — "]:
-        idx = desc.find(sep)
-        if 10 < idx < 80:
-            return desc[:idx + (1 if sep.endswith(" ") else len(sep))].strip()
-    return desc[:77] + "..."
+        return f"基于 {lang} 的 {name} 开源项目" if lang else f"{name} 开源项目"
+
+    # Clean up emoji at the start
+    clean_desc = re.sub(r'^[\U0001F300-\U0001FAFF\U00002702-\U000027B0\s]+', '', desc).strip()
+    if not clean_desc:
+        clean_desc = desc
+
+    # Truncate at first sentence boundary
+    short = clean_desc
+    if len(short) > 80:
+        for sep in [". ", "。", "，", ", ", " - ", " — "]:
+            idx = short.find(sep)
+            if 10 < idx < 80:
+                short = short[:idx + (1 if sep.endswith(" ") else len(sep))].strip()
+                break
+        else:
+            short = short[:77] + "..."
+
+    # If already Chinese, return as-is
+    if re.search(r'[\u4e00-\u9fff]', short):
+        return short
+
+    # Wrap English description with Chinese context
+    if lang:
+        return f"{short}（{lang}）"
+    return short
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -310,8 +332,9 @@ def _parse_trending_html(html: str) -> list[dict]:
     )
 
     for article in articles:
-        # Repo name: <h2 ...><a href="/owner/name">...</a></h2>
-        name_match = re.search(r'<h2[^>]*>.*?<a\s+href="/([^"]+)"', article, re.DOTALL)
+        # Repo name: <h2 ...><a ... href="/owner/name" ...>...</a></h2>
+        # Must avoid matching stargazers/forks links — only match href with exactly one slash (owner/repo)
+        name_match = re.search(r'<h2[^>]*>.*?<a\s[^>]*href="/([^"/]+/[^"/]+)"', article, re.DOTALL)
         if not name_match:
             continue
         full_name = name_match.group(1).strip()

@@ -55,7 +55,7 @@
     <main class="panel-right">
 
         <!-- ABOUT -->
-        <section id="about" class="section">
+        <section id="about" class="section reveal">
             <div class="section-label">About</div>
             <p>
                 我是一名搜索架构工程师，2021 年加入<a href="https://about.meituan.com" target="_blank">美团</a>搜索推荐技术部，
@@ -79,10 +79,10 @@
         </section>
 
         <!-- EXPERIENCE -->
-        <section id="experience" class="section">
+        <section id="experience" class="section reveal">
             <div class="section-label">Experience</div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-date">2021 — 至今</div>
                 <div class="timeline-body">
                     <h3>搜索架构工程师 · 美团</h3>
@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-date">2017 — 2021</div>
                 <div class="timeline-body">
                     <h3>计算机科学与技术 · 北京航空航天大学</h3>
@@ -126,10 +126,10 @@
         </section>
 
         <!-- PROJECTS -->
-        <section id="projects" class="section">
+        <section id="projects" class="section reveal">
             <div class="section-label">Projects</div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-thumb">🔬</div>
                 <div class="project-body">
                     <h3>大模型 KV Cache 体系 <span class="arrow">↗</span></h3>
@@ -150,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-thumb">🔍</div>
                 <div class="project-body">
                     <h3>GPU 向量检索引擎 <span class="arrow">↗</span></h3>
@@ -171,7 +171,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-thumb">🧠</div>
                 <div class="project-body">
                     <h3>AI Search Agent <span class="arrow">↗</span></h3>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-thumb">⚡</div>
                 <div class="project-body">
                     <h3>外卖精排图编排升级 <span class="arrow">↗</span></h3>
@@ -211,7 +211,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-thumb">🔧</div>
                 <div class="project-body">
                     <h3>ES 搜索引擎深度优化 <span class="arrow">↗</span></h3>
@@ -234,10 +234,10 @@
         </section>
 
         <!-- SKILLS -->
-        <section id="skills" class="section">
+        <section id="skills" class="section reveal">
             <div class="section-label">Skills</div>
             <div class="skills-grid">
-                <div class="skill-group">
+                <div class="skill-group reveal">
                     <h4>AI Infra</h4>
                     <ul>
                         <li>KV Cache 分层存储</li>
@@ -247,7 +247,7 @@
                         <li>GPU 向量检索 (Faiss)</li>
                     </ul>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group reveal">
                     <h4>搜索引擎</h4>
                     <ul>
                         <li>Elasticsearch / Lucene</li>
@@ -257,7 +257,7 @@
                         <li>LBS 搜索优化</li>
                     </ul>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group reveal">
                     <h4>编程语言</h4>
                     <ul>
                         <li>Java</li>
@@ -266,7 +266,7 @@
                         <li>Go</li>
                     </ul>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group reveal">
                     <h4>基础设施</h4>
                     <ul>
                         <li>分布式系统</li>
@@ -279,7 +279,7 @@
         </section>
 
         <!-- GITHUB -->
-        <section id="github" class="section">
+        <section id="github" class="section reveal">
             <div class="section-label">GitHub</div>
             <div class="github-contrib">
                 <div class="gh-profile" id="ghProfile">
@@ -307,7 +307,7 @@
         </section>
 
         <!-- AI TRENDING -->
-        <section id="trending" class="section">
+        <section id="trending" class="section reveal">
             <div class="section-label">AI 热点</div>
             <p class="trending-digest" id="trendingDigest">每日自动追踪 GitHub 热门项目与 ArXiv 最新论文，按方向分类归纳。</p>
             <div class="trending-update-time" id="trendingTime"></div>
@@ -327,7 +327,7 @@
         </section>
 
         <!-- BLOG -->
-        <section id="blog" class="section">
+        <section id="blog" class="section reveal">
             <div class="section-label">Blog</div>
             <a href="{{ site.url }}" class="blog-link-card">
                 <div>
@@ -349,6 +349,19 @@
 </div>
 
 <script>
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = `${i * 0.08}s`;
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
 // Cursor glow
 const glow = document.getElementById('cursorGlow');
 if (window.innerWidth > 900) {
@@ -466,7 +479,7 @@ fetch(trendingUrl)
             const lang = repo.language || '';
             return `<a href="${repo.url}" target="_blank" class="trending-card">
               <div class="trending-body">
-                <h3>${repo.name.split('/')[1]} <span class="arrow">↗</span></h3>
+                <h3>${(repo.name.includes('/') ? repo.name.split('/').pop() : repo.name)} <span class="arrow">↗</span></h3>
                 <p class="trending-summary">${repo.summary_zh}</p>
                 <div class="trending-meta">
                   <span class="trending-stars">⭐ ${repo.stars.toLocaleString()}</span>
