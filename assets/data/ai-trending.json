@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-21T10:13:27.668309+00:00Z",
+  "generated_at": "2026-07-21T14:57:35.803489+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 12 篇最新 ArXiv 论文。GitHub 最热方向是「应用与前端」。",
+  "digest": "过去 30 天，共追踪到 20 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 12 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -13,8 +13,8 @@
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
           "summary_zh": "从.agents目录提取真实工程师技能。",
-          "stars": 179676,
-          "forks": 15354,
+          "stars": 180001,
+          "forks": 15386,
           "language": "Shell",
           "topics": [],
           "created_at": "",
@@ -25,9 +25,9 @@
           "name": "Shubhamsaboo/awesome-llm-apps",
           "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
           "description": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship.",
-          "summary_zh": "百多个可运行、可定制的AI代理与RAG应用集合。",
-          "stars": 125484,
-          "forks": 18514,
+          "summary_zh": "100多个可运行、可定制的AI智能体与RAG应用集合。",
+          "stars": 125611,
+          "forks": 18531,
           "language": "Python",
           "topics": [],
           "created_at": "",
@@ -35,30 +35,30 @@
           "stars_period": 5857
         },
         {
-          "name": "github/spec-kit",
-          "url": "https://github.com/github/spec-kit",
-          "description": "💫 Toolkit to help you get started with Spec-Driven Development",
-          "summary_zh": "帮助开发者快速启动规范驱动开发的工具包。",
-          "stars": 122984,
-          "forks": 10966,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 2410
-        },
-        {
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "终端内轻量级编码智能体。",
-          "stars": 100235,
-          "forks": 14999,
+          "summary_zh": "终端内轻量级AI编码助手。",
+          "stars": 100320,
+          "forks": 15005,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
           "stars_period": 2448
+        },
+        {
+          "name": "Graphify-Labs/graphify",
+          "url": "https://github.com/Graphify-Labs/graphify",
+          "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, ",
+          "summary_zh": "将代码库及文档转化为可查询的知识图谱。",
+          "stars": 92865,
+          "forks": 9017,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 7991
         }
       ]
     },
@@ -72,8 +72,8 @@
           "url": "https://github.com/moeru-ai/airi",
           "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's ",
           "summary_zh": "自托管AI伴侣，支持实时语音聊天与Minecraft交互。",
-          "stars": 42927,
-          "forks": 4293,
+          "stars": 42938,
+          "forks": 4294,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
@@ -84,9 +84,9 @@
           "name": "DioxusLabs/dioxus",
           "url": "https://github.com/DioxusLabs/dioxus",
           "description": "Fullstack app framework for web, desktop, and mobile.",
-          "summary_zh": "跨平台全栈应用框架，支持Web、桌面与移动端。",
-          "stars": 37421,
-          "forks": 1760,
+          "summary_zh": "用Rust构建全栈应用，支持Web、桌面和移动端。",
+          "stars": 37499,
+          "forks": 1767,
           "language": "Rust",
           "topics": [],
           "created_at": "",
@@ -94,30 +94,30 @@
           "stars_period": 561
         },
         {
-          "name": "firecrawl/open-lovable",
-          "url": "https://github.com/firecrawl/open-lovable",
-          "description": "🔥 Clone and recreate any website as a modern React app in seconds",
-          "summary_zh": "一键克隆任意网站为现代React应用。",
-          "stars": 28031,
-          "forks": 5329,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 665
-        },
-        {
-          "name": "stalwartlabs/stalwart",
-          "url": "https://github.com/stalwartlabs/stalwart",
-          "description": "All-in-one Mail & Collaboration server. Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).",
-          "summary_zh": "一体化的安全可扩展邮件与协作服务器，支持全协议。",
-          "stars": 13780,
-          "forks": 846,
+          "name": "rustfs/rustfs",
+          "url": "https://github.com/rustfs/rustfs",
+          "description": "🚀2.3x faster than MinIO for 4KB object payloads. RustFS is an open-source, S3-compatible high-performance object storage system supporting migration a",
+          "summary_zh": "开源高性能S3兼容对象存储，4KB小对象速度比MinIO快2.3倍。",
+          "stars": 30057,
+          "forks": 1320,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 153
+          "stars_period": 272
+        },
+        {
+          "name": "CloakHQ/CloakBrowser",
+          "url": "https://github.com/CloakHQ/CloakBrowser",
+          "description": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.",
+          "summary_zh": "绕过所有机器人检测的隐身Chromium浏览器。",
+          "stars": 28817,
+          "forks": 2336,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 640
         }
       ]
     },
@@ -131,7 +131,7 @@
           "url": "https://github.com/upstash/context7",
           "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
           "summary_zh": "为LLM和AI编辑器提供实时更新的代码文档。",
-          "stars": 59508,
+          "stars": 59523,
           "forks": 2850,
           "language": "TypeScript",
           "topics": [],
@@ -144,8 +144,8 @@
           "url": "https://github.com/kvcache-ai/ktransformers",
           "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
           "summary_zh": "异构LLM推理与微调优化的灵活框架。",
-          "stars": 18818,
-          "forks": 1465,
+          "stars": 18843,
+          "forks": 1467,
           "language": "Python",
           "topics": [],
           "created_at": "",
@@ -156,7 +156,7 @@
           "name": "jmerelnyc/Talos",
           "url": "https://github.com/jmerelnyc/Talos",
           "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
-          "summary_zh": "为Talos网络提供GPU算力，运行开源模型推理并赚取报酬。",
+          "summary_zh": "为Talos网络提供GPU算力，运行开源模型推理并赚取收益。",
           "stars": 988,
           "forks": 17,
           "language": "Python",
@@ -195,70 +195,17 @@
       ]
     },
     {
-      "id": "model-training",
-      "name": "🔬 模型训练与微调",
-      "desc": "预训练、微调、对齐、评估等模型构建环节",
-      "repos": [
-        {
-          "name": "thinking-machines-lab/tinker-cookbook",
-          "url": "https://github.com/thinking-machines-lab/tinker-cookbook",
-          "description": "Post-training with Tinker",
-          "summary_zh": "基于Tinker框架进行模型后训练的工具集合。",
-          "stars": 3864,
-          "forks": 484,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 232
-        },
-        {
-          "name": "Y0oshi/Text-LLM-Training-from-scratch",
-          "url": "https://github.com/Y0oshi/Text-LLM-Training-from-scratch",
-          "description": "A from-scratch implementation of the language-model training pipeline in PyTorch: tokenization, pretraining, SFT, and preference-based alignment.",
-          "summary_zh": "从零实现PyTorch语言模型训练全流程：分词、预训练、微调与偏好对齐。",
-          "stars": 31,
-          "forks": 0,
-          "language": "Python",
-          "topics": [
-            "alignment",
-            "deep-learning",
-            "dpo",
-            "educational",
-            "from-scratch",
-            "generative-ai"
-          ],
-          "created_at": "2026-07-12T23:48:13Z",
-          "source": "search",
-          "stars_period": 0
-        }
-      ]
-    },
-    {
       "id": "app-frontend",
       "name": "🎨 应用与前端",
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "codecrafters-io/build-your-own-x",
-          "url": "https://github.com/codecrafters-io/build-your-own-x",
-          "description": "Master programming by recreating your favorite technologies from scratch.",
-          "summary_zh": "用代码从零复现经典技术来掌握编程。",
-          "stars": 529666,
-          "forks": 50098,
-          "language": "Markdown",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 4863
-        },
-        {
           "name": "nilbuild/developer-roadmap",
           "url": "https://github.com/nilbuild/developer-roadmap",
           "description": "Interactive roadmaps, guides and other educational content to help developers grow in their careers.",
-          "summary_zh": "开发者成长路线图与交互式学习指南。",
-          "stars": 362009,
-          "forks": 44611,
+          "summary_zh": "为开发者提供交互式职业成长路线图与学习指南。",
+          "stars": 362067,
+          "forks": 44617,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
@@ -269,8 +216,8 @@
           "name": "atuinsh/atuin",
           "url": "https://github.com/atuinsh/atuin",
           "description": "✨ Making your shell magical",
-          "summary_zh": "用Rust实现的shell历史记录同步与搜索工具。",
-          "stars": 30689,
+          "summary_zh": "用 Rust 打造的 shell 历史记录同步与搜索工具。",
+          "stars": 30690,
           "forks": 900,
           "language": "Rust",
           "topics": [],
@@ -282,14 +229,27 @@
           "name": "emilk/egui",
           "url": "https://github.com/emilk/egui",
           "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
-          "summary_zh": "Rust即时模式GUI库，支持Web与原生应用开发。",
-          "stars": 29773,
-          "forks": 2075,
+          "summary_zh": "Rust即时模式GUI库，支持Web与原生应用。",
+          "stars": 29774,
+          "forks": 2076,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
           "stars_period": 143
+        },
+        {
+          "name": "XiaoYouChR/Ghost-Downloader-3",
+          "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3",
+          "description": "An AI-boost cross-platform multi-protocol fluent-design concurrent downloader built with Python & Qt.",
+          "summary_zh": "AI增强的跨平台多协议并发下载器。",
+          "stars": 6915,
+          "forks": 400,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1122
         }
       ]
     },
@@ -299,38 +259,12 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "astral-sh/uv",
-          "url": "https://github.com/astral-sh/uv",
-          "description": "An extremely fast Python package and project manager, written in Rust.",
-          "summary_zh": "极速Python包与项目管理工具，基于Rust开发。",
-          "stars": 87698,
-          "forks": 3360,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 300
-        },
-        {
-          "name": "zed-industries/zed",
-          "url": "https://github.com/zed-industries/zed",
-          "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
-          "summary_zh": "高性能多人协作代码编辑器，由Atom和Tree-sitter团队打造。",
-          "stars": 87320,
-          "forks": 9633,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 435
-        },
-        {
           "name": "OpenCut-app/OpenCut",
           "url": "https://github.com/OpenCut-app/OpenCut",
           "description": "The open-source CapCut alternative",
-          "summary_zh": "开源版CapCut，提供视频剪辑与导出功能。",
-          "stars": 76685,
-          "forks": 7698,
+          "summary_zh": "开源版CapCut视频编辑工具。",
+          "stars": 76835,
+          "forks": 7705,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
@@ -338,17 +272,43 @@
           "stars_period": 11676
         },
         {
-          "name": "virattt/ai-hedge-fund",
-          "url": "https://github.com/virattt/ai-hedge-fund",
-          "description": "An AI Hedge Fund Team",
-          "summary_zh": "AI对冲基金团队，用Python实现智能投资决策。",
-          "stars": 62321,
-          "forks": 10962,
+          "name": "xai-org/grok-1",
+          "url": "https://github.com/xai-org/grok-1",
+          "description": "Grok open release",
+          "summary_zh": "开源Grok-1大模型权重与推理代码。",
+          "stars": 52012,
+          "forks": 8515,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 753
+          "stars_period": 316
+        },
+        {
+          "name": "astral-sh/ruff",
+          "url": "https://github.com/astral-sh/ruff",
+          "description": "An extremely fast Python linter and code formatter, written in Rust.",
+          "summary_zh": "超快Python代码检查与格式化工具，基于Rust开发。",
+          "stars": 48756,
+          "forks": 2266,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 233
+        },
+        {
+          "name": "jamiepine/voicebox",
+          "url": "https://github.com/jamiepine/voicebox",
+          "description": "The open-source AI voice studio. Clone, dictate, create.",
+          "summary_zh": "开源AI语音工作室，支持克隆、听写与创作。",
+          "stars": 44980,
+          "forks": 5476,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 3750
         }
       ]
     }
@@ -363,7 +323,7 @@
           "url": "http://arxiv.org/abs/2607.18228v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18228v1",
           "abstract": "To test how correct logical judgments respond to learned context, we prepend a soft prefix to an exactly labeled syllogistic reasoning benchmark while keeping the model fixed. Soft prefixes are opaque",
-          "summary_zh": "通过可学习的软前缀扰动三段论推理基准，揭示逻辑判断在上下文压力下的稳定性。",
+          "summary_zh": "通过可学习的软前缀扰动三段论推理基准，揭示了逻辑判断在上下文压力下的稳定性。",
           "authors": [
             "Brian K Chen"
           ],
@@ -378,7 +338,7 @@
           "url": "http://arxiv.org/abs/2607.18218v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18218v1",
           "abstract": "Foundation models have emerged as a driving force in computational pathology, with the potential to transform cancer diagnosis, prognosis, and treatment selection by learning transferable representati",
-          "summary_zh": "提出GigaPath-Flash和GigaTIME-Flash，实现全切片与肿瘤微环境分析的高效病理基础模型。",
+          "summary_zh": "提出高效病理基础模型GigaPath-Flash和GigaTIME-Flash，实现全切片与肿瘤微环境分析的性能突破。",
           "authors": [
             "Naoto Usuyama",
             "Jeya Maria Jose Valanarasu",
@@ -395,7 +355,7 @@
           "url": "http://arxiv.org/abs/2607.18213v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18213v1",
           "abstract": "Pruning long context for coding agents has been a vital technology for efficient context management. While existing context pruning methods such as SWE-Pruner realize this by attaching a separate code",
-          "summary_zh": "发现编码器LLM自身已编码代码相关性，无需额外分类器即可高效剪枝长上下文。",
+          "summary_zh": "发现编码器自身已编码代码相关性，无需额外分类器即可高效剪枝长上下文。",
           "authors": [
             "Yuhang Wang",
             "Yuling Shi",
@@ -434,7 +394,7 @@
           "url": "http://arxiv.org/abs/2607.18225v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18225v1",
           "abstract": "We propose one-step and two-step methods for policy learning with retrieval-augmented generation (RAG). We formulate RAG-based action selection under the potential outcome framework. In the two-step m",
-          "summary_zh": "提出基于RAG的因果推断策略学习方法，将向量搜索视为最近邻匹配，实现一步和两步策略学习。",
+          "summary_zh": "提出基于检索增强生成（RAG）的策略学习方法，将向量搜索视为最近邻匹配，用于因果推断中的最优行动选择。",
           "authors": [
             "Masahiro Kato",
             "Taka Kato"
@@ -457,7 +417,7 @@
           "url": "http://arxiv.org/abs/2607.18235v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18235v1",
           "abstract": "Autonomous discovery systems such as OpenEvolve and TTT-Discover are often used as general-purpose harnesses. However, in practice these are composite systems combining several design choices about ar",
-          "summary_zh": "自动发现系统无通用最优框架，其性能高度依赖具体设计选择组合。",
+          "summary_zh": "自动化发现系统无通用最优框架，其性能高度依赖具体设计选择组合。",
           "authors": [
             "Akshat Gupta",
             "Jermaine Lei",
@@ -480,7 +440,7 @@
           "url": "http://arxiv.org/abs/2607.18237v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18237v1",
           "abstract": "Human visual similarity judgments are context-dependent. For example, two images may be similar in shape but distinct in color. Existing perceptual similarity metrics, however, collapse these nuances ",
-          "summary_zh": "提出文本引导的图像感知度量，使相似性判断可依据指定属性（如形状或颜色）进行条件化。",
+          "summary_zh": "提出文本提示图像感知度量，使相似性判断可依据指定视觉属性动态调整。",
           "authors": [
             "Sheng-Yu Wang",
             "Yotam Nitzan",
@@ -497,7 +457,7 @@
           "url": "http://arxiv.org/abs/2607.18236v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18236v1",
           "abstract": "Pretrained dense visual features from Vision Transformers (ViTs) are powerful yet have been underutilized in robot learning. Modern robot policies either compress each observation into a single global",
-          "summary_zh": "提出基于ViT密集视觉特征的机器人控制策略，保留细粒度空间信息，提升学习效率与性能。",
+          "summary_zh": "提出Patch Policy，利用ViT稠密视觉特征保留空间细节，实现高效具身控制。",
           "authors": [
             "Gaoyue Zhou",
             "Zichen Jeff Cui",
@@ -514,7 +474,7 @@
           "url": "http://arxiv.org/abs/2607.18230v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18230v1",
           "abstract": "Modern vision-language models (VLMs) have significantly improved image generation and editing capabilities, making pixel-level image tampering detection increasingly important yet challenging under cr",
-          "summary_zh": "提出一种简单域泛化方法，显著提升现代视觉语言模型在跨模型与分布外场景下的像素级篡改检测性能。",
+          "summary_zh": "提出一种简单域泛化方法，使现代视觉语言模型在像素级图像篡改检测中实现强跨模型与分布外泛化。",
           "authors": [
             "Yi Tang",
             "Xinyi Shang",
@@ -537,7 +497,7 @@
           "url": "http://arxiv.org/abs/2607.18226v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18226v1",
           "abstract": "Causal discovery methods have shown strong performance in temporal systems, but they typically rely on regular and discrete lag structures, limiting their applicability to regularly sampled data. Howe",
-          "summary_zh": "提出一种适用于不规则时间序列的因果发现方法，突破传统对规则采样数据的依赖。",
+          "summary_zh": "提出面向不规则时间序列的因果发现方法，突破传统模型对规则采样数据的依赖。",
           "authors": [
             "Martim Penim",
             "Ricardo Ribeiro Pereira",
@@ -554,7 +514,7 @@
           "url": "http://arxiv.org/abs/2607.18209v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18209v1",
           "abstract": "This paper considers a multi-environment factor model in which high-dimensional covariates are collected from heterogeneous environments, with auxiliary labels available in a subset of these environme",
-          "summary_zh": "提出ATLAS方法，从异构环境高维数据中提取跨环境不变且可迁移的潜在因子。",
+          "summary_zh": "提出ATLAS方法，从异构环境数据中提取跨环境不变且可迁移的潜在因子。",
           "authors": [
             "Yihong Gu",
             "Katherine Liao",
@@ -572,7 +532,7 @@
           "url": "http://arxiv.org/abs/2607.18181v1",
           "pdf_url": "https://arxiv.org/pdf/2607.18181v1",
           "abstract": "Battery-free Internet of Things (IoT) requires iterative design of vibration energy harvesters (VEHs) under coupled physical constraints, while LLMs are emerging as interface layers for engineering wo",
-          "summary_zh": "VEHBench提出分阶段诊断基准，评估LLM辅助振动能量采集器设计各环节的耦合约束处理能力。",
+          "summary_zh": "VEHBench提出首个面向振动能量采集器设计的阶段局部诊断基准，评估LLM辅助工程设计的中间过程而非最终结果。",
           "authors": [
             "Depeng Su",
             "Yuyu Luo",
