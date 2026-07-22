@@ -639,6 +639,14 @@ body {
   transition: transform var(--ease);
 }
 
+.trending-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
 .trending-summary {
   font-size: 0.82rem;
   color: var(--text);

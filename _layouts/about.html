@@ -477,9 +477,11 @@ fetch(trendingUrl)
         <div class="trending-list">
           ${cat.repos.map(repo => {
             const lang = repo.language || '';
+            const desc = repo.description || '';
             return `<a href="${repo.url}" target="_blank" class="trending-card">
               <div class="trending-body">
                 <h3>${(repo.name.includes('/') ? repo.name.split('/').pop() : repo.name)} <span class="arrow">↗</span></h3>
+                ${desc ? `<p class="trending-desc">${desc}</p>` : ''}
                 <p class="trending-summary">${repo.summary_zh}</p>
                 <div class="trending-meta">
                   <span class="trending-stars">⭐ ${repo.stars.toLocaleString()}</span>
