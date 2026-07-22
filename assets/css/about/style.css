@@ -678,9 +678,6 @@ body {
 }
 
 /* Paper cards */
-.paper-card .trending-summary {
-  font-style: italic;
-}
 .paper-meta {
   display: flex;
   flex-wrap: wrap;

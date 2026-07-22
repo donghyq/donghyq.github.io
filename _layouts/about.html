@@ -509,9 +509,12 @@ fetch(trendingUrl)
               const authStr = paper.authors ? paper.authors.slice(0,3).join(', ') : '';
               const catStr = paper.categories ? paper.categories.slice(0,2).join(' · ') : '';
               const dateStr = paper.published ? new Date(paper.published).toLocaleDateString('zh-CN') : '';
+              const abs = paper.abstract || '';
+              const shortAbs = abs.length > 150 ? abs.slice(0,147) + '...' : abs;
               return `<a href="${paper.url}" target="_blank" class="trending-card paper-card">
                 <div class="trending-body">
                   <h3>${paper.title.length > 60 ? paper.title.slice(0,57) + '...' : paper.title} <span class="arrow">↗</span></h3>
+                  ${shortAbs ? `<p class="trending-desc">${shortAbs}</p>` : ''}
                   <p class="trending-summary">${paper.summary_zh}</p>
                   <div class="paper-meta">
                     ${authStr ? `<span class="paper-authors">👤 ${authStr}${paper.authors.length > 3 ? ' et al.' : ''}</span>` : ''}
