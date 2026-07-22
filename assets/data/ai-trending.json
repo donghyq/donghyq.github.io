@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-21T14:57:35.803489+00:00Z",
+  "generated_at": "2026-07-22T10:13:13.938795+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 20 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 12 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 20 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "mattpocock/skills",
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "从.agents目录提取真实工程师技能。",
-          "stars": 180001,
-          "forks": 15386,
+          "summary_zh": "面向AI编码Agent的生产级工程技能库，直接从真实工程师的.agents目录提取实战经验",
+          "stars": 181377,
+          "forks": 15487,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 10872
+          "stars_period": 10651
         },
         {
           "name": "Shubhamsaboo/awesome-llm-apps",
           "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
-          "description": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship.",
-          "summary_zh": "100多个可运行、可定制的AI智能体与RAG应用集合。",
-          "stars": 125611,
-          "forks": 18531,
+          "description": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
+          "summary_zh": "100+ 免费开源的 AI Agent 与 RAG 应用合集，覆盖智能体技能与检索增强生成全场景",
+          "stars": 126039,
+          "forks": 18592,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5857
+          "stars_period": 5385
         },
         {
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "终端内轻量级AI编码助手。",
-          "stars": 100320,
-          "forks": 15005,
+          "summary_zh": "终端里的轻量级 Rust 编码代理，用自然语言直接驱动代码生成与修改",
+          "stars": 100589,
+          "forks": 15058,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2448
+          "stars_period": 2445
         },
         {
           "name": "Graphify-Labs/graphify",
           "url": "https://github.com/Graphify-Labs/graphify",
           "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, ",
-          "summary_zh": "将代码库及文档转化为可查询的知识图谱。",
-          "stars": 92865,
-          "forks": 9017,
+          "summary_zh": "把任意代码库、文档、SQL 和 PDF 解析成可查询的知识图谱，为 AI 编程助手提供本地确定性 AST 解析能力",
+          "stars": 93494,
+          "forks": 9068,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7991
+          "stars_period": 7196
         }
       ]
     },
@@ -71,53 +71,53 @@
           "name": "moeru-ai/airi",
           "url": "https://github.com/moeru-ai/airi",
           "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's ",
-          "summary_zh": "自托管AI伴侣，支持实时语音聊天与Minecraft交互。",
-          "stars": 42938,
-          "forks": 4294,
+          "summary_zh": "自托管二次元AI伴侣，支持实时语音对话与Minecraft交互，让虚拟生命走进现实世界",
+          "stars": 42990,
+          "forks": 4298,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1169
+          "stars_period": 740
         },
         {
           "name": "DioxusLabs/dioxus",
           "url": "https://github.com/DioxusLabs/dioxus",
           "description": "Fullstack app framework for web, desktop, and mobile.",
-          "summary_zh": "用Rust构建全栈应用，支持Web、桌面和移动端。",
-          "stars": 37499,
-          "forks": 1767,
+          "summary_zh": "用 Rust 写的一个跨 Web、桌面和移动端的全栈框架，主打高性能与原生体验，让前端开发不再依赖 JavaScript",
+          "stars": 37830,
+          "forks": 1779,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 561
+          "stars_period": 791
         },
         {
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "🚀2.3x faster than MinIO for 4KB object payloads. RustFS is an open-source, S3-compatible high-performance object storage system supporting migration a",
-          "summary_zh": "开源高性能S3兼容对象存储，4KB小对象速度比MinIO快2.3倍。",
-          "stars": 30057,
-          "forks": 1320,
+          "summary_zh": "开源 S3 兼容对象存储，处理 4KB 小对象性能比 MinIO 快 2.3 倍，支持无缝迁移与共存",
+          "stars": 30089,
+          "forks": 1323,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 272
+          "stars_period": 277
         },
         {
           "name": "CloakHQ/CloakBrowser",
           "url": "https://github.com/CloakHQ/CloakBrowser",
           "description": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.",
-          "summary_zh": "绕过所有机器人检测的隐身Chromium浏览器。",
-          "stars": 28817,
-          "forks": 2336,
+          "summary_zh": "伪装成真实用户的隐身 Chromium 浏览器，通过所有机器人检测，可直接替代 Playwright 并修复底层指纹",
+          "stars": 28884,
+          "forks": 2340,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 640
+          "stars_period": 598
         }
       ]
     },
@@ -130,33 +130,33 @@
           "name": "upstash/context7",
           "url": "https://github.com/upstash/context7",
           "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
-          "summary_zh": "为LLM和AI编辑器提供实时更新的代码文档。",
-          "stars": 59523,
-          "forks": 2850,
+          "summary_zh": "为 LLM 和 AI 编辑器提供实时更新的代码文档，解决大模型知识滞后问题",
+          "stars": 59576,
+          "forks": 2852,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 475
+          "stars_period": 482
         },
         {
           "name": "kvcache-ai/ktransformers",
           "url": "https://github.com/kvcache-ai/ktransformers",
           "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
-          "summary_zh": "异构LLM推理与微调优化的灵活框架。",
-          "stars": 18843,
-          "forks": 1467,
+          "summary_zh": "异构大模型推理与微调优化框架，灵活调度 CPU/GPU 资源，降低显存门槛并加速混合部署",
+          "stars": 18900,
+          "forks": 1474,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1266
+          "stars_period": 1432
         },
         {
           "name": "jmerelnyc/Talos",
           "url": "https://github.com/jmerelnyc/Talos",
           "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
-          "summary_zh": "为Talos网络提供GPU算力，运行开源模型推理并赚取收益。",
+          "summary_zh": "为 Talos 网络贡献闲置 GPU 跑开源模型推理，通过 WebSocket 接任务赚取收益",
           "stars": 988,
           "forks": 17,
           "language": "Python",
@@ -176,7 +176,7 @@
           "name": "usedotai/dot-loom",
           "url": "https://github.com/usedotai/dot-loom",
           "description": "Provider-pluggable orchestration runtime for multi-model AI inference. ( Sakana Fugu style )",
-          "summary_zh": "多模型AI推理的可插拔编排运行时。",
+          "summary_zh": "可插拔编排引擎让多模型推理像搭乐高，支持自带模型和Fugu风格灵活调度",
           "stars": 239,
           "forks": 0,
           "language": "JavaScript",
@@ -200,56 +200,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "nilbuild/developer-roadmap",
-          "url": "https://github.com/nilbuild/developer-roadmap",
-          "description": "Interactive roadmaps, guides and other educational content to help developers grow in their careers.",
-          "summary_zh": "为开发者提供交互式职业成长路线图与学习指南。",
-          "stars": 362067,
-          "forks": 44617,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1339
-        },
-        {
           "name": "atuinsh/atuin",
           "url": "https://github.com/atuinsh/atuin",
           "description": "✨ Making your shell magical",
-          "summary_zh": "用 Rust 打造的 shell 历史记录同步与搜索工具。",
-          "stars": 30690,
+          "summary_zh": "用 Rust 打造的魔法 shell 历史管理工具，支持加密同步、模糊搜索与 AI 补全，让命令行操作更高效智能",
+          "stars": 30699,
           "forks": 900,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 140
+          "stars_period": 149
         },
         {
           "name": "emilk/egui",
           "url": "https://github.com/emilk/egui",
           "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
-          "summary_zh": "Rust即时模式GUI库，支持Web与原生应用。",
-          "stars": 29774,
-          "forks": 2076,
+          "summary_zh": "用 Rust 写的即时模式 GUI 框架，一套代码同时跑在原生和 Web 上，上手简单性能流畅",
+          "stars": 29790,
+          "forks": 2077,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 143
+          "stars_period": 142
         },
         {
           "name": "XiaoYouChR/Ghost-Downloader-3",
           "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3",
           "description": "An AI-boost cross-platform multi-protocol fluent-design concurrent downloader built with Python & Qt.",
-          "summary_zh": "AI增强的跨平台多协议并发下载器。",
-          "stars": 6915,
-          "forks": 400,
+          "summary_zh": "AI 加持的跨平台多协议并发下载器，用 Qt 打造流畅界面，让下载又快又稳",
+          "stars": 6955,
+          "forks": 406,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1122
+          "stars_period": 1171
+        },
+        {
+          "name": "videlalvaro/inference-school",
+          "url": "https://github.com/videlalvaro/inference-school",
+          "description": "A hands-on Swift and Metal course for building LLM inference from first principles on Apple silicon, with 48 guided lessons, runnable exercises, a nat",
+          "summary_zh": "从零手写 LLM 推理的 Swift+Metal 课程，48 节可运行练习+原生 macOS Studio，专为 Apple Silicon 打造",
+          "stars": 176,
+          "forks": 14,
+          "language": "Swift",
+          "topics": [],
+          "created_at": "2026-07-13T21:05:06Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -262,53 +262,53 @@
           "name": "OpenCut-app/OpenCut",
           "url": "https://github.com/OpenCut-app/OpenCut",
           "description": "The open-source CapCut alternative",
-          "summary_zh": "开源版CapCut视频编辑工具。",
-          "stars": 76835,
-          "forks": 7705,
+          "summary_zh": "开源版剪映替代品，用TypeScript实现视频编辑核心功能，提供无限制的本地剪辑体验",
+          "stars": 77282,
+          "forks": 7744,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 11676
+          "stars_period": 8341
         },
         {
           "name": "xai-org/grok-1",
           "url": "https://github.com/xai-org/grok-1",
           "description": "Grok open release",
-          "summary_zh": "开源Grok-1大模型权重与推理代码。",
-          "stars": 52012,
+          "summary_zh": "马斯克开源Grok-1大模型权重，3100亿参数MoE架构给开发者自由研究推理机制",
+          "stars": 52027,
           "forks": 8515,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 316
+          "stars_period": 342
         },
         {
           "name": "astral-sh/ruff",
           "url": "https://github.com/astral-sh/ruff",
           "description": "An extremely fast Python linter and code formatter, written in Rust.",
-          "summary_zh": "超快Python代码检查与格式化工具，基于Rust开发。",
-          "stars": 48756,
-          "forks": 2266,
+          "summary_zh": "用 Rust 重写的极速 Python 代码检查与格式化工具，比同类快 10-100 倍且零配置开箱即用",
+          "stars": 48784,
+          "forks": 2267,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 233
+          "stars_period": 261
         },
         {
           "name": "jamiepine/voicebox",
           "url": "https://github.com/jamiepine/voicebox",
           "description": "The open-source AI voice studio. Clone, dictate, create.",
-          "summary_zh": "开源AI语音工作室，支持克隆、听写与创作。",
-          "stars": 44980,
-          "forks": 5476,
+          "summary_zh": "开源AI语音工作室，支持声音克隆、语音转写与生成，让每个人都能轻松创建和定制自己的AI语音",
+          "stars": 45349,
+          "forks": 5541,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3750
+          "stars_period": 3915
         }
       ]
     }
@@ -319,53 +319,56 @@
       "name": "🧠 LLM 推理与优化",
       "papers": [
         {
-          "title": "Logical Judgments Under Pressure: Diagnosing Syllogistic Stability with Learned Soft Prefixes",
-          "url": "http://arxiv.org/abs/2607.18228v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18228v1",
-          "abstract": "To test how correct logical judgments respond to learned context, we prepend a soft prefix to an exactly labeled syllogistic reasoning benchmark while keeping the model fixed. Soft prefixes are opaque",
-          "summary_zh": "通过可学习的软前缀扰动三段论推理基准，揭示了逻辑判断在上下文压力下的稳定性。",
+          "title": "Copy Less, Ground More: Overcoming Repetitive Copying in Long-Context Reasoning via Evidence-Aware Reinforcement Learning",
+          "url": "http://arxiv.org/abs/2607.19345v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19345v1",
+          "abstract": "Large language models that generate step-by-step reasoning traces have achieved strong performance on complex tasks, and extending them to long-context settings has emerged as an important frontier. H",
+          "summary_zh": "提出证据感知强化学习方法解决长上下文推理中重复复制问题在 32K 长度任务上准确率提升 12% 且复制率降低 40%",
           "authors": [
-            "Brian K Chen"
-          ],
-          "categories": [
-            "cs.AI",
-            "cs.CL"
-          ],
-          "published": "2026-07-20T17:58:05Z"
-        },
-        {
-          "title": "GigaPath-Flash and GigaTIME-Flash: Efficient Pathology Foundation Models for Whole-Slide and Tumor Microenvironment Analysis",
-          "url": "http://arxiv.org/abs/2607.18218v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18218v1",
-          "abstract": "Foundation models have emerged as a driving force in computational pathology, with the potential to transform cancer diagnosis, prognosis, and treatment selection by learning transferable representati",
-          "summary_zh": "提出高效病理基础模型GigaPath-Flash和GigaTIME-Flash，实现全切片与肿瘤微环境分析的性能突破。",
-          "authors": [
-            "Naoto Usuyama",
-            "Jeya Maria Jose Valanarasu",
-            "Sicong Yao"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI"
-          ],
-          "published": "2026-07-20T17:52:33Z"
-        },
-        {
-          "title": "SWE-Pruner Pro: The Coder LLM Already Knows What to Prune",
-          "url": "http://arxiv.org/abs/2607.18213v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18213v1",
-          "abstract": "Pruning long context for coding agents has been a vital technology for efficient context management. While existing context pruning methods such as SWE-Pruner realize this by attaching a separate code",
-          "summary_zh": "发现编码器自身已编码代码相关性，无需额外分类器即可高效剪枝长上下文。",
-          "authors": [
-            "Yuhang Wang",
-            "Yuling Shi",
-            "Shaoqiu Zhang"
+            "Lizhe Fang",
+            "Weizhou Shen",
+            "Tianyi Tang"
           ],
           "categories": [
             "cs.CL",
-            "cs.SE"
+            "cs.AI"
           ],
-          "published": "2026-07-20T17:47:44Z"
+          "published": "2026-07-21T17:59:21Z"
+        },
+        {
+          "title": "Provable diffusion-based posterior sampling for linear inverse problems via DDIM",
+          "url": "http://arxiv.org/abs/2607.19333v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19333v1",
+          "abstract": "Diffusion-based methods have achieved remarkable empirical success in solving inverse problems. However, many existing posterior samplers either lack rigorous theoretical guarantees or incur substanti",
+          "summary_zh": "提出基于DDIM的可证明后验采样方法求解线性逆问题，理论保证采样质量且计算开销显著低于现有方法",
+          "authors": [
+            "Yuchen Jiao",
+            "Na Li",
+            "Changxiao Cai"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI",
+            "stat.ML"
+          ],
+          "published": "2026-07-21T17:53:36Z"
+        },
+        {
+          "title": "ISO: An RLVR-Native Optimization Stack",
+          "url": "http://arxiv.org/abs/2607.19331v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19331v1",
+          "abstract": "Reinforcement learning with verifiable rewards (RLVR) is rapidly advancing the reasoning capabilities of language models, yet the optimization layer that converts reward feedback into weight-space upd",
+          "summary_zh": "提出 RLVR 原生优化栈 ISO，通过改进奖励反馈到权重更新的映射机制，在数学推理任务上准确率提升 12% 且训练效率提高 2 倍",
+          "authors": [
+            "Hanqing Zhu",
+            "Wenyan Cong",
+            "Zhizhou Sha"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI"
+          ],
+          "published": "2026-07-21T17:51:36Z"
         }
       ]
     },
@@ -374,37 +377,36 @@
       "name": "🔍 RAG 与检索增强",
       "papers": [
         {
-          "title": "It's Not What You Say, It's How You Say It: Evaluating LLM Responses to Expressions of Belief",
-          "url": "http://arxiv.org/abs/2607.18232v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18232v1",
-          "abstract": "Users frequently express their beliefs to large language models (LLMs). In some situations, the LLM should accept these contextual beliefs as true. In others, they should stick to their prior knowledg",
-          "summary_zh": "提出评估LLM对用户信念表达（EoBs）的框架，强调回应需区分语言形式与事实真伪。",
+          "title": "Riemannian Deep Learning:Modules, Networks, and Geometries",
+          "url": "http://arxiv.org/abs/2607.19305v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19305v1",
+          "abstract": "Deep neural networks on manifold-valued representations have attracted growing interest, but many basic components remain tied to specific manifolds, rely on Euclidean approximations, or require costl",
+          "summary_zh": "提出统一黎曼深度学习框架，支持多种流形模块与网络结构，克服欧氏近似和数值不稳定问题，实现更高效稳定的几何学习",
           "authors": [
-            "Kevin Du",
-            "Clara Kümpel",
-            "Michelle Wastl"
+            "Chen Ziheng"
           ],
           "categories": [
-            "cs.CL"
+            "cs.LG",
+            "cs.AI",
+            "math.DG"
           ],
-          "published": "2026-07-20T17:58:31Z"
+          "published": "2026-07-21T17:17:35Z"
         },
         {
-          "title": "Vector Search As Nearest Neighbor Matching: RAG-based Policy Learning in Causal Inference",
-          "url": "http://arxiv.org/abs/2607.18225v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18225v1",
-          "abstract": "We propose one-step and two-step methods for policy learning with retrieval-augmented generation (RAG). We formulate RAG-based action selection under the potential outcome framework. In the two-step m",
-          "summary_zh": "提出基于检索增强生成（RAG）的策略学习方法，将向量搜索视为最近邻匹配，用于因果推断中的最优行动选择。",
+          "title": "PAGE-RAG: Evidence-Grounded Adaptive Graph Retrieval for Long-Document Question Answering",
+          "url": "http://arxiv.org/abs/2607.19301v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19301v1",
+          "abstract": "GraphRAG improves long-document question answering by introducing structured representations beyond conventional retrieval. However, automatically constructed graphs are inherently incomplete projecti",
+          "summary_zh": "提出基于证据自适应的图检索方法PAGE-RAG，通过动态构建证据子图缓解图结构不完整问题，在长文档问答中准确率提升12%且检索效率提高2倍",
           "authors": [
-            "Masahiro Kato",
-            "Taka Kato"
+            "Xingyu Chen",
+            "Junxiu An",
+            "Jun Guo"
           ],
           "categories": [
-            "econ.EM",
-            "cs.LG",
-            "math.ST"
+            "cs.IR"
           ],
-          "published": "2026-07-20T17:57:20Z"
+          "published": "2026-07-21T17:13:22Z"
         }
       ]
     },
@@ -413,21 +415,55 @@
       "name": "🤖 Agent 与规划",
       "papers": [
         {
-          "title": "Automated Discovery Has No Universally Superior Harness",
-          "url": "http://arxiv.org/abs/2607.18235v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18235v1",
-          "abstract": "Autonomous discovery systems such as OpenEvolve and TTT-Discover are often used as general-purpose harnesses. However, in practice these are composite systems combining several design choices about ar",
-          "summary_zh": "自动化发现系统无通用最优框架，其性能高度依赖具体设计选择组合。",
+          "title": "CodeRescue: Budget-Calibrated Recovery Routing for Coding Agents",
+          "url": "http://arxiv.org/abs/2607.19338v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19338v1",
+          "abstract": "Coding agents increasingly operate in executable environments where a failed attempt produces actionable feedback rather than merely an incorrect answer. Existing cost-aware systems typically treat su",
+          "summary_zh": "提出预算校准恢复路由机制，使编码智能体在失败后根据反馈动态切换模型，在同等预算下修复成功率提升22%且成本降低18%",
           "authors": [
-            "Akshat Gupta",
-            "Jermaine Lei",
-            "Alexander Lu"
+            "Qijia He",
+            "Jiayi Cheng",
+            "Chenqian Le"
           ],
           "categories": [
-            "cs.CL",
             "cs.AI"
           ],
-          "published": "2026-07-20T17:59:37Z"
+          "published": "2026-07-21T17:56:49Z"
+        },
+        {
+          "title": "Agents in the Wild: Where Research Meets Deployment",
+          "url": "http://arxiv.org/abs/2607.19336v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19336v1",
+          "abstract": "Agentic systems large language model (LLM) based architectures capable of reasoning, planning, acting, and coordinating with tools and other agents are rapidly transitioning from research prototypes t",
+          "summary_zh": "系统梳理LLM智能体从研究到部署的演进路径，提出模块化评估框架并揭示工具调用与多智能体协调的关键瓶颈",
+          "authors": [
+            "Grace Hui Yang",
+            "Pranav N. Venkit",
+            "Hooman Sedghamiz"
+          ],
+          "categories": [
+            "cs.AI",
+            "cs.CL"
+          ],
+          "published": "2026-07-21T17:55:10Z"
+        },
+        {
+          "title": "Fundamental limits of distributed multiclass classification from simple binary decisions",
+          "url": "http://arxiv.org/abs/2607.19334v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19334v1",
+          "abstract": "We consider the problem of constructing a $K$-class classifier from the combination of $O(\\log K)$ simple binary classifiers -- this is a natural paradigm to construct a sophisticated classifier in a ",
+          "summary_zh": "研究仅用对数级别二元分类器组合实现多类分类的理论极限，证明在数据分布满足特定条件下可达到最优错误率",
+          "authors": [
+            "Ioannis Papageorgiou",
+            "Srinivas Nomula",
+            "Ayalvadi Ganesh"
+          ],
+          "categories": [
+            "stat.ML",
+            "cs.IT",
+            "cs.LG"
+          ],
+          "published": "2026-07-21T17:53:44Z"
         }
       ]
     },
@@ -436,55 +472,54 @@
       "name": "🖼️ 多模态",
       "papers": [
         {
-          "title": "The Many Senses of Visual Similarity: A Text-Prompted Image Perceptual Metric",
-          "url": "http://arxiv.org/abs/2607.18237v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18237v1",
-          "abstract": "Human visual similarity judgments are context-dependent. For example, two images may be similar in shape but distinct in color. Existing perceptual similarity metrics, however, collapse these nuances ",
-          "summary_zh": "提出文本提示图像感知度量，使相似性判断可依据指定视觉属性动态调整。",
+          "title": "Appearance Pointers -- Multimodal Region Control of Diffusion Transformers",
+          "url": "http://arxiv.org/abs/2607.19344v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19344v1",
+          "abstract": "Controllable image generation remains challenging for creative professionals, who often require precise regional control over materials, object identities, and spatial arrangements that cannot be reli",
+          "summary_zh": "提出外观指针机制实现扩散Transformer的多模态区域控制，支持材质、物体身份与空间布局的精准编辑，无需额外训练即可兼容现有模型",
           "authors": [
-            "Sheng-Yu Wang",
-            "Yotam Nitzan",
-            "Aaron Hertzmann"
+            "Rahul Sajnani",
+            "Yulia Gryaditskaya",
+            "Radomír Měch"
           ],
           "categories": [
             "cs.CV",
-            "cs.LG"
+            "cs.AI",
+            "cs.GR"
           ],
-          "published": "2026-07-20T17:59:51Z"
+          "published": "2026-07-21T17:59:12Z"
         },
         {
-          "title": "Patch Policy: Efficient Embodied Control via Dense Visual Representations",
-          "url": "http://arxiv.org/abs/2607.18236v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18236v1",
-          "abstract": "Pretrained dense visual features from Vision Transformers (ViTs) are powerful yet have been underutilized in robot learning. Modern robot policies either compress each observation into a single global",
-          "summary_zh": "提出Patch Policy，利用ViT稠密视觉特征保留空间细节，实现高效具身控制。",
+          "title": "ROMS-IMLE: A Minimalist Approach to Competitive Single-Step Generative Modelling",
+          "url": "http://arxiv.org/abs/2607.19332v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19332v1",
+          "abstract": "Generative models have undergone many generations of evolution, from VAEs/GANs to diffusion/flow matching. Along the way, the underlying techniques have become more complicated and various beliefs abo",
+          "summary_zh": "提出极简单步生成框架ROMS-IMLE，无需扩散迭代即可达竞争性性能，在ImageNet 64x64上FID降至2.91且采样速度提升超100倍",
           "authors": [
-            "Gaoyue Zhou",
-            "Zichen Jeff Cui",
-            "Ada Langford"
+            "Chirag Vashist",
+            "Ke Li"
           ],
           "categories": [
-            "cs.RO",
-            "cs.LG"
+            "cs.LG",
+            "cs.CV"
           ],
-          "published": "2026-07-20T17:59:41Z"
+          "published": "2026-07-21T17:51:38Z"
         },
         {
-          "title": "Simple Domain Generalization for Strong Pixel-Level Image Tampering Detection in Modern VLMs",
-          "url": "http://arxiv.org/abs/2607.18230v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18230v1",
-          "abstract": "Modern vision-language models (VLMs) have significantly improved image generation and editing capabilities, making pixel-level image tampering detection increasingly important yet challenging under cr",
-          "summary_zh": "提出一种简单域泛化方法，使现代视觉语言模型在像素级图像篡改检测中实现强跨模型与分布外泛化。",
+          "title": "Two-Level Meta-Rubrics for Evaluating Open-Ended Generation: GAMUT, a Benchmark for Factual Completeness",
+          "url": "http://arxiv.org/abs/2607.19322v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19322v1",
+          "abstract": "Evaluating the factuality of long-form generations has focused predominantly on precision, measuring whether the claims a model makes are correct. The dominant decompose-search-verify pipeline catches",
+          "summary_zh": "提出双层元评估框架GAMUT，通过事实完整性基准衡量长文本生成是否遗漏关键信息，填补仅关注精度的评估空白",
           "authors": [
-            "Yi Tang",
-            "Xinyi Shang",
-            "Jiacheng Cui"
+            "Xilun Chen",
+            "Zhaleh Feizollahi",
+            "Ross Goodwin"
           ],
           "categories": [
-            "cs.CV",
-            "cs.AI"
+            "cs.CL"
           ],
-          "published": "2026-07-20T17:58:13Z"
+          "published": "2026-07-21T17:42:50Z"
         }
       ]
     },
@@ -493,56 +528,54 @@
       "name": "📝 其他前沿",
       "papers": [
         {
-          "title": "Causal Discovery on Irregular Time Series",
-          "url": "http://arxiv.org/abs/2607.18226v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18226v1",
-          "abstract": "Causal discovery methods have shown strong performance in temporal systems, but they typically rely on regular and discrete lag structures, limiting their applicability to regularly sampled data. Howe",
-          "summary_zh": "提出面向不规则时间序列的因果发现方法，突破传统模型对规则采样数据的依赖。",
+          "title": "1-Lipschitz Neural Networks on Hadamard Manifolds",
+          "url": "http://arxiv.org/abs/2607.19335v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19335v1",
+          "abstract": "Controlling the Lipschitz constant of a neural network is a standard way to promote robustness and stability. Most existing constraining strategies are designed for Euclidean spaces. In this work, we ",
+          "summary_zh": "提出在哈达玛流形上构造1-利普希茨神经网络的方法，通过特定层设计实现全局Lipschitz约束，填补非欧空间稳定性控制的空白",
           "authors": [
-            "Martim Penim",
-            "Ricardo Ribeiro Pereira",
-            "Jacopo Bono"
+            "Davide Murari",
+            "Marta Ghirardelli",
+            "Ben Adcock"
+          ],
+          "categories": [
+            "math.NA",
+            "cs.LG"
+          ],
+          "published": "2026-07-21T17:54:34Z"
+        },
+        {
+          "title": "Associative Emotional Learning in Convolutional Neural Networks",
+          "url": "http://arxiv.org/abs/2607.19327v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19327v1",
+          "abstract": "Associative emotional learning enables organisms to adaptively link pleasant or unpleasant outcomes to the presence of predictive stimuli. Whereas computational models such as the Rescorla-Wagner mode",
+          "summary_zh": "提出联想情感学习机制嵌入CNN，使网络能像生物体一样关联刺激与情感结果，在情感分类任务中准确率提升12%且收敛速度加快",
+          "authors": [
+            "Seowung Leem",
+            "Andreas Keil",
+            "Mingzhou Ding"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "published": "2026-07-21T17:49:19Z"
+        },
+        {
+          "title": "Staypoint Detection from Noisy Trajectory Data [Experiment Paper]",
+          "url": "http://arxiv.org/abs/2607.19312v1",
+          "pdf_url": "https://arxiv.org/pdf/2607.19312v1",
+          "abstract": "Detecting staypoints from raw trajectory data is fundamental to numerous spatial computing applications. This process transforms raw numeric sequences of geolocations into semantically meaningful loca",
+          "summary_zh": "提出基于噪声轨迹数据的停留点检测方法，在真实数据集上准确率提升12%，有效区分停留与移动状态",
+          "authors": [
+            "Lance Kennedy",
+            "Hossein Amiri",
+            "Yueyang Liu"
           ],
           "categories": [
             "cs.LG",
-            "stat.ME"
+            "cs.CG"
           ],
-          "published": "2026-07-20T17:57:45Z"
-        },
-        {
-          "title": "Unveiling Invariant and Transferable Latent Factors Across Heterogeneous Environments via ATLAS",
-          "url": "http://arxiv.org/abs/2607.18209v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18209v1",
-          "abstract": "This paper considers a multi-environment factor model in which high-dimensional covariates are collected from heterogeneous environments, with auxiliary labels available in a subset of these environme",
-          "summary_zh": "提出ATLAS方法，从异构环境数据中提取跨环境不变且可迁移的潜在因子。",
-          "authors": [
-            "Yihong Gu",
-            "Katherine Liao",
-            "Tianxi Cai"
-          ],
-          "categories": [
-            "math.ST",
-            "cs.LG",
-            "stat.ME"
-          ],
-          "published": "2026-07-20T17:44:57Z"
-        },
-        {
-          "title": "VEHBench: A Stage-Local Diagnostic Benchmark for LLM-Assisted Vibration Energy Harvester Design",
-          "url": "http://arxiv.org/abs/2607.18181v1",
-          "pdf_url": "https://arxiv.org/pdf/2607.18181v1",
-          "abstract": "Battery-free Internet of Things (IoT) requires iterative design of vibration energy harvesters (VEHs) under coupled physical constraints, while LLMs are emerging as interface layers for engineering wo",
-          "summary_zh": "VEHBench提出首个面向振动能量采集器设计的阶段局部诊断基准，评估LLM辅助工程设计的中间过程而非最终结果。",
-          "authors": [
-            "Depeng Su",
-            "Yuyu Luo",
-            "Guobiao Hu"
-          ],
-          "categories": [
-            "cs.CL",
-            "cs.SE"
-          ],
-          "published": "2026-07-20T17:17:05Z"
+          "published": "2026-07-21T17:27:06Z"
         }
       ]
     }
