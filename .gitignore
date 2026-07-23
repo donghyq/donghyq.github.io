@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Ruby
+Gemfile.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
