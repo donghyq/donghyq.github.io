@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-24T10:07:43.352995+00:00Z",
+  "generated_at": "2026-07-25T09:25:01.240481+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「应用与前端」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -9,56 +9,56 @@
       "desc": "把工程、产品、设计能力封装成可复用的 Skill / 工具模块",
       "repos": [
         {
+          "name": "mattpocock/skills",
+          "url": "https://github.com/mattpocock/skills",
+          "description": "Skills for Real Engineers. Straight from my .agents directory.",
+          "summary_zh": "面向 AI Agent 的生产级技能模块库，让 AI 更像成熟工程师",
+          "stars": 187407,
+          "forks": 16091,
+          "language": "Shell",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 10969
+        },
+        {
           "name": "Shubhamsaboo/awesome-llm-apps",
           "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
           "description": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
-          "summary_zh": "100+ 免费开源的 AI Agent 与 RAG 应用合集，帮你快速搭建智能体并解决实际业务问题",
-          "stars": 127147,
-          "forks": 18741,
+          "summary_zh": "面向 AI Agent 的生产级技能模块库，让 AI 更像成熟工程师",
+          "stars": 127481,
+          "forks": 18796,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4390
+          "stars_period": 3907
         },
         {
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "终端运行的轻量级 Rust 编码代理，用极简方式让 AI 直接接管命令行开发流程",
-          "stars": 101124,
-          "forks": 15152,
+          "summary_zh": "AI 编程助手，在终端中运行的轻量级智能编码工具",
+          "stars": 101302,
+          "forks": 15186,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2262
-        },
-        {
-          "name": "Graphify-Labs/graphify",
-          "url": "https://github.com/Graphify-Labs/graphify",
-          "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, ",
-          "summary_zh": "将任意代码库、文档、SQL 和 PDF 解析为可查询知识图谱，为 AI 编码助手提供本地确定性 AST 解析能力",
-          "stars": 94878,
-          "forks": 9194,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 5971
+          "stars_period": 2232
         },
         {
           "name": "earendil-works/pi",
           "url": "https://github.com/earendil-works/pi",
           "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
-          "summary_zh": "统一大模型 API、内置 Agent 循环与 TUI 界面，让开发者快速搭建可交互的编码 Agent 工具链",
-          "stars": 76764,
-          "forks": 9439,
+          "summary_zh": "AI 编程助手，在终端中运行的轻量级智能编码工具",
+          "stars": 77270,
+          "forks": 9497,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4495
+          "stars_period": 4880
         }
       ]
     },
@@ -68,56 +68,56 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
+          "name": "paperless-ngx/paperless-ngx",
+          "url": "https://github.com/paperless-ngx/paperless-ngx",
+          "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
+          "summary_zh": "基于 Python 的开源项目，paperless-ngx",
+          "stars": 43472,
+          "forks": 2939,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 311
+        },
+        {
           "name": "DioxusLabs/dioxus",
           "url": "https://github.com/DioxusLabs/dioxus",
           "description": "Fullstack app framework for web, desktop, and mobile.",
-          "summary_zh": "用 Rust 构建跨平台全栈应用，一套代码同时运行在 Web、桌面和移动端，性能与安全性兼备",
-          "stars": 38253,
-          "forks": 1807,
+          "summary_zh": "基于 Rust 的开源项目，dioxus",
+          "stars": 38284,
+          "forks": 1809,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1467
+          "stars_period": 1497
         },
         {
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "🚀2.3x faster than MinIO for 4KB object payloads. RustFS is an open-source, S3-compatible high-performance object storage system supporting migration a",
-          "summary_zh": "开源 S3 兼容对象存储，4KB 小对象性能比 MinIO 快 2.3 倍，支持无缝迁移与共存",
-          "stars": 30164,
-          "forks": 1327,
+          "summary_zh": "检索增强生成（RAG）框架，构建本地知识库问答系统",
+          "stars": 30189,
+          "forks": 1329,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 284
-        },
-        {
-          "name": "memvid/memvid",
-          "url": "https://github.com/memvid/memvid",
-          "description": "Memory layer for AI Agents. Replace complex RAG pipelines with a serverless, single-file memory layer. Give your agents instant retrieval and long-ter",
-          "summary_zh": "用单文件无服务器内存层替代复杂RAG管线，让AI Agent拥有即时检索与长期记忆",
-          "stars": 16035,
-          "forks": 1389,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 112
+          "stars_period": 268
         },
         {
           "name": "HenryNdubuaku/maths-cs-ai-compendium",
           "url": "https://github.com/HenryNdubuaku/maths-cs-ai-compendium",
           "description": "Become a cracked AI/ML Research Engineer",
-          "summary_zh": "数学、CS与AI知识体系整合的进阶路线图，助你从理论到工程成为顶尖AI研究员",
-          "stars": 7120,
-          "forks": 859,
+          "summary_zh": "AI 驱动的网页搜索与数据抓取工具",
+          "stars": 7136,
+          "forks": 863,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 888
+          "stars_period": 669
         }
       ]
     },
@@ -130,34 +130,34 @@
           "name": "upstash/context7",
           "url": "https://github.com/upstash/context7",
           "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
-          "summary_zh": "为 LLM 和 AI 编辑器提供实时更新的代码文档，解决大模型知识滞后问题",
-          "stars": 59675,
-          "forks": 2859,
+          "summary_zh": "上下文管理工具，为 AI 提供最新的代码文档与上下文",
+          "stars": 59715,
+          "forks": 2860,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 483
+          "stars_period": 458
         },
         {
           "name": "kvcache-ai/ktransformers",
           "url": "https://github.com/kvcache-ai/ktransformers",
           "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
-          "summary_zh": "异构大模型推理微调优化框架，灵活利用CPU/GPU混合架构降低显存门槛，让单卡跑更大模型",
-          "stars": 18975,
+          "summary_zh": "LLM 分布式推理框架，支持大规模模型高效部署",
+          "stars": 19013,
           "forks": 1483,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1507
+          "stars_period": 1538
         },
         {
           "name": "jmerelnyc/Talos",
           "url": "https://github.com/jmerelnyc/Talos",
           "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
-          "summary_zh": "为 Talos 网络贡献闲置 GPU 跑开源模型推理，通过 WebSocket 接任务并上报在线时长赚取收益",
-          "stars": 893,
+          "summary_zh": "基于 Python 的开源项目，Talos",
+          "stars": 892,
           "forks": 17,
           "language": "Python",
           "topics": [
@@ -176,8 +176,8 @@
           "name": "xiaol/wkvm",
           "url": "https://github.com/xiaol/wkvm",
           "description": "Inference for hybrid LLMs: Gemma, RWKV, and all kinds of hybrids.",
-          "summary_zh": "混合大模型推理引擎，专为Gemma、RWKV等异构模型设计，解决混合架构部署痛点",
-          "stars": 222,
+          "summary_zh": "大语言模型应用工具，简化 LLM 开发与集成",
+          "stars": 232,
           "forks": 12,
           "language": "Python",
           "topics": [],
@@ -196,14 +196,14 @@
           "name": "thinking-machines-lab/tinker-cookbook",
           "url": "https://github.com/thinking-machines-lab/tinker-cookbook",
           "description": "Post-training with Tinker",
-          "summary_zh": "面向大模型后训练的开源工具包，提供高效微调与对齐方法，让开发者轻松定制高性能专属模型",
-          "stars": 3904,
-          "forks": 488,
+          "summary_zh": "基于 Python 的开源项目，tinker-cookbook",
+          "stars": 3907,
+          "forks": 489,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 178
+          "stars_period": 142
         }
       ]
     },
@@ -213,56 +213,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "codecrafters-io/build-your-own-x",
-          "url": "https://github.com/codecrafters-io/build-your-own-x",
-          "description": "Master programming by recreating your favorite technologies from scratch.",
-          "summary_zh": "手把手教你从零复刻 Git、数据库等核心技术，用造轮子方式彻底理解底层原理",
-          "stars": 531066,
-          "forks": 50226,
-          "language": "Markdown",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 4964
-        },
-        {
           "name": "koala73/worldmonitor",
           "url": "https://github.com/koala73/worldmonitor",
           "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational aw",
-          "summary_zh": "实时全球情报仪表盘，用AI聚合新闻、监控地缘政治与基础设施，统一态势感知界面",
-          "stars": 72552,
-          "forks": 10882,
+          "summary_zh": "AI 前端工具，构建智能交互界面",
+          "stars": 73720,
+          "forks": 11061,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9054
+          "stars_period": 10936
         },
         {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
-          "summary_zh": "从零到一构建AI工程实战指南，用Python手写核心模块，适合想深入理解AI系统而非调包的学习者",
-          "stars": 42975,
-          "forks": 7173,
+          "summary_zh": "AI 前端工具，构建智能交互界面",
+          "stars": 43289,
+          "forks": 7244,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4354
+          "stars_period": 4399
         },
         {
           "name": "atuinsh/atuin",
           "url": "https://github.com/atuinsh/atuin",
           "description": "✨ Making your shell magical",
-          "summary_zh": "用 Rust 打造的魔法 shell 历史管理工具，支持加密同步、模糊搜索与 AI 补全，让命令行操作更高效",
-          "stars": 30746,
+          "summary_zh": "AI 前端工具，构建智能交互界面",
+          "stars": 30758,
           "forks": 903,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 158
+          "stars_period": 154
+        },
+        {
+          "name": "PrismML-Eng/Bonsai-demo",
+          "url": "https://github.com/PrismML-Eng/Bonsai-demo",
+          "description": "Bonsai Demo",
+          "summary_zh": "基于 Shell 的开源项目，Bonsai-demo",
+          "stars": 2038,
+          "forks": 200,
+          "language": "Shell",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 364
         }
       ]
     },
@@ -275,53 +275,53 @@
           "name": "ruvnet/RuView",
           "url": "https://github.com/ruvnet/RuView",
           "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
-          "summary_zh": "用普通WiFi信号实现无摄像头实时空间感知、生命体征监测与存在检测，隐私友好且零视频像素",
-          "stars": 85532,
-          "forks": 11409,
+          "summary_zh": "基于 Rust 的开源项目，RuView",
+          "stars": 86136,
+          "forks": 11462,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4139
+          "stars_period": 4821
         },
         {
           "name": "OpenCut-app/OpenCut",
           "url": "https://github.com/OpenCut-app/OpenCut",
           "description": "The open-source CapCut alternative",
-          "summary_zh": "开源版剪映替代品，用TypeScript实现全功能视频编辑，无需付费即可拥有专业剪辑体验",
-          "stars": 78253,
-          "forks": 7810,
+          "summary_zh": "基于 TypeScript 的开源项目，OpenCut",
+          "stars": 78530,
+          "forks": 7841,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4371
+          "stars_period": 3851
         },
         {
           "name": "jamiepine/voicebox",
           "url": "https://github.com/jamiepine/voicebox",
           "description": "The open-source AI voice studio. Clone, dictate, create.",
-          "summary_zh": "开源AI语音工作室，支持语音克隆、听写与生成，让零基础用户也能快速创建逼真语音",
-          "stars": 46382,
-          "forks": 5674,
+          "summary_zh": "基于 TypeScript 的开源项目，voicebox",
+          "stars": 46570,
+          "forks": 5703,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4489
+          "stars_period": 4493
         },
         {
-          "name": "google/langextract",
-          "url": "https://github.com/google/langextract",
-          "description": "A Python library for extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization.",
-          "summary_zh": "用 LLM 从非结构化文本中精准提取结构化信息，并自带来源溯源与交互式可视化",
-          "stars": 37788,
-          "forks": 2621,
-          "language": "Python",
+          "name": "schollz/croc",
+          "url": "https://github.com/schollz/croc",
+          "description": "Easily and securely send things from one computer to another 🐊 📦",
+          "summary_zh": "基于 Go 的开源项目，croc",
+          "stars": 38372,
+          "forks": 1524,
+          "language": "Go",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 647
+          "stars_period": 2647
         }
       ]
     }
@@ -336,7 +336,7 @@
           "url": "http://arxiv.org/abs/2607.21558v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21558v1",
           "abstract": "Building socially calibrated large language models, which can learn from others without simply yielding to them, requires more than reducing sycophancy as a one-dimensional failure mode. Models must d",
-          "summary_zh": "提出结构化抵抗与顺从框架区分LLM道德推理中的合理采纳与盲目服从在AdvBench测试中使模型对不当压力抵抗率提升42%同时保持对合理观点的开放态度",
+          "summary_zh": "Beyond Sycophancy: Structured Resistance and Compliance in LLM Moral Reasoning",
           "authors": [
             "Baihui Wang",
             "Bernard Koch"
@@ -351,7 +351,7 @@
           "url": "http://arxiv.org/abs/2607.21557v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21557v1",
           "abstract": "Modern AI agents rely on elaborate inference harnesses such as Claude Code, Codex, and OpenClaw to drive multi-turn reasoning, tool use, and access to external systems. While powerful, these complex h",
-          "summary_zh": "提出OpenForgeRL框架，将强化学习直接集成到推理工具链中，使智能体在任意环境实现端到端训练，无需依赖复杂外部系统",
+          "summary_zh": "OpenForgeRL: Train Harness-native Agents in Any Environment",
           "authors": [
             "Xiao Yu",
             "Baolin Peng",
@@ -368,7 +368,7 @@
           "url": "http://arxiv.org/abs/2607.21556v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21556v1",
           "abstract": "On-policy self-distillation (OPSD) is promising as it removes the external teacher required by on-policy distillation (OPD), yet it still needs asymmetric information between teacher and student to en",
-          "summary_zh": "提出视觉对比自蒸馏方法，通过在线师生不对称信息实现无外部教师的知识传递，在 ImageNet 上 Top-1 准确率提升 1.2%",
+          "summary_zh": "Visual Contrastive Self-Distillation",
           "authors": [
             "Yijun Liang",
             "Yunjie Tian",
@@ -391,7 +391,7 @@
           "url": "http://arxiv.org/abs/2607.21522v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21522v1",
           "abstract": "Creating dynamic and physically realistic 4D worlds from natural language descriptions is both fascinating and challenging. Traditional computer graphics methods rely on manual creation, requiring ext",
-          "summary_zh": "提出GS-Agent框架，利用生成式仿真从自然语言直接创建动态物理4D世界，无需手动调参，实现高保真物理交互与视觉一致性",
+          "summary_zh": "GS-Agent: Creating 4D Physical Worlds With Generative Simulation",
           "authors": [
             "Hongxin Zhang",
             "Chunru Lin",
@@ -415,7 +415,7 @@
           "url": "http://arxiv.org/abs/2607.21595v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21595v1",
           "abstract": "Despite rapid progress, most existing vision-language models (VLMs) built from 2D visual inputs often struggle when handling various 3D tasks that require fine-grained spatial understanding and reason",
-          "summary_zh": "提出融合隐式与显式几何的3D感知框架VLM-IE3D，统一处理多种3D任务，显著提升细粒度空间理解与推理能力",
+          "summary_zh": "3D-Aware VLMs with Implicit and Explicit Geometries",
           "authors": [
             "Wenhao Li",
             "Xueying Jiang",
@@ -433,7 +433,7 @@
           "url": "http://arxiv.org/abs/2607.21585v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21585v1",
           "abstract": "Flow-based generative models have enabled remarkable progress in fast and controllable generation across continuous and discrete state spaces, yet existing parameterizations are constrained to fixed d",
-          "summary_zh": "提出扩展生成流模型EFlows，突破固定维度与序列长度限制，实现动态维度增长与连续离散空间统一生成",
+          "summary_zh": "Expanding Flow Maps",
           "authors": [
             "Sophia Tang",
             "Pranam Chatterjee"
@@ -448,7 +448,7 @@
           "url": "http://arxiv.org/abs/2607.21580v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21580v1",
           "abstract": "Controllable video generation remains challenging due to the difficulty of specifying precise multi-object interactions using text prompts or motion-control inputs that primarily constrain pixel movem",
-          "summary_zh": "提出基于图结构的多对象交互可控视频生成框架GraphVid，通过图节点与边显式建模物体轨迹与关系，实现比轨迹控制更灵活精准的生成",
+          "summary_zh": "GraphVid: Interactive Graph-Controllable Video Generation",
           "authors": [
             "Vedant Shah",
             "Onkar Susladkar",
@@ -471,7 +471,7 @@
           "url": "http://arxiv.org/abs/2607.21579v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21579v1",
           "abstract": "Barzilai--Borwein (BB) method has shown strong practical performance in continuous optimization, yet its convergence dynamics remains poorly understood. In particular, a central unresolved question is",
-          "summary_zh": "证明对任意维度 n≥4 存在开集上的严格凸二次问题，Barzilai-Borwein 方法无法实现超线性收敛，否定了其几乎处处超线性收敛的猜想",
+          "summary_zh": "Barzilai-Borwein Fails Superlinear Convergence on an Open Set of Quadratics f...",
           "authors": [
             "Dawei Li",
             "Xiaotian Jiang",
@@ -489,7 +489,7 @@
           "url": "http://arxiv.org/abs/2607.21574v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21574v1",
           "abstract": "Surprisal theory holds that the human processing difficulty of a linguistic unit in context is an affine function of its surprisal under some language model. I argue this claim is a tautology without ",
-          "summary_zh": "证明惊异理论若无理性约束即为同义反复 任何上下文中的非负难度度量均可构造对应语言模型 揭示该理论缺乏实证可证伪性",
+          "summary_zh": "Surprisal Theory is Tautological (without Rational Grounding)",
           "authors": [
             "Ryan Cotterell"
           ],
@@ -503,7 +503,7 @@
           "url": "http://arxiv.org/abs/2607.21573v1",
           "pdf_url": "https://arxiv.org/pdf/2607.21573v1",
           "abstract": "Faithful explanations of time-series classifiers should identify subsequences that are not only sufficient to preserve a black-box model's prediction, but also necessary for maintaining it. However, e",
-          "summary_zh": "提出反事实必要性框架，识别时序分类器中既充分又必要的子序列，在合成与真实数据上必要性精度提升超30%且有效过滤虚假特征",
+          "summary_zh": "Beyond Sufficiency: Time Series Explanation with Counterfactual Necessity",
           "authors": [
             "Hongnan Ma",
             "Yiwei Shi",
