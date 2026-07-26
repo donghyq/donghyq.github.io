@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-25T09:25:01.240481+00:00Z",
+  "generated_at": "2026-07-26T09:49:23.072747+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -13,52 +13,52 @@
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
           "summary_zh": "面向 AI Agent 的生产级技能模块库，让 AI 更像成熟工程师",
-          "stars": 187407,
-          "forks": 16091,
+          "stars": 188831,
+          "forks": 16218,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 10969
+          "stars_period": 11790
         },
         {
           "name": "Shubhamsaboo/awesome-llm-apps",
           "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
           "description": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
           "summary_zh": "面向 AI Agent 的生产级技能模块库，让 AI 更像成熟工程师",
-          "stars": 127481,
-          "forks": 18796,
+          "stars": 127758,
+          "forks": 18843,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3907
+          "stars_period": 3841
         },
         {
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
           "summary_zh": "AI 编程助手，在终端中运行的轻量级智能编码工具",
-          "stars": 101302,
-          "forks": 15186,
+          "stars": 101520,
+          "forks": 15214,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2232
+          "stars_period": 2156
         },
         {
           "name": "earendil-works/pi",
           "url": "https://github.com/earendil-works/pi",
           "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
           "summary_zh": "AI 编程助手，在终端中运行的轻量级智能编码工具",
-          "stars": 77270,
-          "forks": 9497,
+          "stars": 77786,
+          "forks": 9575,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4880
+          "stars_period": 5167
         }
       ]
     },
@@ -72,52 +72,52 @@
           "url": "https://github.com/paperless-ngx/paperless-ngx",
           "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
           "summary_zh": "基于 Python 的开源项目，paperless-ngx",
-          "stars": 43472,
-          "forks": 2939,
+          "stars": 43531,
+          "forks": 2946,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 311
+          "stars_period": 332
         },
         {
           "name": "DioxusLabs/dioxus",
           "url": "https://github.com/DioxusLabs/dioxus",
           "description": "Fullstack app framework for web, desktop, and mobile.",
           "summary_zh": "基于 Rust 的开源项目，dioxus",
-          "stars": 38284,
-          "forks": 1809,
+          "stars": 38304,
+          "forks": 1811,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1497
+          "stars_period": 1506
         },
         {
-          "name": "rustfs/rustfs",
-          "url": "https://github.com/rustfs/rustfs",
-          "description": "🚀2.3x faster than MinIO for 4KB object payloads. RustFS is an open-source, S3-compatible high-performance object storage system supporting migration a",
-          "summary_zh": "检索增强生成（RAG）框架，构建本地知识库问答系统",
-          "stars": 30189,
-          "forks": 1329,
-          "language": "Rust",
+          "name": "RyanCodrai/turbovec",
+          "url": "https://github.com/RyanCodrai/turbovec",
+          "description": "A vector index built on TurboQuant, written in Rust with Python bindings",
+          "summary_zh": "AI 前端工具，构建智能交互界面",
+          "stars": 14363,
+          "forks": 1273,
+          "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 268
+          "stars_period": 738
         },
         {
-          "name": "HenryNdubuaku/maths-cs-ai-compendium",
-          "url": "https://github.com/HenryNdubuaku/maths-cs-ai-compendium",
-          "description": "Become a cracked AI/ML Research Engineer",
-          "summary_zh": "AI 驱动的网页搜索与数据抓取工具",
-          "stars": 7136,
-          "forks": 863,
+          "name": "KnockOutEZ/wigolo",
+          "url": "https://github.com/KnockOutEZ/wigolo",
+          "description": "The go-to web for your AI coding agent — local-first search, fetch, crawl & research over MCP. No API keys, no cloud, $0/query. Public beta.",
+          "summary_zh": "AI 编程助手，在终端中运行的轻量级智能编码工具",
+          "stars": 3633,
+          "forks": 241,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 669
+          "stars_period": 2529
         }
       ]
     },
@@ -131,33 +131,33 @@
           "url": "https://github.com/upstash/context7",
           "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
           "summary_zh": "上下文管理工具，为 AI 提供最新的代码文档与上下文",
-          "stars": 59715,
-          "forks": 2860,
+          "stars": 59764,
+          "forks": 2863,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 458
+          "stars_period": 432
         },
         {
           "name": "kvcache-ai/ktransformers",
           "url": "https://github.com/kvcache-ai/ktransformers",
           "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
           "summary_zh": "LLM 分布式推理框架，支持大规模模型高效部署",
-          "stars": 19013,
+          "stars": 19027,
           "forks": 1483,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1538
+          "stars_period": 1156
         },
         {
           "name": "jmerelnyc/Talos",
           "url": "https://github.com/jmerelnyc/Talos",
           "description": "GPU worker client for the Talos network. Pairs with your Talos account, serves open-model inference jobs over a WebSocket, and reports uptime for payo",
           "summary_zh": "基于 Python 的开源项目，Talos",
-          "stars": 892,
+          "stars": 891,
           "forks": 17,
           "language": "Python",
           "topics": [
@@ -177,7 +177,7 @@
           "url": "https://github.com/xiaol/wkvm",
           "description": "Inference for hybrid LLMs: Gemma, RWKV, and all kinds of hybrids.",
           "summary_zh": "大语言模型应用工具，简化 LLM 开发与集成",
-          "stars": 232,
+          "stars": 247,
           "forks": 12,
           "language": "Python",
           "topics": [],
@@ -197,13 +197,13 @@
           "url": "https://github.com/thinking-machines-lab/tinker-cookbook",
           "description": "Post-training with Tinker",
           "summary_zh": "基于 Python 的开源项目，tinker-cookbook",
-          "stars": 3907,
-          "forks": 489,
+          "stars": 3915,
+          "forks": 491,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 142
+          "stars_period": 114
         }
       ]
     },
@@ -217,52 +217,52 @@
           "url": "https://github.com/koala73/worldmonitor",
           "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational aw",
           "summary_zh": "AI 前端工具，构建智能交互界面",
-          "stars": 73720,
-          "forks": 11061,
+          "stars": 74364,
+          "forks": 11168,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 10936
+          "stars_period": 12085
         },
         {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
           "summary_zh": "AI 前端工具，构建智能交互界面",
-          "stars": 43289,
-          "forks": 7244,
+          "stars": 43587,
+          "forks": 7308,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4399
+          "stars_period": 4518
         },
         {
           "name": "atuinsh/atuin",
           "url": "https://github.com/atuinsh/atuin",
           "description": "✨ Making your shell magical",
           "summary_zh": "AI 前端工具，构建智能交互界面",
-          "stars": 30758,
-          "forks": 903,
+          "stars": 30782,
+          "forks": 904,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 154
+          "stars_period": 152
         },
         {
-          "name": "PrismML-Eng/Bonsai-demo",
-          "url": "https://github.com/PrismML-Eng/Bonsai-demo",
-          "description": "Bonsai Demo",
-          "summary_zh": "基于 Shell 的开源项目，Bonsai-demo",
-          "stars": 2038,
-          "forks": 200,
-          "language": "Shell",
+          "name": "cjpais/Handy",
+          "url": "https://github.com/cjpais/Handy",
+          "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
+          "summary_zh": "基于 Rust 的开源项目，Handy",
+          "stars": 27534,
+          "forks": 2389,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 364
+          "stars_period": 686
         }
       ]
     },
@@ -276,52 +276,52 @@
           "url": "https://github.com/ruvnet/RuView",
           "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
           "summary_zh": "基于 Rust 的开源项目，RuView",
-          "stars": 86136,
-          "forks": 11462,
+          "stars": 86475,
+          "forks": 11505,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4821
-        },
-        {
-          "name": "OpenCut-app/OpenCut",
-          "url": "https://github.com/OpenCut-app/OpenCut",
-          "description": "The open-source CapCut alternative",
-          "summary_zh": "基于 TypeScript 的开源项目，OpenCut",
-          "stars": 78530,
-          "forks": 7841,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 3851
+          "stars_period": 5313
         },
         {
           "name": "jamiepine/voicebox",
           "url": "https://github.com/jamiepine/voicebox",
           "description": "The open-source AI voice studio. Clone, dictate, create.",
           "summary_zh": "基于 TypeScript 的开源项目，voicebox",
-          "stars": 46570,
-          "forks": 5703,
+          "stars": 46811,
+          "forks": 5739,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4493
+          "stars_period": 4237
         },
         {
           "name": "schollz/croc",
           "url": "https://github.com/schollz/croc",
           "description": "Easily and securely send things from one computer to another 🐊 📦",
           "summary_zh": "基于 Go 的开源项目，croc",
-          "stars": 38372,
-          "forks": 1524,
+          "stars": 38527,
+          "forks": 1533,
           "language": "Go",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2647
+          "stars_period": 2849
+        },
+        {
+          "name": "google/langextract",
+          "url": "https://github.com/google/langextract",
+          "description": "A Python library for extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization.",
+          "summary_zh": "大语言模型应用工具，简化 LLM 开发与集成",
+          "stars": 37849,
+          "forks": 2625,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 675
         }
       ]
     }
