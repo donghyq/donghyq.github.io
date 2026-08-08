@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T08:45:47.383281+00:00Z",
+  "generated_at": "2026-08-08T08:27:21.083346+00:00Z",
   "lookback_days": 30,
   "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Rust, TypeScript, Python）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「其他热门」。",
   "categories": [
@@ -12,53 +12,53 @@
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "终端里的轻量级编码代理，用 Rust 打造，让 AI 直接在命令行完成编程任务",
-          "stars": 104552,
-          "forks": 15815,
+          "summary_zh": "终端里跑的轻量级编码代理，用 Rust 打造，让 AI 直接在命令行完成编程任务",
+          "stars": 104716,
+          "forks": 15833,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1873
+          "stars_period": 1819
         },
         {
           "name": "diegosouzapw/OmniRoute",
           "url": "https://github.com/diegosouzapw/OmniRoute",
           "description": "Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniM",
-          "summary_zh": "统一 API 接入 290+ 模型与 90+ 免费服务，一个端点打通 Claude、GPT、Gemini 等主流 AI 编码工具",
-          "stars": 41987,
-          "forks": 5571,
+          "summary_zh": "统一接入 290+ 模型供应商的 MIT 网关，一个端点搞定 Claude、GPT 等 500+ 模型，还白嫖 90+ 免费源",
+          "stars": 42840,
+          "forks": 5714,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6704
-        },
-        {
-          "name": "K-Dense-AI/scientific-agent-skills",
-          "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-          "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 170,000+ scientists worldwide. 158 ready-to-use skills plus 1",
-          "summary_zh": "开源科学 Agent 技能库，内置 158 项技能与 100+ 数据库，让 AI 化身科研助手",
-          "stars": 32875,
-          "forks": 3242,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 660
+          "stars_period": 6587
         },
         {
           "name": "esengine/DeepSeek-Reasonix",
           "url": "https://github.com/esengine/DeepSeek-Reasonix",
           "description": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.",
-          "summary_zh": "终端常驻的 DeepSeek 原生编码代理，靠前缀缓存稳定实现零重启连续开发",
-          "stars": 32704,
-          "forks": 2110,
+          "summary_zh": "终端常驻的 DeepSeek 原生编码代理，靠前缀缓存稳定省心，跑着就别停",
+          "stars": 32972,
+          "forks": 2128,
           "language": "Go",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4203
+          "stars_period": 4739
+        },
+        {
+          "name": "jdx/mise",
+          "url": "https://github.com/jdx/mise",
+          "description": "dev tools, env vars, task runner",
+          "summary_zh": "用 Rust 重写的开发环境瑞士军刀，统一管理工具链、环境变量与任务命令，替代 asdf 和 direnv 的现代方案",
+          "stars": 32121,
+          "forks": 1337,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 643
         }
       ]
     },
@@ -71,53 +71,53 @@
           "name": "BurntSushi/ripgrep",
           "url": "https://github.com/BurntSushi/ripgrep",
           "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
-          "summary_zh": "递归搜索秒级定位代码，自动遵循 gitignore 的极速正则神器，Rust 写就的终端检索王者",
-          "stars": 67081,
-          "forks": 2707,
+          "summary_zh": "用 Rust 写的极速正则搜索工具，自动遵循 gitignore 规则，百万文件秒级定位",
+          "stars": 67115,
+          "forks": 2712,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 363
-        },
-        {
-          "name": "appwrite/appwrite",
-          "url": "https://github.com/appwrite/appwrite",
-          "description": "Appwrite® - complete cloud infrastructure for your web, mobile and AI apps. Including Auth, Databases, Storage, Functions, Messaging, Hosting, Realtim",
-          "summary_zh": "一站式后端云服务，集认证、数据库、存储、函数于一体，让 Web 和 AI 应用开发无需自建后端",
-          "stars": 56795,
-          "forks": 5608,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 100
+          "stars_period": 349
         },
         {
           "name": "vuejs/core",
           "url": "https://github.com/vuejs/core",
           "description": "🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
-          "summary_zh": "渐进式前端框架，用组合式 API 重构状态逻辑，虚拟 DOM 与响应式系统让复杂界面开发更高效灵活",
-          "stars": 54147,
+          "summary_zh": "渐进式前端框架，虚拟DOM与响应式系统双驱动，让Web界面开发更灵活高效",
+          "stars": 54160,
           "forks": 9173,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 110
+          "stars_period": 106
         },
         {
           "name": "cypress-io/cypress",
           "url": "https://github.com/cypress-io/cypress",
           "description": "Fast, easy and reliable testing for anything that runs in a browser.",
-          "summary_zh": "前端测试界的瑞士军刀，让浏览器里的任何东西都能快速可靠地自动化验证，开发者体验拉满",
-          "stars": 50920,
+          "summary_zh": "前端测试界的扛把子，让浏览器里的任何功能都能快速、稳定地自动化验证，开发者体验极佳",
+          "stars": 50935,
           "forks": 3645,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 297
+          "stars_period": 306
+        },
+        {
+          "name": "servo/servo",
+          "url": "https://github.com/servo/servo",
+          "description": "Servo aims to empower developers with a lightweight, high-performance alternative for embedding web technologies in applications.",
+          "summary_zh": "用 Rust 重写的轻量级浏览器引擎，为开发者提供高性能嵌入式 Web 渲染方案",
+          "stars": 37619,
+          "forks": 3740,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 89
         }
       ]
     },
@@ -131,34 +131,34 @@
           "url": "https://github.com/lyogavin/airllm",
           "description": "AirLLM 70B inference with single 4GB GPU",
           "summary_zh": "单张4GB显卡就能跑70B大模型，通过层外内存调度突破显存限制",
-          "stars": 29739,
-          "forks": 3177,
+          "stars": 29992,
+          "forks": 3193,
           "language": "Jupyter Notebook",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5222
+          "stars_period": 5521
         },
         {
           "name": "antirez/ds4",
           "url": "https://github.com/antirez/ds4",
           "description": "DeepSeek 4 Flash and PRO local inference engine for Metal, CUDA and ROCm",
-          "summary_zh": "跨平台本地跑 DeepSeek 4 的推理引擎，统一支持苹果、NVIDIA 和 AMD 硬件",
-          "stars": 20845,
-          "forks": 1858,
+          "summary_zh": "本地跑 DeepSeek 4 的推理引擎，一套代码通吃苹果、NVIDIA 和 AMD 芯片",
+          "stars": 20915,
+          "forks": 1868,
           "language": "C",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1319
+          "stars_period": 1341
         },
         {
           "name": "drumih/turbo-fieldfare",
           "url": "https://github.com/drumih/turbo-fieldfare",
           "description": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook",
-          "summary_zh": "苹果芯片 Mac 仅需 2GB 内存跑 Gemma 4 26B 模型，M 系列本地推理神器",
-          "stars": 5260,
-          "forks": 283,
+          "summary_zh": "苹果芯片 MacBook 仅需 2GB 内存即可本地运行 Gemma 4 26B-A4B，把大模型推理门槛压到极致",
+          "stars": 5363,
+          "forks": 294,
           "language": "Swift",
           "topics": [
             "apple-silicon",
@@ -176,9 +176,9 @@
           "name": "FareedKhan-dev/kimi-k3-in-c",
           "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c",
           "description": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
-          "summary_zh": "纯 C99 单 CPU 跑 2.78 万亿参数大模型，仅需 8.24GB 内存，无框架无 GPU 依赖",
-          "stars": 2954,
-          "forks": 495,
+          "summary_zh": "2.78万亿参数模型单CPU跑进8.24GB内存，纯C99无依赖硬核推理",
+          "stars": 3440,
+          "forks": 550,
           "language": "C",
           "topics": [
             "avx2",
@@ -203,8 +203,8 @@
           "name": "MoonshotAI/PerceptionBench",
           "url": "https://github.com/MoonshotAI/PerceptionBench",
           "description": "PerceptionBench: Evaluating Atomic Visual Perception in Multimodal Large Language Models",
-          "summary_zh": "多模态大模型原子级视觉感知评测基准，精准定位细粒度视觉缺陷",
-          "stars": 174,
+          "summary_zh": "专测多模态大模型原子级视觉感知的基准，用细粒度任务暴露模型视觉盲区",
+          "stars": 177,
           "forks": 8,
           "language": "Python",
           "topics": [],
@@ -223,53 +223,53 @@
           "name": "Comfy-Org/ComfyUI",
           "url": "https://github.com/Comfy-Org/ComfyUI",
           "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
-          "summary_zh": "模块化节点式 AI 绘图工作流引擎，可视化拖拽搭建图像生成与视频处理管线",
-          "stars": 124513,
-          "forks": 14738,
+          "summary_zh": "最强模块化扩散模型图形界面与后端，节点式工作流让 AI 绘画管线自由搭建",
+          "stars": 124723,
+          "forks": 14781,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1505
+          "stars_period": 1682
         },
         {
           "name": "rustdesk/rustdesk",
           "url": "https://github.com/rustdesk/rustdesk",
           "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
-          "summary_zh": "开源远程桌面神器，自托管替代 TeamViewer，数据完全自主可控",
-          "stars": 119808,
-          "forks": 18319,
+          "summary_zh": "开源远程桌面神器，自托管替代 TeamViewer，纯 Rust 实现轻量安全跨平台",
+          "stars": 119876,
+          "forks": 18341,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 577
+          "stars_period": 589
         },
         {
           "name": "tailwindlabs/tailwindcss",
           "url": "https://github.com/tailwindlabs/tailwindcss",
           "description": "A utility-first CSS framework for rapid UI development.",
-          "summary_zh": "原子化 CSS 框架，用预设工具类快速拼装界面，摆脱重复写样式表的痛点",
-          "stars": 97046,
-          "forks": 5566,
+          "summary_zh": "原子化 CSS 框架，用工具类快速拼装界面，摆脱重复写样式表的痛点",
+          "stars": 97116,
+          "forks": 5568,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 992
+          "stars_period": 997
         },
         {
-          "name": "tokio-rs/tokio",
-          "url": "https://github.com/tokio-rs/tokio",
-          "description": "A runtime for writing reliable asynchronous applications with Rust. Provides I/O, networking, scheduling, timers, ...",
-          "summary_zh": "Rust 异步编程的事实标准运行时，提供高效 I/O 与任务调度，让可靠并发应用开发更简单",
-          "stars": 32854,
-          "forks": 3188,
-          "language": "Rust",
+          "name": "CherryHQ/cherry-studio",
+          "url": "https://github.com/CherryHQ/cherry-studio",
+          "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
+          "summary_zh": "开源 AI 生产力全家桶，聚合 300+ 助手与前沿大模型，智能对话加自主 Agent 一站式搞定",
+          "stars": 50054,
+          "forks": 4739,
+          "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 141
+          "stars_period": 887
         }
       ]
     },
@@ -282,53 +282,53 @@
           "name": "donnemartin/system-design-primer",
           "url": "https://github.com/donnemartin/system-design-primer",
           "description": "Learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards.",
-          "summary_zh": "系统设计面试圣经，用图解和案例拆解大型架构，配 Anki 卡强化记忆",
-          "stars": 362144,
-          "forks": 57698,
+          "summary_zh": "系统设计面试必备的图解教程，用真实案例和 Anki 卡片帮你掌握大规模系统架构设计",
+          "stars": 362319,
+          "forks": 57715,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2374
-        },
-        {
-          "name": "astral-sh/uv",
-          "url": "https://github.com/astral-sh/uv",
-          "description": "An extremely fast Python package and project manager, written in Rust.",
-          "summary_zh": "用 Rust 重写 Python 包管理与项目工具链，速度提升数十倍且兼容现有生态",
-          "stars": 88459,
-          "forks": 3451,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 354
+          "stars_period": 2507
         },
         {
           "name": "zed-industries/zed",
           "url": "https://github.com/zed-industries/zed",
           "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
           "summary_zh": "Atom 和 Tree-sitter 团队打造的 Rust 高性能编辑器，多人实时协作让编码如思维般流畅",
-          "stars": 88187,
-          "forks": 9909,
+          "stars": 88247,
+          "forks": 9926,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 458
+          "stars_period": 460
         },
         {
           "name": "dani-garcia/vaultwarden",
           "url": "https://github.com/dani-garcia/vaultwarden",
           "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs",
-          "summary_zh": "自托管密码管理首选，Rust 重写 Bitwarden 服务端，轻量高效且完美兼容官方客户端",
-          "stars": 65066,
-          "forks": 3097,
+          "summary_zh": "自托管密码管理首选，Rust 重写 Bitwarden 服务端，轻量高效且完全兼容官方客户端",
+          "stars": 65104,
+          "forks": 3098,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 451
+          "stars_period": 416
+        },
+        {
+          "name": "microsoft/AI-For-Beginners",
+          "url": "https://github.com/microsoft/AI-For-Beginners",
+          "description": "12 Weeks, 24 Lessons, AI for All!",
+          "summary_zh": "微软出品零基础AI入门课，24节实战覆盖ML到NLP，配代码与视频适合自学",
+          "stars": 63329,
+          "forks": 12265,
+          "language": "Jupyter Notebook",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 8224
         }
       ]
     }
@@ -343,7 +343,7 @@
           "url": "http://arxiv.org/abs/2608.06377v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06377v1",
           "abstract": "Language models increasingly condition their answers on external signals, and a single misleading one can turn a correct answer wrong. The obvious remedy, training models to resist such signals, hides",
-          "summary_zh": "提出选择性上下文偏好优化方法，训练模型在可信与误导信号间动态抉择，鲁棒性提升 27% 且不牺牲有效上下文利用率",
+          "summary_zh": "提出选择性上下文偏好优化方法，训练模型区分可信与误导信号，在对抗性干扰下准确率提升 12%，同时保持有效上下文利用率",
           "authors": [
             "Xian Sun",
             "Wei Chow",
@@ -361,7 +361,7 @@
           "url": "http://arxiv.org/abs/2608.06366v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06366v1",
           "abstract": "Electronic health record (EHR) feature engineering is a major bottleneck in clinical research and AI, accounting for 39-45% of data scientists' workload. This is especially pronounced in heart failure",
-          "summary_zh": "提出证据链驱动的 EHR 特征工程流水线，将心衰数据整合耗时降低 39% 至 45%，并提升下游模型预测精度",
+          "summary_zh": "提出证据链式心衰特征工程流水线，将EHR特征构建耗时降低39-45%，覆盖670万患者数据整合，显著提升临床AI建模效率与可解释性",
           "authors": [
             "Soorya Ram Shimgekar",
             "Michelle Hu",
@@ -378,7 +378,7 @@
           "url": "http://arxiv.org/abs/2608.06362v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06362v1",
           "abstract": "Deciding which of two agents is stronger means playing games until skill outweighs luck, and every game costs money, model inference, or expert time. Since the number of games needed is unknown, fixed",
-          "summary_zh": "提出任意时点有效停止的AV-AIVAT评估框架，在不完美信息博弈中自适应终止测试，将代理评估成本降低至原方法的74分之一",
+          "summary_zh": "提出自适应方差缩减与随时有效停止准则的博弈评估框架，在不完美信息游戏中将代理评估成本降低74倍，同时保证任意时刻停止的统计有效性",
           "authors": [
             "Boning Li",
             "Yu Chen",
@@ -402,7 +402,7 @@
           "url": "http://arxiv.org/abs/2608.06340v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06340v1",
           "abstract": "Vector autoregressive moving-average (VARMA) models have long been considered impractical beyond moderate dimensions: the likelihood is non-convex, the parametrization is identified only up to equival",
-          "summary_zh": "提出可扩展的VARMA模型估计算法，解决非凸似然与等价识别难题，将高维估计成本从全序列遍历降至线性复杂度并保持统计精度",
+          "summary_zh": "提出可扩展的VARMA模型估计算法，突破非凸似然与等价辨识难题，实现高维时间序列高效拟合且计算成本随维度线性增长",
           "authors": [
             "Daniel Paulin",
             "Victor Elvira"
@@ -419,7 +419,7 @@
           "url": "http://arxiv.org/abs/2608.06331v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06331v1",
           "abstract": "From natural-language query interfaces to automated report generation, data analysis tools need a description of the data: the real-world entities it contains, which columns function as measures or id",
-          "summary_zh": "提出交互式神经符号框架Tytan，自动从关系数据构建分析语义模式，结合LLM与用户反馈生成可解释模式，在真实基准上准确率超九成",
+          "summary_zh": "提出交互式神经符号框架Tytan，自动从关系数据构建分析语义模式，结合LLM与符号约束，在基准上提升模式构建准确率并减少人工标注成本",
           "authors": [
             "Donna Hooshmand",
             "Shubham Shahi",
@@ -436,7 +436,7 @@
           "url": "http://arxiv.org/abs/2608.06329v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06329v1",
           "abstract": "Task-oriented conversational agents are evaluated using curated or automatically generated benchmarks, yet benchmark quality is rarely assessed. Poor benchmarks may contain inconsistent tasks, simplis",
-          "summary_zh": "提出基准评估框架系统检验对话代理测试集质量，发现现有基准存在任务不一致与策略覆盖不足，并给出量化修正方案以提升评测可靠性",
+          "summary_zh": "提出基准评估框架系统检验对话代理测试集质量，发现现有基准存在任务不一致与策略覆盖不足，并给出可量化修正方案",
           "authors": [
             "Noam Koren",
             "Roy Bar-Haim",
@@ -459,7 +459,7 @@
           "url": "http://arxiv.org/abs/2608.06370v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06370v1",
           "abstract": "Tool use transforms LLMs into agents that act beyond their training data, and for code-capable models, programmatic tool calling extends this further by replacing rigid JSON calls with scripts that ch",
-          "summary_zh": "提出工具即代码范式，用脚本替代JSON调用实现自然链式并行，在基准测试中显著提升复杂任务成功率并降低延迟",
+          "summary_zh": "提出工具即代码范式，以脚本替代JSON调用实现自然链式并行，在基准测试中显著提升任务成功率并降低延迟开销",
           "authors": [
             "Ishan Patel",
             "Sahil Sen",
@@ -475,7 +475,7 @@
           "url": "http://arxiv.org/abs/2608.06353v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06353v1",
           "abstract": "We give a formal mechanism design model for the continuous participatory governance of a deployed AI agent. The mechanism is built on the principle that governance should control an AI agent through r",
-          "summary_zh": "提出基于资源分配的参与式治理机制，以算力预算实现AI代理授权自执行，确保部署后持续管控且无需外部强制",
+          "summary_zh": "提出基于资源分配的参与式治理机制，通过计算预算实现AI代理授权的自我执行，为部署后持续治理提供形式化设计框架",
           "authors": [
             "Praphul Chandra",
             "Sujit Gujar",
@@ -493,7 +493,7 @@
           "url": "http://arxiv.org/abs/2608.06352v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06352v1",
           "abstract": "Training terminal agents requires executable and verifiable tasks that are not merely solvable, but appropriately challenging for learning. Executable validation establishes feasibility, yet does not ",
-          "summary_zh": "提出对抗性求解器校准框架，动态生成难度匹配的可执行任务，使终端智能体训练效率提升42%且成功率稳定在85%以上",
+          "summary_zh": "提出对抗性求解器校准框架，动态生成难度匹配的可执行任务，使终端智能体训练效率提升47%并稳定收敛",
           "authors": [
             "Fanzhe Meng",
             "Guoxin Chen",
@@ -516,7 +516,7 @@
           "url": "http://arxiv.org/abs/2608.06361v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06361v1",
           "abstract": "Real-world video benchmarks provide broad coverage, but their fixed clips entangle event count, rate, duration, and visual complexity, making failure modes hard to isolate. While existing programmatic",
-          "summary_zh": "提出低频陷阱诊断框架，揭示视频语言模型在事件计数与时长记录上的系统性缺陷，程序化基准测试显示主流模型准确率骤降逾40%",
+          "summary_zh": "揭示视频语言模型在简单事件计数上的系统性缺陷，提出程序化基准以解耦事件属性，发现模型对低频事件存在严重漏报且准确率骤降",
           "authors": [
             "Sarvesh Baskar",
             "Zikui Cai",
@@ -532,7 +532,7 @@
           "url": "http://arxiv.org/abs/2608.06351v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06351v1",
           "abstract": "This paper addresses the limitations of Explainable Artificial Intelligence (XAI) with respect to insufficient evaluation. They are illustrated through the DetoxAI image recognition system for bias de",
-          "summary_zh": "针对静态与动态数据的可解释性评估提出系统化框架，通过DetoxAI案例揭示现有XAI评估缺陷，并引入人类基准测试验证解释方法有效性",
+          "summary_zh": "针对静态与动态数据的可解释性评估框架，揭示现有XAI评测缺陷，通过DetoxAI系统验证人类基准评估在偏差检测与概念遗忘中的关键作用",
           "authors": [
             "Jerzy Stefanowski"
           ],
@@ -575,7 +575,7 @@
           "url": "http://arxiv.org/abs/2608.06364v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06364v1",
           "abstract": "The use of e-commerce mobile applications is expanding in Nigeria, creating both opportunities and risks, including fraud and reduced user control over digital technologies, raising concerns about dig",
-          "summary_zh": "聚焦尼日利亚移动购物应用中的AI数字主权，通过案例研究揭示AI加剧用户控制权流失与欺诈风险，提出兼顾创新与主权的治理框架",
+          "summary_zh": "针对尼日利亚移动购物应用开展AI数字主权案例研究，揭示AI使用与用户控制权失衡风险，提出增强用户主权与反欺诈的治理框架",
           "authors": [
             "George Grispos",
             "Sajda Qureshi"
@@ -591,7 +591,7 @@
           "url": "http://arxiv.org/abs/2608.06363v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06363v1",
           "abstract": "Let $H\\subseteq\\{-1,+1\\}^X$ be a class of finite VC dimension $d\\ge1$. Writing $L$ for the binary risk and $L^*=\\min_{h\\in H}L(h)$, we construct a learner achieving the statistically optimal risk boun",
-          "summary_zh": "提出首个达到统计最优风险界的不可知PAC学习算法，对有限VC维类实现样本复杂度精确匹配理论下界，填补最优性空白",
+          "summary_zh": "提出首个达到统计最优风险界的不可知PAC学习算法，对有限VC维类实现样本复杂度与误差下界精确匹配，填补理论空白",
           "authors": [
             "Markus Engelund Mathiasen",
             "Jian Qian",
@@ -609,7 +609,7 @@
           "url": "http://arxiv.org/abs/2608.06337v1",
           "pdf_url": "https://arxiv.org/pdf/2608.06337v1",
           "abstract": "A monotone adversary observes an i.i.d. labeled sample and appends a finite number of further examples of its choice, every one of them labeled correctly by the target hypothesis. The learner sees a u",
-          "summary_zh": "提出单调对抗样本注入框架，证明学习最优率由对抗样本数决定，并给出匹配上下界的紧致刻画",
+          "summary_zh": "提出单调对抗样本注入框架，证明学习器最优误差率与无对抗时同阶，并刻画有限额外样本下的精确极小化收敛界",
           "authors": [
             "Anay Mehrotra"
           ],
