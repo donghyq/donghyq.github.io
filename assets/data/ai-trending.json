@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T19:42:05.614267+00:00Z",
+  "generated_at": "2026-08-29T13:27:59.382660+00:00Z",
   "lookback_days": 30,
   "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「其他热门」。",
   "categories": [
@@ -12,53 +12,53 @@
           "name": "n8n-io/n8n",
           "url": "https://github.com/n8n-io/n8n",
           "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
-          "summary_zh": "开源工作流自动化平台，可视化编排与自定义代码结合，原生AI能力加400+集成，支持自托管",
-          "stars": 202703,
-          "forks": 60443,
+          "summary_zh": "可视化搭建加自定义代码的公平代码工作流平台，原生集成AI能力并支持400+应用，可自托管或云部署",
+          "stars": 202774,
+          "forks": 60453,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1435
+          "stars_period": 1351
         },
         {
           "name": "anthropics/claude-code",
           "url": "https://github.com/anthropics/claude-code",
           "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, ex",
-          "summary_zh": "终端里的 AI 结对编程神器，能理解整个代码库并自动处理日常任务、解释复杂逻辑和 Git 流程",
-          "stars": 143290,
-          "forks": 22918,
+          "summary_zh": "终端里的 AI 编程代理，能理解整个代码库并自动执行日常任务、解释复杂代码和处理 Git 流程",
+          "stars": 143362,
+          "forks": 22923,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1177
+          "stars_period": 1175
         },
         {
           "name": "openai/codex",
           "url": "https://github.com/openai/codex",
           "description": "Lightweight coding agent that runs in your terminal",
-          "summary_zh": "终端里的轻量级 Rust 编码代理，直接接管命令行完成编程任务，让 AI 像本地开发者一样高效工作",
-          "stars": 119534,
-          "forks": 18240,
+          "summary_zh": "终端里跑的轻量级 Rust 编码代理，让 AI 直接接管命令行完成开发任务",
+          "stars": 119726,
+          "forks": 18293,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12358
+          "stars_period": 9109
         },
         {
           "name": "harry0703/MoneyPrinterTurbo",
           "url": "https://github.com/harry0703/MoneyPrinterTurbo",
           "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-          "summary_zh": "输入主题或关键词，AI自动完成文案、配音、剪辑全流程，一键生成高清短视频，11.8万星标引爆内容创作效率革命",
-          "stars": 118075,
-          "forks": 17982,
+          "summary_zh": "一键生成高清短视频的AI自动化神器，输入主题即可完成脚本、配音、剪辑全流程",
+          "stars": 118345,
+          "forks": 18045,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4951
+          "stars_period": 4537
         }
       ]
     },
@@ -71,9 +71,9 @@
           "name": "withastro/astro",
           "url": "https://github.com/withastro/astro",
           "description": "The web framework for content-driven websites. ⭐️ Star to support our work!",
-          "summary_zh": "专为内容型网站打造的全栈框架，默认零JS输出，组件按需加载，让博客和文档站快到飞起",
-          "stars": 62120,
-          "forks": 3747,
+          "summary_zh": "内容驱动型网站的全栈框架，默认零JS输出，按需加载组件，让静态站点快如原生应用",
+          "stars": 62145,
+          "forks": 3750,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
@@ -84,35 +84,35 @@
           "name": "browser-use/browser-harness",
           "url": "https://github.com/browser-use/browser-harness",
           "description": "Browser Harness | Self-healing harness that enables LLMs to complete any task.",
-          "summary_zh": "自愈式浏览器操控框架，让大模型自主完成任意网页任务并自动修复中断",
-          "stars": 17208,
-          "forks": 1658,
+          "summary_zh": "自修复浏览器操控框架，让大模型自主完成任意网页任务，无需人工干预",
+          "stars": 17220,
+          "forks": 1664,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 369
+          "stars_period": 275
         },
         {
           "name": "lancedb/lancedb",
           "url": "https://github.com/lancedb/lancedb",
           "description": "Developer-friendly OSS embedded retrieval library for multimodal AI. Search More; Manage Less.",
-          "summary_zh": "多模态 AI 检索库，嵌入式零运维，向量搜索比传统方案快十倍",
-          "stars": 11306,
+          "summary_zh": "开源嵌入式多模态检索库，用 Rust 打造，让 AI 搜索更省心、管理更少",
+          "stars": 11310,
           "forks": 1032,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 92
+          "stars_period": 78
         },
         {
           "name": "xmarre/ComfyUI-Spectrum-MiniMax-H3",
           "url": "https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3",
           "description": "Spectrum-based acceleration for ComfyUI’s native MiniMax H3 audio-video model. Forecasts post-transformer features with Chebyshev ridge regression to ",
-          "summary_zh": "用切比雪夫岭回归预测后变换特征，跳过部分Transformer计算，为ComfyUI原生MiniMax H3音视频模型提速",
-          "stars": 585,
-          "forks": 32,
+          "summary_zh": "用切比雪夫岭回归预测后变换特征，跳过部分Transformer计算，为ComfyUI原生MiniMax H3音视频模型带来频谱级加速",
+          "stars": 587,
+          "forks": 35,
           "language": "Python",
           "topics": [],
           "created_at": "2026-08-03T20:51:37Z",
@@ -130,48 +130,48 @@
           "name": "Alishahryar1/free-claude-code",
           "url": "https://github.com/Alishahryar1/free-claude-code",
           "description": "Use Claude Code, Codex, Pi, and OpenCode and more for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported +",
-          "summary_zh": "白嫖 1.3B+ 免费 Token 聚合 Claude Code、Codex 等主流 AI 编程工具，终端手机语音都能用且合规友好",
-          "stars": 51156,
-          "forks": 8239,
+          "summary_zh": "终端、IDE、手机全平台白嫖 Claude Code 等顶级模型，1.3B 免费 Token 还支持语音，开源界最强羊毛",
+          "stars": 51314,
+          "forks": 8265,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4657
+          "stars_period": 4769
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商、635个模型端点，统一/v1接口并自动故障转移，月均70亿Token零成本调用",
-          "stars": 21521,
-          "forks": 3048,
+          "summary_zh": "聚合34家免费LLM供应商635个模型端点，统一v1接口智能路由自动故障转移，月省74亿Token",
+          "stars": 21960,
+          "forks": 3088,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2014
+          "stars_period": 2162
         },
         {
           "name": "jundot/omlx",
           "url": "https://github.com/jundot/omlx",
           "description": "LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu bar",
-          "summary_zh": "苹果芯片上跑 LLM 的菜单栏神器，连续批处理加 SSD 缓存让推理又快又省内存",
-          "stars": 20889,
-          "forks": 1768,
+          "summary_zh": "macOS 菜单栏一键管理 LLM 推理，连续批处理加 SSD 缓存让 Apple Silicon 跑模型又快又省",
+          "stars": 20927,
+          "forks": 1775,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 777
+          "stars_period": 697
         },
         {
           "name": "FareedKhan-dev/kimi-k3-in-c",
           "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c",
           "description": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
-          "summary_zh": "2.78万亿参数模型塞进8.24GB内存单CPU跑推理，纯C99无依赖硬核优化",
-          "stars": 6669,
-          "forks": 1087,
+          "summary_zh": "2.78万亿参数模型仅用8.24GB内存跑在单CPU上，纯C99实现无任何依赖，极致压缩的推理奇迹",
+          "stars": 6708,
+          "forks": 1094,
           "language": "C",
           "topics": [
             "avx2",
@@ -196,7 +196,7 @@
           "name": "hewanglanhao/deepvision-studio",
           "url": "https://github.com/hewanglanhao/deepvision-studio",
           "description": "Interactive deep learning lab for visualizing forward/backpropagation, training real PyTorch models, and exploring CNNs, Transformers, RNNs, and AI hi",
-          "summary_zh": "交互式深度学习实验室，可视化前向反向传播并实时训练 PyTorch 模型，覆盖 CNN、Transformer 与 AI 历史",
+          "summary_zh": "交互式深度学习实验台，可视化前向反向传播并实时训练 PyTorch 模型，覆盖 CNN、Transformer 与 AI 历史",
           "stars": 58,
           "forks": 3,
           "language": "TypeScript",
@@ -216,35 +216,35 @@
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
-          "summary_zh": "从零到生产级的AI工程实战路线图，用真实项目教你构建、部署并交付可落地的AI系统",
-          "stars": 50566,
-          "forks": 8777,
+          "summary_zh": "从零到一构建 AI 工程能力的开源路线图，覆盖理论、实战到交付全流程",
+          "stars": 50814,
+          "forks": 8801,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2853
+          "stars_period": 3263
         },
         {
           "name": "MadsLorentzen/ai-job-search",
           "url": "https://github.com/MadsLorentzen/ai-job-search",
           "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep ",
-          "summary_zh": "本地运行的开源 AI 求职框架，基于 Claude Code 自动评估岗位、定制简历、写求职信并模拟面试",
-          "stars": 37607,
-          "forks": 12722,
+          "summary_zh": "本地运行的开源 AI 求职框架，基于 Claude Code 自动评估岗位、定制简历并模拟面试，一键 Fork 全流程掌控",
+          "stars": 37925,
+          "forks": 12848,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4706
+          "stars_period": 4828
         },
         {
           "name": "gleam-lang/gleam",
           "url": "https://github.com/gleam-lang/gleam",
           "description": "⭐️ A friendly language for building type-safe, scalable systems!",
-          "summary_zh": "用 Rust 打造的友好类型安全语言，编译为 Erlang 字节码，让 BEAM 生态获得现代语法与强类型保障",
-          "stars": 21831,
-          "forks": 1010,
+          "summary_zh": "用 Rust 打造的友好类型安全语言，编译为 Erlang 让并发系统既好写又稳如老狗",
+          "stars": 21838,
+          "forks": 1009,
           "language": "Rust",
           "topics": [],
           "created_at": "",
@@ -255,14 +255,14 @@
           "name": "longbridge/gpui-component",
           "url": "https://github.com/longbridge/gpui-component",
           "description": "Rust GUI components for building fantastic cross-platform desktop application by using GPUI.",
-          "summary_zh": "用 Rust 和 GPUI 打造跨平台桌面应用的组件库，让界面开发更高效流畅",
-          "stars": 13584,
-          "forks": 820,
+          "summary_zh": "用 Rust 和 GPUI 构建跨平台桌面应用的组件库，让界面开发更高效流畅",
+          "stars": 13588,
+          "forks": 823,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 287
+          "stars_period": 293
         }
       ]
     },
@@ -275,35 +275,35 @@
           "name": "public-apis/public-apis",
           "url": "https://github.com/public-apis/public-apis",
           "description": "A collective list of free APIs",
-          "summary_zh": "免费 API 大全集，开发者找接口不用再翻遍全网，472k 星标验证的社区共识",
-          "stars": 472253,
-          "forks": 52091,
+          "summary_zh": "免费 API 集合清单，收录近千个公开接口，开发者找数据源首选，覆盖全领域且持续更新",
+          "stars": 472619,
+          "forks": 52151,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4863
+          "stars_period": 4626
         },
         {
           "name": "dani-garcia/vaultwarden",
           "url": "https://github.com/dani-garcia/vaultwarden",
           "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs",
-          "summary_zh": "自托管密码管理首选，Rust 重写 Bitwarden 服务端，轻量高效且完美兼容官方客户端",
-          "stars": 66422,
-          "forks": 3161,
+          "summary_zh": "Rust 重写的 Bitwarden 服务器，自托管密码管理更轻量，资源占用仅为官方版的零头",
+          "stars": 66448,
+          "forks": 3163,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 703
+          "stars_period": 698
         },
         {
           "name": "DefinitelyTyped/DefinitelyTyped",
           "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
           "description": "The repository for high quality TypeScript type definitions.",
-          "summary_zh": "为数千个 JavaScript 库提供高质量 TypeScript 类型定义，社区驱动且覆盖面极广",
-          "stars": 51413,
-          "forks": 30389,
+          "summary_zh": "为数千个 JS 库提供高质量 TypeScript 类型定义，社区驱动且覆盖极广，让 TS 项目无缝使用任意依赖",
+          "stars": 51415,
+          "forks": 30390,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
@@ -314,14 +314,14 @@
           "name": "lfnovo/open-notebook",
           "url": "https://github.com/lfnovo/open-notebook",
           "description": "An Open Source implementation of Notebook LM with more flexibility and features",
-          "summary_zh": "开源 NotebookLM 替代品，支持多模型接入与深度定制，让 AI 笔记更灵活可控",
-          "stars": 37837,
-          "forks": 4376,
+          "summary_zh": "开源版 Notebook LM 的灵活替代品，支持多模型接入与深度定制，让知识库管理更自由",
+          "stars": 37878,
+          "forks": 4382,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 637
+          "stars_period": 629
         }
       ]
     }
@@ -336,7 +336,7 @@
           "url": "http://arxiv.org/abs/2608.27455v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27455v1",
           "abstract": "Recent advances in inference-time scaling have significantly improved the reasoning performance of large language models (LLMs). However, these methods typically rely on repeated generation or externa",
-          "summary_zh": "提出CritICL推理时弱到强泛化框架，利用小模型失败模式引导大模型批判修正，在多项推理基准上超越强基线且无需外部验证",
+          "summary_zh": "提出CritICL推理时弱到强泛化框架，利用小模型失败模式引导大模型批判修正，在多项推理任务上显著超越基线且无需外部验证",
           "authors": [
             "Yufan Wu",
             "Yinghui He",
@@ -352,7 +352,7 @@
           "url": "http://arxiv.org/abs/2608.27448v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27448v1",
           "abstract": "Recent prominent post-training methods, such as Reinforcement Learning (RL) and On-Policy Self-Distillation (OPSD), have driven rapid progress in mathematical reasoning for large language models, yet ",
-          "summary_zh": "提出测试时策略优化方法，无需真实标签即可在推理阶段训练模型，数学推理准确率提升显著且计算开销低",
+          "summary_zh": "提出测试时策略优化方法，无需真实标签即可在推理阶段训练模型，数学推理准确率提升显著且计算开销低于传统强化学习",
           "authors": [
             "Aozhe Wang",
             "Zhengxi Lu",
@@ -368,7 +368,7 @@
           "url": "http://arxiv.org/abs/2608.27420v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27420v1",
           "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) significantly improves LLM reasoning but often causes a drop in policy entropy, leading to narrowed reasoning coverage and degraded pass@$k$ for l",
-          "summary_zh": "提出弱模型引导的RLVR训练框架，通过动态熵调控缓解策略坍缩，使pass@k在k值较大时提升超15%且保持推理多样性",
+          "summary_zh": "提出弱模型引导探索机制，在RLVR中缓解策略熵坍缩，将pass@k提升达15%，同时保持推理准确率不降",
           "authors": [
             "Xingyu Shen",
             "Huishuai Zhang",
@@ -390,7 +390,7 @@
           "url": "http://arxiv.org/abs/2608.27454v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27454v1",
           "abstract": "Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables",
-          "summary_zh": "提出WikiSkill框架将智能体经验编译为持久化技能知识库，通过动态技能演化机制实现跨任务复用，在基准测试中任务成功率提升22%且技能库规模缩减40%",
+          "summary_zh": "提出WikiSkill框架，将智能体经验编译为持久化知识库，通过技能演化机制实现跨任务复用，显著提升复杂任务成功率与学习效率",
           "authors": [
             "Liyan Tang",
             "Cyrus Rashtchian",
@@ -407,7 +407,7 @@
           "url": "http://arxiv.org/abs/2608.27449v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27449v1",
           "abstract": "To improve large language models' ability to resolve real-world software issues, prior work has focused on constructing large-scale agent trajectory datasets and performing supervised fine-tuning (SFT",
-          "summary_zh": "提出轨迹质量筛选机制替代全量成功样本微调，仅用少量高质量轨迹即显著提升代码修复准确率，训练数据减少而性能反超基线",
+          "summary_zh": "提出轨迹质量筛选机制替代规模优先策略，仅用少量高质量成功轨迹微调即显著提升代码修复准确率，减少数据需求同时增强模型泛化能力",
           "authors": [
             "Dewu Zheng",
             "Ruizhe Ye",
@@ -447,7 +447,7 @@
           "url": "http://arxiv.org/abs/2608.27439v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27439v1",
           "abstract": "LLM-based agents are increasingly deployed in product-level execution harnesses, where jailbreaks can trigger harmful tool use and persistent state changes, creating greater risks than unsafe text gen",
-          "summary_zh": "提出经验驱动技能进化机制，使红队智能体动态生成新攻击策略，在工具调用场景下越狱成功率提升超40%且攻击效率翻倍",
+          "summary_zh": "提出经验驱动技能进化机制，使红队智能体动态生成新攻击策略，在工具调用场景下越狱成功率提升47%并显著降低有害操作风险",
           "authors": [
             "Junjie Zhang",
             "Hui Liu",
@@ -464,7 +464,7 @@
           "url": "http://arxiv.org/abs/2608.27427v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27427v1",
           "abstract": "Large language model (LLM) agents in governed organizations must let the persona (instructions, tone, self-presentation) evolve freely, while keeping execution (stateful, audited work) traceable. A si",
-          "summary_zh": "提出人设与执行分离架构，使人设自由演进而执行全程可审计，降低治理成本并提升代理可追溯性",
+          "summary_zh": "提出人设与执行分离架构，使人设自由演化而执行全程可审计，降低治理成本并提升代理可追溯性",
           "authors": [
             "Yisen Xi"
           ],
@@ -485,7 +485,7 @@
           "url": "http://arxiv.org/abs/2608.27421v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27421v1",
           "abstract": "Currently used sepsis severity indices rely on fixed variables and weights established decades ago, which are coarsely discretized and calibrated to a cohort that no longer reflects contemporary criti",
-          "summary_zh": "提出无需逐小时标注的连续脓毒症严重度评分模型，直接从患者轨迹学习动态指标，并在双中心回顾性研究中验证其优于传统固定权重评分系统",
+          "summary_zh": "提出无需逐小时标注的连续脓毒症严重度评分模型，直接从患者轨迹学习，在两中心回顾性研究中优于传统固定权重指标并验证跨院泛化性",
           "authors": [
             "Kevin Zhu",
             "Ryan Zhang",
@@ -502,7 +502,7 @@
           "url": "http://arxiv.org/abs/2608.27406v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27406v1",
           "abstract": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich s",
-          "summary_zh": "提出跨具身视频世界模型框架，利用异构机器人视频学习通用物理规律，实现零样本模拟新形态机器人，动作预测精度提升显著",
+          "summary_zh": "提出跨具身视频世界模型框架，利用异构机器人视频学习通用物理规律，实现零样本模拟新形态机器人动作，无需微调即可迁移至多类实体",
           "authors": [
             "Kechen Liu",
             "Ola Shorinwa"
@@ -525,7 +525,7 @@
           "url": "http://arxiv.org/abs/2608.27442v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27442v1",
           "abstract": "In real-world software development, code review typically involves iterative interactions between developers and reviewers to improve software quality, making the process costly and time-consuming. Al",
-          "summary_zh": "提出MCR-Bench动态代码审查基准，模拟多轮人机交互评审流程，实验显示现有LLM在真实场景下性能显著下降，揭示静态评测与动态实践的差距",
+          "summary_zh": "提出MCR-Bench动态代码审查基准，模拟多轮人机交互评审流程，覆盖真实项目缺陷修复场景，较静态基准更贴近实际开发且评测更全面",
           "authors": [
             "Dewu Zheng",
             "Yanlin Wang",
@@ -543,7 +543,7 @@
           "url": "http://arxiv.org/abs/2608.27428v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27428v1",
           "abstract": "Transduced language models (TLMs) compose a pretrained \\emph{source} language model with a functional finite-state transducer to induce a language model over \\emph{target} strings. Computing the proba",
-          "summary_zh": "提出随机估计方法高效计算转导语言模型目标前缀概率，避免穷举源串求和，在精度与速度间取得显著平衡",
+          "summary_zh": "提出随机估计方法高效计算转导语言模型的目标前缀概率，避免穷举源串求和，显著降低计算复杂度并保持模型性能",
           "authors": [
             "Vésteinn Snæbjarnarson",
             "Samuel Kiegeland",
@@ -559,7 +559,7 @@
           "url": "http://arxiv.org/abs/2608.27422v1",
           "pdf_url": "https://arxiv.org/pdf/2608.27422v1",
           "abstract": "We present misi, an inverted index for approximate nearest-neighbor search over general metric spaces whose vocabulary is a random sample of the database, of size proportional to $n$. Each object is r",
-          "summary_zh": "提出基于随机样本倒排索引的度量空间近邻搜索方法，以正比于数据量的样本构建词汇表，通过可插拔内索引定位各对象最近样本点，显著提升检索效率",
+          "summary_zh": "提出基于随机样本倒排索引的度量空间近邻搜索方法，以线性复杂度构建索引，显著降低查询延迟并保持高召回率",
           "authors": [
             "Edgar Chavez"
           ],
