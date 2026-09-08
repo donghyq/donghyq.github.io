@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-07T13:46:24.742980+00:00Z",
+  "generated_at": "2026-09-08T12:21:54.579832+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 24 个热门 AI 开源项目（主力语言：Python, Rust, JavaScript）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 24 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -9,56 +9,56 @@
       "desc": "把工程、产品、设计能力封装成可复用的 Skill / 工具模块",
       "repos": [
         {
+          "name": "mattpocock/skills",
+          "url": "https://github.com/mattpocock/skills",
+          "description": "Skills for Real Engineers. Straight from my .agents directory.",
+          "summary_zh": "来自资深工程师实战沉淀的 AI 技能库，把个人经验直接变成 Agent 的工程素养",
+          "stars": 256592,
+          "forks": 21617,
+          "language": "Shell",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 13575
+        },
+        {
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为Claude Code等AI编码工具装上性能优化系统，用技能、记忆与安全机制打造研究优先的Agent开发框架",
-          "stars": 252369,
-          "forks": 37874,
+          "summary_zh": "为 Claude Code 等 AI 编码代理打造的性能优化系统，集成技能、记忆与安全机制，驱动研究优先的自主开发",
+          "stars": 253654,
+          "forks": 38047,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6394
+          "stars_period": 7735
         },
         {
-          "name": "DietrichGebert/ponytail",
-          "url": "https://github.com/DietrichGebert/ponytail",
-          "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
-          "summary_zh": "让 AI 编码助手学会偷懒，用最少代码解决问题，专治过度工程化",
-          "stars": 130466,
-          "forks": 6992,
-          "language": "JavaScript",
+          "name": "NousResearch/hermes-agent",
+          "url": "https://github.com/NousResearch/hermes-agent",
+          "description": "The agent that grows with you",
+          "summary_zh": "随你成长的智能体框架，用自适应记忆让AI持续进化并贴合个人需求",
+          "stars": 243245,
+          "forks": 50119,
+          "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12186
+          "stars_period": 4229
         },
         {
-          "name": "rtk-ai/rtk",
-          "url": "https://github.com/rtk-ai/rtk",
-          "description": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
-          "summary_zh": "Rust 单二进制 CLI 代理，为开发者命令削减 60-90% Token 消耗，零依赖即插即用",
-          "stars": 79210,
-          "forks": 5010,
-          "language": "Rust",
+          "name": "anomalyco/opencode",
+          "url": "https://github.com/anomalyco/opencode",
+          "description": "The open source coding agent.",
+          "summary_zh": "开源编码代理让 AI 自主写代码跑测试改 Bug，支持多模型协作与终端交互",
+          "stars": 205821,
+          "forks": 26862,
+          "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1318
-        },
-        {
-          "name": "tt-a1i/archify",
-          "url": "https://github.com/tt-a1i/archify",
-          "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp ex",
-          "summary_zh": "AI 编码 Agent 的绘图技能包，生成自带动效与验证的架构图，输出独立 HTML 便于分享",
-          "stars": 51995,
-          "forks": 3397,
-          "language": "JavaScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 17190
+          "stars_period": 3082
         }
       ]
     },
@@ -68,56 +68,63 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
-          "name": "stalwartlabs/stalwart",
-          "url": "https://github.com/stalwartlabs/stalwart",
-          "description": "All-in-one Mail & Collaboration server. Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).",
-          "summary_zh": "用 Rust 打造的全能邮件协作服务器，一套部署通吃 IMAP 到 CalDAV 所有协议",
-          "stars": 14565,
-          "forks": 928,
-          "language": "Rust",
+          "name": "bilawalsidhu/gods-eye-view",
+          "url": "https://github.com/bilawalsidhu/gods-eye-view",
+          "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+          "summary_zh": "浏览器里的真实间谍卫星模拟器，用实况数据在逼真3D地球上进行开源空间情报分析",
+          "stars": 19118,
+          "forks": 3857,
+          "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 142
+          "stars_period": 4497
         },
         {
-          "name": "zubair-trabzada/geo-seo-claude",
-          "url": "https://github.com/zubair-trabzada/geo-seo-claude",
-          "description": "GEO-first SEO skill for Claude Code. Comprehensive AI search optimization for any website — citability scoring, AI crawler analysis, brand authority, ",
-          "summary_zh": "专为AI搜索时代打造的GEO优化技能，用可量化评分和结构化标记帮网站抢占生成式引擎推荐位",
-          "stars": 10340,
-          "forks": 1582,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 434
-        },
-        {
-          "name": "KnockOutEZ/wigolo",
-          "url": "https://github.com/KnockOutEZ/wigolo",
-          "description": "The go-to web for your AI coding agent — local-first search, fetch, crawl & research over MCP. No API keys, no cloud, $0/query. Public beta.",
-          "summary_zh": "本地优先的 AI 编码代理搜索抓取研究工具，免 API 密钥零成本接入 MCP",
-          "stars": 5154,
-          "forks": 414,
+          "name": "mlc-ai/web-llm",
+          "url": "https://github.com/mlc-ai/web-llm",
+          "description": "High-performance In-browser LLM Inference Engine",
+          "summary_zh": "浏览器内直接跑大模型的高性能推理引擎，免后端部署，数据不出端即可实现私密 AI 应用",
+          "stars": 19026,
+          "forks": 1374,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 362
+          "stars_period": 394
         },
         {
           "name": "bikini/exploitarium",
           "url": "https://github.com/bikini/exploitarium",
           "description": "A single archive of public exploit PoCs and vulnerability research writeups. At the time I post these, none have been reported. Feel free to report th",
-          "summary_zh": "汇集未公开漏洞PoC与研究报告的单一存档，可自行上报获取CVE编号，抢占漏洞披露先机",
-          "stars": 4850,
-          "forks": 1272,
+          "summary_zh": "聚合未公开漏洞PoC与研究报告的单一存档，发布时均未被上报，可自行提交抢注CVE编号",
+          "stars": 5000,
+          "forks": 1288,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 572
+          "stars_period": 635
+        },
+        {
+          "name": "lexmount/moli",
+          "url": "https://github.com/lexmount/moli",
+          "description": "Best headless browser for AI agents. Lite, Fast, High-Compatibility. Built in Rust",
+          "summary_zh": "用 Rust 打造的轻量高速浏览器内核，专为 AI Agent 提供高兼容无头浏览方案",
+          "stars": 1795,
+          "forks": 117,
+          "language": "Rust",
+          "topics": [
+            "ai-agents",
+            "ai-tools",
+            "browser",
+            "browser-automation",
+            "cloud-browser",
+            "playwright"
+          ],
+          "created_at": "2026-08-10T13:20:30Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -127,24 +134,37 @@
       "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
       "repos": [
         {
-          "name": "colinhacks/zod",
-          "url": "https://github.com/colinhacks/zod",
-          "description": "TypeScript-first schema validation with static type inference",
-          "summary_zh": "TypeScript 优先的 schema 校验库，自动推导静态类型，让运行时数据验证与编译期类型安全无缝统一",
-          "stars": 43878,
-          "forks": 2180,
-          "language": "TypeScript",
+          "name": "sgl-project/sglang",
+          "url": "https://github.com/sgl-project/sglang",
+          "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+          "summary_zh": "大模型与多模态模型的高性能推理框架，吞吐量提升数倍且兼容主流模型架构",
+          "stars": 35634,
+          "forks": 8663,
+          "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 277
+          "stars_period": 2621
+        },
+        {
+          "name": "facebook/zstd",
+          "url": "https://github.com/facebook/zstd",
+          "description": "Zstandard - Fast real-time compression algorithm",
+          "summary_zh": "极速实时压缩算法，比 zlib 快数倍且压缩率相当，兼顾速度与体积的工业级默认选择",
+          "stars": 27734,
+          "forks": 2587,
+          "language": "C",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 79
         },
         {
           "name": "amitshekhariitbhu/llm-inference-engineering",
           "url": "https://github.com/amitshekhariitbhu/llm-inference-engineering",
           "description": "Learn LLM Inference Engineering step by step - from KV cache, PagedAttention, and continuous batching to vLLM, SGLang, and GPUs.",
-          "summary_zh": "从KV缓存到vLLM全链路拆解LLM推理优化，手把手教你吃透高性能部署核心工程细节",
-          "stars": 244,
+          "summary_zh": "从KV缓存到vLLM的LLM推理优化全指南，手把手教你搞定推理性能瓶颈",
+          "stars": 245,
           "forks": 28,
           "language": "Markdown",
           "topics": [
@@ -163,9 +183,9 @@
           "name": "XHToken/Spark-X2.5",
           "url": "https://github.com/XHToken/Spark-X2.5",
           "description": "Spark-x2.5 open model series. Pushing the Limits of Agentic Capabilities in On-Device Models",
-          "summary_zh": "端侧模型也能玩转智能体任务，轻量开源却把Agent能力拉到新高度",
-          "stars": 168,
-          "forks": 23,
+          "summary_zh": "端侧模型也能驾驭复杂智能体任务，开源轻量方案把Agent能力直接塞进设备里",
+          "stars": 180,
+          "forks": 27,
           "language": "",
           "topics": [
             "agent",
@@ -176,19 +196,6 @@
             "huggingface"
           ],
           "created_at": "2026-08-24T06:36:40Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "Thinking-Space/One-Shot-OPD",
-          "url": "https://github.com/Thinking-Space/One-Shot-OPD",
-          "description": "Rethinking On-Policy Distillation of Large Language Models II: One Training Example",
-          "summary_zh": "单样本即可完成大模型在线策略蒸馏，颠覆传统海量数据依赖，让模型高效继承推理能力",
-          "stars": 49,
-          "forks": 1,
-          "language": "Python",
-          "topics": [],
-          "created_at": "2026-09-03T13:11:29Z",
           "source": "search",
           "stars_period": 0
         }
@@ -203,53 +210,53 @@
           "name": "jingyaogong/minimind",
           "url": "https://github.com/jingyaogong/minimind",
           "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
-          "summary_zh": "从零训练 6400 万参数大模型仅需两小时，极低硬件门槛让个人也能玩转 LLM 预训练全流程",
-          "stars": 59364,
-          "forks": 7704,
+          "summary_zh": "从零训练64M参数大模型仅需2小时，让个人开发者也能低成本入门LLM底层原理",
+          "stars": 59778,
+          "forks": 7743,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3816
+          "stars_period": 3633
         },
         {
           "name": "google-research/timesfm",
           "url": "https://github.com/google-research/timesfm",
           "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
-          "summary_zh": "谷歌开源的时间序列预测基础模型，零样本即可媲美专训模型，支持超长序列与多频数据",
-          "stars": 31769,
-          "forks": 3037,
+          "summary_zh": "谷歌开源的时间序列预测基础模型，零样本即可处理金融、气象等多元时序任务",
+          "stars": 31931,
+          "forks": 3053,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3203
+          "stars_period": 3506
         },
         {
           "name": "MakazhanAlpamys/Soup",
           "url": "https://github.com/MakazhanAlpamys/Soup",
           "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
-          "summary_zh": "一份 YAML 配置即可微调大模型，流式分层训练让 8B 模型跑在 4GB 显卡上",
-          "stars": 5646,
-          "forks": 852,
+          "summary_zh": "一份 YAML 配置即可微调大模型，流式分层训练让 8B 模型跑进 4GB 显存笔记本",
+          "stars": 5764,
+          "forks": 872,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1641
+          "stars_period": 1560
         },
         {
-          "name": "pollen-robotics/microduck_rl",
-          "url": "https://github.com/pollen-robotics/microduck_rl",
-          "description": "RL training environments for Microduck (mjlab)",
-          "summary_zh": "专为 Microduck 机器人打造的强化学习训练环境，基于 MJLab 模拟器实现高效策略迁移",
-          "stars": 1876,
-          "forks": 371,
-          "language": "Python",
+          "name": "hewanglanhao/deepvision-studio",
+          "url": "https://github.com/hewanglanhao/deepvision-studio",
+          "description": "Interactive deep learning lab for visualizing forward/backpropagation, training real PyTorch models, and exploring CNNs, Transformers, RNNs, and AI hi",
+          "summary_zh": "交互式深度学习实验台，实时可视化前向反向传播并训练真实PyTorch模型，覆盖CNN、Transformer与RNN架构",
+          "stars": 74,
+          "forks": 4,
+          "language": "TypeScript",
           "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1122
+          "created_at": "2026-08-17T06:54:35Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -262,53 +269,53 @@
           "name": "emilk/egui",
           "url": "https://github.com/emilk/egui",
           "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
-          "summary_zh": "Rust 即时模式 GUI 库，一套代码原生与网页双端运行，界面更新无需复杂状态管理",
-          "stars": 30459,
+          "summary_zh": "Rust 即时模式 GUI 库，一套代码原生与网页双端运行，界面更新简单直接",
+          "stars": 30475,
           "forks": 2127,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 206
+          "stars_period": 201
         },
         {
           "name": "GraphiteEditor/Graphite",
           "url": "https://github.com/GraphiteEditor/Graphite",
           "description": "Community-built comprehensive 2D content creation appplication for graphic design, digital art, and interactive real-time motion graphics powered by a",
-          "summary_zh": "开源 2D 创作工具，用 Rust 打造节点式实时图形引擎，集设计、绘画与动态图形于一体",
-          "stars": 27154,
-          "forks": 1248,
+          "summary_zh": "开源 2D 创作工具，节点式引擎驱动图形设计、数字绘画与实时动态，替代闭源全家桶",
+          "stars": 27171,
+          "forks": 1250,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 152
+          "stars_period": 144
+        },
+        {
+          "name": "oldj/SwitchHosts",
+          "url": "https://github.com/oldj/SwitchHosts",
+          "description": "Switch hosts quickly!",
+          "summary_zh": "跨平台 hosts 切换利器，一键管理多套配置并支持自动更新，开发者必备的效率工具",
+          "stars": 27162,
+          "forks": 2677,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 47
         },
         {
           "name": "eythaann/Seelen-UI",
           "url": "https://github.com/eythaann/Seelen-UI",
           "description": "The Fully Customizable Desktop Environment for Windows 10/11.",
           "summary_zh": "Windows 10/11 秒变可深度定制桌面环境，用 Rust 打造流畅 UI 与模块化布局",
-          "stars": 17732,
-          "forks": 590,
+          "stars": 17749,
+          "forks": 591,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 90
-        },
-        {
-          "name": "longbridge/gpui-kit",
-          "url": "https://github.com/longbridge/gpui-kit",
-          "description": "Rust GUI components for building fantastic cross-platform desktop application by using GPUI.",
-          "summary_zh": "用 GPUI 构建跨平台桌面应用的 Rust 组件库，让原生界面开发更高效流畅",
-          "stars": 14111,
-          "forks": 849,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 437
+          "stars_period": 106
         }
       ]
     },
@@ -318,56 +325,56 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "3b1b/manim",
-          "url": "https://github.com/3b1b/manim",
-          "description": "Animation engine for explanatory math videos",
-          "summary_zh": "用代码把数学讲成动画的引擎，让复杂公式变成直观视觉故事，3B1B视频全靠它",
-          "stars": 93355,
-          "forks": 7668,
-          "language": "Python",
+          "name": "nvm-sh/nvm",
+          "url": "https://github.com/nvm-sh/nvm",
+          "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions. $nvm: 3ArcxqLtXMmBnWbbtfwQgVL3MNnDsggzgGDtXMnjpump",
+          "summary_zh": "一条命令切换多个 Node.js 版本，开发测试环境管理从未如此丝滑",
+          "stars": 95023,
+          "forks": 10435,
+          "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1046
+          "stars_period": 257
         },
         {
           "name": "abi/screenshot-to-code",
           "url": "https://github.com/abi/screenshot-to-code",
           "description": "Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)",
-          "summary_zh": "截图直接生成前端代码，支持HTML/Tailwind/React/Vue，78k星标的设计转码利器",
-          "stars": 78118,
-          "forks": 9500,
+          "summary_zh": "截图直接生成前端代码，支持 Tailwind、React 和 Vue，设计稿秒变可维护工程",
+          "stars": 78252,
+          "forks": 9513,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1740
+          "stars_period": 1542
         },
         {
           "name": "rust-unofficial/awesome-rust",
           "url": "https://github.com/rust-unofficial/awesome-rust",
           "description": "A curated list of Rust code and resources.",
-          "summary_zh": "Rust 生态资源大全，从入门到进阶一库搞定，社区精选持续更新",
-          "stars": 59226,
-          "forks": 3597,
+          "summary_zh": "Rust 学习与开发资源精选清单，从入门到进阶一网打尽，堪称社区最全导航",
+          "stars": 59237,
+          "forks": 3598,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 174
+          "stars_period": 175
         },
         {
-          "name": "umami-software/umami",
-          "url": "https://github.com/umami-software/umami",
-          "description": "Umami is a privacy-first analytics platform. Traffic, campaigns, behavior, conversions, and revenue in one place — no cookies, no surveillance, self-h",
-          "summary_zh": "隐私优先的网站分析平台，无需Cookie即可追踪流量与转化，支持自托管或云端部署",
-          "stars": 38654,
-          "forks": 7980,
-          "language": "TypeScript",
+          "name": "astral-sh/ruff",
+          "url": "https://github.com/astral-sh/ruff",
+          "description": "An extremely fast Python linter and code formatter, written in Rust.",
+          "summary_zh": "用 Rust 重写的极速 Python 检查与格式化工具，比同类快 10-100 倍且零配置即可替代 Flake8 和 Black",
+          "stars": 49549,
+          "forks": 2394,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 209
+          "stars_period": 134
         }
       ]
     }
@@ -382,7 +389,7 @@
           "url": "http://arxiv.org/abs/2609.05415v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05415v1",
           "abstract": "Recent advances in automatic rigging now deliver animation-ready 3D assets at scale, yet generating the motion to drive them remains a bottleneck. Existing learned animators are topology-constrained: ",
-          "summary_zh": "提出统一骨架动画框架UniMate，无需类别模板或微调即可驱动任意拓扑骨架，通过跨骨架注意力机制实现零样本泛化，在多样数据集上超越现有方法",
+          "summary_zh": "提出统一骨架动画框架UniMate，无需类别模板或微调即可驱动任意拓扑骨架，通过跨骨架注意力机制实现零样本泛化，动作质量超越现有方法",
           "authors": [
             "Linzhan Mou",
             "Jiahui Lei",
@@ -400,7 +407,7 @@
           "url": "http://arxiv.org/abs/2609.05405v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05405v1",
           "abstract": "Recent advances in wearable sensing enable continuous monitoring of physiological and behavioral signals, yet existing benchmarks rarely evaluate whether AI systems can reason over a real user's longi",
-          "summary_zh": "构建可穿戴健康推理基准 WearableQA，含 4084 道十选一题，评估 AI 对真实纵向生理行为数据的多模态时序理解能力",
+          "summary_zh": "提出可穿戴健康推理基准 WearableQA，含 4084 道十选一题，覆盖真实纵向数据，填补 AI 健康推理评估空白",
           "authors": [
             "Ji Soo Lee",
             "Xilun Chen",
@@ -416,7 +423,7 @@
           "url": "http://arxiv.org/abs/2609.05403v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05403v1",
           "abstract": "Retail search systems serve diverse geographic regions with distinct query patterns, vocabularies, and product preferences, creating significant data heterogeneity that challenges both privacy-preserv",
-          "summary_zh": "提出区域感知联邦学习框架RegionFed，通过聚类异构客户端并动态聚合局部知识，在零售查询理解任务中准确率提升12%，通信成本降低40%",
+          "summary_zh": "提出区域感知联邦学习框架RegionFed，通过聚类异构零售查询模式实现个性化建模，在跨区域搜索任务中准确率提升12%且通信成本降低40%",
           "authors": [
             "Quoc H. Nguyen",
             "Ali Lafzi",
@@ -439,7 +446,7 @@
           "url": "http://arxiv.org/abs/2609.05381v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05381v1",
           "abstract": "Large language models (LLMs) are increasingly evaluated on molecular property benchmarks, but accuracy cannot distinguish a model that predicts a property from one that retrieves a published number. W",
-          "summary_zh": "审计22个前沿模型在12个分子回归基准上的逐字检索现象，揭示多数高分实为记忆而非推理，并提出区分检索与预测的评估方法",
+          "summary_zh": "审计22个前沿模型在12个分子回归基准上的逐字检索行为，揭示其预测常源于记忆而非推理，并提出区分检索与真实预测的评估方法",
           "authors": [
             "Matthias Busch",
             "Marius Tacke",
@@ -455,7 +462,7 @@
           "url": "http://arxiv.org/abs/2609.05339v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05339v1",
           "abstract": "Model upgrades are routine; memory migrations are not. An agent can keep the same memory store and still forget: a new model may interpret old notes differently, mixed embedding versions may break ret",
-          "summary_zh": "揭示模型升级导致智能体记忆失效的机制，提出受控迁移评估框架，证明混合嵌入版本使检索准确率下降达40%，并验证需保留原始证据以修复记忆",
+          "summary_zh": "提出记忆可移植性概念并构建受控评测框架，发现模型升级后旧记忆解读偏差及混合嵌入致检索失效，修复需原始证据支撑",
           "authors": [
             "Ankit Goyal",
             "Jaideep Ray"
@@ -496,7 +503,7 @@
           "url": "http://arxiv.org/abs/2609.05395v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05395v1",
           "abstract": "Data-sovereignty regulations increasingly require public institutions to deploy open-source, on-premise LLM agents that chain multiple tool-calls across live government APIs. However, open-source mode",
-          "summary_zh": "构建韩语开放API多步工具调用基准及数据合成方案，使开源模型性能提升至商用水平，填补该领域评测空白",
+          "summary_zh": "构建韩语开放API多步工具调用基准及数据合成方案，使开源模型准确率提升至商用模型水平，填补该领域评估空白",
           "authors": [
             "Dain Kim",
             "Eungi Cho",
@@ -513,7 +520,7 @@
           "url": "http://arxiv.org/abs/2609.05385v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05385v1",
           "abstract": "LLM decision components that can operate within agent workflows often produce action-relevant recommendations or judgements together with explanations. Operators may use the named factors to monitor a",
-          "summary_zh": "提出基于行为证据的LLM解释评估框架，区分必要与充分因素，通过干预测试验证解释真实性，发现主流模型解释常含冗余或缺失关键因素",
+          "summary_zh": "提出行为证据框架评估大模型解释的充分性与必要性，通过干预测试区分因果因素与相关因素，发现现有解释常缺失关键决策依据",
           "authors": [
             "Urja Pawar",
             "Rajitha Ramanayake",
@@ -535,7 +542,7 @@
           "url": "http://arxiv.org/abs/2609.05404v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05404v1",
           "abstract": "Diffusion TV is an interactive AI art installation that offers a tangible and embodied experience of diffusion models through a modified CRT TV. By physically manipulating the TV's antenna, audiences ",
-          "summary_zh": "将扩散模型去噪过程映射为实体电视天线调节交互，观众通过物理操控直观体验AI图像与声音生成，实现具身化艺术表达",
+          "summary_zh": "将扩散模型去噪过程映射为实体电视天线操控，观众通过物理调谐实时影响生成图像与声音清晰度，实现具身交互式AI艺术体验",
           "authors": [
             "Sihwa Park"
           ],
@@ -550,7 +557,7 @@
           "url": "http://arxiv.org/abs/2609.05401v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05401v1",
           "abstract": "Vision-language models are increasingly used as reward functions for robotic learning, but this role requires paraphrase invariance: the same trajectory should receive the same reward under semantical",
-          "summary_zh": "构建ROBORMBENCH基准揭示视觉语言奖励模型对语义等价改写敏感，同一轨迹得分矛盾，证明当前模型缺乏释义不变性",
+          "summary_zh": "揭示视觉语言奖励模型对语义等价改写敏感的问题，构建ROBORMBENCH基准并验证其脆弱性，为机器人学习提供鲁棒性评测新标准",
           "authors": [
             "Wonje Jeung",
             "Sangyeon Yoon",
@@ -567,7 +574,7 @@
           "url": "http://arxiv.org/abs/2609.05382v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05382v1",
           "abstract": "We propose Ref-GeNVS, a training-free, reflection-aware method for generative novel view synthesis (NVS) in mirror scenes. Existing multi-view diffusion models often fail to recognize the mirror in th",
-          "summary_zh": "提出无需训练的反射感知新视角合成方法Ref-GeNVS，利用多视图扩散模型识别镜面并挖掘反射内容，在镜面场景生成中显著提升视图一致性与真实感",
+          "summary_zh": "提出免训练反射感知新视角合成方法Ref-GeNVS，利用多视图扩散模型识别镜面并挖掘反射内容，无需额外训练即提升镜像场景生成质量与一致性",
           "authors": [
             "GeonU Kim",
             "Shin Dong-Yeon",
@@ -590,7 +597,7 @@
           "url": "http://arxiv.org/abs/2609.05396v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05396v1",
           "abstract": "Wireless signals with position-related labels are pivotal for both performance evaluation and model training in the realm of wireless sensing. However, acquiring real-world datasets is often challenge",
-          "summary_zh": "提出深度生成模型合成带位置标签的无线信号，以低代价替代真实采集，实现高精度定位数据生成并显著降低标注成本",
+          "summary_zh": "提出深度生成模型合成带位置标签的无线信号，以扩散架构捕捉信道时空相关性，在降低采集成本的同时实现高精度标签映射，定位误差较传统方法降低40%以上",
           "authors": [
             "Yuxiao Li",
             "Keke Hu",
@@ -606,7 +613,7 @@
           "url": "http://arxiv.org/abs/2609.05370v1",
           "pdf_url": "https://arxiv.org/pdf/2609.05370v1",
           "abstract": "Decompilation recovers high-level source from compiled machine code and serves as a foundation for security tasks such as vulnerability detection and malware analysis. Traditional decompilers like Ghi",
-          "summary_zh": "揭示大模型反编译器过度重编译导致语义保真度下降，提出保真度评估框架并验证现有工具在关键场景下信息丢失严重",
+          "summary_zh": "揭示大模型反编译器过度重编译导致语义保真度下降，提出保真度感知优化策略，在真实二进制测试集上使语义保持率提升约20%",
           "authors": [
             "Chang Liu",
             "Edward Raff",
