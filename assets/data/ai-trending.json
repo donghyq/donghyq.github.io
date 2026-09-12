@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-11T12:25:32.560514+00:00Z",
+  "generated_at": "2026-09-12T11:47:36.334472+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 24 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, Rust, Shell）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -9,56 +9,56 @@
       "desc": "把工程、产品、设计能力封装成可复用的 Skill / 工具模块",
       "repos": [
         {
-          "name": "mattpocock/skills",
-          "url": "https://github.com/mattpocock/skills",
-          "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "直接取自作者 .agents 目录的 AI 编码 Agent 工程技能库，让智能体像资深工程师一样干活",
-          "stars": 259372,
-          "forks": 21861,
+          "name": "obra/superpowers",
+          "url": "https://github.com/obra/superpowers",
+          "description": "An agentic skills framework & software development methodology that works.",
+          "summary_zh": "让 AI 编码 Agent 按成熟工程方法论工作的技能框架，把软件开发流程变成可复用技能",
+          "stars": 285581,
+          "forks": 25550,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12356
+          "stars_period": 3829
+        },
+        {
+          "name": "mattpocock/skills",
+          "url": "https://github.com/mattpocock/skills",
+          "description": "Skills for Real Engineers. Straight from my .agents directory.",
+          "summary_zh": "把资深工程师的 .agents 目录直接开源，为 AI 编码 Agent 提供真实工程场景下的技能配置",
+          "stars": 260147,
+          "forks": 21940,
+          "language": "Shell",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 10571
         },
         {
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能记忆与安全优化的性能增强框架",
-          "stars": 256208,
-          "forks": 38342,
+          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能、记忆与安全优化的性能增强框架，让代理更聪明可靠",
+          "stars": 256786,
+          "forks": 38427,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9257
+          "stars_period": 8714
         },
         {
           "name": "NousResearch/hermes-agent",
           "url": "https://github.com/NousResearch/hermes-agent",
           "description": "The agent that grows with you",
-          "summary_zh": "随你成长的 Python AI Agent 框架，让智能体能力随使用持续进化",
-          "stars": 244422,
-          "forks": 50600,
+          "summary_zh": "随你成长的 Python AI Agent 框架，让智能体能力持续进化而非一次性部署",
+          "stars": 244765,
+          "forks": 50762,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3769
-        },
-        {
-          "name": "anomalyco/opencode",
-          "url": "https://github.com/anomalyco/opencode",
-          "description": "The open source coding agent.",
-          "summary_zh": "开源编码智能体，用 TypeScript 打造，让 AI 直接接管你的开发任务",
-          "stars": 206647,
-          "forks": 27028,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 3139
+          "stars_period": 3481
         }
       ]
     },
@@ -72,50 +72,50 @@
           "url": "https://github.com/bilawalsidhu/gods-eye-view",
           "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
           "summary_zh": "浏览器里的开源间谍卫星模拟器，在逼真3D地球上实时呈现真实空间情报数据",
-          "stars": 25896,
-          "forks": 5297,
+          "stars": 28051,
+          "forks": 5739,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6051
+          "stars_period": 8916
         },
         {
           "name": "bikini/exploitarium",
           "url": "https://github.com/bikini/exploitarium",
           "description": "A single archive of public exploit PoCs and vulnerability research writeups. At the time I post these, none have been reported. Feel free to report th",
-          "summary_zh": "收录未公开的漏洞利用PoC与漏洞研究笔记，抢先挖掘CVE并自行上报拿署名",
-          "stars": 5088,
-          "forks": 1309,
+          "summary_zh": "汇集未公开披露的漏洞 PoC 与安全研究笔记，供你抢先复现并自行提交 CVE 认领",
+          "stars": 5096,
+          "forks": 1312,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 731
+          "stars_period": 707
+        },
+        {
+          "name": "jordan-gibbs/hyperresearch",
+          "url": "https://github.com/jordan-gibbs/hyperresearch",
+          "description": "Agent-driven research knowledge base. Agents collect, search, and synthesize web research into a persistent, searchable wiki.",
+          "summary_zh": "让 AI Agent 自动搜集、检索并整合网络研究，沉淀为可持久搜索的维基知识库",
+          "stars": 2926,
+          "forks": 273,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1059
         },
         {
           "name": "BenyRonald77/uajy-academic-rag-chatbot",
           "url": "https://github.com/BenyRonald77/uajy-academic-rag-chatbot",
           "description": "Production-grade RAG chatbot for Universitas Atma Jaya Yogyakarta academic handbook with Streamlit, FAISS vector search, and Google Gemini 2.5 Flash.",
-          "summary_zh": "基于FAISS向量检索与Gemini 2.5 Flash的学术手册RAG问答机器人，让印尼高校学生秒查校规",
+          "summary_zh": "基于Streamlit与FAISS向量检索、接入Gemini 2.5 Flash的学术手册RAG问答机器人，让校园教务查询秒级精准响应",
           "stars": 915,
-          "forks": 1,
+          "forks": 2,
           "language": "Python",
           "topics": [],
           "created_at": "2026-08-31T07:59:40Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "bluesky585/nibble",
-          "url": "https://github.com/bluesky585/nibble",
-          "description": "A Go library for splitting long text into retrieval-sized chunks for RAG.",
-          "summary_zh": "用 Go 写的文本分块库，专为 RAG 场景把长文本切成适合检索的片段",
-          "stars": 42,
-          "forks": 0,
-          "language": "Go",
-          "topics": [],
-          "created_at": "2026-09-08T06:58:42Z",
           "source": "search",
           "stars_period": 0
         }
@@ -130,9 +130,9 @@
           "name": "datawhalechina/zero-to-sglang",
           "url": "https://github.com/datawhalechina/zero-to-sglang",
           "description": "Official SGLang × Datawhale course on LLM inference (中英双语): understand inference, build a mini-sglang from scratch, then read the real SGLang source a",
-          "summary_zh": "Datawhale 出品的 SGLang 双语实战课，从零手搓 mini 推理引擎再读源码，助你拿下首个 PR",
-          "stars": 737,
-          "forks": 57,
+          "summary_zh": "Datawhale 出品的 SGLang 双语实战课，带你手搓 mini-sglang 并读懂真实源码，最终拿下首个 PR",
+          "stars": 789,
+          "forks": 62,
           "language": "Python",
           "topics": [
             "cuda",
@@ -147,32 +147,12 @@
           "stars_period": 0
         },
         {
-          "name": "amitshekhariitbhu/llm-inference-engineering",
-          "url": "https://github.com/amitshekhariitbhu/llm-inference-engineering",
-          "description": "Learn LLM Inference Engineering step by step - from KV cache, PagedAttention, and continuous batching to vLLM, SGLang, and GPUs.",
-          "summary_zh": "从KV缓存到vLLM一步步拆解LLM推理优化全链路，适合系统入门推理工程",
-          "stars": 250,
-          "forks": 29,
-          "language": "Markdown",
-          "topics": [
-            "inference-engineering",
-            "inference-optimization",
-            "large-language-models",
-            "llm",
-            "llm-engineering",
-            "llm-inference"
-          ],
-          "created_at": "2026-08-18T03:10:26Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
           "name": "XHToken/Spark-X2.5",
           "url": "https://github.com/XHToken/Spark-X2.5",
           "description": "Spark-x2.5 open model series. Pushing the Limits of Agentic Capabilities in On-Device Models",
           "summary_zh": "端侧模型也能跑出智能体级能力，Spark-X2.5 把 Agent 上限推到设备本地",
-          "stars": 214,
-          "forks": 29,
+          "stars": 220,
+          "forks": 31,
           "language": "",
           "topics": [
             "agent",
@@ -191,7 +171,7 @@
           "url": "https://github.com/Thinking-Space/One-Shot-OPD",
           "description": "Rethinking On-Policy Distillation of Large Language Models II: One Training Example",
           "summary_zh": "仅需一个训练样本即可完成大模型在线策略蒸馏，大幅降低蒸馏数据成本",
-          "stars": 63,
+          "stars": 64,
           "forks": 2,
           "language": "Python",
           "topics": [],
@@ -210,27 +190,14 @@
           "name": "jingyaogong/minimind",
           "url": "https://github.com/jingyaogong/minimind",
           "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
-          "summary_zh": "两小时从零训练64M参数小语言模型，让个人开发者低成本上手大模型全流程",
-          "stars": 60657,
-          "forks": 7870,
+          "summary_zh": "仅需2小时即可从零训练64M参数大模型，让个人开发者低成本体验完整LLM训练流程",
+          "stars": 60791,
+          "forks": 7892,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2373
-        },
-        {
-          "name": "google-research/timesfm",
-          "url": "https://github.com/google-research/timesfm",
-          "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
-          "summary_zh": "谷歌开源的预训练时间序列基础模型，无需训练即可直接预测，让时序预测像调用大模型一样简单",
-          "stars": 32214,
-          "forks": 3085,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1622
+          "stars_period": 2290
         },
         {
           "name": "hewanglanhao/deepvision-studio",
@@ -249,7 +216,7 @@
           "name": "tosinonye7-ui/SummaraMind-Transformer-Suite",
           "url": "https://github.com/tosinonye7-ui/SummaraMind-Transformer-Suite",
           "description": "Advanced Transformer Summarization Suite: Abstract & Extractive AI Models 2026",
-          "summary_zh": "融合抽象与抽取式AI模型的一站式Transformer摘要工具包，用BART加KMeans聚类解决长文本自动浓缩难题",
+          "summary_zh": "融合抽象与抽取式AI模型的一站式Transformer摘要套件，用BART和KMeans搞定长文压缩",
           "stars": 55,
           "forks": 0,
           "language": "HTML",
@@ -273,56 +240,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "open-webui/open-webui",
-          "url": "https://github.com/open-webui/open-webui",
-          "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
-          "summary_zh": "兼容 Ollama 与 OpenAI API 的自托管 AI 对话界面，开箱即用且支持多模型切换",
-          "stars": 151615,
-          "forks": 22177,
-          "language": "Python",
+          "name": "clash-verge-rev/clash-verge-rev",
+          "url": "https://github.com/clash-verge-rev/clash-verge-rev",
+          "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
+          "summary_zh": "基于 Tauri 的现代化跨平台代理客户端，为 Windows、macOS 和 Linux 提供优雅的定制化网络代理体验",
+          "stars": 143966,
+          "forks": 10359,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 808
+          "stars_period": 1694
+        },
+        {
+          "name": "farion1231/cc-switch",
+          "url": "https://github.com/farion1231/cc-switch",
+          "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.i",
+          "summary_zh": "跨平台桌面助手统一管理 Claude Code、Codex 等六款 AI 编码 Agent，免去多工具切换烦恼",
+          "stars": 132468,
+          "forks": 9134,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1454
         },
         {
           "name": "lencx/ChatGPT",
           "url": "https://github.com/lencx/ChatGPT",
           "description": "❄️ ChatGPT Desktop Application (Mac, Windows and Linux)",
           "summary_zh": "跨平台 ChatGPT 桌面客户端，用 Rust 打造轻量原生体验，让 AI 对话脱离浏览器束缚",
-          "stars": 54511,
-          "forks": 6142,
+          "stars": 54515,
+          "forks": 6141,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 62
+          "stars_period": 66
         },
         {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
-          "summary_zh": "从零手写实现 AI 核心组件的 Python 教程，边学边造边交付，真正吃透大模型底层原理",
-          "stars": 54213,
-          "forks": 9453,
+          "summary_zh": "从零手写实现 AI 核心组件的 Python 教程，边学边造轮子真正吃透大模型原理",
+          "stars": 54329,
+          "forks": 9478,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1942
-        },
-        {
-          "name": "eythaann/Seelen-UI",
-          "url": "https://github.com/eythaann/Seelen-UI",
-          "description": "The Fully Customizable Desktop Environment for Windows 10/11.",
-          "summary_zh": "为 Windows 10/11 打造的全可定制桌面环境，用 Rust 重写系统外壳，让桌面外观与交互随心改造",
-          "stars": 17777,
-          "forks": 595,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 122
+          "stars_period": 1918
         }
       ]
     },
@@ -335,53 +302,53 @@
           "name": "OpenHands/OpenHands",
           "url": "https://github.com/OpenHands/OpenHands",
           "description": "🙌 OpenHands: AI-Driven Development",
-          "summary_zh": "让 AI 像工程师一样自主写代码改 Bug 的开源开发代理，支持全流程自动化编程",
-          "stars": 87385,
-          "forks": 11457,
+          "summary_zh": "让 AI 像开发者一样自主写代码、跑命令、改仓库的开源编程智能体平台",
+          "stars": 87600,
+          "forks": 11472,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1215
-        },
-        {
-          "name": "ccxt/ccxt",
-          "url": "https://github.com/ccxt/ccxt",
-          "description": "A unified trading API with more than 100 crypto exchanges and prediction markets in JavaScript / TypeScript / Python / C# / PHP / Go / Java / Rust",
-          "summary_zh": "统一百余家加密货币交易所与预测市场交易接口，一套代码跨八种语言调用",
-          "stars": 43944,
-          "forks": 8833,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 114
-        },
-        {
-          "name": "ajeetdsouza/zoxide",
-          "url": "https://github.com/ajeetdsouza/zoxide",
-          "description": "A smarter cd command. Supports all major shells.",
-          "summary_zh": "比 cd 更智能的目录跳转工具，按访问频率和路径匹配快速跳转，兼容所有主流 shell",
-          "stars": 39387,
-          "forks": 897,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 228
+          "stars_period": 1337
         },
         {
           "name": "cathrynlavery/diagram-design",
           "url": "https://github.com/cathrynlavery/diagram-design",
           "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
-          "summary_zh": "为 AI 编码工具提供 38 种编辑级图表模板，纯 HTML+SVG 自包含渲染，告别 Mermaid 的粗糙质感",
-          "stars": 38255,
-          "forks": 2422,
+          "summary_zh": "为 AI 编码工具提供 38 种编辑级图表模板，纯 HTML+SVG 自包含渲染，拒绝 Mermaid 的粗糙质感",
+          "stars": 38661,
+          "forks": 2458,
           "language": "HTML",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7329
+          "stars_period": 7776
+        },
+        {
+          "name": "AlexsJones/llmfit",
+          "url": "https://github.com/AlexsJones/llmfit",
+          "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
+          "summary_zh": "一条命令从数百模型与供应商中筛出能在你硬件上跑的，Rust 打造，省去手动比对配置的麻烦",
+          "stars": 36161,
+          "forks": 2286,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1191
+        },
+        {
+          "name": "debpalash/VoiceStudio",
+          "url": "https://github.com/debpalash/VoiceStudio",
+          "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
+          "summary_zh": "完全本地运行的开源 ElevenLabs 替代品，支持 646 种语言的语音克隆、设计与视频配音",
+          "stars": 22738,
+          "forks": 2798,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 5465
         }
       ]
     }
@@ -396,7 +363,7 @@
           "url": "http://arxiv.org/abs/2609.11915v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11915v1",
           "abstract": "Generative artificial intelligence changes how firms reach customers, but standard marketing data do not record how often users see and notice a firm's name in generated answers. We develop Generative",
-          "summary_zh": "提出生成式营销组合建模框架，将GEO与GEM纳入因果推断，量化生成式AI曝光对业务影响的因果效应",
+          "summary_zh": "提出生成式营销组合建模框架，用因果推断量化GEO与GEM对业务的影响，填补生成式AI曝光数据缺失",
           "authors": [
             "Masahiro Kato",
             "Daiki Honma",
@@ -414,7 +381,7 @@
           "url": "http://arxiv.org/abs/2609.11913v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11913v1",
           "abstract": "Out-of-distribution length generalization, namely to extrapolate a task from short to longer context, has been studied intensively for transformers. Here we focus on distance generalization, which pro",
-          "summary_zh": "发现无位置编码的Transformer在距离泛化上优于带位置编码模型，挑战了位置编码的必要性",
+          "summary_zh": "发现无位置编码的Transformer在距离泛化上表现更优，挑战了位置编码的必要性",
           "authors": [
             "Daniel Henrik Nevermann",
             "Claudius Gros"
@@ -429,7 +396,7 @@
           "url": "http://arxiv.org/abs/2609.11900v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11900v1",
           "abstract": "Spatial reasoning depends not only on metric properties such as distance, angle, and shape, but also on topological relations that remain invariant under continuous deformation. Cognitive science iden",
-          "summary_zh": "提出MindTopo基准评估基础模型拓扑空间推理能力，揭示其在连续变形不变关系上的显著不足",
+          "summary_zh": "提出拓扑空间推理基准MindTopo并揭示基础模型在连续变形下拓扑关系理解上的显著缺陷",
           "authors": [
             "Yunfei Ge",
             "Anbang Liu",
@@ -453,7 +420,7 @@
           "url": "http://arxiv.org/abs/2609.11918v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11918v1",
           "abstract": "Generalization under distribution shift remains a core challenge in modern machine learning, yet existing learning bound theory is limited to narrow, idealized settings and is non-estimable from sampl",
-          "summary_zh": "提出可估计的协变量与概念偏移统一量化框架，突破传统学习界理论局限，实现从样本直接估计并指导实际应用",
+          "summary_zh": "提出可估计的协变量与概念偏移统一量化框架，突破传统学习界理论局限，实现分布偏移下泛化误差的样本级评估",
           "authors": [
             "Hongbo Chen",
             "Li Charlie Xia"
@@ -496,7 +463,7 @@
           "url": "http://arxiv.org/abs/2609.11916v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11916v1",
           "abstract": "Camera traps often run in the field on edge hardware with limited or no connectivity, making small, locally-deployable vision-language models (VLMs) -- not frontier-scale ones -- the practically relev",
-          "summary_zh": "评估多款边缘可部署视觉语言模型的物种识别能力，发现小模型在相机陷阱场景下性能有限，需针对性优化",
+          "summary_zh": "评估多种边缘可部署小型视觉语言模型的物种识别能力，发现其性能有限，需针对性优化才能实用",
           "authors": [
             "William Zhou",
             "Mayukha Siripuram",
@@ -512,7 +479,7 @@
           "url": "http://arxiv.org/abs/2609.11870v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11870v1",
           "abstract": "A language model normally begins training with random word embeddings: whatever 'banana' means must be learned from training corpora. I implement St. Augustine's picture of word learning, meaning by o",
-          "summary_zh": "将奥古斯丁指物定义思想引入小模型训练，用视觉锚定词向量，在千万词上验证其能教与不能教之处",
+          "summary_zh": "将奥古斯丁指物释义注入DeBERTa训练前嵌入，在千万词级BabyLM上验证视觉锚定词义习得的可行边界",
           "authors": [
             "Lisa Bylinina"
           ],
@@ -532,7 +499,7 @@
           "url": "http://arxiv.org/abs/2609.11923v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11923v1",
           "abstract": "Counterfactual regret minimization (CFR) is one of the few large numerical workloads that still runs faster on CPUs than on GPUs. Each iteration sweeps a game tree with up to billions of states in mil",
-          "summary_zh": "将博弈树编译为静态数据流并用CUDA图重放，消除通用树接口开销，实现比CPU快80倍的CFR训练",
+          "summary_zh": "将博弈树编译为静态数据流并用CUDA图重放，消除通用树接口开销，实现反事实遗憾最小化训练速度提升80倍",
           "authors": [
             "Boning Li",
             "Longbo Huang"
@@ -549,7 +516,7 @@
           "url": "http://arxiv.org/abs/2609.11917v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11917v1",
           "abstract": "As the supply of human-written text is exhausted, it has become standard practice to repeat language model training data. Prior work has studied data repetition for densely activated Transformers, but",
-          "summary_zh": "首次系统研究稀疏专家混合模型在重复数据下的过拟合问题，发现其比稠密Transformer更严重且随专家稀疏度加剧",
+          "summary_zh": "揭示稀疏专家混合模型比稠密Transformer更易过拟合重复数据，提出路由稀疏性加剧记忆的机制并给出缓解策略",
           "authors": [
             "Atindra Jha",
             "Margaret Li",
@@ -566,7 +533,7 @@
           "url": "http://arxiv.org/abs/2609.11910v1",
           "pdf_url": "https://arxiv.org/pdf/2609.11910v1",
           "abstract": "Artificial Intelligence does more than create a governance problem. It can also reveal where institutions have already failed to provide responsiveness, belonging, care, and accountability. Once deplo",
-          "summary_zh": "提出从协议到证据的AI治理框架，将AI部署视为制度干预，通过可证伪的有界主张评估其对响应性归属关怀与问责的修复或替代效果",
+          "summary_zh": "提出从协议到证据的AI治理框架，将AI部署视为制度干预，通过可验证的有限主张评估其对响应性归属关怀与问责的修复或替代效果",
           "authors": [
             "Nitesh V. Chawla",
             "Paulo Benanti"
