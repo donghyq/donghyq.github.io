@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-14T14:32:49.365470+00:00Z",
+  "generated_at": "2026-09-15T12:59:06.131748+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, Rust, JavaScript）。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "obra/superpowers",
           "url": "https://github.com/obra/superpowers",
           "description": "An agentic skills framework & software development methodology that works.",
-          "summary_zh": "让 AI 编码 Agent 按成熟工程方法论工作的技能框架，把软件开发流程变成可复用的 Agent 技能",
-          "stars": 286525,
-          "forks": 25631,
+          "summary_zh": "让 AI 编码 Agent 掌握可复用工程技能与开发方法论，把零散提示词变成可靠工作流",
+          "stars": 286955,
+          "forks": 25659,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4068
+          "stars_period": 4124
         },
         {
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
           "summary_zh": "为 Claude Code 等 AI 编码代理提供技能记忆与安全优化的性能增强框架",
-          "stars": 258137,
-          "forks": 38605,
+          "stars": 258789,
+          "forks": 38700,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7264
+          "stars_period": 6085
         },
         {
           "name": "microsoft/markitdown",
           "url": "https://github.com/microsoft/markitdown",
           "description": "Python tool for converting files and office documents to Markdown.",
-          "summary_zh": "微软开源的文件转 Markdown 工具，把 Office、PDF 等文档一键转成 AI 友好的结构化文本",
-          "stars": 183892,
-          "forks": 13531,
+          "summary_zh": "微软开源的文件转 Markdown 工具，把 Office、PDF 等文档一键转成 AI 友好的 Markdown 格式",
+          "stars": 184205,
+          "forks": 13571,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5191
+          "stars_period": 4604
         },
         {
-          "name": "langgenius/dify",
-          "url": "https://github.com/langgenius/dify",
-          "description": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so t",
-          "summary_zh": "一站式协作平台构建智能体工作流与RAG管道，支持多云自托管部署，让团队从原型直达生产",
-          "stars": 155685,
-          "forks": 24587,
-          "language": "TypeScript",
+          "name": "DietrichGebert/ponytail",
+          "url": "https://github.com/DietrichGebert/ponytail",
+          "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+          "summary_zh": "让 AI 编码助手学会偷懒，只写真正必要的代码，从源头减少冗余",
+          "stars": 139015,
+          "forks": 7469,
+          "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1072
+          "stars_period": 7722
         }
       ]
     },
@@ -68,56 +68,56 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
-          "name": "D4Vinci/Scrapling",
-          "url": "https://github.com/D4Vinci/Scrapling",
-          "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg",
-          "summary_zh": "自适应网页抓取框架，从单次请求到大规模爬虫全搞定，自动适应页面结构变化",
-          "stars": 80892,
-          "forks": 8166,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1995
-        },
-        {
           "name": "bilawalsidhu/gods-eye-view",
           "url": "https://github.com/bilawalsidhu/gods-eye-view",
           "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
           "summary_zh": "浏览器里的间谍卫星模拟器，用真实开源数据在逼真3D地球上做实时空间情报分析",
-          "stars": 33066,
-          "forks": 6604,
+          "stars": 34223,
+          "forks": 6830,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12931
+          "stars_period": 14403
         },
         {
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "🚀2.3x faster than MinIO for 4KB object payloads. RustFS is an open-source, S3-compatible high-performance object storage system supporting migration a",
           "summary_zh": "比 MinIO 快 2.3 倍的 Rust 高性能 S3 兼容对象存储，支持无缝迁移与共存",
-          "stars": 32123,
-          "forks": 1440,
+          "stars": 32234,
+          "forks": 1445,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 310
+          "stars_period": 319
         },
         {
           "name": "jiji262/douyin-downloader",
           "url": "https://github.com/jiji262/douyin-downloader",
           "description": "A practical Douyin downloader for both single-item and profile batch downloads, with progress display, retries, SQLite deduplication, and browser fall",
-          "summary_zh": "抖音批量下载利器，支持单条与主页批量去水印下载视频图集合集音乐，带进度重试与SQLite去重",
-          "stars": 11700,
-          "forks": 1773,
+          "summary_zh": "抖音批量下载神器，支持视频图集合集音乐去水印，SQLite去重加浏览器回退，单条与主页批量都能下",
+          "stars": 11795,
+          "forks": 1787,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1684
+          "stars_period": 2086
+        },
+        {
+          "name": "BenyRonald77/uajy-academic-rag-chatbot",
+          "url": "https://github.com/BenyRonald77/uajy-academic-rag-chatbot",
+          "description": "Production-grade RAG chatbot for Universitas Atma Jaya Yogyakarta academic handbook with Streamlit, FAISS vector search, and Google Gemini 2.5 Flash.",
+          "summary_zh": "基于FAISS与Gemini 2.5 Flash的学术手册RAG问答机器人，让校规查询秒级精准响应",
+          "stars": 640,
+          "forks": 2,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-08-31T07:59:40Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -127,12 +127,38 @@
       "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
       "repos": [
         {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers",
+          "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both in",
+          "summary_zh": "统一加载与训练文本视觉音频多模态前沿模型的 Python 框架，AI 模型开发的事实标准",
+          "stars": 166164,
+          "forks": 34587,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 975
+        },
+        {
+          "name": "ai-dynamo/dynamo",
+          "url": "https://github.com/ai-dynamo/dynamo",
+          "description": "A Datacenter Scale Distributed Inference Serving Framework",
+          "summary_zh": "数据中心级分布式推理服务框架，用 Rust 打造，专为大规模 AI 模型部署提供高吞吐低延迟的推理调度能力",
+          "stars": 8083,
+          "forks": 1586,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 89
+        },
+        {
           "name": "bojieli/ai-infra-book",
           "url": "https://github.com/bojieli/ai-infra-book",
           "description": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
-          "summary_zh": "从硬件约束与模型架构出发量化推导 LLM 训练推理系统设计的开源书稿，附计算工具与实验",
-          "stars": 1949,
-          "forks": 140,
+          "summary_zh": "从硬件约束与模型架构出发量化推导 LLM 训练推理系统设计，附全书正文、PDF 与配套计算工具的开源 AI Infra 实战书稿",
+          "stars": 3257,
+          "forks": 230,
           "language": "Python",
           "topics": [
             "accelerator",
@@ -151,8 +177,8 @@
           "url": "https://github.com/datawhalechina/zero-to-sglang",
           "description": "Official SGLang x Datawhale course on LLM inference: understand inference, build a mini-sglang from scratch, then read the real SGLang source and land",
           "summary_zh": "从零手写 mini-sglang 再读真实源码，Datawhale 出品的 LLM 推理入门到贡献 PR 实战课",
-          "stars": 884,
-          "forks": 73,
+          "stars": 908,
+          "forks": 75,
           "language": "Python",
           "topics": [
             "cuda",
@@ -163,39 +189,6 @@
             "llm"
           ],
           "created_at": "2026-08-27T02:24:12Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "XHToken/Spark-X2.5",
-          "url": "https://github.com/XHToken/Spark-X2.5",
-          "description": "Spark-x2.5 open model series. Pushing the Limits of Agentic Capabilities in On-Device Models",
-          "summary_zh": "端侧模型系列突破智能体能力上限，让本地设备也能跑出强大 AI Agent",
-          "stars": 234,
-          "forks": 32,
-          "language": "",
-          "topics": [
-            "agent",
-            "ai",
-            "ai-agent",
-            "ai-coding",
-            "ai-model",
-            "huggingface"
-          ],
-          "created_at": "2026-08-24T06:36:40Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "Thinking-Space/One-Shot-OPD",
-          "url": "https://github.com/Thinking-Space/One-Shot-OPD",
-          "description": "Rethinking On-Policy Distillation of Large Language Models II: One Training Example",
-          "summary_zh": "仅需一个训练样本即可完成大模型在线策略蒸馏，大幅降低蒸馏数据成本",
-          "stars": 67,
-          "forks": 2,
-          "language": "Python",
-          "topics": [],
-          "created_at": "2026-09-03T13:11:29Z",
           "source": "search",
           "stars_period": 0
         }
@@ -230,53 +223,53 @@
           "name": "open-webui/open-webui",
           "url": "https://github.com/open-webui/open-webui",
           "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
-          "summary_zh": "支持 Ollama 与 OpenAI API 的自托管 AI 对话界面，让本地大模型拥有媲美 ChatGPT 的易用体验",
-          "stars": 151985,
-          "forks": 22234,
+          "summary_zh": "兼容 Ollama 与 OpenAI API 的自托管 AI 对话界面，开箱即用且功能丰富",
+          "stars": 152134,
+          "forks": 22263,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 862
+          "stars_period": 884
         },
         {
           "name": "clash-verge-rev/clash-verge-rev",
           "url": "https://github.com/clash-verge-rev/clash-verge-rev",
           "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-          "summary_zh": "基于 Tauri 的跨平台现代代理客户端，为 Clash 用户提供轻量高效的图形界面体验",
-          "stars": 144408,
-          "forks": 10387,
+          "summary_zh": "基于 Tauri 的现代跨平台代理客户端，为 Windows、macOS 和 Linux 提供优雅易用的定制化网络代理体验",
+          "stars": 144638,
+          "forks": 10404,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1700
+          "stars_period": 1670
+        },
+        {
+          "name": "rustdesk/rustdesk",
+          "url": "https://github.com/rustdesk/rustdesk",
+          "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
+          "summary_zh": "开源远程桌面工具，支持自托管替代 TeamViewer，用 Rust 打造高性能低延迟的跨平台远控体验",
+          "stars": 123596,
+          "forks": 19033,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 725
         },
         {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
           "summary_zh": "从零手写实现 AI 核心组件的 Python 教程，边学边造边交付，真正吃透大模型底层原理",
-          "stars": 54535,
-          "forks": 9540,
+          "stars": 54648,
+          "forks": 9571,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1968
-        },
-        {
-          "name": "lencx/ChatGPT",
-          "url": "https://github.com/lencx/ChatGPT",
-          "description": "❄️ ChatGPT Desktop Application (Mac, Windows and Linux)",
-          "summary_zh": "跨平台 ChatGPT 桌面客户端，用 Rust 打造轻量原生体验，让 AI 对话脱离浏览器更顺手",
-          "stars": 54520,
-          "forks": 6144,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 72
+          "stars_period": 1865
         }
       ]
     },
@@ -289,53 +282,53 @@
           "name": "microsoft/vscode",
           "url": "https://github.com/microsoft/vscode",
           "description": "Visual Studio Code",
-          "summary_zh": "微软出品的跨平台轻量级代码编辑器，凭丰富插件生态与内置智能提示成为全球开发者首选工具",
-          "stars": 192513,
-          "forks": 42133,
+          "summary_zh": "微软出品的免费跨平台代码编辑器，凭轻量极速与海量插件生态成为全球开发者首选工具",
+          "stars": 192557,
+          "forks": 42149,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1679
+          "stars_period": 1275
         },
         {
           "name": "OpenHands/OpenHands",
           "url": "https://github.com/OpenHands/OpenHands",
           "description": "🙌 OpenHands: AI-Driven Development",
-          "summary_zh": "让 AI 像开发者一样自主写代码、跑命令、改仓库的开源编程智能体平台",
-          "stars": 87868,
-          "forks": 11515,
+          "summary_zh": "让 AI 像工程师一样自主写代码、跑命令、改仓库的开源开发代理平台",
+          "stars": 87982,
+          "forks": 11535,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1477
-        },
-        {
-          "name": "cathrynlavery/diagram-design",
-          "url": "https://github.com/cathrynlavery/diagram-design",
-          "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
-          "summary_zh": "为 AI 编码工具提供 38 种编辑级图表模板，纯 HTML+SVG 自包含渲染，拒绝 Mermaid 式粗糙",
-          "stars": 39627,
-          "forks": 2513,
-          "language": "HTML",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 7129
+          "stars_period": 1508
         },
         {
           "name": "AlexsJones/llmfit",
           "url": "https://github.com/AlexsJones/llmfit",
           "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
-          "summary_zh": "一条命令从数百模型与供应商中筛出能在你硬件上跑的，Rust 打造",
-          "stars": 36512,
-          "forks": 2308,
+          "summary_zh": "一条命令从数百模型与供应商中筛出能跑在你硬件上的大模型，Rust 编写",
+          "stars": 36612,
+          "forks": 2315,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1478
+          "stars_period": 1539
+        },
+        {
+          "name": "JustVugg/colibri",
+          "url": "https://github.com/JustVugg/colibri",
+          "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
+          "summary_zh": "纯C零依赖让普通硬件也能跑前沿MoE大模型，专家权重从磁盘流式加载，小引擎驱动巨模型",
+          "stars": 33098,
+          "forks": 3468,
+          "language": "C",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 5084
         }
       ]
     }
