@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-19T12:07:44.371737+00:00Z",
+  "generated_at": "2026-09-20T12:42:31.029226+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能、记忆与安全优化的性能增强框架，让代理更聪明可靠",
-          "stars": 262504,
-          "forks": 39268,
+          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能、记忆与安全优化的性能增强框架",
+          "stars": 263285,
+          "forks": 39397,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5877
+          "stars_period": 6265
         },
         {
           "name": "microsoft/markitdown",
           "url": "https://github.com/microsoft/markitdown",
           "description": "Python tool for converting files and office documents to Markdown.",
-          "summary_zh": "微软开源的文件转 Markdown 工具，能把 Office、PDF 等文档一键转成适合 RAG 与大模型处理的纯文本格式",
-          "stars": 185540,
-          "forks": 13655,
+          "summary_zh": "微软开源的文件转 Markdown 工具，轻松把 Office、PDF 等文档转成 AI 友好的 Markdown 格式",
+          "stars": 185829,
+          "forks": 13681,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2841
+          "stars_period": 2767
         },
         {
           "name": "anthropics/claude-code",
           "url": "https://github.com/anthropics/claude-code",
           "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, ex",
-          "summary_zh": "终端里的智能编码代理，理解代码库并自动执行日常任务、解释复杂代码与处理 Git 工作流",
-          "stars": 146517,
-          "forks": 23836,
+          "summary_zh": "终端里的智能编程助手，理解你的代码库，自动执行日常任务、解释复杂代码并处理 Git 工作流",
+          "stars": 146913,
+          "forks": 23989,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1620
+          "stars_period": 1999
         },
         {
           "name": "addyosmani/agent-skills",
           "url": "https://github.com/addyosmani/agent-skills",
           "description": "Production-grade engineering skills for AI coding agents.",
-          "summary_zh": "为 AI 编码 Agent 注入生产级工程技能，让 AI 写出的代码更接近成熟工程师水准",
-          "stars": 96671,
-          "forks": 10212,
+          "summary_zh": "为 AI 编码 Agent 提供生产级工程技能库，让 AI 写代码更接近成熟工程师水准",
+          "stars": 97401,
+          "forks": 10275,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3051
+          "stars_period": 3445
         }
       ]
     },
@@ -68,56 +68,56 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
+          "name": "BurntSushi/ripgrep",
+          "url": "https://github.com/BurntSushi/ripgrep",
+          "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
+          "summary_zh": "Rust 编写的高速递归搜索工具，自动遵循 gitignore 规则，比 grep 快数倍",
+          "stars": 68463,
+          "forks": 3201,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 296
+        },
+        {
           "name": "bilawalsidhu/gods-eye-view",
           "url": "https://github.com/bilawalsidhu/gods-eye-view",
           "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
-          "summary_zh": "浏览器里的实时开源卫星情报模拟器，在逼真3D地球上查看真实空间数据",
-          "stars": 38206,
-          "forks": 7711,
+          "summary_zh": "浏览器里的开源间谍卫星模拟器，用真实数据在逼真3D地球上做实时空间情报分析",
+          "stars": 39031,
+          "forks": 7883,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 11683
+          "stars_period": 10207
         },
         {
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "RustFS is an open-source, S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms",
-          "summary_zh": "兼容 S3 的高性能对象存储系统，用 Rust 打造，可无缝迁移并与 MinIO、Ceph 共存",
-          "stars": 33302,
-          "forks": 1490,
+          "summary_zh": "Rust 编写的高性能 S3 兼容对象存储，可无缝迁移并共存于 MinIO 和 Ceph 等平台",
+          "stars": 33452,
+          "forks": 1499,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1338
+          "stars_period": 1571
         },
         {
-          "name": "jiji262/douyin-downloader",
-          "url": "https://github.com/jiji262/douyin-downloader",
-          "description": "A practical Douyin downloader for both single-item and profile batch downloads, with progress display, retries, SQLite deduplication, and browser fall",
-          "summary_zh": "抖音批量下载利器，去水印支持视频图集合集音乐，SQLite去重加浏览器兜底",
-          "stars": 11918,
-          "forks": 1838,
-          "language": "Python",
+          "name": "makepad/makepad",
+          "url": "https://github.com/makepad/makepad",
+          "description": "Makepad is a creative software development platform for Rust that compiles to wasm/webGL, osx/metal, windows/dx11 linux/opengl",
+          "summary_zh": "用 Rust 编写跨平台创意应用并一键编译到 Web、桌面与移动端的 GPU 加速开发框架",
+          "stars": 7019,
+          "forks": 387,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1969
-        },
-        {
-          "name": "BenyRonald77/uajy-academic-rag-chatbot",
-          "url": "https://github.com/BenyRonald77/uajy-academic-rag-chatbot",
-          "description": "Production-grade RAG chatbot for Universitas Atma Jaya Yogyakarta academic handbook with Streamlit, FAISS vector search, and Google Gemini 2.5 Flash.",
-          "summary_zh": "基于Streamlit与FAISS向量检索、接入Gemini 2.5 Flash的学术手册RAG问答机器人，让校园教务查询秒级精准响应",
-          "stars": 640,
-          "forks": 2,
-          "language": "Python",
-          "topics": [],
-          "created_at": "2026-08-31T07:59:40Z",
-          "source": "search",
-          "stars_period": 0
+          "stars_period": 260
         }
       ]
     },
@@ -130,35 +130,22 @@
           "name": "huggingface/transformers",
           "url": "https://github.com/huggingface/transformers",
           "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both in",
-          "summary_zh": "统一文本视觉音频多模态的顶尖模型定义框架，一套 API 搞定推理与训练",
-          "stars": 166325,
-          "forks": 34629,
+          "summary_zh": "统一加载与训练文本、视觉、音频及多模态前沿模型的 Python 框架，推理训练皆宜",
+          "stars": 166440,
+          "forks": 34641,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1297
-        },
-        {
-          "name": "rowboatlabs/rowboat",
-          "url": "https://github.com/rowboatlabs/rowboat",
-          "description": "AI coworker with memory and collaboration",
-          "summary_zh": "带记忆与协作能力的 AI 同事，让智能体记住上下文并与人协同完成工作",
-          "stars": 17905,
-          "forks": 1784,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 438
+          "stars_period": 1290
         },
         {
           "name": "bojieli/ai-infra-book",
           "url": "https://github.com/bojieli/ai-infra-book",
           "description": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
-          "summary_zh": "从硬件约束与模型架构出发量化推导 LLM 训练推理系统设计，附全书正文、PDF 与配套计算工具的开源 AI Infra 教材",
-          "stars": 4465,
-          "forks": 315,
+          "summary_zh": "从硬件约束与模型架构出发量化推导 LLM 训练推理系统设计的开源书稿，附 PDF 与计算工具",
+          "stars": 4663,
+          "forks": 330,
           "language": "Python",
           "topics": [
             "accelerator",
@@ -177,8 +164,8 @@
           "url": "https://github.com/datawhalechina/zero-to-sglang",
           "description": "Official SGLang x Datawhale course on LLM inference: understand inference, build a mini-sglang from scratch, then read the real SGLang source and land",
           "summary_zh": "从零手写 mini-sglang 再读真实源码，帮你在动手实践中吃透 LLM 推理引擎并拿下首个 PR",
-          "stars": 980,
-          "forks": 81,
+          "stars": 1145,
+          "forks": 87,
           "language": "Python",
           "topics": [
             "cuda",
@@ -189,6 +176,26 @@
             "llm"
           ],
           "created_at": "2026-08-27T02:24:12Z",
+          "source": "search",
+          "stars_period": 0
+        },
+        {
+          "name": "XHToken/Spark-X2.5",
+          "url": "https://github.com/XHToken/Spark-X2.5",
+          "description": "Spark-x2.5 open model series. Pushing the Limits of Agentic Capabilities in On-Device Models",
+          "summary_zh": "端侧模型也能跑出顶级智能体能力，Spark-X2.5 开源系列让本地设备直接执行复杂 AI 任务",
+          "stars": 291,
+          "forks": 41,
+          "language": "",
+          "topics": [
+            "agent",
+            "ai",
+            "ai-agent",
+            "ai-coding",
+            "ai-model",
+            "huggingface"
+          ],
+          "created_at": "2026-08-24T06:36:40Z",
           "source": "search",
           "stars_period": 0
         }
@@ -203,7 +210,7 @@
           "name": "tosinonye7-ui/SummaraMind-Transformer-Suite",
           "url": "https://github.com/tosinonye7-ui/SummaraMind-Transformer-Suite",
           "description": "Advanced Transformer Summarization Suite: Abstract & Extractive AI Models 2026",
-          "summary_zh": "整合BART与KMeans的Transformer摘要套件，同时搞定生成式与抽取式文本摘要",
+          "summary_zh": "融合抽象与抽取式AI模型，一站式解决文本摘要需求，集成BART与KMeans聚类",
           "stars": 55,
           "forks": 0,
           "language": "HTML",
@@ -227,56 +234,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "clash-verge-rev/clash-verge-rev",
-          "url": "https://github.com/clash-verge-rev/clash-verge-rev",
-          "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-          "summary_zh": "基于 Tauri 的跨平台现代代理客户端，为 Clash 提供轻量高效的图形界面体验",
-          "stars": 145415,
-          "forks": 10464,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1557
-        },
-        {
           "name": "rustdesk/rustdesk",
           "url": "https://github.com/rustdesk/rustdesk",
           "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
-          "summary_zh": "开源远程桌面工具，可自托管替代 TeamViewer，用 Rust 编写，安全高效且完全掌控数据",
-          "stars": 123977,
-          "forks": 19145,
+          "summary_zh": "开源远程桌面工具，可自托管替代 TeamViewer，用 Rust 打造高性能跨平台远控体验",
+          "stars": 124058,
+          "forks": 19175,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1007
+          "stars_period": 996
         },
         {
           "name": "supabase/supabase",
           "url": "https://github.com/supabase/supabase",
           "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
-          "summary_zh": "为 Web 与 AI 应用提供专属 Postgres 数据库的开发平台，开源替代 Firebase",
-          "stars": 110269,
-          "forks": 14332,
+          "summary_zh": "专为开发者打造的 Postgres 开发平台，提供专属数据库快速构建 Web、移动与 AI 应用",
+          "stars": 110387,
+          "forks": 14420,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1152
+          "stars_period": 1389
         },
         {
           "name": "Fission-AI/OpenSpec",
           "url": "https://github.com/Fission-AI/OpenSpec",
           "description": "Spec-driven development (SDD) for AI coding assistants.",
-          "summary_zh": "让 AI 编码助手按规范驱动开发，用 TypeScript 实现规格先行的可控编码流程",
-          "stars": 69510,
-          "forks": 4763,
+          "summary_zh": "为 AI 编码助手提供规格驱动开发框架，用结构化规格约束代码生成，让 AI 编程更可控可预测",
+          "stars": 69637,
+          "forks": 4771,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1519
+          "stars_period": 1537
+        },
+        {
+          "name": "Open-Dev-Society/OpenStock",
+          "url": "https://github.com/Open-Dev-Society/OpenStock",
+          "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company i",
+          "summary_zh": "免费开源的行情追踪平台，实时报价、自定义提醒加公司洞察，替代昂贵金融终端",
+          "stars": 16462,
+          "forks": 2115,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1636
         }
       ]
     },
@@ -286,56 +293,56 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "ruvnet/RuView",
-          "url": "https://github.com/ruvnet/RuView",
-          "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
-          "summary_zh": "用普通WiFi信号实现实时空间感知、生命体征监测与存在检测，无需任何摄像头画面",
-          "stars": 94440,
-          "forks": 12499,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1640
-        },
-        {
-          "name": "jamiepine/voicebox",
-          "url": "https://github.com/jamiepine/voicebox",
-          "description": "The open-source AI voice studio. Clone, dictate, create.",
-          "summary_zh": "开源 AI 语音工作室，一站式完成声音克隆、语音听写与音频创作",
-          "stars": 55144,
-          "forks": 6874,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 2281
-        },
-        {
-          "name": "debpalash/VoiceStudio",
-          "url": "https://github.com/debpalash/VoiceStudio",
-          "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
-          "summary_zh": "完全本地运行的开源 ElevenLabs 替代品，支持 646 种语言的语音克隆、设计与视频配音",
-          "stars": 33024,
-          "forks": 3912,
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch",
+          "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+          "summary_zh": "深度学习框架标杆，用张量计算与动态神经网络实现强大 GPU 加速",
+          "stars": 103121,
+          "forks": 29909,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 10449
+          "stars_period": 201
         },
         {
-          "name": "ankitects/anki",
-          "url": "https://github.com/ankitects/anki",
-          "description": "Anki is a smart spaced repetition flashcard program",
-          "summary_zh": "用智能间隔重复算法把记忆效率最大化的开源闪卡工具，支持全平台同步与海量插件扩展",
-          "stars": 31297,
-          "forks": 3242,
+          "name": "ruvnet/RuView",
+          "url": "https://github.com/ruvnet/RuView",
+          "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
+          "summary_zh": "用普通WiFi信号实现实时空间感知、生命体征监测与存在检测，无需任何视频画面",
+          "stars": 94526,
+          "forks": 12507,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 860
+          "stars_period": 1646
+        },
+        {
+          "name": "zed-industries/zed",
+          "url": "https://github.com/zed-industries/zed",
+          "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+          "summary_zh": "Atom 与 Tree-sitter 作者打造的 Rust 高性能多人协作代码编辑器，让编码快如思考",
+          "stars": 90614,
+          "forks": 10705,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 489
+        },
+        {
+          "name": "666ghj/MiroFish",
+          "url": "https://github.com/666ghj/MiroFish",
+          "description": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物",
+          "summary_zh": "基于群体智能的通用预测引擎，用简单方式对任意事物做预测",
+          "stars": 74068,
+          "forks": 11396,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1931
         }
       ]
     }
@@ -350,7 +357,7 @@
           "url": "http://arxiv.org/abs/2609.20807v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20807v1",
           "abstract": "Reinforcement learning (RL) of large language models is notoriously sensitive to small differences between training and inference engines, often referred to as the training-inference mismatch (TIM). H",
-          "summary_zh": "提出分数中心化方法稳定大模型强化学习，有效缓解训练推理不匹配问题并提升策略优化稳定性",
+          "summary_zh": "提出分数中心化方法稳定大模型强化学习，有效缓解训练推理不匹配问题并提升离策略训练稳定性",
           "authors": [
             "Martin Marek",
             "Max Ryabinin"
@@ -382,7 +389,7 @@
           "url": "http://arxiv.org/abs/2609.20761v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20761v1",
           "abstract": "World Action Models (WAMs) advance beyond conventional visuomotor policies by jointly predicting future world states and robot actions, enabling the policy to learn physical dynamics that support effe",
-          "summary_zh": "提出敏捷触觉世界动作模型，通过轻量架构联合预测未来状态与动作，实现富接触机器人控制",
+          "summary_zh": "提出敏捷触觉世界动作模型，通过轻量架构联合预测未来触觉状态与动作，实现接触丰富机器人控制的高效推理",
           "authors": [
             "Hanchu Zhou",
             "Brendan Lynch",
@@ -405,7 +412,7 @@
           "url": "http://arxiv.org/abs/2609.20821v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20821v1",
           "abstract": "Embedding spaces define notions of semantic similarity and distance. We study whether those embeddings reflect physical measurements of mass, distance, time and volume, which admit a unique, objective",
-          "summary_zh": "发现嵌入空间对物理测量的语义距离反映微弱，揭示其与客观度量存在系统性偏差",
+          "summary_zh": "发现嵌入空间对物理测量的表征存在系统性偏差，提出评估框架揭示其语义距离与客观度量仅弱相关",
           "authors": [
             "Juri Opitz",
             "Andrianos Michail"
@@ -421,7 +428,7 @@
           "url": "http://arxiv.org/abs/2609.20800v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20800v1",
           "abstract": "World modeling enables intelligence to anticipate consequences, guide interventions, and learn from interaction. Yet predictive models remain domain-specific: can a common learning principle support w",
-          "summary_zh": "提出域无关的JEPA-Anything预测建模框架，实现跨异构系统世界建模，统一多种领域预测任务",
+          "summary_zh": "提出域无关的JEPA-Anything预测建模范式，统一跨模态世界建模，在多种差异系统上实现通用预测",
           "authors": [
             "Taoyong Cui",
             "Zhongyao Wang",
@@ -437,7 +444,7 @@
           "url": "http://arxiv.org/abs/2609.20794v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20794v1",
           "abstract": "Generative models are increasingly used to solve scientific inverse problems, but existing evaluations still focus primarily on whether a method can produce a single plausible reconstruction. This is ",
-          "summary_zh": "提出PosteriorBench基准，将生成逆求解器评估从单点估计转向后验匹配，揭示现有方法在病态问题上的不足",
+          "summary_zh": "提出生成逆求解器后验匹配评测基准PosteriorBench，突破单点估计局限，实现多解一致性评估",
           "authors": [
             "Jiachen Yao",
             "Zi-Siang Hsu",
@@ -460,7 +467,7 @@
           "url": "http://arxiv.org/abs/2609.20822v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20822v1",
           "abstract": "Coding agents have emerged as a promising paradigm for robot manipulation: a language model writes the robot controller as a program, and agents built in this way now operate robots without robot-spec",
-          "summary_zh": "提出障碍感知执行框架的安全编程智能体，实现机器人无需专项训练即可安全操控并有效规避碰撞风险",
+          "summary_zh": "提出障碍感知执行框架的安全编码智能体，实现无需机器人专项训练的安全操控并完成系统评估",
           "authors": [
             "Bingxin Xu",
             "Yuzhang Shang",
@@ -478,7 +485,7 @@
           "url": "http://arxiv.org/abs/2609.20812v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20812v1",
           "abstract": "Frontier coding agents are increasingly trusted to work autonomously for long periods, yet an agent's final response is often the only account of that work a user sees. We quantify the propensity of f",
-          "summary_zh": "提出量化前沿编程智能体夸大任务完成倾向的评测框架，揭示其最终报告与真实执行间的偏差风险",
+          "summary_zh": "提出评估前沿编程智能体夸大任务完成度的指标，发现其常虚报未完成工作，揭示自主智能体可信度风险",
           "authors": [
             "Nolan Smyth",
             "Yorguin-Jose Mantilla-Ramos",
@@ -496,7 +503,7 @@
           "url": "http://arxiv.org/abs/2609.20804v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20804v1",
           "abstract": "Coding harnesses shape how autonomous coding agents translate model capabilities into long-horizon software-engineering performance, yet existing work typically evaluates harnesses as monolithic syste",
-          "summary_zh": "提出组件级编码智能体测试框架，拆解编码工具链各模块效果，揭示关键组件对长程软件工程性能的独立贡献",
+          "summary_zh": "提出面向编码智能体的组件级测试框架，拆解并对比各模块效果，揭示关键组件对长程任务性能的显著影响",
           "authors": [
             "Run-Ze Fan",
             "Zihao Zhang",
@@ -520,7 +527,7 @@
           "url": "http://arxiv.org/abs/2609.20820v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20820v1",
           "abstract": "Complex robotic manipulation tasks frequently require a long-term memory of past events and actions. As conditioning on full histories renders policies prone to spurious correlations and degrades perf",
-          "summary_zh": "提出显著性驱动监督的轻量机器人记忆模型，压缩历史信息并提升复杂操作任务性能",
+          "summary_zh": "提出显著性驱动监督的轻量机器人工作空间记忆模型，压缩历史信息并提升复杂操作任务策略性能",
           "authors": [
             "Nitish Dashora",
             "Douglas Chen",
@@ -537,7 +544,7 @@
           "url": "http://arxiv.org/abs/2609.20816v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20816v1",
           "abstract": "Professional design requires any-color control: the ability to specify an object's target color with any 24-bit hex value for image generation and editing. Prior work has explored color generation, ed",
-          "summary_zh": "提出统一任意颜色控制框架Paint-Anything，支持24位十六进制色值精确生成与编辑，无需专用颜色表示或额外推理",
+          "summary_zh": "提出统一任意颜色控制框架Paint-Anything，支持24位十六进制精确控色，实现生成与编辑一体化",
           "authors": [
             "Ji Xie",
             "Dewei Zhou",
@@ -555,7 +562,7 @@
           "url": "http://arxiv.org/abs/2609.20815v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20815v1",
           "abstract": "Hereditary polyposis syndromes can be precursor lesions to colorectal cancer and are associated with a broad spectrum of extracolonic tumors. Early identification and accurate classification of these ",
-          "summary_zh": "构建首个结直肠息肉病内镜图像视频数据集ERCPMP-Gx，同步整合形态学、组织病理学与基因组学多模态标注，支撑遗传性息肉病综合征早期识别与精准分类",
+          "summary_zh": "构建首个融合内镜图像视频与组织病理及基因组数据的结直肠息肉病多模态数据集，支撑遗传性息肉病综合征的早期识别与精准分类",
           "authors": [
             "Zahra Ghaffari",
             "Massih Bahar",
@@ -578,7 +585,7 @@
           "url": "http://arxiv.org/abs/2609.20817v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20817v1",
           "abstract": "Modeling articulated objects from sparse monocular views is challenging because each observation reveals only partial geometry and motion evidence. Most feed-forward methods infer articulation from a ",
-          "summary_zh": "提出前馈式稀疏观测三维关节建模方法，无需类别先验即可从单目稀疏视图重建物体几何与运动",
+          "summary_zh": "提出前馈式稀疏观测三维铰接建模方法，无需类别先验即可从单目稀疏视图重建物体几何与运动",
           "authors": [
             "Kevin Qu",
             "Tao Sun",
@@ -596,7 +603,7 @@
           "url": "http://arxiv.org/abs/2609.20814v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20814v1",
           "abstract": "Pretraining a neural PDE surrogate can reduce the amount of new CFD data needed when geometry or modeled physics changes. However, it remains unclear how different components of distribution shift aff",
-          "summary_zh": "通过预训练254909个翼型RANS解并微调，揭示几何与物理分布偏移如何影响神经PDE代理的迁移增益",
+          "summary_zh": "通过预训练254909个翼型RANS解并微调，揭示几何与物理分布偏移对神经PDE代理模型迁移增益的影响机制",
           "authors": [
             "Pochinapeddi Sai Bhargav",
             "Nithin Somasekharan",
@@ -614,7 +621,7 @@
           "url": "http://arxiv.org/abs/2609.20808v1",
           "pdf_url": "https://arxiv.org/pdf/2609.20808v1",
           "abstract": "Hostile rhetoric toward social groups can normalize exclusion and justify mistreatment, as well as contribute to rising polarization and political violence. Efforts to moderate hostile rhetoric in onl",
-          "summary_zh": "提出统一计算框架整合社会认同与道德基础理论预测网络群体敌意，跨平台验证显著提升敌意言论识别与解释力",
+          "summary_zh": "提出统一计算框架整合群际敌意理论，用大语言模型分析在线话语并预测群体间敌意动态",
           "authors": [
             "Patrick Gerard",
             "Julia Mendelsohn",
