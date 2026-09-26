@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-25T13:05:27.203197+00:00Z",
+  "generated_at": "2026-09-26T12:32:46.217415+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 19 个热门 AI 开源项目（主力语言：Rust, Python, TypeScript）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 19 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 9 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能、记忆与安全优化的性能增强框架，让代理更聪明可靠",
-          "stars": 267231,
-          "forks": 39927,
+          "summary_zh": "为 Claude Code 等 AI 编码代理提供技能、记忆与安全优化的性能增强框架",
+          "stars": 267725,
+          "forks": 39991,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6193
+          "stars_period": 6037
         },
         {
           "name": "anthropics/claude-code",
           "url": "https://github.com/anthropics/claude-code",
           "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, ex",
-          "summary_zh": "终端里的智能编码代理，理解代码库并自动执行日常任务、解释复杂代码与处理 Git 工作流",
-          "stars": 148038,
-          "forks": 24508,
+          "summary_zh": "终端里的智能编程助手，理解代码库并自动执行日常任务、解释复杂代码与处理 Git 流程",
+          "stars": 148158,
+          "forks": 24675,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2384
+          "stars_period": 2102
         },
         {
           "name": "addyosmani/agent-skills",
           "url": "https://github.com/addyosmani/agent-skills",
           "description": "Production-grade engineering skills for AI coding agents.",
-          "summary_zh": "为 AI 编码 Agent 提供生产级工程技能库，让 AI 写代码更接近成熟工程师水准",
-          "stars": 98979,
-          "forks": 10389,
+          "summary_zh": "为 AI 编码 Agent 注入生产级工程技能，让 AI 写出的代码真正达到可上线的成熟水准",
+          "stars": 99183,
+          "forks": 10417,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3345
+          "stars_period": 2911
         },
         {
           "name": "paperclipai/paperclip",
           "url": "https://github.com/paperclipai/paperclip",
           "description": "The open-source app everyone uses to manage agents at work",
-          "summary_zh": "开源AI Agent工作管理平台，让团队像管员工一样统一调度和协作各类智能体",
-          "stars": 83529,
-          "forks": 15137,
+          "summary_zh": "开源团队级 AI Agent 工作管理平台，让多人协作调度智能体像用办公软件一样简单",
+          "stars": 85998,
+          "forks": 15314,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2321
+          "stars_period": 2616
         }
       ]
     },
@@ -71,58 +71,51 @@
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "RustFS is an open-source, S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms",
-          "summary_zh": "兼容 S3 的高性能 Rust 对象存储，可无缝迁移并与 MinIO、Ceph 共存",
-          "stars": 33874,
-          "forks": 1518,
+          "summary_zh": "兼容 S3 的高性能 Rust 对象存储，可与 MinIO、Ceph 平滑迁移共存",
+          "stars": 33929,
+          "forks": 1524,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1093
+          "stars_period": 878
+        },
+        {
+          "name": "huggingface/tokenizers",
+          "url": "https://github.com/huggingface/tokenizers",
+          "description": "💥 Fast State-of-the-Art Tokenizers optimized for Research and Production",
+          "summary_zh": "Hugging Face 出品的高性能分词器库，用 Rust 实现，兼顾研究灵活性与生产级速度",
+          "stars": 11117,
+          "forks": 1208,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 73
         },
         {
           "name": "hydra-db/hydradb",
           "url": "https://github.com/hydra-db/hydradb",
           "description": "HydraDB - fast graph database on object storage",
-          "summary_zh": "基于对象存储的极速图数据库，用 Rust 打造，让海量图数据低成本存于 S3 等对象存储仍保持高性能查询",
-          "stars": 6296,
-          "forks": 2291,
+          "summary_zh": "基于对象存储构建的高性能图数据库，用 Rust 打造，让海量图数据在廉价存储上也能快速查询",
+          "stars": 7415,
+          "forks": 2827,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2513
+          "stars_period": 3563
         },
         {
           "name": "BenyRonald77/uajy-academic-rag-chatbot",
           "url": "https://github.com/BenyRonald77/uajy-academic-rag-chatbot",
           "description": "Production-grade RAG chatbot for Universitas Atma Jaya Yogyakarta academic handbook with Streamlit, FAISS vector search, and Google Gemini 2.5 Flash.",
-          "summary_zh": "基于FAISS向量检索与Gemini 2.5 Flash的学术手册RAG问答机器人，让印尼高校学生秒查课程规章",
-          "stars": 494,
-          "forks": 2,
+          "summary_zh": "基于Streamlit与FAISS向量检索的校园学术手册RAG问答机器人，接入Gemini 2.5 Flash实现高效精准的教务信息查询",
+          "stars": 479,
+          "forks": 1,
           "language": "Python",
           "topics": [],
           "created_at": "2026-08-31T07:59:40Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "Nehanth/swarmllm",
-          "url": "https://github.com/Nehanth/swarmllm",
-          "description": "Every device brings a slice. Together they run the whole model. Peer-to-peer LLM inference across browser tabs: a from-scratch WebGPU engine and a Web",
-          "summary_zh": "把27B大模型拆到多个浏览器标签页，用WebGPU和WebRTC实现点对点分布式推理",
-          "stars": 446,
-          "forks": 64,
-          "language": "JavaScript",
-          "topics": [
-            "browser",
-            "distributed-inference",
-            "inference",
-            "llm",
-            "local-llm",
-            "peer-to-peer"
-          ],
-          "created_at": "2026-09-01T00:05:54Z",
           "source": "search",
           "stars_period": 0
         }
@@ -134,31 +127,24 @@
       "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
       "repos": [
         {
-          "name": "datawhalechina/zero-to-sglang",
-          "url": "https://github.com/datawhalechina/zero-to-sglang",
-          "description": "Official SGLang x Datawhale course on LLM inference: understand inference, build a mini-sglang from scratch, then read the real SGLang source and land",
-          "summary_zh": "从零手写 mini-sglang 再读真实源码，Datawhale 带你吃透 LLM 推理引擎并拿下首个 PR",
-          "stars": 1285,
-          "forks": 103,
+          "name": "NVIDIA/Model-Optimizer",
+          "url": "https://github.com/NVIDIA/Model-Optimizer",
+          "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, et",
+          "summary_zh": "英伟达开源的一站式模型压缩库，集成量化蒸馏剪枝与投机解码等SOTA技术，让大模型更小更快",
+          "stars": 4602,
+          "forks": 656,
           "language": "Python",
-          "topics": [
-            "cuda",
-            "datawhale",
-            "inference-engine",
-            "infra",
-            "kv-cache",
-            "llm"
-          ],
-          "created_at": "2026-08-27T02:24:12Z",
-          "source": "search",
-          "stars_period": 0
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 758
         },
         {
           "name": "Thinking-Space/One-Shot-OPD",
           "url": "https://github.com/Thinking-Space/One-Shot-OPD",
           "description": "Rethinking On-Policy Distillation of Large Language Models II: One Training Example",
-          "summary_zh": "仅需一个训练样本即可完成大模型在线策略蒸馏，重新审视并简化了传统蒸馏流程",
-          "stars": 83,
+          "summary_zh": "仅需一个训练样本即可完成大模型在线策略蒸馏，重新定义高效蒸馏范式",
+          "stars": 84,
           "forks": 3,
           "language": "Python",
           "topics": [],
@@ -177,14 +163,14 @@
           "name": "FareedKhan-dev/train-llm-from-scratch",
           "url": "https://github.com/FareedKhan-dev/train-llm-from-scratch",
           "description": "A straightforward method for training your LLM, from downloading data to generating text.",
-          "summary_zh": "从零手写LLM全流程实战教程，覆盖数据下载到文本生成，适合想彻底搞懂大模型训练细节的开发者",
-          "stars": 10965,
-          "forks": 1538,
+          "summary_zh": "从零手写训练大模型全流程，覆盖数据下载到文本生成，适合想彻底搞懂 LLM 底层原理的开发者",
+          "stars": 11156,
+          "forks": 1558,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1294
+          "stars_period": 1376
         }
       ]
     },
@@ -197,53 +183,53 @@
           "name": "clash-verge-rev/clash-verge-rev",
           "url": "https://github.com/clash-verge-rev/clash-verge-rev",
           "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-          "summary_zh": "基于 Tauri 的现代化跨平台代理客户端，为 Windows、macOS 和 Linux 提供更优雅的 Clash 使用体验",
-          "stars": 147261,
-          "forks": 10580,
+          "summary_zh": "基于 Tauri 的现代化跨平台代理客户端，为 Windows、macOS 和 Linux 提供优雅的定制化网络代理体验",
+          "stars": 147469,
+          "forks": 10596,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2121
-        },
-        {
-          "name": "farion1231/cc-switch",
-          "url": "https://github.com/farion1231/cc-switch",
-          "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.i",
-          "summary_zh": "跨平台桌面工具，一站式管理 Claude Code、Codex 等多个 AI 编码 Agent，免去多端切换烦恼",
-          "stars": 136727,
-          "forks": 9317,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 3168
+          "stars_period": 2117
         },
         {
           "name": "rust-lang/rust",
           "url": "https://github.com/rust-lang/rust",
           "description": "Empowering everyone to build reliable and efficient software.",
-          "summary_zh": "让开发者用内存安全与零成本抽象构建高效可靠软件的系统级编程语言",
-          "stars": 119157,
-          "forks": 16664,
+          "summary_zh": "Rust 语言官方编译器与工具链，以内存安全零成本抽象解决系统级开发难题",
+          "stars": 119188,
+          "forks": 16812,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 291
+          "stars_period": 308
         },
         {
-          "name": "Fission-AI/OpenSpec",
-          "url": "https://github.com/Fission-AI/OpenSpec",
-          "description": "Spec-driven development (SDD) for AI coding assistants.",
-          "summary_zh": "为 AI 编码助手提供规范驱动开发框架，用结构化规格约束生成过程，让 AI 写代码有据可依",
-          "stars": 70309,
-          "forks": 4811,
+          "name": "rohitg00/ai-engineering-from-scratch",
+          "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+          "description": "Learn it. Build it. Ship it for others.",
+          "summary_zh": "从零手写实现 AI 工程核心组件，边学边造边交付，真正吃透大模型底层原理",
+          "stars": 57912,
+          "forks": 10058,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 2923
+        },
+        {
+          "name": "Crosstalk-Solutions/project-nomad",
+          "url": "https://github.com/Crosstalk-Solutions/project-nomad",
+          "description": "Project NOMAD is an offline-first knowledge and education server. Wikipedia, thousands of books, courses, maps, and optional local AI, all running on ",
+          "summary_zh": "离线优先的知识教育服务器，把维基百科、数千本书籍课程地图和本地AI装进你自己的硬件，断网也能用",
+          "stars": 38488,
+          "forks": 3825,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1415
+          "stars_period": 1316
         }
       ]
     },
@@ -256,53 +242,53 @@
           "name": "pytorch/pytorch",
           "url": "https://github.com/pytorch/pytorch",
           "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
-          "summary_zh": "深度学习框架标杆，以张量计算和动态神经网络为核心，凭强大 GPU 加速让模型训练与部署高效灵活",
-          "stars": 103296,
-          "forks": 30391,
+          "summary_zh": "深度学习框架标杆，用张量与动态神经网络加GPU加速解决模型训练与部署难题",
+          "stars": 103349,
+          "forks": 30526,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 228
+          "stars_period": 255
         },
         {
-          "name": "ZuodaoTech/everyone-can-use-english",
-          "url": "https://github.com/ZuodaoTech/everyone-can-use-english",
-          "description": "人人都能用英语",
-          "summary_zh": "用 AI 把英语学习拆成可执行步骤的开源教程，让零基础也能真正开口说英语",
-          "stars": 38296,
-          "forks": 5242,
+          "name": "upscayl/upscayl",
+          "url": "https://github.com/upscayl/upscayl",
+          "description": "🆙 Upscayl - #1 Free and Open Source AI Image Upscaler for Linux, MacOS and Windows.",
+          "summary_zh": "免费开源的跨平台 AI 图像放大工具，本地运行即可无损提升图片分辨率",
+          "stars": 49917,
+          "forks": 2529,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 717
+          "stars_period": 593
         },
         {
           "name": "anthropics/financial-services",
           "url": "https://github.com/anthropics/financial-services",
           "description": "",
-          "summary_zh": "Anthropic 开源的金融 AI 代理工具库，让 Claude 自动完成财务分析与建模任务",
-          "stars": 37481,
-          "forks": 5427,
+          "summary_zh": "Anthropic 官方开源的金融 AI 服务工具集，为金融场景提供可落地的智能分析能力",
+          "stars": 37621,
+          "forks": 5440,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2382
+          "stars_period": 2623
         },
         {
-          "name": "ankitects/anki",
-          "url": "https://github.com/ankitects/anki",
-          "description": "Anki is a smart spaced repetition flashcard program",
-          "summary_zh": "用 Rust 打造的开源智能间隔重复记忆卡工具，帮你在遗忘临界点复习，让记忆效率最大化",
-          "stars": 31528,
-          "forks": 3268,
+          "name": "pnpm/pnpm",
+          "url": "https://github.com/pnpm/pnpm",
+          "description": "Fast, disk space efficient package manager",
+          "summary_zh": "极速省磁盘的包管理器，用硬链接共享依赖，安装快人一步还大幅节省空间",
+          "stars": 36650,
+          "forks": 1868,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 590
+          "stars_period": 104
         }
       ]
     }
@@ -317,7 +303,7 @@
           "url": "http://arxiv.org/abs/2609.30264v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30264v1",
           "abstract": "Latent world models are typically trained to predict factual transitions, whereas model predictive control (MPC) must compare alternative actions from the same state. A model can therefore achieve low",
-          "summary_zh": "提出动作判别性世界模型AD-WM，通过对比候选动作优化潜在表征，显著提升反事实预测控制性能",
+          "summary_zh": "提出动作判别性世界模型AD-WM，通过增强候选动作区分能力改进反事实预测控制，显著提升MPC决策性能",
           "authors": [
             "Jiabin Qiu",
             "Zixuan Chen",
@@ -334,7 +320,7 @@
           "url": "http://arxiv.org/abs/2609.30249v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30249v1",
           "abstract": "Coding agents have demonstrated enormous success in solving complex programming problems. To leverage their potential for robot systems, this work introduces Robot Agentic Programming from Demonstrati",
-          "summary_zh": "提出从单次演示自动生成验证并优化机器人程序的智能体框架，实现高效机器人编程",
+          "summary_zh": "提出从单次演示自动生成验证并优化机器人程序的智能体框架，实现无需人工干预的机器人编程",
           "authors": [
             "Yuyao Liu",
             "Jiayuan Mao",
@@ -352,7 +338,7 @@
           "url": "http://arxiv.org/abs/2609.30227v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30227v1",
           "abstract": "Online misinformation increasingly appears in spoken formats such as news clips, podcasts, interviews, political speeches, and social media videos, creating a need for fact-checking systems that can v",
-          "summary_zh": "提出语音事实核查基准VeriSpeak，实现从语音直接验证声明并揭示检索增强模型的可信度边界",
+          "summary_zh": "提出语音事实核查基准 VeriSpeak，揭示检索增强系统在语音场景的信任判断瓶颈并给出评估方法",
           "authors": [
             "Debajyoti Mazumder",
             "Mamta",
@@ -389,36 +375,21 @@
           "published": "2026-09-24T17:59:54Z"
         },
         {
-          "title": "Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied Reinforcement Learning",
-          "url": "http://arxiv.org/abs/2609.30258v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30258v1",
-          "abstract": "Distributed learning in embodied reinforcement-learning agents offers a degree of privacy by retaining raw sensor data on-device and transmitting only policy gradients to the server. Yet temporal stru",
-          "summary_zh": "提出时序梯度反演攻击，利用轨迹时间结构从策略梯度中重建具身强化学习智能体的私有轨迹，突破单帧攻击局限",
+          "title": "Coding Agents for Generalized Task and Motion Planning Problems",
+          "url": "http://arxiv.org/abs/2609.30233v1",
+          "pdf_url": "https://arxiv.org/pdf/2609.30233v1",
+          "abstract": "Task and motion planning (TAMP) problems remain difficult even with full observability and object-centric states because discrete decisions are tightly coupled to geometric, kinematic, and dynamic con",
+          "summary_zh": "提出用编码智能体求解广义任务与运动规划问题，通过代码生成统一离散决策与几何约束，提升跨实例泛化能力",
           "authors": [
-            "Sudip Bhujel",
-            "Shanghao Shi",
-            "Ruiquan Huang"
+            "Matteo Merler",
+            "Bowen Li",
+            "Josh Roy"
           ],
           "categories": [
-            "cs.LG"
+            "cs.RO",
+            "cs.AI"
           ],
-          "published": "2026-09-24T17:59:18Z"
-        },
-        {
-          "title": "Agentic Detection of Online Conspiracies",
-          "url": "http://arxiv.org/abs/2609.30250v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30250v1",
-          "abstract": "Conspiratorial discourse on social media is not always expressed through explicit claims or stable lexical markers. The same surface content may express endorsement, legitimate concerns, criticism, sa",
-          "summary_zh": "提出智能体框架识别社交媒体阴谋论话语，区分支持关切批评讽刺等意图，突破表层词汇局限提升检测精度",
-          "authors": [
-            "Lior Biton",
-            "Oren Tsur"
-          ],
-          "categories": [
-            "cs.CL",
-            "cs.LG"
-          ],
-          "published": "2026-09-24T17:58:43Z"
+          "published": "2026-09-24T17:53:35Z"
         }
       ]
     },
@@ -431,7 +402,7 @@
           "url": "http://arxiv.org/abs/2609.30247v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30247v1",
           "abstract": "World Action Models (WAMs) couple action generation with future visual prediction for robotic manipulation. However, completing the joint video-action denoising process at each replanning cycle incurs",
-          "summary_zh": "提出滚动想象世界动作模型，通过异步去耦视频与动作去噪降低重规划延迟，提升机器人闭环响应速度",
+          "summary_zh": "提出滚动想象世界动作模型，通过复用历史去噪结果降低重规划延迟，提升机器人闭环响应速度",
           "authors": [
             "Yinghua Zhou",
             "Junjie Ye",
@@ -445,29 +416,11 @@
           "published": "2026-09-24T17:58:03Z"
         },
         {
-          "title": "SemMSA: Latent Semantic-Aided Robust Multimodal Sentiment Analysis with Incomplete Data",
-          "url": "http://arxiv.org/abs/2609.30238v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30238v1",
-          "abstract": "Recent research on Multimodal Sentiment Analysis (MSA) has focused on learning from language, visual, and acoustic modalities with incomplete data to infer human sentiment. Most studies typically comp",
-          "summary_zh": "提出潜在语义辅助的多模态情感分析框架，通过语义引导补全缺失模态并增强融合鲁棒性，在多个不完整数据基准上取得领先性能",
-          "authors": [
-            "Wenhao Li",
-            "Zhibin Wu",
-            "Chong Xiao"
-          ],
-          "categories": [
-            "cs.CL",
-            "cs.CV",
-            "cs.MM"
-          ],
-          "published": "2026-09-24T17:55:31Z"
-        },
-        {
           "title": "TrackEverything: Long Horizon Dense Tracking via De-Duplicating 3D Scene Representations",
           "url": "http://arxiv.org/abs/2609.30222v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30222v1",
           "abstract": "Existing point tracking models face a fundamental tradeoff: they can either track a sparse set of query points over long horizons, or track all points across only short clips. We introduce TrackEveryt",
-          "summary_zh": "提出去重三维场景表示的长时程稠密点追踪器，突破稀疏长时与稠密短时权衡，实现全点长时追踪",
+          "summary_zh": "提出去重3D场景表示的长时程稠密点追踪器，兼顾全点追踪与长时程，突破稀疏与短片段权衡",
           "authors": [
             "Ayush Jain",
             "Sreeharsha Paruchuri",
@@ -479,6 +432,22 @@
             "cs.RO"
           ],
           "published": "2026-09-24T17:48:20Z"
+        },
+        {
+          "title": "Requirement-Bound Verified Commissioning: A Frozen Four-Billion-Parameter Local Model as a Candidate Generator under an External Acceptance Layer with Verification and Release Authority",
+          "url": "http://arxiv.org/abs/2609.30219v1",
+          "pdf_url": "https://arxiv.org/pdf/2609.30219v1",
+          "abstract": "An acceptance protocol is developed for sensor-coordinate and polarity binding in mechatronic commissioning. Candidate generation is separated from release authority. Requirements unsupported by a det",
+          "summary_zh": "提出将候选生成与发布权分离的验收协议，用冻结的四十亿参数本地模型生成候选，由外部验收层验证并发布",
+          "authors": [
+            "Mehmet Iscan"
+          ],
+          "categories": [
+            "cs.SE",
+            "cs.AI",
+            "eess.SY"
+          ],
+          "published": "2026-09-24T17:46:53Z"
         }
       ]
     },
@@ -491,7 +460,7 @@
           "url": "http://arxiv.org/abs/2609.30226v1",
           "pdf_url": "https://arxiv.org/pdf/2609.30226v1",
           "abstract": "Foundation models are post-trained with reinforcement learning (RL) to maximize specific rewards, such as human alignment, correctness, or instruction following. This post-training process is computat",
-          "summary_zh": "提出从已有策略预测强化学习结果的PoEM方法，无需重复训练即可评估新奖励模型，显著降低后训练计算成本",
+          "summary_zh": "提出从已有策略预测强化学习结果的PoEM方法，无需重复训练即可预判奖励表现，显著降低后训练计算成本",
           "authors": [
             "Kimia Hamidieh",
             "Giannis Daras",
@@ -503,60 +472,6 @@
             "cs.CL"
           ],
           "published": "2026-09-24T17:50:25Z"
-        }
-      ]
-    },
-    {
-      "id": "other-paper",
-      "name": "📝 其他前沿",
-      "papers": [
-        {
-          "title": "JevOut: Natural Context Can Flip Decision Models",
-          "url": "http://arxiv.org/abs/2609.30243v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30243v1",
-          "abstract": "Dedicated decision models such as Jev map unstructured language to probability distributions over finite choices, allowing their outputs to directly route requests, select tools, and trigger actions. ",
-          "summary_zh": "提出JevOut方法揭示自然上下文可翻转决策模型输出，无需恶意提示即可显著改变概率分布并误导路由与工具选择",
-          "authors": [
-            "Zixiang Xu"
-          ],
-          "categories": [
-            "cs.CL"
-          ],
-          "published": "2026-09-24T17:57:07Z"
-        },
-        {
-          "title": "A Nearly Quadratic Lower Bound for Linear Optimization over Convex Bodies in the Membership Oracle Model",
-          "url": "http://arxiv.org/abs/2609.30215v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30215v1",
-          "abstract": "We prove nearly quadratic lower bounds for randomized algorithms for linear optimization and uniform sampling over convex bodies in the membership oracle model. For linear optimization, this matches t",
-          "summary_zh": "证明成员预言模型下凸体线性优化随机算法的近二次下界，与已知上界仅差维度多项对数因子",
-          "authors": [
-            "Santosh S. Vempala"
-          ],
-          "categories": [
-            "cs.DS",
-            "cs.LG",
-            "math.FA"
-          ],
-          "published": "2026-09-24T17:45:58Z"
-        },
-        {
-          "title": "Beyond Compression: Training Latent Representations for Stable Long-Horizon Rollout in Neural Surrogate Solvers",
-          "url": "http://arxiv.org/abs/2609.30198v1",
-          "pdf_url": "https://arxiv.org/pdf/2609.30198v1",
-          "abstract": "Latent neural surrogate solvers, or latent dynamics models, accelerate simulations of time-dependent physical systems by evolving a compressed latent space rather than resolving full-resolution fields",
-          "summary_zh": "提出面向长时程稳定推演的隐空间表征训练方法，突破压缩瓶颈，显著降低神经代理求解器的误差累积",
-          "authors": [
-            "Andreas E. Robertson",
-            "Ashley T. Lenau",
-            "John D. Shimanek"
-          ],
-          "categories": [
-            "cs.LG",
-            "cond-mat.mtrl-sci",
-            "cs.CE"
-          ],
-          "published": "2026-09-24T17:36:46Z"
         }
       ]
     }
