@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-02T14:14:44.028059+00:00Z",
+  "generated_at": "2026-10-03T12:49:15.345738+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「其他热门」。",
+  "digest": "过去 30 天，共追踪到 19 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「其他热门」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "harry0703/MoneyPrinterTurbo",
           "url": "https://github.com/harry0703/MoneyPrinterTurbo",
           "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-          "summary_zh": "只需一个主题或关键词，AI 自动完成文案、素材、配音到字幕全流程，一键产出高清短视频",
-          "stars": 128070,
-          "forks": 20045,
+          "summary_zh": "输入主题或关键词即可用 AI 全自动生成高清短视频，一键成片大幅降低创作门槛",
+          "stars": 128180,
+          "forks": 20052,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2548
+          "stars_period": 2533
         },
         {
           "name": "paperclipai/paperclip",
           "url": "https://github.com/paperclipai/paperclip",
           "description": "The open-source app everyone uses to manage agents at work",
-          "summary_zh": "开源团队级 AI Agent 管理平台，让工作场景中的智能体统一调度协作",
-          "stars": 96114,
-          "forks": 16289,
+          "summary_zh": "开源团队级 AI Agent 管理应用，让工作中多个智能体统一调度协作",
+          "stars": 96538,
+          "forks": 16356,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 14335
+          "stars_period": 12825
+        },
+        {
+          "name": "Panniantong/Agent-Reach",
+          "url": "https://github.com/Panniantong/Agent-Reach",
+          "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+          "summary_zh": "让 AI Agent 免费读取搜索推特、Reddit、YouTube、B站、小红书等全网内容的一站式命令行工具",
+          "stars": 89381,
+          "forks": 7865,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 3959
         },
         {
           "name": "heygen-com/hyperframes",
           "url": "https://github.com/heygen-com/hyperframes",
           "description": "Write HTML. Render video. Built for agents.",
-          "summary_zh": "用 HTML 直接渲染视频并专为 AI Agent 打造，让智能体像写网页一样生成视频",
-          "stars": 55668,
-          "forks": 5039,
+          "summary_zh": "用 HTML 写视频并渲染成片，专为 AI Agent 打造，让代码直接生成视频内容",
+          "stars": 56134,
+          "forks": 5053,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2667
-        },
-        {
-          "name": "vectorize-io/hindsight",
-          "url": "https://github.com/vectorize-io/hindsight",
-          "description": "Hindsight: Agent Memory That Learns",
-          "summary_zh": "让 AI Agent 拥有会学习的长期记忆，从交互中持续进化而非每次从零开始",
-          "stars": 44542,
-          "forks": 5862,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 17403
+          "stars_period": 2661
         }
       ]
     },
@@ -71,60 +71,53 @@
           "name": "moeru-ai/airi",
           "url": "https://github.com/moeru-ai/airi",
           "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's ",
-          "summary_zh": "自托管可拥有的AI虚拟伴侣，支持实时语音聊天并能在Minecraft中化身活动，打造属于你的Neuro-sama",
-          "stars": 49945,
-          "forks": 4985,
+          "summary_zh": "自托管AI伴侣容器，支持实时语音聊天与Minecraft互动，打造属于你的虚拟角色",
+          "stars": 49959,
+          "forks": 4983,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 603
+          "stars_period": 600
         },
         {
           "name": "VectifyAI/PageIndex",
           "url": "https://github.com/VectifyAI/PageIndex",
           "description": "📑 PageIndex: Document Index for Vectorless, Reasoning-based RAG",
-          "summary_zh": "用文档索引替代向量检索实现推理式RAG，让AI像人一样翻书找答案",
-          "stars": 38498,
-          "forks": 3337,
+          "summary_zh": "无需向量数据库的文档索引方案，用推理式检索替代向量相似度，为 RAG 开辟新路径",
+          "stars": 38541,
+          "forks": 3341,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2550
+          "stars_period": 2715
         },
         {
           "name": "hydra-db/hydradb",
           "url": "https://github.com/hydra-db/hydradb",
           "description": "HydraDB - fast graph database on object storage",
-          "summary_zh": "基于对象存储的极速图数据库，用 Rust 打造，让海量图数据存储更省钱又高效",
-          "stars": 13093,
-          "forks": 5556,
+          "summary_zh": "基于对象存储的极速图数据库，用 Rust 打造，让海量图数据低成本存储也能高速查询",
+          "stars": 13069,
+          "forks": 5546,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7506
+          "stars_period": 6827
         },
         {
-          "name": "IvenKooLab/loci",
-          "url": "https://github.com/IvenKooLab/loci",
-          "description": "A queryable second brain over your scattered notes and docs - hybrid retrieval (vector + BM25), section-level citations, and an MCP server so AI agent",
-          "summary_zh": "把散落笔记文档变成可查询第二大脑，混合检索加段落级引用，仅300行无框架依赖",
-          "stars": 100,
-          "forks": 1,
-          "language": "Python",
-          "topics": [
-            "ai-agents",
-            "bm25",
-            "chromadb",
-            "cross-ide",
-            "embeddings",
-            "feedback-loop"
-          ],
-          "created_at": "2026-09-03T16:50:08Z",
-          "source": "search",
-          "stars_period": 0
+          "name": "LuxAlgo/Vela",
+          "url": "https://github.com/LuxAlgo/Vela",
+          "description": "Fast, extensible financial charts for the web. The open-source core of Vela by LuxAlgo.",
+          "summary_zh": "LuxAlgo 开源的极速可扩展 Web 金融图表库，为交易平台提供高性能 K 线渲染核心",
+          "stars": 807,
+          "forks": 158,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 377
         }
       ]
     },
@@ -137,27 +130,14 @@
           "name": "juspay/hyperswitch",
           "url": "https://github.com/juspay/hyperswitch",
           "description": "Open source, composable payments platform | PCI compliant | SaaS and Self-host options | Enables connectivity to multiple payment, payout, fraud, vaul",
-          "summary_zh": "用 Rust 打造的开源可组合支付平台，一套接口打通多家支付、分账、风控与令牌化服务商，支持 SaaS 与自托管",
-          "stars": 45271,
+          "summary_zh": "用 Rust 打造的开源可组合支付平台，一套接口打通多家支付、分账、风控与令牌化服务，支持 SaaS 与自托管",
+          "stars": 45273,
           "forks": 6421,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1456
-        },
-        {
-          "name": "NVIDIA/Model-Optimizer",
-          "url": "https://github.com/NVIDIA/Model-Optimizer",
-          "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, et",
-          "summary_zh": "英伟达开源的一站式模型压缩库，集成量化蒸馏剪枝与投机解码等SOTA技术，让大模型更小更快",
-          "stars": 5163,
-          "forks": 719,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1225
+          "stars_period": 1326
         },
         {
           "name": "hsj576/virtual-ai-infra-team",
@@ -175,19 +155,6 @@
           "created_at": "2026-09-08T08:17:47Z",
           "source": "search",
           "stars_period": 0
-        },
-        {
-          "name": "Thinking-Space/One-Shot-OPD",
-          "url": "https://github.com/Thinking-Space/One-Shot-OPD",
-          "description": "Rethinking On-Policy Distillation of Large Language Models II: One Training Example",
-          "summary_zh": "仅需一个训练样本即可完成大模型在线策略蒸馏，大幅降低蒸馏数据成本",
-          "stars": 92,
-          "forks": 4,
-          "language": "Python",
-          "topics": [],
-          "created_at": "2026-09-03T13:11:29Z",
-          "source": "search",
-          "stars_period": 0
         }
       ]
     },
@@ -200,14 +167,14 @@
           "name": "trycua/cua",
           "url": "https://github.com/trycua/cua",
           "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.",
-          "summary_zh": "用 Rust 打造跨系统计算机操作驱动与评测基准，让 AI Agent 规模化训练与数据生成",
-          "stars": 27762,
-          "forks": 1952,
+          "summary_zh": "开源跨系统计算机使用驱动与评测基准，让 AI Agent 规模化训练评估与数据生成",
+          "stars": 27888,
+          "forks": 1967,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1453
+          "stars_period": 1477
         }
       ]
     },
@@ -220,53 +187,53 @@
           "name": "flutter/flutter",
           "url": "https://github.com/flutter/flutter",
           "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-          "summary_zh": "用 Dart 一套代码极速构建跨平台精美原生应用，让移动与更多端开发化繁为简",
-          "stars": 179234,
-          "forks": 32781,
+          "summary_zh": "用 Dart 一套代码构建移动端及更多平台精美应用的高性能跨端 UI 框架",
+          "stars": 179285,
+          "forks": 32867,
           "language": "Dart",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 147
-        },
-        {
-          "name": "clash-verge-rev/clash-verge-rev",
-          "url": "https://github.com/clash-verge-rev/clash-verge-rev",
-          "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-          "summary_zh": "基于 Tauri 的现代跨平台代理客户端，为 Windows、macOS 和 Linux 提供优雅的定制化网络体验",
-          "stars": 148817,
-          "forks": 10681,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1725
-        },
-        {
-          "name": "rust-lang/rust",
-          "url": "https://github.com/rust-lang/rust",
-          "description": "Empowering everyone to build reliable and efficient software.",
-          "summary_zh": "内存安全且无需垃圾回收的系统级编程语言，兼顾高性能与并发安全，重塑底层开发体验",
-          "stars": 119400,
-          "forks": 17295,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 342
+          "stars_period": 228
         },
         {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
-          "summary_zh": "从零手写 AI 工程全流程的 Python 实战教程，边学边造边交付，六万星验证的入门到落地捷径",
-          "stars": 62587,
-          "forks": 10698,
+          "summary_zh": "从零手写实现 AI 核心组件的 Python 教程，边学边造边交付，真正吃透大模型原理",
+          "stars": 62866,
+          "forks": 10748,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6469
+          "stars_period": 5600
+        },
+        {
+          "name": "Effect-TS/effect",
+          "url": "https://github.com/Effect-TS/effect",
+          "description": "Build production-ready applications in TypeScript",
+          "summary_zh": "用类型安全的方式构建生产级 TypeScript 应用，把错误处理、并发、依赖注入等难题统一成可组合的 Effect 系统",
+          "stars": 16693,
+          "forks": 809,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 466
+        },
+        {
+          "name": "longbridge/gpui-kit",
+          "url": "https://github.com/longbridge/gpui-kit",
+          "description": "Rust GUI components for building fantastic cross-platform desktop application by using GPUI.",
+          "summary_zh": "基于 GPUI 的 Rust 跨平台桌面 UI 组件库，让开发者用高性能原生渲染快速搭建精美桌面应用",
+          "stars": 15768,
+          "forks": 974,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 877
         }
       ]
     },
@@ -279,53 +246,53 @@
           "name": "openclaw/openclaw",
           "url": "https://github.com/openclaw/openclaw",
           "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞",
-          "summary_zh": "跨平台 AI 智能体，能在任意操作系统上真正执行任务而非只聊天",
-          "stars": 391211,
-          "forks": 82244,
+          "summary_zh": "跨平台 AI 智能体框架，能在任意操作系统上真正执行任务而非只聊天",
+          "stars": 391222,
+          "forks": 82234,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1183
+          "stars_period": 1170
         },
         {
           "name": "vercel/next.js",
           "url": "https://github.com/vercel/next.js",
           "description": "The React Framework",
           "summary_zh": "React 全栈框架，用文件路由和混合渲染让前端开发既简单又高性能",
-          "stars": 142986,
-          "forks": 33602,
+          "stars": 143043,
+          "forks": 33718,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 624
+          "stars_period": 658
+        },
+        {
+          "name": "denoland/deno",
+          "url": "https://github.com/denoland/deno",
+          "description": "A modern runtime for JavaScript and TypeScript.",
+          "summary_zh": "基于 Rust 打造的安全高效 JavaScript 与 TypeScript 运行时，内置原生 TS 支持与权限沙箱，直击 Node 生态痛点",
+          "stars": 108549,
+          "forks": 6393,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 83
         },
         {
           "name": "pytorch/pytorch",
           "url": "https://github.com/pytorch/pytorch",
           "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
-          "summary_zh": "深度学习框架标杆，用张量计算与动态神经网络加速 GPU 上的 AI 模型训练与推理",
-          "stars": 103615,
-          "forks": 31065,
+          "summary_zh": "深度学习框架标杆，用张量计算与动态神经网络让 Python 直接调用 GPU 加速",
+          "stars": 103646,
+          "forks": 31175,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 376
-        },
-        {
-          "name": "oven-sh/bun",
-          "url": "https://github.com/oven-sh/bun",
-          "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
-          "summary_zh": "用 Rust 打造的超高速 JavaScript 全家桶，把运行时、打包器、测试器和包管理器合为一体",
-          "stars": 96100,
-          "forks": 5084,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 119
+          "stars_period": 369
         }
       ]
     }
@@ -358,7 +325,7 @@
           "url": "http://arxiv.org/abs/2610.02202v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02202v1",
           "abstract": "What makes great scientists great? Even as AI systems start to make progress on open problems, scientists remain far ahead of them at sensing which prior idea, buried in an ever-growing archive of res",
-          "summary_zh": "提出ScholarCatalyst基准评估AI检索激发新研究论文的能力，揭示科学家在识别关键先验思想上的独特优势",
+          "summary_zh": "提出ScholarCatalyst基准评估AI检索启发新研究的论文能力，揭示科学家在识别关键先验思想上的优势",
           "authors": [
             "Sohyeon Kim",
             "Yoonho Lee",
@@ -376,7 +343,7 @@
           "url": "http://arxiv.org/abs/2610.02201v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02201v1",
           "abstract": "High-resolution 3D generation increasingly relies on voxel latents and multi-stage pipelines that first predict active structure and then synthesize local geometry. While effective, this design fragme",
-          "summary_zh": "提出滑动窗口切片隐变量方法，保持拓扑连续性的同时实现高分辨率三维生成并降低生成成本",
+          "summary_zh": "提出滑动窗口切片隐变量方法，保持三维生成拓扑结构，降低生成成本并提升高分辨率重建质量",
           "authors": [
             "Tianjiao Yu",
             "Xinzhuo Li",
@@ -400,7 +367,7 @@
           "url": "http://arxiv.org/abs/2610.02150v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02150v1",
           "abstract": "Large language model (LLM) agents increasingly rely on persistent external sources to solve sequences of knowledge-intensive tasks. Existing methods improve how source content is accessed and organize",
-          "summary_zh": "提出从知识访问转向源学习的新框架，让智能体习得源特定能力，提升知识密集任务表现",
+          "summary_zh": "提出从知识访问转向来源学习的新范式，让智能体习得来源特定能力以高效复用外部知识源",
           "authors": [
             "Lucheng Fu",
             "Kejing Xia",
@@ -418,7 +385,7 @@
           "url": "http://arxiv.org/abs/2610.02142v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02142v1",
           "abstract": "Keyword-matching benchmarks can credit small models for tool use they never perform. We document such a false positive in a matched-architecture pair of Spanish security language models and propose a ",
-          "summary_zh": "揭示关键词匹配评测会误判小模型工具使用能力，提出低成本严格诊断阶梯并在6.6亿参数西班牙语安全模型对上验证假阳性",
+          "summary_zh": "揭示关键词匹配基准会误判小模型工具使用能力，提出廉价严格诊断阶梯并在6.6亿参数模型上验证假阳性",
           "authors": [
             "Juan S. Santillana"
           ],
@@ -438,7 +405,7 @@
           "url": "http://arxiv.org/abs/2610.02206v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02206v1",
           "abstract": "LLMs are increasingly applied to cybersecurity workflows, where they are expected to translate analysts' intent into tool invocations. However, existing evaluations focus on knowledge-based assessment",
-          "summary_zh": "提出面向Kali Linux的细粒度网络安全工具调用基准，用无运行时验证奖励直接衡量大模型生成可执行命令的能力",
+          "summary_zh": "提出面向Kali Linux的细粒度网络安全工具调用基准，用免运行可验证奖励直接评测命令生成能力",
           "authors": [
             "Pengfei Li",
             "Naufal Suryanto",
@@ -456,7 +423,7 @@
           "url": "http://arxiv.org/abs/2610.02204v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02204v1",
           "abstract": "Building reliable robot capabilities across diverse tasks requires substantial human effort to develop and maintain skills, design rewards, and integrate perception with control. We present Reconstruc",
-          "summary_zh": "提出重构练习落地框架实现具身智能体自主改进，无需人工干预即可提升多任务执行能力",
+          "summary_zh": "提出重构练习落地框架实现机器人无需人工干预的自主技能提升",
           "authors": [
             "Yen-Jen Wang",
             "Haozhe Jiang",
@@ -474,7 +441,7 @@
           "url": "http://arxiv.org/abs/2610.02163v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02163v1",
           "abstract": "Coding agents solve repository-level software engineering tasks through long trajectories of code inspection, search, editing, and testing. As a task progresses, earlier exploration becomes stale, so ",
-          "summary_zh": "提出让编码智能体自主学习何时压缩上下文的AutoCompact方法，在长程仓库级任务中显著提升成功率并降低上下文开销",
+          "summary_zh": "提出让编码智能体自主学习何时压缩上下文的AutoCompact方法，在长程代码任务中显著提升效率与成功率",
           "authors": [
             "Xuan Zhang",
             "Longtao Zheng",
@@ -496,7 +463,7 @@
           "url": "http://arxiv.org/abs/2610.02203v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02203v1",
           "abstract": "In diffusion transformers, a class label or a text prompt is embedded once, and the same condition is reused at every denoising step. We ask whether predicted embeddings can serve as this condition in",
-          "summary_zh": "提出用预测嵌入替代固定条件驱动扩散Transformer，NEPA以自回归预测下一嵌入生成图像，显著提升生成质量",
+          "summary_zh": "提出用预测嵌入替代固定条件驱动扩散Transformer，NEPA实现图像生成并验证其有效性",
           "authors": [
             "Sihan Xu",
             "Ji Xie",
@@ -513,7 +480,7 @@
           "url": "http://arxiv.org/abs/2610.02200v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02200v1",
           "abstract": "We show that multimodal models possess strong reasoning abilities and that an appropriate harness can unlock their potential to solve tasks across diverse interactive environments. We introduce VISTA,",
-          "summary_zh": "提出视觉执行框架VISTA，赋予多模态模型长时程视觉能力，无需训练即可在多种交互环境中解锁强推理表现",
+          "summary_zh": "提出视觉执行框架VISTA，赋予多模态模型长时程视觉能力，无需训练即可在多种交互环境中显著提升推理表现",
           "authors": [
             "Qiushi Han",
             "Keya Hu",
@@ -530,7 +497,7 @@
           "url": "http://arxiv.org/abs/2610.02193v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02193v1",
           "abstract": "Discrete diffusion language models offer a compelling alternative to autoregressive generation for tasks demanding bidirectional reasoning and global constraint satisfaction. Yet they share a structur",
-          "summary_zh": "提出分层连续扩散语言模型，通过层级化连续扩散缓解并行解码时各词元独立采样的结构瓶颈，提升双向推理与全局约束能力",
+          "summary_zh": "提出分层连续扩散语言模型，通过层级化连续扩散缓解并行解码时各词元独立采样的结构瓶颈，提升双向推理与全局约束满足能力",
           "authors": [
             "Hui Ren",
             "Zihan Li",
@@ -554,7 +521,7 @@
           "url": "http://arxiv.org/abs/2610.02199v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02199v1",
           "abstract": "Full-parameter fine-tuning of large language models (LLMs) incurs substantial optimizer state memory overhead, limiting the model sizes that fit on modern GPUs. Existing approaches either compress opt",
-          "summary_zh": "提出三元绝对值最大列稀疏优化器，将LLM微调优化器状态压缩至每参数1.58比特且性能无损",
+          "summary_zh": "提出三元绝对最大列稀疏优化器TACO，压缩LLM微调优化器状态内存，保持全参数更新几何并降低显存开销",
           "authors": [
             "Jichao Jiang",
             "Cristian McGee",
@@ -571,7 +538,7 @@
           "url": "http://arxiv.org/abs/2610.02198v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02198v1",
           "abstract": "Several state-of-the-art methods for online reinforcement learning in continuous control improve policies using action gradients of a learned critic. However, critics are typically trained to predict ",
-          "summary_zh": "提出前向熵正则化策略优化FERPO，利用前向熵替代价值梯度提升连续控制策略学习效果",
+          "summary_zh": "提出前向熵正则化策略优化FERPO，利用前向熵替代传统价值梯度，提升连续控制中策略梯度准确性，在多个基准任务上取得更优性能",
           "authors": [
             "Sebastian Sanokowski",
             "Alireza Sarmadi",
@@ -589,7 +556,7 @@
           "url": "http://arxiv.org/abs/2610.02195v1",
           "pdf_url": "https://arxiv.org/pdf/2610.02195v1",
           "abstract": "The generalized Schrödinger bridge on a graph moves mass between two distributions while charging a cost for the states visited. It has been approached by learning the rates of a controlled continuous",
-          "summary_zh": "提出图上的成本增强薛定谔桥精确可解方法，用Feynman-Kac倾斜替代学习控制，无需时序差分惩罚即可恢复状态成本",
+          "summary_zh": "提出图上的可精确求解代价增强薛定谔桥，用Feynman-Kac倾斜替代学习控制，无需时序差分惩罚即可恢复状态代价",
           "authors": [
             "Akshay Balsubramani"
           ],
