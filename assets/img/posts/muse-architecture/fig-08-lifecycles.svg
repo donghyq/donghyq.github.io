@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="425" viewBox="0 0 940 425" role="img" aria-label="任务、执行和推理的独立生命周期">
+<title>任务、执行和推理的独立生命周期</title><desc>定性时间线，不对应实测时长。任务与持久存储持续存在，工具、执行进程和模型计算分段活动。</desc>
+<rect width="940" height="425" rx="14" fill="#ffffff"/>
+<text x="25" y="30" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#203447" text-anchor="start" font-weight="650">资源寿命随状态变化，不随任务总时长全部常驻</text>
+<text x="241.0" y="68" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#203447" text-anchor="middle" font-weight="400">模型</text>
+<line x1="190" y1="80" x2="190" y2="345" stroke="#dde5ed" stroke-dasharray="3 4"/>
+<text x="349.0" y="68" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#203447" text-anchor="middle" font-weight="400">工具</text>
+<line x1="298" y1="80" x2="298" y2="345" stroke="#dde5ed" stroke-dasharray="3 4"/>
+<text x="523.0" y="68" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#203447" text-anchor="middle" font-weight="400">等待确认</text>
+<line x1="406" y1="80" x2="406" y2="345" stroke="#dde5ed" stroke-dasharray="3 4"/>
+<text x="697.0" y="68" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#203447" text-anchor="middle" font-weight="400">恢复</text>
+<line x1="646" y1="80" x2="646" y2="345" stroke="#dde5ed" stroke-dasharray="3 4"/>
+<text x="815.0" y="68" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#203447" text-anchor="middle" font-weight="400">模型</text>
+<line x1="754" y1="80" x2="754" y2="345" stroke="#dde5ed" stroke-dasharray="3 4"/>
+<text x="25" y="117" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#203447" text-anchor="start" font-weight="400">任务 / 授权</text>
+<rect x="190" y="92" width="686" height="35" rx="7" fill="#dbe9f5" stroke="#aabcca"/>
+<text x="25" y="182" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#203447" text-anchor="start" font-weight="400">文件 / 事件</text>
+<rect x="190" y="157" width="686" height="35" rx="7" fill="#dbe9f5" stroke="#aabcca"/>
+<text x="25" y="247" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#203447" text-anchor="start" font-weight="400">执行环境</text>
+<rect x="190" y="222" width="210" height="35" rx="7" fill="#dfeee6" stroke="#aabcca"/>
+<rect x="646" y="222" width="230" height="35" rx="7" fill="#dfeee6" stroke="#aabcca"/>
+<text x="25" y="312" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#203447" text-anchor="start" font-weight="400">GPU 计算</text>
+<rect x="190" y="287" width="102" height="35" rx="7" fill="#f7e6ca" stroke="#aabcca"/>
+<rect x="754" y="287" width="122" height="35" rx="7" fill="#f7e6ca" stroke="#aabcca"/>
+<text x="522" y="244" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#607386" text-anchor="middle" font-weight="400">保留 / 休眠 / 重建</text>
+<text x="522" y="309" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#607386" text-anchor="middle" font-weight="400">其他请求继续计算</text>
+<text x="25" y="383" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#607386" text-anchor="start" font-weight="400">KV 在等待期的保留、下沉或淘汰，需要独立策略；图中空白不表示权重必须卸载。</text>
+<text x="25" y="407" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="11" fill="#607386" text-anchor="start" font-weight="400">本文设计示意 · 非 Muse 部署图 · 时间跨度非实测比例</text>
+</svg>
