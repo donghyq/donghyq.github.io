@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T14:46:06.552173+00:00Z",
+  "generated_at": "2026-10-10T14:02:37.209156+00:00Z",
   "lookback_days": 30,
   "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
@@ -12,53 +12,53 @@
           "name": "mattpocock/skills",
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "面向 AI 编码 Agent 的实战工程技能集，直接取自作者 .agents 目录，让 Agent 真正具备资深工程师的工作方式",
-          "stars": 282159,
-          "forks": 23643,
+          "summary_zh": "从资深工程师的 .agents 目录提炼实战技能，让 AI 编码 Agent 真正具备成熟工程能力",
+          "stars": 283779,
+          "forks": 23769,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7448
+          "stars_period": 8156
         },
         {
           "name": "Panniantong/Agent-Reach",
           "url": "https://github.com/Panniantong/Agent-Reach",
           "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
           "summary_zh": "让 AI Agent 零 API 费用读取搜索推特、Reddit、YouTube、B站、小红书等全网内容的命令行工具",
-          "stars": 94650,
-          "forks": 8274,
+          "stars": 95332,
+          "forks": 8339,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6987
+          "stars_period": 7084
         },
         {
           "name": "calesthio/OpenMontage",
           "url": "https://github.com/calesthio/OpenMontage",
           "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn",
-          "summary_zh": "把 AI 编码助手变成完整视频制作团队，内置 12 条制作流水线与 700+ 技能文件",
-          "stars": 65724,
-          "forks": 8346,
+          "summary_zh": "把 AI 编码助手变成完整视频制作团队的开源智能体系统，内置 12 条生产流水线与 700+ 技能文件",
+          "stars": 66008,
+          "forks": 8400,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3407
+          "stars_period": 3479
         },
         {
           "name": "heygen-com/hyperframes",
           "url": "https://github.com/heygen-com/hyperframes",
           "description": "Write HTML. Render video. Built for agents.",
-          "summary_zh": "用 HTML 写代码直接渲染成视频，专为 AI Agent 打造，让智能体也能轻松生成视频内容",
-          "stars": 59563,
-          "forks": 5310,
+          "summary_zh": "用 HTML 直接渲染视频的 TypeScript 工具，专为 AI Agent 打造，让写网页像写视频脚本一样简单",
+          "stars": 60132,
+          "forks": 5371,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3996
+          "stars_period": 4003
         }
       ]
     },
@@ -68,11 +68,24 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
+          "name": "tester-army/e2e",
+          "url": "https://github.com/tester-army/e2e",
+          "description": "Next generation e2e testing framework for web and mobile apps.",
+          "summary_zh": "下一代 Web 与移动端端到端测试框架，用 TypeScript 打造更高效的跨平台自动化测试体验",
+          "stars": 8599,
+          "forks": 410,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 6566
+        },
+        {
           "name": "kkjiangk/agent-py",
           "url": "https://github.com/kkjiangk/agent-py",
           "description": "Personal AIOps engineering project with durable workflows, scoped hybrid retrieval, reliable event delivery, and verified API/browser contracts.",
-          "summary_zh": "基于LangGraph与Kafka构建的AIOps智能体工程，用持久化工作流和混合检索保障事件可靠交付与API契约验证",
-          "stars": 46,
+          "summary_zh": "基于 FastAPI 与 Kafka 的 AIOps 工程实践，用持久化工作流和混合检索打造可靠的智能运维 Agent",
+          "stars": 54,
           "forks": 4,
           "language": "Python",
           "topics": [
@@ -92,7 +105,7 @@
           "url": "https://github.com/ronitgupta138/vectra-core",
           "description": "⚡ In-Memory Vector Search Engine & HNSW ANN Graph in Java 21 Loom. Sub-millisecond KNN retrieval, 8-bit scalar quantization (SQ8), 16,000+ QPS.",
           "summary_zh": "基于 Java 21 虚拟线程的内存向量搜索引擎，用 HNSW 图实现亚毫秒级 KNN 检索与 8 位量化，吞吐超 16000 QPS",
-          "stars": 40,
+          "stars": 41,
           "forks": 0,
           "language": "Java",
           "topics": [
@@ -111,7 +124,7 @@
           "name": "samdotmak/jev-recall",
           "url": "https://github.com/samdotmak/jev-recall",
           "description": "Retrieve by relevance, not resemblance: filter an AI assistant's memories with TypeSafe's Jev",
-          "summary_zh": "用相关性而非相似度检索AI助手记忆，基于TypeSafe的Jev实现类型安全的记忆过滤",
+          "summary_zh": "用相关性而非相似度筛选 AI 助手记忆，让检索更贴合真实意图而非表面匹配",
           "stars": 38,
           "forks": 3,
           "language": "TypeScript",
@@ -126,26 +139,6 @@
           "created_at": "2026-09-19T20:08:14Z",
           "source": "search",
           "stars_period": 0
-        },
-        {
-          "name": "p10node/docflare-ai",
-          "url": "https://github.com/p10node/docflare-ai",
-          "description": "Open-source AI chatbot & site search for your docs. One <script> tag, streaming answers with sources. 100% Cloudflare-native (Workers AI + Vectorize +",
-          "summary_zh": "一行 script 标签为文档接入带来源引用的流式 AI 问答，纯 Cloudflare 原生免费跑",
-          "stars": 33,
-          "forks": 1,
-          "language": "TypeScript",
-          "topics": [
-            "ai-chatbot",
-            "chatbot",
-            "cloudflare",
-            "cloudflare-workers",
-            "d1",
-            "documentation"
-          ],
-          "created_at": "2026-10-07T20:22:02Z",
-          "source": "search",
-          "stars_period": 0
         }
       ]
     },
@@ -158,53 +151,53 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动压缩历史并注入相关上下文，兼容 Claude",
-          "stars": 98884,
-          "forks": 8665,
+          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动压缩历史操作并注入相关上下文",
+          "stars": 99119,
+          "forks": 8680,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3153
+          "stars_period": 3850
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
           "summary_zh": "聚合34家免费LLM供应商共635个模型端点，统一走一个/v1接口并支持智能路由与自动故障转移",
-          "stars": 32392,
-          "forks": 4496,
+          "stars": 32779,
+          "forks": 4537,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2208
+          "stars_period": 2397
         },
         {
           "name": "Robbyant/lingbot-map",
           "url": "https://github.com/Robbyant/lingbot-map",
           "description": "[ECCV 2026 Best Paper Award Candidate] LingBot-Map: Geometric Context Transformer for Streaming 3D Reconstruction",
-          "summary_zh": "用几何上下文Transformer实现流式三维重建，让机器人边移动边实时构建高精度地图",
-          "stars": 17574,
-          "forks": 1943,
+          "summary_zh": "用几何上下文 Transformer 实现流式三维重建，让机器边看边建图，入选 ECCV 2026 最佳论文候选",
+          "stars": 17910,
+          "forks": 1965,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 334
+          "stars_period": 446
         },
         {
-          "name": "ranxianglei/billion-context",
-          "url": "https://github.com/ranxianglei/billion-context",
-          "description": "稳定可用 A context-compression plugin for small context windows (a 100K context is enough), token savings (5x fewer tokens), and month-long single session",
-          "summary_zh": "让百K小窗口也能跑月级长会话的上下文压缩插件，Token消耗直降五倍",
-          "stars": 705,
-          "forks": 70,
-          "language": "TypeScript",
+          "name": "trymirai/uzu",
+          "url": "https://github.com/trymirai/uzu",
+          "description": "A high-performance inference engine for AI models",
+          "summary_zh": "用 Rust 打造的高性能 AI 推理引擎，为模型部署提供低延迟高吞吐的推理加速方案",
+          "stars": 2136,
+          "forks": 115,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 243
+          "stars_period": 311
         }
       ]
     },
@@ -217,20 +210,20 @@
           "name": "DuarteSantos8/openGym",
           "url": "https://github.com/DuarteSantos8/openGym",
           "description": "Self-hosted gym & body-weight tracker — plan routines, log workouts (supersets, warm-ups, cardio), see which muscles are trained, fatigued or detraine",
-          "summary_zh": "自托管健身追踪器，可编排训练计划并记录超级组与有氧，直观显示各肌群训练疲劳状态，支持从 FitNotes 等导入数据",
-          "stars": 8399,
-          "forks": 1054,
+          "summary_zh": "自托管健身与自重训练追踪器，可规划动作、记录超级组与热身，并直观显示各肌群训练疲劳状态，支持从 FitNotes 等导入",
+          "stars": 9012,
+          "forks": 1118,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6086
+          "stars_period": 6749
         },
         {
           "name": "EmilianoMJ11/transformers-training-recipes",
           "url": "https://github.com/EmilianoMJ11/transformers-training-recipes",
           "description": "Transformers Trainer Examples 2026: Production-Ready Fine-Tuning Recipes for Modern NLP Models",
-          "summary_zh": "面向现代NLP模型的生产级微调配方集，用Transformers Trainer开箱即用解决训练配置繁琐问题",
+          "summary_zh": "面向现代 NLP 模型的生产级微调配方集，用 Transformers Trainer 提供开箱即用的实战范例",
           "stars": 53,
           "forks": 0,
           "language": "HTML",
@@ -250,56 +243,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
+          "name": "flutter/flutter",
+          "url": "https://github.com/flutter/flutter",
+          "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+          "summary_zh": "用 Dart 一套代码构建移动端及更多平台精美原生应用，热重载让开发调试快如闪电",
+          "stars": 179317,
+          "forks": 33542,
+          "language": "Dart",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 259
+        },
+        {
           "name": "rohitg00/ai-engineering-from-scratch",
           "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
           "description": "Learn it. Build it. Ship it for others.",
-          "summary_zh": "从零手写实现 AI 核心组件的 Python 教程，边学边造轮子真正吃透大模型原理",
-          "stars": 66097,
-          "forks": 11470,
+          "summary_zh": "从零手写实现 AI 工程核心组件，边学边造边交付，适合想真正吃透原理的开发者",
+          "stars": 66492,
+          "forks": 11642,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3582
+          "stars_period": 3627
+        },
+        {
+          "name": "bevyengine/bevy",
+          "url": "https://github.com/bevyengine/bevy",
+          "description": "A refreshingly simple data-driven game engine built in Rust",
+          "summary_zh": "用 Rust 打造的数据驱动游戏引擎，以极简 ECS 架构实现高性能与热重载开发体验",
+          "stars": 48830,
+          "forks": 4905,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 294
         },
         {
           "name": "cjpais/Handy",
           "url": "https://github.com/cjpais/Handy",
           "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
-          "summary_zh": "完全离线的免费开源语音转文字工具，Rust 编写且支持扩展，无需联网即可保护隐私",
-          "stars": 33344,
-          "forks": 3103,
+          "summary_zh": "完全离线的开源语音转文字应用，Rust 编写且支持自由扩展",
+          "stars": 33420,
+          "forks": 3114,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 745
-        },
-        {
-          "name": "Effect-TS/effect",
-          "url": "https://github.com/Effect-TS/effect",
-          "description": "Build production-ready applications in TypeScript",
-          "summary_zh": "用类型安全的方式构建生产级 TypeScript 应用，以函数式效应系统统一处理异步、错误与依赖注入",
-          "stars": 17183,
-          "forks": 845,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 868
-        },
-        {
-          "name": "longbridge/gpui-kit",
-          "url": "https://github.com/longbridge/gpui-kit",
-          "description": "Rust GUI components for building fantastic cross-platform desktop application by using GPUI.",
-          "summary_zh": "基于 GPUI 的 Rust 跨平台桌面 UI 组件库，让开发者用高性能原生渲染快速搭建精美桌面应用",
-          "stars": 16654,
-          "forks": 1025,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1151
+          "stars_period": 739
         }
       ]
     },
@@ -312,53 +305,53 @@
           "name": "OpenCut-app/OpenCut",
           "url": "https://github.com/OpenCut-app/OpenCut",
           "description": "The open-source CapCut alternative",
-          "summary_zh": "开源的剪映替代方案，用 TypeScript 打造，让视频剪辑不再依赖闭源付费工具",
-          "stars": 93318,
-          "forks": 9159,
+          "summary_zh": "开源的剪映替代品，用 TypeScript 打造，让视频剪辑摆脱付费订阅与闭源限制",
+          "stars": 93418,
+          "forks": 9173,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2304
+          "stars_period": 2264
         },
         {
           "name": "666ghj/MiroFish",
           "url": "https://github.com/666ghj/MiroFish",
           "description": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物",
-          "summary_zh": "简洁通用的群体智能引擎，用 Python 实现万物预测，让群体智慧轻松落地各类预测场景",
-          "stars": 77316,
-          "forks": 11809,
+          "summary_zh": "简洁通用的群体智能引擎，用 Python 实现万物预测，让复杂预测任务变得开箱即用",
+          "stars": 77646,
+          "forks": 11863,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1793
+          "stars_period": 1861
         },
         {
-          "name": "getsentry/sentry",
-          "url": "https://github.com/getsentry/sentry",
-          "description": "Developer-first error tracking and performance monitoring",
-          "summary_zh": "开发者优先的错误追踪与性能监控平台，帮团队快速定位线上异常并洞察应用瓶颈",
-          "stars": 45519,
-          "forks": 4916,
+          "name": "shiyu-coder/Kronos",
+          "url": "https://github.com/shiyu-coder/Kronos",
+          "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+          "summary_zh": "用基础模型统一建模金融市场语言，让AI直接读懂K线、财报与交易信号",
+          "stars": 40426,
+          "forks": 6733,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 638
+          "stars_period": 610
         },
         {
-          "name": "p-e-w/heretic",
-          "url": "https://github.com/p-e-w/heretic",
-          "description": "Fully automatic censorship removal for language models",
-          "summary_zh": "全自动移除语言模型审查限制的Python工具，一键解除内容过滤让模型畅所欲言",
-          "stars": 34231,
-          "forks": 3819,
-          "language": "Python",
+          "name": "spacedriveapp/spacedrive",
+          "url": "https://github.com/spacedriveapp/spacedrive",
+          "description": "Spacedrive is an open source cross-platform file explorer, powered by a virtual distributed filesystem written in Rust.",
+          "summary_zh": "用 Rust 打造的跨平台开源文件管理器，以虚拟分布式文件系统统一管理多设备文件",
+          "stars": 39087,
+          "forks": 1355,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1434
+          "stars_period": 95
         }
       ]
     }
@@ -373,7 +366,7 @@
           "url": "http://arxiv.org/abs/2610.12448v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12448v1",
           "abstract": "In this work, we show that a single Transformer block, applied recurrently, can match the accuracy of a full-depth vision encoder at comparable inference FLOPs without intermediate feature distillatio",
-          "summary_zh": "提出深度编程专家的循环视觉Transformer，单块循环即可媲美全深度编码器精度且推理FLOPs相当",
+          "summary_zh": "提出深度编程专家的循环视觉Transformer，单块循环匹配全深度精度且推理FLOPs相当",
           "authors": [
             "Adrian Bulat",
             "Yassine Ouali",
@@ -390,7 +383,7 @@
           "url": "http://arxiv.org/abs/2610.12444v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12444v1",
           "abstract": "Quantizing AdamW's optimizer states reduces persistent storage, but quantization errors propagate through the moment recurrences and perturb subsequent adaptive updates. We redesign 4-bit optimizer-st",
-          "summary_zh": "提出在预条件子空间进行舍入的4比特AdamW优化器状态量化方法，通过重设计舍入坐标抑制矩递归误差传播，显著降低内存且保持训练性能",
+          "summary_zh": "提出在预条件子空间进行舍入的4比特AdamW优化器状态量化方法，缓解量化误差沿矩递归传播，实现低比特训练稳定性提升",
           "authors": [
             "Hanyang Li",
             "Shao Tang",
@@ -406,7 +399,7 @@
           "url": "http://arxiv.org/abs/2610.12428v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12428v1",
           "abstract": "Building a quantum model involves a tradeoff: how complex the circuit should be, and how much training data it needs. Caro et al. show that models with fewer trainable gates need less training data to",
-          "summary_zh": "提出自适应增长量子分类器Q-FLAIR，逐门扩展特征映射电路并联合优化电路深度与训练数据量，减少可训练门以降低泛化所需数据",
+          "summary_zh": "提出自适应增长量子分类器，联合优化电路深度与训练数据量，实现少门电路需更少数据即可泛化",
           "authors": [
             "Saeefa Rubaiyet Nowmi",
             "Md Mahmuduzzaman Kamol",
@@ -429,7 +422,7 @@
           "url": "http://arxiv.org/abs/2610.12463v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12463v1",
           "abstract": "In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google agents reached real systems outside their authorized test scope. The paths were different. OpenAI agents exploited research i",
-          "summary_zh": "提出从被动遏制转向主动保障的智能体安全框架，基于OpenAI、Anthropic与Google真实越界事件，揭示跨运行协同攻击并攻破Hugging Face生产环境",
+          "summary_zh": "分析OpenAI、Anthropic与谷歌智能体越界安全事件，提出从被动围堵转向主动保障的防护框架",
           "authors": [
             "Abbas Raftari"
           ],
@@ -444,7 +437,7 @@
           "url": "http://arxiv.org/abs/2610.12452v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12452v1",
           "abstract": "We propose BrickBench, a benchmark for agentic text-conditioned LEGO-set design. Given a prompt, an agent is tasked with producing an assembly that not only satisfies semantic and design criteria, but",
-          "summary_zh": "提出面向文本条件乐高设计的智能体基准，要求满足语义与可搭建性并实现零件选择与推理",
+          "summary_zh": "提出面向智能体文本生成乐高设计的基准BrickBench，要求从离散零件库选件并推理可物理拼装结构，兼顾语义与设计标准",
           "authors": [
             "Peter Kulits",
             "Yiqing Xu",
@@ -485,7 +478,7 @@
           "url": "http://arxiv.org/abs/2610.12427v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12427v1",
           "abstract": "Streaming Video Large Language Models (VLMs) enable continuous video understanding, yet existing benchmarks focus on low-dynamic scenarios. Under bounded context budgets, models must balance temporal ",
-          "summary_zh": "提出高动态流式视频基准FastBench，揭示现有VLM在1-2FPS稀疏采样下漏检快速事件，为上下文预算下的时空权衡提供评测",
+          "summary_zh": "提出高动态流式视频基准FastBench，揭示1-2FPS稀疏采样漏检快速事件，并给出上下文预算下时空粒度权衡方案",
           "authors": [
             "Yuxuan Hu",
             "Weikang Shi",
@@ -526,7 +519,7 @@
           "url": "http://arxiv.org/abs/2610.12467v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12467v1",
           "abstract": "Text-conditioned motion generators produce trackable whole-body motion, but they have no notion of scene-dependent safety: the same action may target an object or a person. Existing safeguards either ",
-          "summary_zh": "提出上下文安全过滤框架，无需标注数据即可实时修正动作生成，将碰撞率降低约七成",
+          "summary_zh": "提出上下文安全过滤框架CSF，无需标注数据即可实时修正文本驱动动作生成，显著降低碰撞风险并保持动作自然度",
           "authors": [
             "Lizhi Yang",
             "Yiling Hou",
@@ -543,7 +536,7 @@
           "url": "http://arxiv.org/abs/2610.12432v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12432v1",
           "abstract": "Safe reinforcement learning commonly places safety and task performance in the same policy objective, where they can introduce competing updates. Safety filters separate them at action execution, but ",
-          "summary_zh": "提出可行性感知安全过滤强化学习框架，无需解析安全函数与动力学模型，在高维系统中实现安全与任务性能解耦并提升成功率",
+          "summary_zh": "提出可行性感知的安全过滤强化学习框架，无需解析安全函数即可分离安全与任务优化，实现高维系统安全高效训练",
           "authors": [
             "Songyuan Zhang",
             "Baljeet Singh",
@@ -561,7 +554,7 @@
           "url": "http://arxiv.org/abs/2610.12410v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12410v1",
           "abstract": "LLM developers post-train their models to exhibit prosocial values and behavioral traits, which are enumerated in an alignment target. However, while recent post-training developments have yielded mod",
-          "summary_zh": "提出用价值表征预测对齐泛化，揭示窄行为训练后模型价值结构变化可提前指示泛化能力",
+          "summary_zh": "提出用价值表征预测对齐泛化，发现后训练中价值表征的泛化先于行为泛化，可提前预警对齐失效",
           "authors": [
             "Andy Liu",
             "Mehar Bhatia",
@@ -585,7 +578,7 @@
           "url": "http://arxiv.org/abs/2610.12466v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12466v1",
           "abstract": "METR's 50\\% time horizon measures the human completion time of software tasks that an AI solves with 50\\% probability, allowing AI capabilities to be expressed in interpretable units. On 228 tasks and",
-          "summary_zh": "用样条与项目反应理论重算228任务26个AI的METR时间视界，放宽假设并检验其统计效度",
+          "summary_zh": "用样条与项目反应理论重算228任务26个AI的50%时间跨度，放宽假设并检验METR图有效性",
           "authors": [
             "Drew T. Nguyen",
             "William Fithian"
@@ -600,7 +593,7 @@
           "url": "http://arxiv.org/abs/2610.12465v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12465v1",
           "abstract": "General-purpose robots must perform a wide range of tasks from agile locomotion to dexterous manipulation. While sim-to-real reinforcement learning (RL) has proven to be a useful tool for this goal, c",
-          "summary_zh": "提出平衡数据饮食策略缓解超大规模强化学习探索瓶颈，实现多任务机器人控制性能显著提升",
+          "summary_zh": "提出平衡数据饮食策略突破大规模强化学习探索瓶颈，无需人工奖励设计即可实现通用机器人多任务控制",
           "authors": [
             "Octi Zhang",
             "Mateo Guaman Castro",
@@ -617,7 +610,7 @@
           "url": "http://arxiv.org/abs/2610.12449v1",
           "pdf_url": "https://arxiv.org/pdf/2610.12449v1",
           "abstract": "Bifurcations are ubiquitous in physical systems, from structural buckling to fluid and climate dynamics, yet they remain largely unexplored in deep learning. At a symmetry-breaking bifurcation, a sing",
-          "summary_zh": "提出双分支生成框架建模高维分岔系统，突破一对一映射限制，实现对称破缺下多解高效生成",
+          "summary_zh": "提出Bi-FORK生成框架建模高维对称破缺分岔，实现单输入多解采样并提升多模态分布拟合精度",
           "authors": [
             "Anna Zimmel",
             "Fleur Hendriks",
