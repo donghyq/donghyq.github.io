@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-13T15:22:08.401558+00:00Z",
+  "generated_at": "2026-10-14T13:10:32.307072+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：TypeScript, Python, Rust）和 11 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：TypeScript, Rust, Python）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "mattpocock/skills",
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "把资深工程师的 .agents 目录直接开源成 AI 编码技能库，让 Agent 真正具备实战工程能力",
-          "stars": 289104,
-          "forks": 24268,
+          "summary_zh": "把资深工程师的 .agents 目录直接开源，为 AI 编码 Agent 注入真实工程技能",
+          "stars": 290593,
+          "forks": 24394,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 11139
+          "stars_period": 11955
         },
         {
           "name": "morluto/rea",
           "url": "https://github.com/morluto/rea",
           "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
-          "summary_zh": "用 AI 智能体逆向分析任意软件，从应用行为一路深挖到原生二进制",
-          "stars": 194445,
-          "forks": 47431,
+          "summary_zh": "用 AI Agent 逆向分析任意软件，从应用行为一路深挖到原生二进制",
+          "stars": 228174,
+          "forks": 56712,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 130471
+          "stars_period": 183758
         },
         {
           "name": "calesthio/OpenMontage",
           "url": "https://github.com/calesthio/OpenMontage",
           "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn",
-          "summary_zh": "把 AI 编码助手变成完整视频制作团队的开源智能体系统，内置 12 条制作流水线与 700+ 技能文件",
-          "stars": 67838,
-          "forks": 8671,
+          "summary_zh": "把 AI 编码助手变成完整视频制作团队的开源智能体系统，内置 12 条流水线与 700+ 技能文件",
+          "stars": 68163,
+          "forks": 8741,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3786
+          "stars_period": 3401
         },
         {
           "name": "heygen-com/hyperframes",
           "url": "https://github.com/heygen-com/hyperframes",
           "description": "Write HTML. Render video. Built for agents.",
-          "summary_zh": "用 HTML 写视频、专为 AI Agent 设计的渲染引擎，让智能体直接生成可播放视频",
-          "stars": 62365,
-          "forks": 5588,
+          "summary_zh": "用 HTML 写代码直接渲染成视频，专为 AI Agent 打造，让智能体也能轻松生成视频内容",
+          "stars": 63309,
+          "forks": 5678,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4482
+          "stars_period": 4732
         }
       ]
     },
@@ -71,53 +71,53 @@
           "name": "Alishahryar1/free-claude-code",
           "url": "https://github.com/Alishahryar1/free-claude-code",
           "description": "Use Claude Code, Codex, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now ",
-          "summary_zh": "让 Claude Code 等十余种编码工具免费用上 13 亿 Token，终端、IDE、手机、浏览器全平台通吃",
-          "stars": 59991,
-          "forks": 9410,
+          "summary_zh": "免费白嫖 13 亿 Claude Code 等十余种 AI 编码工具 Token，终端 IDE 手机浏览器全平台可用",
+          "stars": 60431,
+          "forks": 9454,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1965
+          "stars_period": 3413
         },
         {
           "name": "invoke-ai/InvokeAI",
           "url": "https://github.com/invoke-ai/InvokeAI",
           "description": "Invoke is a leading creative engine for Stable Diffusion models, empowering professionals, artists, and enthusiasts to generate and create visual medi",
-          "summary_zh": "专业级 Stable Diffusion 创作引擎，让艺术家和爱好者轻松生成高质量视觉作品",
-          "stars": 28609,
-          "forks": 3039,
+          "summary_zh": "面向 Stable Diffusion 的专业级创作引擎，让艺术家和爱好者用最新 AI 技术轻松生成视觉作品",
+          "stars": 28636,
+          "forks": 3047,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 246
+          "stars_period": 271
         },
         {
           "name": "tester-army/e2e",
           "url": "https://github.com/tester-army/e2e",
           "description": "Next generation e2e testing framework for web and mobile apps.",
-          "summary_zh": "面向 Web 与移动应用的下一代端到端测试框架，用 TypeScript 打造更高效的自动化测试体验",
-          "stars": 9949,
-          "forks": 482,
+          "summary_zh": "面向 Web 与移动应用的下一代端到端测试框架，用 TypeScript 编写，让跨平台自动化测试更简单高效",
+          "stars": 10361,
+          "forks": 503,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5582
+          "stars_period": 4426
         },
         {
           "name": "xerj-org/xerj",
           "url": "https://github.com/xerj-org/xerj",
           "description": "XERJ is the new way for AI to search data. Its autoindex capability activates agents to know your data without the token waste of grep and sed. One co",
-          "summary_zh": "让 AI 无需 grep 和 sed 浪费 Token 即可检索代码文档日志与 PDF 的 Rust 自动索引搜索工具",
-          "stars": 3790,
-          "forks": 252,
+          "summary_zh": "让 AI 无需 grep 和 sed 浪费 Token 即可检索代码文档日志 PDF 的 Rust 自动索引搜索工具",
+          "stars": 4188,
+          "forks": 276,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1041
+          "stars_period": 1154
         }
       ]
     },
@@ -130,53 +130,53 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动压缩历史并注入相关上下文",
-          "stars": 100317,
-          "forks": 8791,
+          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动压缩历史并注入相关上下文，兼容 Claude",
+          "stars": 100627,
+          "forks": 8818,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3762
+          "stars_period": 3587
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一接口，智能路由自动故障转移并加密密钥",
-          "stars": 34492,
-          "forks": 4706,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一接口，智能路由加自动故障转移，轻松白嫖海量Token",
+          "stars": 35024,
+          "forks": 4761,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3029
-        },
-        {
-          "name": "Robbyant/lingbot-map",
-          "url": "https://github.com/Robbyant/lingbot-map",
-          "description": "[ECCV 2026 Best Paper Award Candidate] LingBot-Map: Geometric Context Transformer for Streaming 3D Reconstruction",
-          "summary_zh": "用几何上下文 Transformer 实现流式三维重建，让机器人在线边看边建图，ECCV 2026 最佳论文候选",
-          "stars": 18061,
-          "forks": 1978,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 825
+          "stars_period": 3412
         },
         {
           "name": "trymirai/uzu",
           "url": "https://github.com/trymirai/uzu",
           "description": "A high-performance inference engine for AI models",
-          "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，为追求极致速度与低延迟的部署场景提供轻量替代方案",
-          "stars": 2279,
-          "forks": 130,
+          "summary_zh": "用 Rust 打造的高性能 AI 推理引擎，为模型部署提供低延迟高吞吐的推理加速方案",
+          "stars": 2316,
+          "forks": 132,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 378
+          "stars_period": 459
+        },
+        {
+          "name": "ranxianglei/billion-context",
+          "url": "https://github.com/ranxianglei/billion-context",
+          "description": "A context-compression plugin for small context windows (a 100K context is enough), token savings (5x fewer tokens), and month-long single sessions (bi",
+          "summary_zh": "让 AI 小窗口也能跑月级长会话的上下文压缩插件，省 5 倍 Token 且百 K 上下文就够用",
+          "stars": 1227,
+          "forks": 108,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 572
         }
       ]
     },
@@ -189,7 +189,7 @@
           "name": "EmilianoMJ11/transformers-training-recipes",
           "url": "https://github.com/EmilianoMJ11/transformers-training-recipes",
           "description": "Transformers Trainer Examples 2026: Production-Ready Fine-Tuning Recipes for Modern NLP Models",
-          "summary_zh": "面向现代NLP模型的生产级微调配方集，基于Transformers Trainer提供即用型训练范例",
+          "summary_zh": "面向现代NLP模型的生产级Transformers微调配方合集，开箱即用的Trainer实战范例",
           "stars": 53,
           "forks": 0,
           "language": "HTML",
@@ -212,53 +212,53 @@
           "name": "flutter/flutter",
           "url": "https://github.com/flutter/flutter",
           "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-          "summary_zh": "用 Dart 一套代码构建移动端及更多平台精美原生应用，热重载让开发又快又爽",
-          "stars": 180050,
-          "forks": 33920,
+          "summary_zh": "用 Dart 一套代码构建移动端及更多平台精美应用的高性能跨端 UI 框架",
+          "stars": 180176,
+          "forks": 34090,
           "language": "Dart",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 806
+          "stars_period": 967
+        },
+        {
+          "name": "farion1231/cc-switch",
+          "url": "https://github.com/farion1231/cc-switch",
+          "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.i",
+          "summary_zh": "跨平台桌面工具，一站式管理 Claude Code、Codex 等六种 AI 编码 Agent，免去多工具切换烦恼",
+          "stars": 144173,
+          "forks": 9570,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 3955
         },
         {
           "name": "cathrynlavery/diagram-design",
           "url": "https://github.com/cathrynlavery/diagram-design",
           "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadow",
-          "summary_zh": "为 AI 编码工具提供 44 种自包含 HTML+SVG 编辑级图表，拒绝 Mermaid 式粗糙渲染",
-          "stars": 53647,
-          "forks": 3399,
+          "summary_zh": "为 AI 编码工具提供 44 种自包含 HTML+SVG 编辑级图表，告别 Mermaid 的粗糙渲染",
+          "stars": 55026,
+          "forks": 3471,
           "language": "HTML",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9237
+          "stars_period": 9867
         },
         {
           "name": "bevyengine/bevy",
           "url": "https://github.com/bevyengine/bevy",
           "description": "A refreshingly simple data-driven game engine built in Rust",
-          "summary_zh": "用 Rust 打造的数据驱动游戏引擎，以简洁架构和 ECS 设计让游戏开发更高效",
-          "stars": 48961,
-          "forks": 4924,
+          "summary_zh": "用 Rust 打造的数据驱动游戏引擎，以极简 ECS 架构实现高性能与清爽开发体验",
+          "stars": 48991,
+          "forks": 4932,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 337
-        },
-        {
-          "name": "emilk/egui",
-          "url": "https://github.com/emilk/egui",
-          "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
-          "summary_zh": "Rust 即时模式 GUI 库，一套代码同时跑 Web 和原生，简单易用适合快速开发工具界面",
-          "stars": 31385,
-          "forks": 2202,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 477
+          "stars_period": 351
         }
       ]
     },
@@ -268,114 +268,159 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
+          "name": "denoland/deno",
+          "url": "https://github.com/denoland/deno",
+          "description": "A modern runtime for JavaScript and TypeScript.",
+          "summary_zh": "基于 Rust 打造的安全高效 JS/TS 运行时，内置工具链与原生 TypeScript 支持，直击 Node 生态痛点",
+          "stars": 108789,
+          "forks": 6468,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 333
+        },
+        {
+          "name": "NationalSecurityAgency/ghidra",
+          "url": "https://github.com/NationalSecurityAgency/ghidra",
+          "description": "Ghidra is a software reverse engineering (SRE) framework",
+          "summary_zh": "美国国安局开源的软件逆向工程框架，支持反汇编反编译与恶意代码分析且完全免费",
+          "stars": 86856,
+          "forks": 9698,
+          "language": "Java",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 4986
+        },
+        {
           "name": "666ghj/MiroFish",
           "url": "https://github.com/666ghj/MiroFish",
           "description": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物",
           "summary_zh": "用群体智能做通用预测的Python引擎，无需复杂建模即可对任意目标进行预测",
-          "stars": 78777,
-          "forks": 11993,
+          "stars": 79091,
+          "forks": 12016,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2123
+          "stars_period": 2222
         },
         {
           "name": "remotion-dev/remotion",
           "url": "https://github.com/remotion-dev/remotion",
           "description": "🎥 Make videos programmatically with React",
-          "summary_zh": "用 React 组件像写网页一样编程生成视频，让前端开发者零成本掌握视频自动化制作",
-          "stars": 63802,
-          "forks": 5027,
+          "summary_zh": "用 React 组件像写网页一样编程生成视频，让前端开发者零成本掌握视频自动化创作",
+          "stars": 64033,
+          "forks": 5049,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1686
-        },
-        {
-          "name": "hugohe3/ppt-master",
-          "url": "https://github.com/hugohe3/ppt-master",
-          "description": "AI turns documents or topics into real, native PowerPoint decks—with native shapes, transitions and animations, data-backed charts and tables on deman",
-          "summary_zh": "把文档或主题一键转成带原生形状动画图表和语音旁白的真PPT",
-          "stars": 61584,
-          "forks": 4876,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 3733
-        },
-        {
-          "name": "spacedriveapp/spacedrive",
-          "url": "https://github.com/spacedriveapp/spacedrive",
-          "description": "Spacedrive is an open source cross-platform file explorer, powered by a virtual distributed filesystem written in Rust.",
-          "summary_zh": "用 Rust 打造的跨平台开源文件管理器，以虚拟分布式文件系统统一管理多设备文件",
-          "stars": 39155,
-          "forks": 1359,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 129
+          "stars_period": 1702
         }
       ]
     }
   ],
   "papers": [
     {
+      "id": "llm-reasoning",
+      "name": "🧠 LLM 推理与优化",
+      "papers": [
+        {
+          "title": "ChunkAct: Action Chunking for Agentic Robotics",
+          "url": "http://arxiv.org/abs/2610.18874v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18874v1",
+          "abstract": "Agentic robotics places a large language model (LLM) agent in the robot control loop, where it composes perception, motion, and vision-language-action (VLA) tools under the guidance of a memory and th",
+          "summary_zh": "提出动作分块框架ChunkAct，让LLM智能体复用可执行动作序列，减少重复推理，提升机器人任务效率与泛化能力",
+          "authors": [
+            "Bingxin Xu",
+            "Wenrui Bao",
+            "Xinxin Liu"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.CL"
+          ],
+          "published": "2026-10-13T17:59:57Z"
+        },
+        {
+          "title": "Cepheid: Decoupling Scale from Structure for Cross-Family Motion Completion",
+          "url": "http://arxiv.org/abs/2610.18871v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18871v1",
+          "abstract": "Sparse-to-dense motion completion recovers dense mesh motion from sparse vertex displacements. Residual priors trained on one geometry family frequently fail to beat parameter-free harmonic extension ",
+          "summary_zh": "提出解耦尺度与结构的残差先验，突破跨族运动补全的缩放瓶颈，在多个几何族上超越无参调和扩展",
+          "authors": [
+            "Chih-Hai Su",
+            "Tsung-Wei Ke",
+            "Yu-Lun Liu"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.GR",
+            "cs.LG"
+          ],
+          "published": "2026-10-13T17:59:53Z"
+        },
+        {
+          "title": "What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study",
+          "url": "http://arxiv.org/abs/2610.18869v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18869v1",
+          "abstract": "How should demonstration quality be used during vision-language-action (VLA) pretraining to improve performance after target-task fine-tuning? We compare weighting, filtering, and conditioning across ",
+          "summary_zh": "基于五千条次优人类演示系统比较加权过滤与条件化策略，揭示质量感知VLA预训练的关键因素",
+          "authors": [
+            "Mingxuan Yan",
+            "Litian Gong",
+            "Dihong Huang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.LG"
+          ],
+          "published": "2026-10-13T17:59:52Z"
+        }
+      ]
+    },
+    {
       "id": "rag-retrieval",
       "name": "🔍 RAG 与检索增强",
       "papers": [
         {
-          "title": "Can Language Models Play the Wikipedia Game?",
-          "url": "http://arxiv.org/abs/2610.13948v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13948v1",
-          "abstract": "Language models increasingly support or automate information retrieval from document collections too large to index. This task is difficult when it requires specialist linguistic or scientific knowled",
-          "summary_zh": "用维基百科游戏测试语言模型的信息检索能力，揭示其在专业领域检索中的表现局限",
+          "title": "MFG: Multi-turn Feedback Guided Molecular Optimization",
+          "url": "http://arxiv.org/abs/2610.18851v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18851v1",
+          "abstract": "Multi-objective molecular optimization is a critical process in drug discovery that aims to modify a given molecule to simultaneously improve multiple properties while maintaining a similar overall st",
+          "summary_zh": "提出多轮反馈引导的多目标分子优化框架MFG，通过迭代反馈机制在保持结构相似的同时显著提升多项分子属性",
           "authors": [
-            "Alexander Hickey",
-            "Joanna Knight",
-            "James Bishop"
+            "Trieu Nguyen",
+            "Frazier N. Baker",
+            "Ruoxi Gao"
           ],
           "categories": [
             "cs.AI",
-            "cs.IR"
+            "cs.LG",
+            "q-bio.QM"
           ],
-          "published": "2026-10-09T17:59:56Z"
+          "published": "2026-10-13T17:58:41Z"
         },
         {
-          "title": "KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling",
-          "url": "http://arxiv.org/abs/2610.13924v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13924v1",
-          "abstract": "A parallel sampler can choose at random which coordinates to generate together. For a target $p$ and the output law $q_U$ of a schedule $U$ drawn afresh for each output, we compare the schedule-averag",
-          "summary_zh": "提出调度平均KL散度分析框架，证明并行采样中混合前后KL散度的轮复杂度分离下界",
+          "title": "Back-Translation Still Matters: Leveraging Monolingual Data for Low-Resource Machine Translation with LLMs",
+          "url": "http://arxiv.org/abs/2610.18818v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18818v1",
+          "abstract": "Pre-trained Large Language Model (LLMs) are effective on many tasks in zero-shot and few-shot settings. For machine translation of low-resource languages, the obvious options are few-shot prompting an",
+          "summary_zh": "提出利用大模型对低资源单语数据回译生成合成平行语料，结合少量真实数据微调，显著提升低资源机器翻译性能",
           "authors": [
-            "Tianyi Wu"
+            "Divyanshu Bathla",
+            "Parag Singla",
+            "Jitin Singla"
           ],
           "categories": [
-            "cs.LG",
-            "cs.IT"
+            "cs.CL",
+            "cs.AI"
           ],
-          "published": "2026-10-09T17:54:16Z"
-        },
-        {
-          "title": "Goal-Oriented Bundle Management and Flow Control for Deep-Space Communications via Reinforcement Learning",
-          "url": "http://arxiv.org/abs/2610.13923v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13923v1",
-          "abstract": "Deep-space communications operate under intermittent connectivity, long propagation delays, and relay storage constraints. In such networks, the Bundle Protocol enables store-carry-forward communicati",
-          "summary_zh": "提出基于强化学习的深空通信束管理与流控方法，优化中继存储与接触调度，提升传输成功率并降低时延",
-          "authors": [
-            "Sajjad Baghaeea",
-            "Aimin Lib",
-            "Shanmugarajan Balasubramanian"
-          ],
-          "categories": [
-            "cs.NI",
-            "cs.LG",
-            "eess.SY"
-          ],
-          "published": "2026-10-09T17:53:46Z"
+          "published": "2026-10-13T17:50:18Z"
         }
       ]
     },
@@ -384,37 +429,57 @@
       "name": "🤖 Agent 与规划",
       "papers": [
         {
-          "title": "X-AgentRed: Red-Teaming Personal Agents in Evolving Multi-Service Ecosystems",
-          "url": "http://arxiv.org/abs/2610.13886v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13886v1",
-          "abstract": "Personal agents increasingly connect to services across the web and applications by using tools. As the effects of their actions accumulate and interact across services, unintended or harmful outcomes",
-          "summary_zh": "提出面向多服务生态的个人智能体红队测试框架X-AgentRed，通过演化环境主动挖掘组合性失效，显著提升风险发现率",
+          "title": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+          "url": "http://arxiv.org/abs/2610.18868v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18868v1",
+          "abstract": "Long-horizon agents have drawn growing attention for their ability to work autonomously -- from hours to days -- on economically valuable tasks, a capability essential to automated discovery and recur",
+          "summary_zh": "提出Tev长时程智能体环境扩展方法，用稠密进度奖励训练开源模型，在长时程任务上显著提升自主工作能力",
           "authors": [
-            "Yeonsung Jung",
-            "Zhiyuan Wang",
-            "Zifan Wang"
+            "Wenbo Hu",
+            "Shraman Pramanick",
+            "Krishna Kumar Singh"
           ],
           "categories": [
-            "cs.AI"
+            "cs.CL",
+            "cs.AI",
+            "cs.CV"
           ],
-          "published": "2026-10-09T17:34:44Z"
+          "published": "2026-10-13T17:59:51Z"
         },
         {
-          "title": "MC-EvoBench: Auditing Experience-Driven Self-Improvement in Minecraft Agents",
-          "url": "http://arxiv.org/abs/2610.13829v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13829v1",
-          "abstract": "A central challenge in embodied recursive self-improvement is enabling agents to convert interaction history into capabilities that persist beyond one world and transfer to later tasks. A saved memory",
-          "summary_zh": "提出MC-EvoBench基准审计Minecraft智能体经验驱动的自我改进，揭示记忆保存不等于可复用能力习得",
+          "title": "The Last Remote Sensing Model Built by Humans? Casting Any Earth Observation Task as Recursive Self-Improvement",
+          "url": "http://arxiv.org/abs/2610.18845v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18845v1",
+          "abstract": "Earth observation (EO) models are still built by hand. For each new task, experts design a training recipe and tune it against a benchmark. We show that this loop can be handed to an agent. Any verifi",
+          "summary_zh": "提出将任意可验证地球观测任务转化为由执行框架与验证器构成的智能体递归自我改进闭环，实现模型自动构建与调优",
           "authors": [
-            "Jingwei Song",
-            "Zhisheng Chen",
-            "Bingfan Zeng"
+            "Sijie Zhao",
+            "Zeqi Zhou",
+            "Heli Qi"
           ],
           "categories": [
-            "cs.RO",
-            "cs.AI"
+            "cs.CV",
+            "cs.CL"
           ],
-          "published": "2026-10-09T16:37:39Z"
+          "published": "2026-10-13T17:57:51Z"
+        },
+        {
+          "title": "Who Improves the Robot? Toward Physical Recursive Self-Improvement",
+          "url": "http://arxiv.org/abs/2610.18842v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18842v1",
+          "abstract": "Robots are increasingly autonomous in task execution, yet their improvement remains largely human-driven. This study investigates Physical Recursive Self-Improvement (Physical RSI), in which physical ",
+          "summary_zh": "提出物理递归自我改进框架，让机器人用自身物理经验持续更新能力与改进流程，实现自主迭代提升",
+          "authors": [
+            "Hai Zhou",
+            "Fan Yang",
+            "Zeyi Chen"
+          ],
+          "categories": [
+            "cs.AI",
+            "cs.LG",
+            "cs.RO"
+          ],
+          "published": "2026-10-13T17:57:04Z"
         }
       ]
     },
@@ -423,54 +488,54 @@
       "name": "🖼️ 多模态",
       "papers": [
         {
-          "title": "Hide and Seek: HIDE Concepts to SEEK explanations for black box models",
-          "url": "http://arxiv.org/abs/2610.13935v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13935v1",
-          "abstract": "Interpreting machine learning model predictions is a central challenge, particularly for black-box vision models. Concept-based attribution methods interpret models using human-understandable concepts",
-          "summary_zh": "提出隐藏-寻找概念解释框架，首次将概念归因拓展至目标检测等结构化输出黑盒模型，实现更通用解释",
+          "title": "Data Free Training of Diffusion Models for Lattice Field Theories",
+          "url": "http://arxiv.org/abs/2610.18863v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18863v1",
+          "abstract": "Sampling equilibrium field configurations remains a major computational bottleneck in lattice field theory, motivating the development of generative samplers that can produce independent configuration",
+          "summary_zh": "提出无需数据的扩散模型训练框架用于格点场论，实现独立构型采样并突破传统去噪评分匹配的计算瓶颈",
           "authors": [
-            "Bhanu Tokas",
-            "Rahul Nair",
-            "Rockwell Jackson"
+            "Dennis Grinwald",
+            "Ankur Singha",
+            "Khaled Kahouli"
           ],
           "categories": [
-            "cs.CV",
-            "cs.AI",
+            "hep-lat",
             "cs.LG"
           ],
-          "published": "2026-10-09T17:56:59Z"
+          "published": "2026-10-13T17:59:33Z"
         },
         {
-          "title": "Designing Protein Structures from Natural Language",
-          "url": "http://arxiv.org/abs/2610.13917v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13917v1",
-          "abstract": "A central challenge in de novo protein design is generating proteins with desired structural and functional properties. Existing design models typically require a dedicated input representation for ea",
-          "summary_zh": "提出首个全原子自然语言驱动蛋白质设计模型Prompteina，无需专用输入表示即可生成目标结构与功能蛋白",
+          "title": "AesCode: Aesthetic Code Generation with Decoupled Cross-Modal Rewards",
+          "url": "http://arxiv.org/abs/2610.18860v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18860v1",
+          "abstract": "Generating information-rich visual artifacts such as slides, posters, and dashboards as code is appealing because the outputs are structured, editable, and verifiable. Yet code models cannot see how t",
+          "summary_zh": "提出解耦跨模态奖励的代码生成框架AesCode，通过视觉反馈优化布局与配色，显著提升生成代码的美学质量",
           "authors": [
-            "Joseph Lee",
-            "Yanjing Li",
-            "Bo Qiang"
+            "Xin Gao",
+            "Yifan Yang",
+            "Xin Li"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "published": "2026-10-13T17:59:31Z"
+        },
+        {
+          "title": "Exact Topological Compliance: Generating Persistence-Equivalent Graphs",
+          "url": "http://arxiv.org/abs/2610.18856v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18856v1",
+          "abstract": "Persistent homology summarizes the topological evolution of a graph as persistence diagrams (PDs). Generating graphs whose topology matches a target descriptor is increasingly important, yet existing ",
+          "summary_zh": "提出精确拓扑合规生成框架，无需软正则即可生成持久同调完全等价的图，实现拓扑零误差匹配",
+          "authors": [
+            "Mattie Ji",
+            "Indradyumna Roy",
+            "Vikas Garg"
           ],
           "categories": [
             "cs.LG",
-            "q-bio.BM"
+            "math.AT"
           ],
-          "published": "2026-10-09T17:51:55Z"
-        },
-        {
-          "title": "When VLMs Destroy What They Know: Spatial Representations Fall Below Lexical Priors",
-          "url": "http://arxiv.org/abs/2610.13910v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13910v1",
-          "abstract": "Vision-Language Models (VLMs) increasingly analyze and reason about images, yet it remains unclear whether their internal representations faithfully encode the structured relations required for such r",
-          "summary_zh": "提出EICS指标评估视觉语言模型内部表征稳定性，发现空间关系表征在视觉输入下反而低于纯文本先验",
-          "authors": [
-            "Shubh Garg",
-            "Chen Shani"
-          ],
-          "categories": [
-            "cs.CL"
-          ],
-          "published": "2026-10-09T17:50:03Z"
+          "published": "2026-10-13T17:59:19Z"
         }
       ]
     },
@@ -479,52 +544,38 @@
       "name": "📝 其他前沿",
       "papers": [
         {
-          "title": "Constructive Bounds for the Topological Expressivity of Neural Networks",
-          "url": "http://arxiv.org/abs/2610.13931v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13931v1",
-          "abstract": "The expressivity of a neural network $Φ$ describes the class of functions that a network can express. The term topological expressivity refers to a family of measures particularly suited to understand",
-          "summary_zh": "提出基于贝蒂数的构造性下界方法刻画神经网络拓扑表达力，首次给出决策边界拓扑复杂度的显式量化界",
+          "title": "Read the Room Before Your Model Generates",
+          "url": "http://arxiv.org/abs/2610.18820v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18820v1",
+          "abstract": "Large language models (LLMs) generally rely on sampling temperature to regulate the amount of randomness in their outputs. Mainstream methods for selecting temperature typically involve fixed, heurist",
+          "summary_zh": "提出基于几何可解释性的温度选择方法，在生成前先读取上下文以动态调节随机性，优于固定启发式和逐词校准策略",
           "authors": [
-            "Kosio Beshkov"
+            "Muyao Kong",
+            "Zhihao Lin"
           ],
           "categories": [
-            "math.AT",
-            "cs.LG"
+            "cs.AI",
+            "cs.CL"
           ],
-          "published": "2026-10-09T17:55:33Z"
+          "published": "2026-10-13T17:51:18Z"
         },
         {
-          "title": "AI Models Can Provably Hide Arbitrary Capabilities",
-          "url": "http://arxiv.org/abs/2610.13928v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13928v1",
-          "abstract": "Capability evaluations aim to surface dangerous model behaviors before deployment, but their reliability depends on the assumption that hidden capabilities can be elicited. We show this assumption doe",
-          "summary_zh": "提出加密后门攻击使AI模型可证明隐藏任意能力，揭示能力评估假设在对抗条件下不成立",
+          "title": "Kwai Summary Attention V2 Technical Report",
+          "url": "http://arxiv.org/abs/2610.18654v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.18654v1",
+          "abstract": "Summary-token architectures such as Kwai Summary Attention (KSA) compress distant context into learnable Summary token per chunk, and hybrid variants interleave these layers with full attention to ret",
+          "summary_zh": "提出KSA V2混合摘要注意力架构，通过分块摘要令牌压缩远距上下文并交错全注意力保留原文访问，显著提升长文本建模效率",
           "authors": [
-            "Andis Draguns",
-            "Sumeet Ramesh Motwani",
-            "Raymond Douglas"
+            "OneRec Team",
+            "Chenglong Chu",
+            "Guohong Mu"
           ],
           "categories": [
             "cs.LG",
-            "cs.CR"
+            "cs.AI",
+            "cs.IR"
           ],
-          "published": "2026-10-09T17:55:06Z"
-        },
-        {
-          "title": "RSI-Anything: Unlocking Recursive Self-Improvement with World Models",
-          "url": "http://arxiv.org/abs/2610.13912v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.13912v1",
-          "abstract": "Recursive self-improvement (RSI) aims to transform interaction experience into persistent improvements, yet external feedback is costly and world-model predictions may become unreliable as policies ev",
-          "summary_zh": "提出基于世界模型的通用递归自改进框架RSI-Anything，将交互经验转化为持续策略提升并缓解预测失准问题",
-          "authors": [
-            "Taoyong Cui",
-            "Pinxian Zeng",
-            "Wanghan Xu"
-          ],
-          "categories": [
-            "cs.CL"
-          ],
-          "published": "2026-10-09T17:50:30Z"
+          "published": "2026-10-13T16:18:44Z"
         }
       ]
     }
