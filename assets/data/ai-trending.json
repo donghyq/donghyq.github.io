@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T11:49:31.695432+00:00Z",
+  "generated_at": "2026-10-18T12:14:44.117250+00:00Z",
   "lookback_days": 30,
   "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 13 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
@@ -12,53 +12,53 @@
           "name": "morluto/rea",
           "url": "https://github.com/morluto/rea",
           "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
-          "summary_zh": "用 AI Agent 逆向分析任意软件，从应用行为一路深挖到原生二进制",
-          "stars": 298723,
-          "forks": 75498,
+          "summary_zh": "用 AI Agent 逆向分析任意软件，从应用行为一路深入到原生二进制层面",
+          "stars": 315201,
+          "forks": 79909,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 248962
+          "stars_period": 239923
         },
         {
-          "name": "mattpocock/skills",
-          "url": "https://github.com/mattpocock/skills",
-          "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "从工程师 .agents 目录提炼的 AI 编码 Agent 实战技能集，让 Agent 按成熟工程规范干活",
-          "stars": 294513,
-          "forks": 24699,
-          "language": "Shell",
+          "name": "ruvnet/ruflo",
+          "url": "https://github.com/ruvnet/ruflo",
+          "description": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features a",
+          "summary_zh": "原始多智能体编排框架，支持自适应记忆与自学习智能，可部署协作式AI工作流",
+          "stars": 76293,
+          "forks": 9015,
+          "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 11937
+          "stars_period": 2063
         },
         {
           "name": "heygen-com/hyperframes",
           "url": "https://github.com/heygen-com/hyperframes",
           "description": "Write HTML. Render video. Built for agents.",
-          "summary_zh": "用 HTML 写视频并直接渲染成片，专为 AI Agent 打造的视频生成工具",
-          "stars": 65606,
-          "forks": 5917,
+          "summary_zh": "用 HTML 写页面即可渲染出视频，专为 AI Agent 打造的视频生成工具",
+          "stars": 66317,
+          "forks": 5992,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5601
+          "stars_period": 5639
         },
         {
-          "name": "K-Dense-AI/scientific-agent-skills",
-          "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-          "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated ski",
-          "summary_zh": "让任意 AI Agent 变身 AI 科学家，内置 177 个经验证技能与 100+ 科学数据库，覆盖生物医学等科研场景",
-          "stars": 51909,
-          "forks": 4597,
+          "name": "HKUDS/CLI-Anything",
+          "url": "https://github.com/HKUDS/CLI-Anything",
+          "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+          "summary_zh": "让所有命令行软件原生支持AI Agent调用，无需改造代码即可将任意CLI工具接入智能体生态",
+          "stars": 54340,
+          "forks": 4926,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3170
+          "stars_period": 2492
         }
       ]
     },
@@ -72,32 +72,32 @@
           "url": "https://github.com/Alishahryar1/free-claude-code",
           "description": "Use Claude Code, Codex, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now ",
           "summary_zh": "免费白嫖13亿+Token让Claude Code、Codex等十余种编码工具在终端、IDE、手机和浏览器中随意使用",
-          "stars": 61133,
-          "forks": 9579,
+          "stars": 61395,
+          "forks": 9629,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4078
+          "stars_period": 4103
         },
         {
           "name": "xerj-org/xerj",
           "url": "https://github.com/xerj-org/xerj",
-          "description": "XERJ is the new way for AI to search data. Its autoindex capability activates agents to know your data without the token waste of grep and sed. One co",
-          "summary_zh": "Rust 编写的 AI 数据检索工具，一条命令自动索引代码文档日志和 PDF，让 Agent 无需 grep 和 sed 浪费 Token 就能理解你的数据",
-          "stars": 7346,
-          "forks": 382,
+          "description": "XERJ is the new way for AI to search data. Its autoindex capability activates agents to know your data without the token waste of grep (1974 tool). On",
+          "summary_zh": "用一条命令为代码文档日志和PDF建立自动索引，让AI Agent无需grep即可直接检索数据，大幅节省Token消耗",
+          "stars": 8159,
+          "forks": 432,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4073
+          "stars_period": 4277
         },
         {
           "name": "cdcailf/cjkfold",
           "url": "https://github.com/cdcailf/cjkfold",
           "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "专治PDF提取中康熙部首等CJK形近字不匹配问题，用NFKC折叠让文本检索重新对齐",
+          "summary_zh": "专治 PDF 提取文本中康熙部首等形近字不匹配问题，通过折叠异形字让 CJK 文本检索与比对重新对齐",
           "stars": 203,
           "forks": 9,
           "language": "Python",
@@ -117,7 +117,7 @@
           "name": "kkjiangk/agent-py",
           "url": "https://github.com/kkjiangk/agent-py",
           "description": "Personal AIOps engineering project with durable workflows, scoped hybrid retrieval, reliable event delivery, and verified API/browser contracts.",
-          "summary_zh": "个人AIOps工程实践项目，整合持久化工作流、范围化混合检索、可靠事件投递与可验证API/浏览器契约",
+          "summary_zh": "基于FastAPI与Kafka构建的个人AIOps工程实践，融合持久化工作流、范围化混合检索与可验证API/浏览器契约，让AI运维代理可靠落地",
           "stars": 101,
           "forks": 9,
           "language": "Python",
@@ -144,53 +144,53 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动捕获并压缩会话内容，将相关上下文注入未来对话",
-          "stars": 101302,
-          "forks": 8872,
+          "summary_zh": "让 AI Agent 跨会话记住一切：自动捕获会话内容并用 AI 压缩，未来会话精准注入相关上下文",
+          "stars": 101521,
+          "forks": 8906,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2442
+          "stars_period": 2347
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密，月供74亿token",
-          "stars": 36394,
-          "forks": 4913,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密",
+          "stars": 36845,
+          "forks": 4982,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3767
+          "stars_period": 3751
         },
         {
           "name": "lightseekorg/tokenspeed",
           "url": "https://github.com/lightseekorg/tokenspeed",
           "description": "TokenSpeed is a speed-of-light LLM inference engine.",
-          "summary_zh": "光速级 LLM 推理引擎，用 Python 实现极致加速大模型推理吞吐与延迟表现",
-          "stars": 2680,
-          "forks": 355,
+          "summary_zh": "光速级 LLM 推理引擎，专为极致降低推理延迟而设计，让大模型响应快如闪电",
+          "stars": 2698,
+          "forks": 360,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 464
+          "stars_period": 482
         },
         {
           "name": "trymirai/uzu",
           "url": "https://github.com/trymirai/uzu",
           "description": "A high-performance inference engine for AI models",
           "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，主打极致速度与低资源占用",
-          "stars": 2373,
-          "forks": 143,
+          "stars": 2389,
+          "forks": 148,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 372
+          "stars_period": 242
         }
       ]
     },
@@ -203,7 +203,7 @@
           "name": "EmilianoMJ11/transformers-training-recipes",
           "url": "https://github.com/EmilianoMJ11/transformers-training-recipes",
           "description": "Transformers Trainer Examples 2026: Production-Ready Fine-Tuning Recipes for Modern NLP Models",
-          "summary_zh": "面向现代 NLP 模型的生产级 Transformers 微调配方集，提供可直接复用的 Trainer 实战示例",
+          "summary_zh": "面向现代NLP模型的生产级Transformers微调配方合集，提供可直接复用的Trainer训练示例",
           "stars": 53,
           "forks": 0,
           "language": "HTML",
@@ -226,34 +226,34 @@
           "name": "cathrynlavery/diagram-design",
           "url": "https://github.com/cathrynlavery/diagram-design",
           "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadow",
-          "summary_zh": "为 AI 编码工具提供 44 种自包含 HTML+SVG 编辑级图表，告别 Mermaid 的粗糙质感",
-          "stars": 56672,
-          "forks": 3606,
+          "summary_zh": "为 AI 编码工具提供 44 种自包含 HTML+SVG 编辑级图表，告别 Mermaid 的粗糙渲染",
+          "stars": 57363,
+          "forks": 3656,
           "language": "HTML",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9024
+          "stars_period": 8382
         },
         {
           "name": "MadsLorentzen/ai-job-search",
           "url": "https://github.com/MadsLorentzen/ai-job-search",
           "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep ",
-          "summary_zh": "基于 Claude Code 的本地 AI 求职框架，可评估岗位、定制简历、撰写求职信并准备面试，数据全程留在自己机器上",
-          "stars": 49183,
-          "forks": 16744,
+          "summary_zh": "本地运行的 AI 求职框架，基于 Claude Code 自动评估岗位、定制简历、撰写求职信并准备面试，Fork 即用",
+          "stars": 51430,
+          "forks": 17079,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2752
+          "stars_period": 4200
         },
         {
           "name": "jev-chat/jev-chat-jarvis",
           "url": "https://github.com/jev-chat/jev-chat-jarvis",
           "description": "The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies you fill in with one tap. You press send",
-          "summary_zh": "聊天前先读懂对方意图与风险的AI决策助手，一键生成回复草稿，覆盖安卓、Windows、macOS和iOS",
-          "stars": 7850,
+          "summary_zh": "聊天前先读懂对方意图与风险并一键生成回复草稿的跨平台聊天辅助决策工具",
+          "stars": 7875,
           "forks": 1276,
           "language": "Kotlin",
           "topics": [
@@ -272,9 +272,9 @@
           "name": "LosaLosSantos/aurelio-finance",
           "url": "https://github.com/LosaLosSantos/aurelio-finance",
           "description": "Open-source personal finance app with an AI financial advisor: track your net worth, investments, ETFs, cash and debts on your own computer.",
-          "summary_zh": "开源个人财务应用，内置AI财务顾问，可在本地追踪净资产、投资、ETF、现金与债务",
-          "stars": 3947,
-          "forks": 499,
+          "summary_zh": "开源个人财务应用，内置AI理财顾问，可在本地追踪净资产、投资、ETF、现金与债务",
+          "stars": 3953,
+          "forks": 501,
           "language": "Python",
           "topics": [
             "ai",
@@ -296,56 +296,56 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "OpenCut-app/OpenCut",
-          "url": "https://github.com/OpenCut-app/OpenCut",
-          "description": "The open-source CapCut alternative",
-          "summary_zh": "开源版剪映替代品，用 TypeScript 打造可自托管的在线视频编辑器，让剪辑不再依赖商业软件",
-          "stars": 95030,
-          "forks": 9358,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1704
-        },
-        {
           "name": "NationalSecurityAgency/ghidra",
           "url": "https://github.com/NationalSecurityAgency/ghidra",
           "description": "Ghidra is a software reverse engineering (SRE) framework",
-          "summary_zh": "美国国家安全局开源的软件逆向工程框架，支持反汇编、反编译与恶意代码分析，免费替代 IDA Pro",
-          "stars": 89927,
-          "forks": 10058,
+          "summary_zh": "美国国家安全局开源的逆向工程框架，支持反汇编、反编译与恶意代码分析，免费替代 IDA Pro",
+          "stars": 90532,
+          "forks": 10137,
           "language": "Java",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7510
+          "stars_period": 7608
         },
         {
           "name": "debpalash/VoiceStudio",
           "url": "https://github.com/debpalash/VoiceStudio",
           "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
-          "summary_zh": "完全本地运行的开源 ElevenLabs 替代品，集语音克隆、设计、视频配音、听写、转录与有声书制作于一体，支持 646 种语言",
-          "stars": 72153,
-          "forks": 7882,
+          "summary_zh": "完全本地运行的 ElevenLabs 开源替代，集声音克隆、设计、视频配音、听写与有声书制作于一体，支持 646 种语言",
+          "stars": 74217,
+          "forks": 8123,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 14708
+          "stars_period": 15911
         },
         {
           "name": "remotion-dev/remotion",
           "url": "https://github.com/remotion-dev/remotion",
           "description": "🎥 Make videos programmatically with React",
-          "summary_zh": "用 React 组件像写网页一样编程生成视频，让开发者以熟悉的声明式方式实现视频自动化制作",
-          "stars": 64673,
-          "forks": 5119,
+          "summary_zh": "用 React 组件像写网页一样编程生成视频，把前端开发体验带入视频制作",
+          "stars": 64889,
+          "forks": 5155,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1869
+          "stars_period": 1771
+        },
+        {
+          "name": "storytold/artcraft",
+          "url": "https://github.com/storytold/artcraft",
+          "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+          "summary_zh": "面向艺术家设计师和电影人的Rust创意工具引擎，用代码化方式精准控制创作流程",
+          "stars": 32247,
+          "forks": 5110,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 18479
         }
       ]
     }
@@ -360,7 +360,7 @@
           "url": "http://arxiv.org/abs/2610.22367v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22367v1",
           "abstract": "Significant efforts are currently being directed toward the implementation of large-scale quantum information processors, but realizing useful quantum advantage also requires the development of effici",
-          "summary_zh": "提出用大语言模型自动发现量子电路的方法，在多项任务上超越人工设计电路并刷新最优性能",
+          "summary_zh": "提出利用大语言模型自动发现量子线路的新方法，在多项任务上生成超越人工设计的先进量子线路并显著降低资源开销",
           "authors": [
             "Andi Gu",
             "Alek H. Kemeny",
@@ -377,7 +377,7 @@
           "url": "http://arxiv.org/abs/2610.22353v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22353v1",
           "abstract": "Mixture-of-experts (MoE) models have become an important approach for scaling model parameters. Modern MoE architectures increasingly combine two design choices: fine-grained expert segmentation and s",
-          "summary_zh": "提出针对细粒度专家与共享专家架构的路由探索方法，揭示其探索不足问题并改进路由机制以提升模型性能",
+          "summary_zh": "提出针对细粒度专家与共享专家架构的路由探索重思方法，揭示其路由空间受限问题并给出改进方案",
           "authors": [
             "Bingcong Li",
             "Hao Ma",
@@ -394,7 +394,7 @@
           "url": "http://arxiv.org/abs/2610.22341v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22341v1",
           "abstract": "We introduce 3DCodeVerse, a research ecosystem that enables coding agents to create editable and verifiable 3D content at scale. 3DCodeVerse comprises large-scale, high-quality datasets of executable ",
-          "summary_zh": "提出可扩展的3D代码研究生态，构建大规模可执行3D代码数据集与空间推理验证框架，实现可编辑可验证的3D内容生成",
+          "summary_zh": "提出可扩展的3D代码智能体研究生态，构建大规模可执行3D代码数据集与空间推理验证框架，实现可编辑可验证的3D内容生成",
           "authors": [
             "Yipeng Gao",
             "Ziyao Zeng",
@@ -417,7 +417,7 @@
           "url": "http://arxiv.org/abs/2610.22339v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22339v1",
           "abstract": "Retrieving relevant lemmas is crucial for formal theorem proving, enabling provers to build machine-checkable proofs from established mathematical results. Recent retrieval systems match library decla",
-          "summary_zh": "提出基于多跳依赖的轻量图搜索检索方法，高效挖掘引理间依赖关系以提升形式定理证明性能",
+          "summary_zh": "提出精益图搜索方法利用多跳依赖关系检索相关引理，显著提升形式定理证明的检索效率与证明成功率",
           "authors": [
             "Yihan Xu",
             "Jia-Chen Gu",
@@ -439,7 +439,7 @@
           "url": "http://arxiv.org/abs/2610.22372v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22372v1",
           "abstract": "Personalization is essential for general-purpose robots to transition into household environments and achieve true practicality. While general robotic manipulation has been extensively studied, person",
-          "summary_zh": "提出首个个性化机器人操作受控基准LIBERO-PeRM，将任务完成与个性化偏好解耦，揭示现有模型在个性化场景下性能显著下降",
+          "summary_zh": "提出首个个性化机器人操作受控基准LIBERO-PeRM，将任务完成与个性化执行解耦评估，揭示现有模型在个性化场景的显著性能差距",
           "authors": [
             "Zhixu Li",
             "Keqian Tang",
@@ -457,7 +457,7 @@
           "url": "http://arxiv.org/abs/2610.22350v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22350v1",
           "abstract": "Existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engin",
-          "summary_zh": "提出面向真实客户交付的FDE-Gym基准，让智能体在模糊需求与实时系统中澄清约束并完成任务，弥补现有基准仅评测明确任务的空白",
+          "summary_zh": "提出面向真实客户交付的FDE-Gym基准，聚焦模糊需求澄清与线上系统约束发现，弥补现有智能体评测仅覆盖明确任务的空白",
           "authors": [
             "Dongxu Yang",
             "Hongda Yan",
@@ -475,7 +475,7 @@
           "url": "http://arxiv.org/abs/2610.22344v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22344v1",
           "abstract": "Large language models (LLMs) are expanding from assisting scientific research and engineering to autonomously developing and improving AI systems, advancing AI for AI (AI4AI) as a pathway toward recur",
-          "summary_zh": "提出面向自主机器学习工程的通用智能体MLExpert，通过工作流驱动实现AI系统自主开发与迭代优化",
+          "summary_zh": "提出面向自主机器学习工程的通用智能体MLExpert，通过工作流驱动实现AI系统的自动开发与迭代优化",
           "authors": [
             "Shangheng Du",
             "Jinxin Shi",
@@ -499,7 +499,7 @@
           "url": "http://arxiv.org/abs/2610.22362v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22362v1",
           "abstract": "Generative simulation can automate robot environment construction, but physically valid environments are not necessarily useful for training. The challenge is to identify environments that address a p",
-          "summary_zh": "提出数据引擎与动作策略协同进化框架CoDA，自动生成针对策略失败的环境与监督信号，实现机器人训练环境构建与策略提升的闭环共进化",
+          "summary_zh": "提出数据引擎与动作策略协同进化框架CoDA，自动生成针对策略失败的环境与监督信号，实现机器人训练环境与策略的联合优化",
           "authors": [
             "Tianjiao Yu",
             "Zhilin Ou",
@@ -516,7 +516,7 @@
           "url": "http://arxiv.org/abs/2610.22355v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22355v1",
           "abstract": "Generative visual verifiers play a crucial role in advancing multimodal intelligence. To enhance the robustness of visual verifiers in complex multimodal scenarios involving compositional requirements",
-          "summary_zh": "提出分解式分级验证器OmniVerifier-C1，突破传统二值判断局限，实现规则约束下生成世界建模的细粒度视觉验证",
+          "summary_zh": "提出分解式分级验证器OmniVerifier-C1，突破传统二值判断局限，实现规则约束生成世界建模的细粒度视觉验证",
           "authors": [
             "Bowei Liu",
             "Xinchen Zhang",
@@ -561,7 +561,7 @@
           "url": "http://arxiv.org/abs/2610.22364v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22364v1",
           "abstract": "Predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified, from ph",
-          "summary_zh": "提出测试时优化环境潜变量的机器人世界模型方法T2-Z，无需显式指定即可推断摩擦质量等不可观测因素，显著提升动作预测准确性",
+          "summary_zh": "提出测试时优化环境隐变量的机器人世界模型方法T2-Z，无需显式指定即可推断摩擦质量等不可观测因素，显著提升动作后果预测精度",
           "authors": [
             "Chenyuan Zhou",
             "Yining Hong",
@@ -579,7 +579,7 @@
           "url": "http://arxiv.org/abs/2610.22358v1",
           "pdf_url": "https://arxiv.org/pdf/2610.22358v1",
           "abstract": "Time series foundation models are becoming increasingly popular for general-purpose forecasting. However, most leading models predict marginal quantiles, leaving the dependence structure of future tra",
-          "summary_zh": "提出PathFM生成式多元轨迹预测模型，通过建模未来轨迹依赖结构实现快速精准预测",
+          "summary_zh": "提出PathFM生成式多元轨迹预测框架，通过建模未来轨迹依赖结构实现快速精准预测",
           "authors": [
             "Jiachen Yao",
             "Xiyuan Zhang",
