@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-21T13:18:34.246970+00:00Z",
+  "generated_at": "2026-10-22T13:17:01.722838+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：TypeScript, Python, Rust）和 12 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "morluto/rea",
           "url": "https://github.com/morluto/rea",
           "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
-          "summary_zh": "用 AI 智能体逆向分析任意软件，从应用行为一路深入到原生二进制",
-          "stars": 353940,
-          "forks": 88907,
+          "summary_zh": "用 AI Agent 逆向分析任意软件，从应用行为一路深挖到原生二进制",
+          "stars": 362722,
+          "forks": 90989,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 157631
+          "stars_period": 129417
         },
         {
           "name": "anomalyco/opencode",
           "url": "https://github.com/anomalyco/opencode",
           "description": "The open source coding agent.",
-          "summary_zh": "开源编码智能体，让开发者用自然语言直接驱动代码编写与修改，TypeScript 实现且星标超 21 万",
-          "stars": 219477,
-          "forks": 29276,
+          "summary_zh": "开源编码智能体，用 TypeScript 打造可自主读写代码、执行开发任务的 AI 编程助手",
+          "stars": 219988,
+          "forks": 29393,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5792
+          "stars_period": 6545
         },
         {
           "name": "harry0703/MoneyPrinterTurbo",
           "url": "https://github.com/harry0703/MoneyPrinterTurbo",
           "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-          "summary_zh": "输入主题或关键词即可用 AI 工作流一键生成高清短视频，大幅降低短视频创作门槛",
-          "stars": 133652,
-          "forks": 21094,
+          "summary_zh": "输入主题或关键词即可用 AI 自动化工作流一键生成高清短视频，大幅降低短视频创作门槛",
+          "stars": 134020,
+          "forks": 21179,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3132
+          "stars_period": 3129
         },
         {
           "name": "stablyai/orca",
           "url": "https://github.com/stablyai/orca",
           "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on deskt",
-          "summary_zh": "用自有订阅统一调度 Grok Bot、Claude Code 等多编码 Agent，跨桌面、移动与远程运行时运行",
-          "stars": 100595,
-          "forks": 6359,
+          "summary_zh": "用自有订阅统一调度 Grok Bot、Claude Code 等多编码 Agent，桌面移动远程全平台可用",
+          "stars": 102254,
+          "forks": 6455,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 8173
+          "stars_period": 8705
         }
       ]
     },
@@ -71,34 +71,34 @@
           "name": "xerj-org/xerj",
           "url": "https://github.com/xerj-org/xerj",
           "description": "Local-first search engine and MCP server for AI agents. One Rust binary indexes code, docs, logs, JSONL/CSV and PDFs for BM25 full-text, vector and hy",
-          "summary_zh": "单文件 Rust 二进制即可本地索引代码文档日志与 PDF，为 AI Agent 提供 BM25 全文、向量与混合检索，无需 grep 也能搜代码",
-          "stars": 12629,
-          "forks": 778,
+          "summary_zh": "单二进制本地优先搜索引擎与 MCP 服务器，用 Rust 为 AI Agent 统一索引代码文档日志并支持 BM25 向量混合检索",
+          "stars": 13004,
+          "forks": 874,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 8074
+          "stars_period": 8731
         },
         {
           "name": "ModernRelay/omnigraph",
           "url": "https://github.com/ModernRelay/omnigraph",
           "description": "Object-storage native graph database with branching and typed ontology",
-          "summary_zh": "基于对象存储的原生图数据库，支持分支与类型化本体，用 Rust 打造",
-          "stars": 1573,
-          "forks": 231,
+          "summary_zh": "基于对象存储的原生图数据库，支持分支与类型化本体，用 Rust 打造让图数据像代码一样可版本化管理",
+          "stars": 1657,
+          "forks": 237,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 254
+          "stars_period": 316
         },
         {
           "name": "kividbio/kividb",
           "url": "https://github.com/kividbio/kividb",
           "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 写的多线程 Redis/Valkey 平替，兼容现有客户端且内置全文与向量检索",
-          "stars": 360,
+          "summary_zh": "用 Rust 写的多线程 Redis/Valkey 替代品，可直接替换且内置全文与向量搜索",
+          "stars": 430,
           "forks": 14,
           "language": "Rust",
           "topics": [
@@ -117,9 +117,9 @@
           "name": "cdcailf/cjkfold",
           "url": "https://github.com/cdcailf/cjkfold",
           "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "专治 PDF 提取中康熙部首等形近字不匹配问题，用 NFKC 折叠让 CJK 文本重新对齐",
-          "stars": 203,
-          "forks": 9,
+          "summary_zh": "专治PDF提取中康熙部首等CJK形近字不匹配问题，用NFKC折叠让文本重新对齐",
+          "stars": 186,
+          "forks": 8,
           "language": "Python",
           "topics": [
             "chinese",
@@ -141,56 +141,56 @@
       "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
       "repos": [
         {
+          "name": "vllm-project/vllm",
+          "url": "https://github.com/vllm-project/vllm",
+          "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+          "summary_zh": "高吞吐内存高效的大模型推理与服务引擎，用 PagedAttention 显著提升吞吐并降低显存占用",
+          "stars": 95112,
+          "forks": 23794,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1327
+        },
+        {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密，月供74亿token",
-          "stars": 38666,
-          "forks": 5209,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，支持智能路由与自动故障转移，月省74亿Token",
+          "stars": 39281,
+          "forks": 5301,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3710
+          "stars_period": 3772
+        },
+        {
+          "name": "sgl-project/sglang",
+          "url": "https://github.com/sgl-project/sglang",
+          "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+          "summary_zh": "高性能大模型与多模态模型推理服务框架，通过优化调度和内存管理显著提升吞吐并降低延迟",
+          "stars": 37609,
+          "forks": 9799,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 496
         },
         {
           "name": "lightseekorg/tokenspeed",
           "url": "https://github.com/lightseekorg/tokenspeed",
           "description": "TokenSpeed is a speed-of-light LLM inference engine.",
-          "summary_zh": "光速级 LLM 推理引擎，专为极致降低推理延迟设计，让大模型响应快到接近物理极限",
-          "stars": 2737,
-          "forks": 362,
+          "summary_zh": "光速级 LLM 推理引擎，专为极致降低大模型推理延迟而生，让 token 生成速度逼近硬件极限",
+          "stars": 2750,
+          "forks": 366,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 503
-        },
-        {
-          "name": "trymirai/uzu",
-          "url": "https://github.com/trymirai/uzu",
-          "description": "A high-performance inference engine for AI models",
-          "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，主打极致速度与低资源占用",
-          "stars": 2467,
-          "forks": 143,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 175
-        },
-        {
-          "name": "ranxianglei/billion-context",
-          "url": "https://github.com/ranxianglei/billion-context",
-          "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (",
-          "summary_zh": "用上下文压缩插件把月级长会话塞进100K小窗口，Token消耗直降五倍",
-          "stars": 2203,
-          "forks": 195,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 958
+          "stars_period": 501
         }
       ]
     },
@@ -203,9 +203,9 @@
           "name": "Folkbench/folkbench",
           "url": "https://github.com/Folkbench/folkbench",
           "description": "AI API 中转站评测排行与切换工具：实测可用率、延迟与价格 · Open-source AI API relay benchmark, rankings & switcher for Claude Code / Codex",
-          "summary_zh": "实测各家 AI API 中转站可用率延迟与价格并一键切换，帮 Claude Code 和 Codex 用户避开不稳定线路",
-          "stars": 2228,
-          "forks": 9,
+          "summary_zh": "实测各家 AI API 中转站可用率延迟与价格并支持一键切换，帮 Claude Code 和 Codex 用户避开不稳定线路",
+          "stars": 2485,
+          "forks": 12,
           "language": "Rust",
           "topics": [
             "ai",
@@ -230,53 +230,60 @@
           "name": "Comfy-Org/ComfyUI",
           "url": "https://github.com/Comfy-Org/ComfyUI",
           "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
-          "summary_zh": "基于节点图界面的模块化扩散模型GUI与后端，号称全球最快本地推理引擎，让图像生成流程像搭积木一样自由组合",
-          "stars": 141232,
-          "forks": 16703,
+          "summary_zh": "基于节点图的模块化扩散模型本地推理引擎，兼顾图形界面、API 与后端，速度极快且灵活可扩展",
+          "stars": 141888,
+          "forks": 16729,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3364
+          "stars_period": 3948
         },
         {
-          "name": "MadsLorentzen/ai-job-search",
-          "url": "https://github.com/MadsLorentzen/ai-job-search",
-          "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep ",
-          "summary_zh": "本地运行的 AI 求职框架，基于 Claude Code 评估岗位、定制简历、写求职信并准备面试，可 Fork 自持",
-          "stars": 62274,
-          "forks": 19244,
+          "name": "luongnv89/claude-howto",
+          "url": "https://github.com/luongnv89/claude-howto",
+          "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+          "summary_zh": "用可视化示例和可复制模板带你从零掌握 Claude Code 到进阶智能体，解决上手难、缺实操范本的问题",
+          "stars": 42673,
+          "forks": 5351,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12848
+          "stars_period": 718
         },
         {
           "name": "thesysdev/openui",
           "url": "https://github.com/thesysdev/openui",
           "description": "The Open Standard for Generative UI",
-          "summary_zh": "让 AI 直接生成可交互 UI 的开放标准，把模型输出变成真正能跑的前端界面而非纯文本",
-          "stars": 12823,
-          "forks": 865,
+          "summary_zh": "让 AI 直接生成可交互 UI 的开放标准，把模型输出从纯文本升级为实时渲染的界面组件",
+          "stars": 13025,
+          "forks": 869,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1709
+          "stars_period": 1995
         },
         {
-          "name": "SegFault42/HeliosGen",
-          "url": "https://github.com/SegFault42/HeliosGen",
-          "description": "🏆 Self Hosted Gen AI desktop app. Free alternative to Higgsfield, OpenArt, Freepik....",
-          "summary_zh": "自托管生成式AI桌面应用，免费替代Higgsfield、OpenArt等商业平台，数据本地可控",
-          "stars": 3180,
-          "forks": 356,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 591
+          "name": "mmm1712/Local_AI_esp32",
+          "url": "https://github.com/mmm1712/Local_AI_esp32",
+          "description": "A language model trained from scratch and running offline on an ESP32-S3 with a touchscreen chat interface.",
+          "summary_zh": "在ESP32-S3上从零训练并离线运行语言模型，配触摸屏聊天界面，让大模型脱离云端跑在单片机上",
+          "stars": 86,
+          "forks": 16,
+          "language": "C",
+          "topics": [
+            "embedded-ai",
+            "esp32",
+            "esp32-s3",
+            "llm",
+            "transformer",
+            "xiao"
+          ],
+          "created_at": "2026-10-14T02:31:13Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -290,52 +297,52 @@
           "url": "https://github.com/yt-dlp/yt-dlp",
           "description": "A feature-rich command-line audio/video downloader",
           "summary_zh": "功能最全的命令行音视频下载器，支持数千网站并持续维护，是 youtube-dl 的活跃继任者",
-          "stars": 199874,
-          "forks": 17413,
+          "stars": 200314,
+          "forks": 17467,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2406
+          "stars_period": 2330
+        },
+        {
+          "name": "iptv-org/iptv",
+          "url": "https://github.com/iptv-org/iptv",
+          "description": "Collection of publicly available IPTV channels from all over the world",
+          "summary_zh": "汇聚全球公开 IPTV 频道资源，一站式解决找台难问题，14 万星标见证的开源直播源宝库",
+          "stars": 141945,
+          "forks": 8343,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1029
         },
         {
           "name": "oven-sh/bun",
           "url": "https://github.com/oven-sh/bun",
           "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
-          "summary_zh": "用 Rust 打造的超快 JavaScript 运行时，集打包、测试、包管理于一体，一个工具替代 Node 全家桶",
-          "stars": 96332,
-          "forks": 5131,
+          "summary_zh": "用 Rust 打造的超快 JavaScript 运行时，将打包、测试、包管理集于一身，一个工具替代 Node 生态多套工具链",
+          "stars": 96343,
+          "forks": 5105,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 170
+          "stars_period": 180
         },
         {
           "name": "NationalSecurityAgency/ghidra",
           "url": "https://github.com/NationalSecurityAgency/ghidra",
           "description": "Ghidra is a software reverse engineering (SRE) framework",
           "summary_zh": "美国国家安全局开源的逆向工程框架，支持反汇编、反编译与恶意代码分析，免费替代 IDA Pro",
-          "stars": 92438,
-          "forks": 10352,
+          "stars": 92919,
+          "forks": 10421,
           "language": "Java",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6184
-        },
-        {
-          "name": "debpalash/VoiceStudio",
-          "url": "https://github.com/debpalash/VoiceStudio",
-          "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
-          "summary_zh": "完全本地运行的 ElevenLabs 开源替代，集语音克隆、设计、视频配音、听写、转录与有声书制作于一体，支持 646 种语言",
-          "stars": 79753,
-          "forks": 8770,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 17057
+          "stars_period": 5769
         }
       ]
     }
@@ -346,55 +353,55 @@
       "name": "🧠 LLM 推理与优化",
       "papers": [
         {
-          "title": "Industrial ReMEmbR: Scaling Spatiotemporal Memory to Robot Fleets",
-          "url": "http://arxiv.org/abs/2610.28624v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28624v1",
-          "abstract": "Warehouse robot fleets continuously observe operational conditions, but preserving these observations as reusable semantic memory incurs substantial computation, communication, and storage costs. For ",
-          "summary_zh": "提出面向仓库机器人车队的时空语义记忆框架，通过分布式压缩与共享机制降低计算通信存储开销，实现跨机器人长期可复用记忆",
+          "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+          "url": "http://arxiv.org/abs/2610.30132v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30132v1",
+          "abstract": "Reinforcement learning (RL) is an effective way to strengthen the long-context reasoning of large language models (LLMs), but it needs training data that are long, diverse, challenging, and verifiable",
+          "summary_zh": "提出零数据自生成可验证长上下文训练样本的强化学习方法，突破人工标注瓶颈，显著提升大模型长文本推理能力",
           "authors": [
-            "Jad Yammine",
-            "Malek Wahidi",
-            "Abrar Anwar"
+            "Zhennan Wan",
+            "Jianfei Chen"
+          ],
+          "categories": [
+            "cs.CL",
+            "cs.LG"
+          ],
+          "published": "2026-10-21T17:59:14Z"
+        },
+        {
+          "title": "The End of Consensus Research?",
+          "url": "http://arxiv.org/abs/2610.30114v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30114v1",
+          "abstract": "Consensus is a fundamental problem in distributed computing and at the core of state machine replication (SMR). Despite decades of active human research, discovering practical low-latency solutions to",
+          "summary_zh": "提出AI驱动共识协议自动发现框架，融合协议知识与正确性推理，突破数十年人工研究瓶颈实现低延迟共识",
+          "authors": [
+            "Clément Burgelin",
+            "Rachid Guerraoui",
+            "Zicong Hong"
+          ],
+          "categories": [
+            "cs.DC",
+            "cs.AI"
+          ],
+          "published": "2026-10-21T17:55:19Z"
+        },
+        {
+          "title": "Multimodal Embodied Agents: A Unified Capability-centric Perspective from Computer-Use to Robot-Use",
+          "url": "http://arxiv.org/abs/2610.30108v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30108v1",
+          "abstract": "Multimodal agents (MMAs) sustain interaction through reasoning, memory, tools, and feedback, most visibly as computer-use agents, while robotic systems (RSs) couple sensing and actuation under physica",
+          "summary_zh": "提出从计算机使用到机器人使用的统一能力中心视角定义多模态具身智能体并整合推理记忆工具与反馈机制",
+          "authors": [
+            "Yanzhe Chen",
+            "Ziyi Yang",
+            "Jifeng Zhu"
           ],
           "categories": [
             "cs.RO",
             "cs.AI",
-            "cs.SE"
+            "cs.CV"
           ],
-          "published": "2026-10-20T17:58:32Z"
-        },
-        {
-          "title": "Planning under Noise with Neural Operators",
-          "url": "http://arxiv.org/abs/2610.28623v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28623v1",
-          "abstract": "Planning under uncertain control execution noise requires reliable feedback policies across diverse environments. We introduce Planning Under Noise (PUN), a neural operator that learns noise-aware val",
-          "summary_zh": "提出PUN神经算子学习噪声感知价值场，实现未见几何环境下的可靠规划",
-          "authors": [
-            "Michael Chen",
-            "Hong Chul Nam",
-            "Xi Deng"
-          ],
-          "categories": [
-            "cs.LG",
-            "cs.RO"
-          ],
-          "published": "2026-10-20T17:58:30Z"
-        },
-        {
-          "title": "Efficient Edge-aware Attention Network for Graph Generation",
-          "url": "http://arxiv.org/abs/2610.28618v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28618v1",
-          "abstract": "Graph generative models commonly use graph-specific Transformer architectures to jointly update node and edge features. However, these architectures do not directly benefit from recent hardware-aware ",
-          "summary_zh": "提出边感知高效注意力图生成网络，兼容硬件优化注意力实现，显著提升大规模图生成的可扩展性",
-          "authors": [
-            "Vincent Jung",
-            "Alba Carballo-Castro",
-            "Yiming Qin"
-          ],
-          "categories": [
-            "cs.LG"
-          ],
-          "published": "2026-10-20T17:56:05Z"
+          "published": "2026-10-21T17:52:48Z"
         }
       ]
     },
@@ -403,20 +410,20 @@
       "name": "🔍 RAG 与检索增强",
       "papers": [
         {
-          "title": "Cache Engineering for Agents",
-          "url": "http://arxiv.org/abs/2610.28577v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28577v1",
-          "abstract": "Large Language Model (LLM) agents can handle increasingly complex tasks, navigating long trajectories of observations and actions. As these trajectories grow, key-value (KV) cache I/O and storage beco",
-          "summary_zh": "提出面向LLM智能体的KV缓存工程方法，通过缓存复用与压缩应对长轨迹I/O存储瓶颈及上下文超限问题",
+          "title": "Velocity Ambiguity Profiles: Time-Resolved Bayes-Risk Diagnostics for Flow Matching",
+          "url": "http://arxiv.org/abs/2610.30107v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30107v1",
+          "abstract": "Flow matching trains a continuum of velocity regression problems but usually reports a loss averaged over interpolation time, obscuring which regions are limited by intrinsic ambiguity and which remai",
+          "summary_zh": "提出速度歧义剖面VAP以时间分辨贝叶斯风险诊断流匹配，揭示各插值时刻受内在歧义或数据限制的区域",
           "authors": [
-            "Tianyu Fu",
-            "Ruoxi Wang",
-            "Zihan Min"
+            "Yunpeng Mei",
+            "Xiaowen Zhu",
+            "Chenyu Wang"
           ],
           "categories": [
-            "cs.CL"
+            "cs.LG"
           ],
-          "published": "2026-10-20T17:32:24Z"
+          "published": "2026-10-21T17:52:40Z"
         }
       ]
     },
@@ -425,38 +432,55 @@
       "name": "🤖 Agent 与规划",
       "papers": [
         {
-          "title": "GBClaw: An agentic AI framework for atomistic grain boundary research and mechanistic discovery",
-          "url": "http://arxiv.org/abs/2610.28629v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28629v1",
-          "abstract": "Agentic artificial intelligence (AI) systems hold immense potential for automating complex workflows in materials discovery and design, but extending them to domain-intensive mechanistic investigation",
-          "summary_zh": "提出面向原子尺度晶界研究的智能体AI框架GBClaw，实现复杂材料机理工作流自动化并加速机制发现",
+          "title": "Environment Duels: A Microcosm of LLM Co-Evolution",
+          "url": "http://arxiv.org/abs/2610.30116v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30116v1",
+          "abstract": "Through a tangle of real-world interactions, from synthetic training pipelines to data shared on the open web, frontier LLMs absorb what their predecessors and competitors create. How well does each m",
+          "summary_zh": "提出环境对决框架让LLM在真实交互中互为出题者与解题者，揭示模型协同演化机制并量化其生态角色表现",
           "authors": [
-            "Yazhuo Liu",
-            "Kunqing Ding",
-            "Xiaoguo Gong"
+            "Shibo Jin",
+            "Zhiqiu Xu",
+            "Yiling Zou"
           ],
           "categories": [
-            "cond-mat.mtrl-sci",
-            "cond-mat.mes-hall",
+            "cs.CL",
             "cs.AI"
           ],
-          "published": "2026-10-20T17:59:40Z"
+          "published": "2026-10-21T17:55:31Z"
         },
         {
-          "title": "Semantic Observability for Autonomous Systems Diagnostics",
-          "url": "http://arxiv.org/abs/2610.28611v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28611v1",
-          "abstract": "Modern distributed microservice deployments generate massive volumes of heterogeneous, multi-format observability logs across physically and logically partitioned infrastructure. Isolating root causes",
-          "summary_zh": "提出面向分布式微服务的语义可观测性方法，统一异构多格式日志语义表征以精准定位级联故障根因",
+          "title": "Quant-Arena: Benchmarking LLM Agents for Quantitative Trading Research",
+          "url": "http://arxiv.org/abs/2610.30113v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30113v1",
+          "abstract": "Quantitative research is an iterative loop: a researcher proposes a market hypothesis, implements it as an executable signal, tests it on historical data, and decides what to keep. Existing benchmarks",
+          "summary_zh": "提出首个量化交易研究智能体基准Quant-Arena，以假设到信号到回测的迭代闭环评测大模型，揭示其端到端研究能力短板",
           "authors": [
-            "Jitendra Solanki",
-            "Anand Todkar",
-            "Ziran Min"
+            "Houde Qian",
+            "Zheng Jiang",
+            "Wenyi Li"
           ],
           "categories": [
-            "cs.AI"
+            "cs.CL",
+            "cs.AI",
+            "cs.CE"
           ],
-          "published": "2026-10-20T17:53:32Z"
+          "published": "2026-10-21T17:54:01Z"
+        },
+        {
+          "title": "Did the Problem Actually Get Harder? Testing LLMs on Paired P and NP-Complete Problems Hardened by Adversarial Multi-Agent Rewriting",
+          "url": "http://arxiv.org/abs/2610.30103v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30103v1",
+          "abstract": "Many NP-complete (NPC) problems have a polynomial-time (P) twin that differs in a single structural detail, such as 3- versus 2-colouring a graph. A model that reasons rather than recalls should notic",
+          "summary_zh": "提出对抗多智能体改写构造配对P与NP完全问题基准，揭示大模型依赖记忆而非推理且难度提升后性能显著下降",
+          "authors": [
+            "Nurul Labib Sayeedi",
+            "Md. Faiyaz Abdullah Sayeedi",
+            "Zabir Al Nazi"
+          ],
+          "categories": [
+            "cs.CL"
+          ],
+          "published": "2026-10-21T17:50:19Z"
         }
       ]
     },
@@ -465,57 +489,79 @@
       "name": "🖼️ 多模态",
       "papers": [
         {
-          "title": "Joints, Camera, Action! Co-Generating 3D Motion and Video for Arbitrary Rigs",
-          "url": "http://arxiv.org/abs/2610.28632v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28632v1",
-          "abstract": "Video generation models can now depict remarkably realistic motion. Yet it is unclear how to use this motion beyond pixels: to animate a specific 3D asset and replay the animation in its 3D scene. For",
-          "summary_zh": "提出联合生成3D关节运动与视频的框架，可从视频直接驱动任意骨骼绑定并回放于3D场景",
+          "title": "PhysiCalWorld: In-Context Physics Calibration for World Models",
+          "url": "http://arxiv.org/abs/2610.30125v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30125v1",
+          "abstract": "Existing world models typically perceive a scene through current visual frame or a narrow history window. However, these observations may not reveal the physics properties that determine transition dy",
+          "summary_zh": "提出上下文物理校准框架PhysiCalWorld，从交互历史推断物体质量分布与摩擦等隐含物理属性，显著提升世界模型转移动力学预测精度",
           "authors": [
-            "Noam Rotstein",
-            "Yoad Tewel",
-            "Chen Tessler"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI",
-            "cs.GR"
-          ],
-          "published": "2026-10-20T17:59:56Z"
-        },
-        {
-          "title": "UniWALM: Unified World Action Language Model for Embodied Robot Control",
-          "url": "http://arxiv.org/abs/2610.28626v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28626v1",
-          "abstract": "Motivated by the human ability to integrate experience across language, perception, and action, we introduce UniWALM, a unified world-action-language model that learns video, action, and language in a",
-          "summary_zh": "提出统一世界动作语言模型UniWALM，将视频动作语言映射至共享表征并互为条件与监督信号，实现具身机器人控制的多模态联合学习",
-          "authors": [
-            "Rahul Sajnani",
-            "Diego Romeres",
-            "Mingyuan Zhang"
+            "Yunhao Luo",
+            "Wentao He",
+            "Yinpei Dai"
           ],
           "categories": [
             "cs.RO",
             "cs.AI",
             "cs.CV"
           ],
-          "published": "2026-10-20T17:59:04Z"
+          "published": "2026-10-21T17:57:59Z"
         },
         {
-          "title": "MindView: Benchmarking Generative Multi-View Spatial Intelligence",
-          "url": "http://arxiv.org/abs/2610.28622v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28622v1",
-          "abstract": "Spatial intelligence has recently been assessed through generative tasks such as spatially grounded image editing, yet language-guided generation of spatially consistent views from partial multi-view ",
-          "summary_zh": "提出首个生成式多视角空间智能基准MindView，从部分视角观测生成空间一致新视角，填补语言引导多视角生成评测空白",
+          "title": "Self-normalized Bernstein Inequalities for Regenerative Processes and Applications to Learning Without Independence",
+          "url": "http://arxiv.org/abs/2610.30119v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30119v1",
+          "abstract": "We prove a self-normalized Bernstein inequality for bounded functions of a regenerative process with independent, identically distributed marked cycles of finite mean length. The bound uses observed c",
+          "summary_zh": "提出针对再生过程的自归一化伯恩斯坦不等式，利用观测周期长度保留截断与周期结束显式项，突破独立性假设",
           "authors": [
-            "Yanbo Wang",
-            "Siqi Luo",
-            "Siyu Zhang"
+            "Imon Banerjee",
+            "Pierre Alquier"
           ],
           "categories": [
-            "cs.CV",
+            "cs.LG",
+            "math.PR",
+            "math.ST"
+          ],
+          "published": "2026-10-21T17:56:37Z"
+        },
+        {
+          "title": "The role of locality and weight sharing in convolutional neural networks",
+          "url": "http://arxiv.org/abs/2610.30118v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30118v1",
+          "abstract": "The success of convolutional neural networks is often attributed to locality and weight sharing. However, how these two properties separately shape learning, and how their effects depend on the spatia",
+          "summary_zh": "通过教师-学生框架分离局部性与权重共享的作用，揭示二者如何依赖自然图像空间相关性分别塑造学习过程",
+          "authors": [
+            "Francesco Mori",
+            "Melanie Weber"
+          ],
+          "categories": [
+            "cs.LG",
+            "cond-mat.dis-nn",
+            "cond-mat.stat-mech"
+          ],
+          "published": "2026-10-21T17:56:22Z"
+        }
+      ]
+    },
+    {
+      "id": "alignment-safety",
+      "name": "🛡️ 对齐与安全",
+      "papers": [
+        {
+          "title": "Differentially Private Sparse Reward Estimation with Preference Feedback",
+          "url": "http://arxiv.org/abs/2610.30099v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30099v1",
+          "abstract": "Reinforcement Learning with Human Feedback (RLHF) has become a central paradigm for aligning Large Language Models with human values. However, the reliance on sensitive preference data necessitates ri",
+          "summary_zh": "提出差分隐私稀疏奖励估计方法，在偏好反馈下实现隐私保护并显著降低奖励估计误差",
+          "authors": [
+            "Meng Ding",
+            "Mingxi Lei",
+            "Jie Zhang"
+          ],
+          "categories": [
+            "cs.LG",
             "cs.AI"
           ],
-          "published": "2026-10-20T17:58:25Z"
+          "published": "2026-10-21T17:45:42Z"
         }
       ]
     },
@@ -524,56 +570,56 @@
       "name": "📝 其他前沿",
       "papers": [
         {
-          "title": "Learning Adaptable Dexterous Skills via Hybrid Dexterous Mimicking",
-          "url": "http://arxiv.org/abs/2610.28628v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28628v1",
-          "abstract": "Dexterous multi-finger hands hold promise to unlock diverse skills like functional grasps, in-hand reorientation, and dynamic handover that the human-designed world assumes, yet existing learning reci",
-          "summary_zh": "提出混合灵巧模仿框架统一目标导向强化学习与动作捕捉模仿，实现任意物体位姿下多指手功能抓取与动态操作技能的可适应学习",
+          "title": "Think Harder Where It Matters: Item-Level Adaptive Recursion for Sequential Recommendation",
+          "url": "http://arxiv.org/abs/2610.30128v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30128v1",
+          "abstract": "Existing sequential recommenders usually allocate a fixed computational budget to every item in a user's interaction history, regardless of the item's contribution to the final prediction. We challeng",
+          "summary_zh": "提出物品级自适应递归方法按贡献动态分配计算预算，在序列推荐中显著提升效果并降低计算开销",
           "authors": [
-            "Yuxuan Kuang",
-            "Jiashun Wang",
-            "Yixuan Sun"
+            "Zhanshuo Cao",
+            "Jiakai Tang",
+            "Yuqi Zhou"
           ],
           "categories": [
-            "cs.RO",
-            "cs.CV",
-            "cs.GR"
-          ],
-          "published": "2026-10-20T17:59:32Z"
-        },
-        {
-          "title": "Adaptive Multi-Token Prediction: How far should we go?",
-          "url": "http://arxiv.org/abs/2610.28619v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28619v1",
-          "abstract": "Multi-token prediction (MTP) can accelerate language-model decoding by drafting several tokens and verifying them in a single target-model pass. However, the best speculation horizon changes with cont",
-          "summary_zh": "提出自适应多令牌预测方法，按上下文动态调整推测长度，在保证解码加速的同时避免无效计算浪费",
-          "authors": [
-            "Emile Anand",
-            "Mohammed Rehan Parwani",
-            "Xinyuan Cao"
-          ],
-          "categories": [
+            "cs.IR",
             "cs.AI",
-            "cs.LG",
-            "eess.SY"
+            "cs.CL"
           ],
-          "published": "2026-10-20T17:56:32Z"
+          "published": "2026-10-21T17:58:06Z"
         },
         {
-          "title": "Value-Rich, Differently Organized: Measuring Value Expression and Organization in AI-Generated Debates",
-          "url": "http://arxiv.org/abs/2610.28604v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.28604v1",
-          "abstract": "Current evaluation of LLM-generated debate largely focuses on argumentative quality, leaving the value structure of generated arguments underexamined. We introduce a diagnostic metric framework for co",
-          "summary_zh": "提出诊断度量框架比较人参与AI生成辩论的价值表达与组织，揭示AI辩论价值丰富但组织方式异于人类",
+          "title": "A Quasipolynomial Algorithm for $\\ell_\\infty$ Contractions",
+          "url": "http://arxiv.org/abs/2610.30122v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30122v1",
+          "abstract": "We give an algorithm for computing an $\\eps$-approximate fixed point of any $d$-dimensional nonexpansion with respect to the $\\ell_\\infty$ norm in time $\\log(1/\\eps)^{O(\\log^2 d)}$. At its core, our m",
+          "summary_zh": "提出基于提升论证几何收缩搜索区域的新方法，在log(1/ε)的O(log²d)次方时间内计算ℓ∞范数下任意d维非扩张映射的ε近似不动点",
           "authors": [
-            "Maoyuan Li",
-            "Haoyuan Li",
-            "Zhongsheng Wang"
+            "Ashkan Soleymani",
+            "Gabriele Farina"
           ],
           "categories": [
-            "cs.AI"
+            "cs.GT",
+            "cs.CC",
+            "cs.LG"
           ],
-          "published": "2026-10-20T17:48:56Z"
+          "published": "2026-10-21T17:57:19Z"
+        },
+        {
+          "title": "Minimax Optimality of the NPMLE for Gaussian Mixtures in Hellinger Distance",
+          "url": "http://arxiv.org/abs/2610.30109v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.30109v1",
+          "abstract": "We analyze the problem of estimating univariate Gaussian mixture densities using the nonparametric maximum likelihood estimator (NPMLE) based on $n$ independent and identically distributed samples. We",
+          "summary_zh": "证明无约束非参数最大似然估计在高斯混合密度估计中达到对数除以样本量的平方Hellinger距离极小极大最优收敛速率",
+          "authors": [
+            "Shayan Hundrieser",
+            "Tudor Manole"
+          ],
+          "categories": [
+            "math.ST",
+            "cs.IT",
+            "cs.LG"
+          ],
+          "published": "2026-10-21T17:53:10Z"
         }
       ]
     }
