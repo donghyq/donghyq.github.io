@@ -1,0 +1,29 @@
+<svg aria-label="GPT / Claude：可复现网络结构与产品能力的材料边界" role="img" viewBox="0 0 1260 500" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="499" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">GPT / Claude：可复现网络结构与产品能力的材料边界</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">gpt-oss 提供网络级参数；GPT-6 和 Claude 5.5 公开的是产品、评测及系统接口</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#e2f5ed" height="290" rx="10" stroke="#16806d" stroke-width="1.5" width="555" x="43" y="132"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="67" y="172">OPEN-WEIGHT REFERENCE</text>
+<rect fill="#e2f5ed" height="87" rx="11" stroke="#16806d" stroke-width="1.5" width="467" x="78" y="199"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="311.5" y="236.5">gpt-oss-120b · 36 Layers</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="311.5" y="258.5">Full/Local Attention 交替</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="188" x="77" y="315"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="171.0" y="333">128 Experts / Top-4</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="207" x="275" y="315"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="378.5" y="333">117B Total / 5.1B Active</text>
+<rect fill="#e8f2ff" height="290" rx="10" stroke="#2563ad" stroke-width="1.5" width="590" x="627" y="132"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="649" y="172">CLOSED FRONTIER MODELS</text>
+<rect fill="#e8f2ff" height="78" rx="11" stroke="#2563ad" stroke-width="1.5" width="516" x="665" y="194"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="923.0" y="227.0">GPT-6 · Sol / Luna / Astra</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="923.0" y="249.0">推理、工具、界面、系统能力</text>
+<rect fill="#f0eafd" height="82" rx="11" stroke="#7650b3" stroke-width="1.5" width="516" x="665" y="291"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="923.0" y="326.0">Claude 5.5 · Opus / Sonnet / Haiku</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="923.0" y="348.0">Agentic Coding、上下文与缓存接口</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="60" y="449">公开权重与配置 → 内核 / 布局分析</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="674" y="449">系统报告与公开 API → 工作负载 / Runtime 分析</text>
+<path d="M30 458L1230 458" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="482">FIG. 14  ·  从可验证信息进入实现分析</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="482">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

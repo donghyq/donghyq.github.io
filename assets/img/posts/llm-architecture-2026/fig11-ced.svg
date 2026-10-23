@@ -1,0 +1,36 @@
+<svg aria-label="DeepSeek-V4.1：20 层 Causal Encoder + 20 层 Decoder" role="img" viewBox="0 0 1260 520" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="519" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">DeepSeek-V4.1：20 层 Causal Encoder + 20 层 Decoder</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">CED 让上半部分 Global KV 由 Encoder 最终 Hidden States 投影而来</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#eef1f5" height="78" rx="11" stroke="#6f7e8c" stroke-width="1.5" width="216" x="35" y="151"></rect>
+<text fill="#6f7e8c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="143.0" y="184.0">历史 Prompt</text>
+<text fill="#6f7e8c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="143.0" y="206.0">128K + 2K</text>
+<rect fill="#e8f2ff" height="112" rx="11" stroke="#2563ad" stroke-width="1.5" width="324" x="321" y="134"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="483.0" y="184.0">Causal Encoder</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="483.0" y="206.0">20 Layers / Global + SWA</text>
+<rect fill="#e2f5ed" height="112" rx="11" stroke="#16806d" stroke-width="1.5" width="389" x="756" y="134"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="950.5" y="184.0">Decoder</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="950.5" y="206.0">20 Layers / Query + SWA</text>
+<path d="M251 193 L319 193" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M645 193 L754 193" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#f0eafd" height="86" rx="11" stroke="#7650b3" stroke-width="1.5" width="279" x="344" y="302"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="483.5" y="339.0">Encoder 最终 Hidden</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="483.5" y="361.0">H₂₀</text>
+<path d="M490 246 L490 300" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#f0eafd" height="86" rx="11" stroke="#7650b3" stroke-width="1.5" width="359" x="768" y="302"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="947.5" y="339.0">Projected Shared Global KV</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="947.5" y="361.0">C_l = H₂₀ W_lᵏᵛ</text>
+<path d="M623 345 L766 345" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M948 300 L948 249" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="272" x="62" y="431"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="198.0" y="449">Prefill · ~8B Active</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="253" x="368" y="431"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="494.5" y="449">Decode · ~16B Active</text>
+<rect fill="#fff3db" height="27" rx="13" stroke="#b9781c" stroke-width="1" width="470" x="656" y="431"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="891.0" y="449">Decoder SWA: Bounded Replay 准备局部状态</text>
+<path d="M30 478L1230 478" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="502">FIG. 11  ·  来源：DeepSeek-V4.1-Flash §2.2 · 共享的是 Global KV</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="502">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

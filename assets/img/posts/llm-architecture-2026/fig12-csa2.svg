@@ -1,0 +1,47 @@
+<svg aria-label="CSA2 的跨层共享：Full / Reindex / Reuse" role="img" viewBox="0 0 1260 520" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="519" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">CSA2 的跨层共享：Full / Reindex / Reuse</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">每层自行计算 Q + SWA KV；Global KV / Index K / Top-K 可分别继承</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#e2f5ed" height="303" rx="10" stroke="#16806d" stroke-width="1.5" width="357" x="40" y="128"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="21" font-weight="650" text-anchor="start" x="59" y="164">FULL</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="59" y="187">全部新计算</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="66" y="215"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="219" y="238">Global Main KV · NEW</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="66" y="262"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="219" y="285">Indexer K · NEW</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="66" y="309"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="219" y="332">Top-K Indices · NEW</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="66" y="356"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="219" y="379">Core Attention · NEW</text>
+<rect fill="#fff3db" height="303" rx="10" stroke="#b9781c" stroke-width="1.5" width="357" x="452" y="128"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="21" font-weight="650" text-anchor="start" x="471" y="164">REINDEX</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="471" y="187">继承 KV，更新 Top-K</text>
+<rect fill="#fff3db" height="34" rx="5" stroke="#b9781c" stroke-width="1" width="306" x="478" y="215"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="631" y="238">Global Main KV · REUSE</text>
+<rect fill="#fff3db" height="34" rx="5" stroke="#b9781c" stroke-width="1" width="306" x="478" y="262"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="631" y="285">Indexer K · REUSE</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="478" y="309"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="631" y="332">Top-K Indices · NEW</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="478" y="356"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="631" y="379">Core Attention · NEW</text>
+<rect fill="#f0eafd" height="303" rx="10" stroke="#7650b3" stroke-width="1.5" width="357" x="864" y="128"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="21" font-weight="650" text-anchor="start" x="883" y="164">REUSE</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="883" y="187">继承 KV + Top-K</text>
+<rect fill="#fff3db" height="34" rx="5" stroke="#b9781c" stroke-width="1" width="306" x="890" y="215"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1043" y="238">Global Main KV · REUSE</text>
+<rect fill="#fff3db" height="34" rx="5" stroke="#b9781c" stroke-width="1" width="306" x="890" y="262"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1043" y="285">Indexer K · REUSE</text>
+<rect fill="#fff3db" height="34" rx="5" stroke="#b9781c" stroke-width="1" width="306" x="890" y="309"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1043" y="332">Top-K Indices · REUSE</text>
+<rect fill="#e2f5ed" height="34" rx="5" stroke="#16806d" stroke-width="1" width="306" x="890" y="356"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1043" y="379">Core Attention · NEW</text>
+<path d="M397 276 L448 276" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<path d="M809 276 L860 276" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="535" x="373" y="456"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="640.5" y="474">Decoder 首层 Full 构建 16K 候选池，后续 Reindex 层局部 TopK</text>
+<path d="M30 478L1230 478" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="502">FIG. 12  ·  根据 DeepSeek CSA2 Figure 4 机制重绘</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="502">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

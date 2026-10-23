@@ -1,0 +1,132 @@
+<svg aria-label="GDN State 的内存布局" role="img" viewBox="0 0 1260 520" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="519" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">GDN State 的内存布局</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">一个可恢复的 GDN 层：Recurrent Matrix + Conv Window，既包含长期关联又包含短卷积局部上下文</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#f0eafd" height="300" rx="10" stroke="#7650b3" stroke-width="1.5" width="700" x="35" y="111"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="55" y="143">Recurrent State · SSM</text>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="160"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="160"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="160"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="160"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="160"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="184"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="184"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="184"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="184"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="184"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="208"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="208"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="208"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="208"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="208"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="208"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="232"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="232"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="232"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="232"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="232"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="256"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="256"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="256"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="256"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="256"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="280"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="280"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="280"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="280"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="280"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="280"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="304"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="304"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="304"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="304"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="304"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="77" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="115" y="328"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="153" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="191" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="229" y="328"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="267" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="305" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="343" y="328"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="381" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="419" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="457" y="328"></rect>
+<rect fill="#7650b3" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="495" y="328"></rect>
+<rect fill="#cdb9ee" height="20" rx="2" stroke="white" stroke-width="0.3" width="34" x="533" y="328"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="78" y="388">逻辑形状： [V Heads,  dₖ,  dᵥ]；Qwen3.8 BF16：4 MiB / 层</text>
+<rect fill="#e8f2ff" height="300" rx="10" stroke="#2563ad" stroke-width="1.5" width="458" x="767" y="111"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="788" y="143">Conv State · Kernel 4</text>
+<rect fill="#e8f2ff" height="70" rx="11" stroke="#2563ad" stroke-width="1.5" width="124" x="793" y="190"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="855.0" y="230.0">t−3</text>
+<path d="M917 225 L930 225" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="70" rx="11" stroke="#2563ad" stroke-width="1.5" width="124" x="932" y="190"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="994.0" y="230.0">t−2</text>
+<path d="M1056 225 L1069 225" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="70" rx="11" stroke="#2563ad" stroke-width="1.5" width="124" x="1071" y="190"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1133.0" y="230.0">t−1</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="789" y="321">Q / K / V 合并通道</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="789" y="349">保存最近 kernel_size − 1 个位置</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="789" y="387">Qwen3.8 BF16：120 KiB / 层</text>
+<rect fill="#eef1f5" height="34" rx="10" stroke="#d8e1ea" stroke-width="1.5" width="1190" x="35" y="433"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="650" text-anchor="middle" x="628" y="455">Qwen3.8：69 GDN 层 × (4 MiB + 120 KiB) ≈ 284 MiB / Request（未含碎片）</text>
+<path d="M30 478L1230 478" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="502">FIG. 05  ·  State 是按请求保存的；可创建多个 Prefix Checkpoint</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="502">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

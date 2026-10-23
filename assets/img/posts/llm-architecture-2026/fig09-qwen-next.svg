@@ -1,0 +1,39 @@
+<svg aria-label="Qwen3.8-Flash-Next：三个正交架构扩展" role="img" viewBox="0 0 1260 488" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="487" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">Qwen3.8-Flash-Next：三个正交架构扩展</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">Attention 负责选历史；Residual 负责传信息；N-gram 表负责稀疏权重访问</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#e8f2ff" height="287" rx="10" stroke="#2563ad" stroke-width="1.5" width="356" x="40" y="120"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start" x="60" y="154">QSA / Indexer</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="60" y="181">Micro-block Avg Pool → Top-K</text>
+<rect fill="#f0eafd" height="287" rx="10" stroke="#7650b3" stroke-width="1.5" width="356" x="453" y="120"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start" x="473" y="154">Gated Residual</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="473" y="181">4 条 Residual Streams</text>
+<rect fill="#e2f5ed" height="287" rx="10" stroke="#16806d" stroke-width="1.5" width="356" x="861" y="120"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="start" x="881" y="154">N-gram Embedding</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="881" y="181">CPU / Host 条件查表</text>
+<rect fill="#eef1f5" height="39" rx="3" stroke="#d8e1ea" stroke-width="1.5" width="34" x="66" y="221"></rect>
+<rect fill="#e8f2ff" height="39" rx="3" stroke="#2563ad" stroke-width="1.5" width="34" x="109" y="221"></rect>
+<rect fill="#eef1f5" height="39" rx="3" stroke="#d8e1ea" stroke-width="1.5" width="34" x="152" y="221"></rect>
+<rect fill="#e8f2ff" height="39" rx="3" stroke="#2563ad" stroke-width="1.5" width="34" x="195" y="221"></rect>
+<rect fill="#eef1f5" height="39" rx="3" stroke="#d8e1ea" stroke-width="1.5" width="34" x="238" y="221"></rect>
+<rect fill="#eef1f5" height="39" rx="3" stroke="#d8e1ea" stroke-width="1.5" width="34" x="281" y="221"></rect>
+<rect fill="#e8f2ff" height="39" rx="3" stroke="#2563ad" stroke-width="1.5" width="34" x="324" y="221"></rect>
+<path d="M84 279 L346 279" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="54" rx="11" stroke="#2563ad" stroke-width="1.5" width="244" x="96" y="308"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="218.0" y="340.0">Sparse Core Attention</text>
+<rect fill="#f0eafd" height="26" rx="4" stroke="#7650b3" stroke-width="0.7" width="248" x="489" y="217"></rect>
+<rect fill="#eef1f5" height="26" rx="4" stroke="#7650b3" stroke-width="0.7" width="248" x="489" y="253"></rect>
+<rect fill="#f0eafd" height="26" rx="4" stroke="#7650b3" stroke-width="0.7" width="248" x="489" y="289"></rect>
+<rect fill="#eef1f5" height="26" rx="4" stroke="#7650b3" stroke-width="0.7" width="248" x="489" y="325"></rect>
+<path d="M748 270 L788 270" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e2f5ed" height="62" rx="11" stroke="#16806d" stroke-width="1.5" width="285" x="897" y="223"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1039.5" y="259.0">Hash: 2/3/4-gram</text>
+<path d="M1040 286 L1040 322" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e2f5ed" height="59" rx="11" stroke="#16806d" stroke-width="1.5" width="287" x="896" y="324"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1039.5" y="358.5">Host Embedding → HBM</text>
+<path d="M30 446L1230 446" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="470">FIG. 09  ·  QSA + 门控多路残差 + 参数表分层访问</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="470">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

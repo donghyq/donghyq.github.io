@@ -1,0 +1,36 @@
+<svg aria-label="缓存压缩可以沿四个维度相乘" role="img" viewBox="0 0 1260 515" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="514" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">缓存压缩可以沿四个维度相乘</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">Head/Feature、Token、Layer、Precision 分别缩小同一条推理缓存链路的不同维度</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#e8f2ff" height="215" rx="10" stroke="#2563ad" stroke-width="1.5" width="275" x="39" y="133"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="59" y="169">01  FEATURE</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="59" y="211">GQA / MLA</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="59" y="248">Hkv / latent width</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="20" font-weight="650" text-anchor="start" x="59" y="302">↓ Cache Bytes</text>
+<rect fill="#e2f5ed" height="215" rx="10" stroke="#16806d" stroke-width="1.5" width="275" x="347" y="133"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="367" y="169">02  TOKEN</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="367" y="211">CSA / QSA</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="367" y="248">Selected / Stored tokens</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="20" font-weight="650" text-anchor="start" x="367" y="302">↓ Cache Bytes</text>
+<rect fill="#f0eafd" height="215" rx="10" stroke="#7650b3" stroke-width="1.5" width="275" x="655" y="133"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="675" y="169">03  LAYER</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="675" y="211">CED / CSA2</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="675" y="248">KV-producing layers</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="20" font-weight="650" text-anchor="start" x="675" y="302">↓ Cache Bytes</text>
+<rect fill="#fff3db" height="215" rx="10" stroke="#b9781c" stroke-width="1.5" width="275" x="963" y="133"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="18" font-weight="650" text-anchor="start" x="983" y="169">04  PRECISION</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="983" y="211">FP8 / FP4</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="983" y="248">Bytes per element</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="20" font-weight="650" text-anchor="start" x="983" y="302">↓ Cache Bytes</text>
+<path d="M314 241 L345 241" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M622 241 L653 241" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M930 241 L961 241" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#eef1f5" height="66" rx="10" stroke="#d8e1ea" stroke-width="1.5" width="1040" x="110" y="376"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="17" font-weight="650" text-anchor="middle" x="630" y="402">Total Bytes ≈ Stored Tokens × Producing Layers × Stored Features × Bytes / Element</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" x="630" y="425">再加 Index / Conv / SSM / Metadata 与分配器碎片</text>
+<path d="M30 473L1230 473" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="497">FIG. 16  ·  同一量化倍数不可直接跨模型转化为总 HBM 降幅</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="497">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

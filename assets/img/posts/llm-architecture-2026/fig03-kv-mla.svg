@@ -1,0 +1,49 @@
+<svg aria-label="MHA → GQA → MLA：每个历史 Token 要保存什么" role="img" viewBox="0 0 1260 485" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="484" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">MHA → GQA → MLA：每个历史 Token 要保存什么</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">比较的是逻辑缓存表示；同层维度、Head 数和精度一致时，字节量才能直接对比</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="start" x="48" y="118">MHA · 每个 Q Head 一组 KV</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="50" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="109" y="159">K0</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="109" y="179">V0</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="194" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="253" y="159">K1</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="253" y="179">V1</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="338" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="397" y="159">K2</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="397" y="179">V2</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="482" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="541" y="159">K3</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="541" y="179">V3</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="626" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="685" y="159">K4</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="685" y="179">V4</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="770" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="829" y="159">K5</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="829" y="179">V5</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="914" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="973" y="159">K6</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="973" y="179">V6</text>
+<rect fill="#e8f2ff" height="55" rx="6" stroke="#2563ad" stroke-width="1.5" width="118" x="1058" y="138"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1117" y="159">K7</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1117" y="179">V7</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="start" x="48" y="226">GQA · 多个 Q Head 共享 KV</text>
+<rect fill="#e2f5ed" height="55" rx="6" stroke="#16806d" stroke-width="1.5" width="118" x="50" y="246"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="109" y="267">K0</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="109" y="287">V0</text>
+<rect fill="#e2f5ed" height="55" rx="6" stroke="#16806d" stroke-width="1.5" width="118" x="330" y="246"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="389" y="267">K1</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="389" y="287">V1</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="17" font-weight="400" text-anchor="start" x="650" y="294">多个 Query Head 映射到同一组 KV</text>
+<text fill="16" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="violet" font-weight="650" text-anchor="start" x="48" y="337">MLA · 低维联合 Latent</text>
+<rect fill="#f0eafd" height="47" rx="6" stroke="#7650b3" stroke-width="1.5" width="620" x="50" y="357"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="360" y="387">Compressed KV Latent  cᵏᵛ</text>
+<rect fill="#fff3db" height="47" rx="6" stroke="#b9781c" stroke-width="1.5" width="250" x="693" y="357"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="819" y="387">RoPE Key</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="972" y="386">按需吸收投影权重</text>
+<path d="M30 443L1230 443" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="467">FIG. 03  ·  缓存布局对比：Head 维 / Latent 维</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="467">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

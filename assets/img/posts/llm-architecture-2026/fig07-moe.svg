@@ -1,0 +1,61 @@
+<svg aria-label="MoE 在 Expert Parallelism 下的通信链路" role="img" viewBox="0 0 1260 505" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="504" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">MoE 在 Expert Parallelism 下的通信链路</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">Router 决定计算分配，All-to-All Dispatch / Combine 决定设备间数据移动</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="650" text-anchor="start" x="50" y="142">Token Batch</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="76" x="48" y="164"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="86.0" y="182">T00</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="140" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="178.0" y="182">T01</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="232" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="270.0" y="182">T02</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="76" x="324" y="164"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="362.0" y="182">T03</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="416" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="454.0" y="182">T04</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="508" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="546.0" y="182">T05</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="76" x="600" y="164"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="638.0" y="182">T06</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="692" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="730.0" y="182">T07</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="76" x="784" y="164"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="822.0" y="182">T08</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="76" x="876" y="164"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="914.0" y="182">T09</text>
+<rect fill="#f0eafd" height="86" rx="11" stroke="#7650b3" stroke-width="1.5" width="205" x="60" y="234"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="162.5" y="271.0">Router</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="162.5" y="293.0">Top-K Experts</text>
+<rect fill="#fff3db" height="86" rx="11" stroke="#b9781c" stroke-width="1.5" width="218" x="335" y="234"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="444.0" y="271.0">Token Packing</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="444.0" y="293.0">Sort / Group</text>
+<path d="M265 278 L332 278" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="122" rx="11" stroke="#2563ad" stroke-width="1.5" width="132" x="625" y="215"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="691.0" y="270.0">GPU 0</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="691.0" y="292.0">Expert GEMM</text>
+<path d="M553 272 L619 272" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#e2f5ed" height="122" rx="11" stroke="#16806d" stroke-width="1.5" width="132" x="775" y="215"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="841.0" y="270.0">GPU 1</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="841.0" y="292.0">Expert GEMM</text>
+<path d="M553 272 L769 272" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#f0eafd" height="122" rx="11" stroke="#7650b3" stroke-width="1.5" width="132" x="925" y="215"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="991.0" y="270.0">GPU 2</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="991.0" y="292.0">Expert GEMM</text>
+<path d="M553 272 L919 272" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#fff3db" height="122" rx="11" stroke="#b9781c" stroke-width="1.5" width="132" x="1075" y="215"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1141.0" y="270.0">GPU 3</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="1141.0" y="292.0">Expert GEMM</text>
+<path d="M553 272 L1069 272" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#e2f5ed" height="56" rx="11" stroke="#16806d" stroke-width="1.5" width="423" x="420" y="362"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="631.5" y="395.0">All-to-All Combine → Restore Token Order</text>
+<path d="M689 336 L682 358" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<path d="M839 336 L682 358" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<path d="M989 336 L682 358" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<path d="M1139 336 L682 358" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="58" y="399">关键瓶颈：Expert 负载偏斜、网络拓扑、小 Batch、Dispatch Kernel</text>
+<path d="M30 463L1230 463" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="487">FIG. 07  ·  MoE 的 FLOPs 与通信字节共同决定效率</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="487">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg aria-label="Gated DeltaNet：读取、纠错写入与遗忘" role="img" viewBox="0 0 1260 513" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="512" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">Gated DeltaNet：读取、纠错写入与遗忘</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">核心 recurrence：S̃=αS  →  e=v−S̃ᵀk  →  S′=S̃+βkeᵀ  →  y=S′ᵀq</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#f0eafd" height="98" rx="11" stroke="#7650b3" stroke-width="1.5" width="178" x="42" y="140"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="131.0" y="183.0">旧状态 S</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="131.0" y="205.0">[dₖ, dᵥ]</text>
+<rect fill="#fff3db" height="98" rx="11" stroke="#b9781c" stroke-width="1.5" width="175" x="277" y="140"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="364.5" y="183.0">衰减门 α</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="364.5" y="205.0">S̃ = α S</text>
+<rect fill="#e8f2ff" height="98" rx="11" stroke="#2563ad" stroke-width="1.5" width="220" x="517" y="140"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="627.0" y="183.0">Key 读取</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="627.0" y="205.0">S̃ᵀ k</text>
+<rect fill="#fff3db" height="98" rx="11" stroke="#b9781c" stroke-width="1.5" width="204" x="799" y="140"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="901.0" y="183.0">误差 e</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="901.0" y="205.0">v − S̃ᵀk</text>
+<rect fill="#e2f5ed" height="98" rx="11" stroke="#16806d" stroke-width="1.5" width="170" x="1054" y="140"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1139.0" y="183.0">Delta Write</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="1139.0" y="205.0">β k eᵀ</text>
+<path d="M220 188 L275 188" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M452 188 L515 188" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M737 188 L797 188" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M1003 188 L1052 188" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#f0eafd" height="82" rx="10" stroke="#7650b3" stroke-width="1.5" width="282" x="488" y="293"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="629" y="327">新状态  S′ = S̃ + β k eᵀ</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" x="629" y="353">写入后的可续算状态</text>
+<path d="M1140 238L1140 279 L773 279 L773 335" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M365 240L365 336 L485 336" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="65" rx="11" stroke="#2563ad" stroke-width="1.5" width="204" x="830" y="307"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="932.0" y="333.5">Query q 读取</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="932.0" y="355.5">y = S′ᵀ q</text>
+<path d="M770 338 L827 338" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="175" x="45" y="407"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="132.5" y="425">ShortConv / QKV</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="145" x="250" y="407"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="322.5" y="425">L2Norm Q/K</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="145" x="430" y="407"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="502.5" y="425">Output Gate</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="604" y="425">真实 Block 还包括卷积、归一化和输出门</text>
+<path d="M30 471L1230 471" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="495">FIG. 04  ·  单步 Decode 视角 · Qwen GDN 递推</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="495">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

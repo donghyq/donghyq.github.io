@@ -1,0 +1,31 @@
+<svg aria-label="Transformer Block 的三个扩展位置" role="img" viewBox="0 0 1260 482" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="481" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">Transformer Block 的三个扩展位置</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">Token Mixer：读历史 ｜ FFN/MoE：选择计算 ｜ Residual：连接层间信息</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#eef1f5" height="75" rx="11" stroke="#6f7e8c" stroke-width="1.5" width="150" x="45" y="174"></rect>
+<text fill="#6f7e8c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="120.0" y="205.5">Hidden State</text>
+<text fill="#6f7e8c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="120.0" y="227.5">h_l</text>
+<rect fill="#e8f2ff" height="160" rx="11" stroke="#2563ad" stroke-width="1.5" width="260" x="255" y="130"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="385.0" y="193.0">TOKEN MIXER</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="385.0" y="215.0">GQA / MLA / GDN</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="385.0" y="237.0">Sparse Attention</text>
+<rect fill="#e2f5ed" height="160" rx="11" stroke="#16806d" stroke-width="1.5" width="240" x="590" y="130"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="710.0" y="204.0">FFN / MoE</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="710.0" y="226.0">Dense / Top-K Experts</text>
+<rect fill="#f0eafd" height="160" rx="11" stroke="#7650b3" stroke-width="1.5" width="310" x="900" y="130"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1055.0" y="204.0">RESIDUAL PATH</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="1055.0" y="226.0">Plain / mHC / Gated Residual</text>
+<path d="M195 210 L253 210" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M515 210 L587 210" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M830 210 L897 210" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" x="385" y="332">历史 Token 的访问与状态</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" x="710" y="332">激活参数与跨卡通信</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" x="1053" y="332">层间信息表达与稳定性</text>
+<rect fill="#eef1f5" height="48" rx="10" stroke="#d8e1ea" stroke-width="1.5" width="960" x="150" y="362"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="630" y="392">每一层仍输出下一层 Hidden State；不同架构改变的是内部数据流与存储</text>
+<path d="M30 440L1230 440" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="464">FIG. 02  ·  共享主干 · 可替换子模块</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="464">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

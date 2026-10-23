@@ -1,0 +1,33 @@
+<svg aria-label="Agent 请求的四段执行路径" role="img" viewBox="0 0 1260 460" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="459" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">Agent 请求的四段执行路径</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">128K 历史上下文 + 2K 工具返回 + 800 Token 输出；缓存状态在每一阶段发生变化</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#f0eafd" height="104" rx="11" stroke="#7650b3" stroke-width="1.5" width="246" x="38" y="132"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="161.0" y="178.0">历史状态匹配</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="161.0" y="200.0">Prefix / Checkpoint</text>
+<path d="M284 185 L335 185" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="104" rx="11" stroke="#2563ad" stroke-width="1.5" width="246" x="350" y="132"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="473.0" y="178.0">Prefill</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="473.0" y="200.0">新增 2K Token</text>
+<path d="M596 185 L647 185" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#e2f5ed" height="104" rx="11" stroke="#16806d" stroke-width="1.5" width="246" x="662" y="132"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="785.0" y="178.0">Decode</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="785.0" y="200.0">生成 800 Token</text>
+<path d="M908 185 L959 185" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#fff3db" height="104" rx="11" stroke="#b9781c" stroke-width="1.5" width="246" x="974" y="132"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1097.0" y="178.0">状态提交</text>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="1097.0" y="200.0">Cache / Manifest</text>
+<rect fill="#f7f9fc" height="84" rx="10" stroke="#d8e1ea" stroke-width="1.5" width="1185" x="38" y="262"></rect>
+<rect fill="#eef1f5" height="26" rx="4" stroke="#6f7e8c" stroke-width="1" width="990" x="47" y="280"></rect>
+<text fill="#6f7e8c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="542.0" y="298">128K 已有历史</text>
+<rect fill="#e8f2ff" height="26" rx="4" stroke="#2563ad" stroke-width="1" width="100" x="1037" y="280"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1087.0" y="298">2K 增量</text>
+<rect fill="#e2f5ed" height="26" rx="4" stroke="#16806d" stroke-width="1" width="95" x="1137" y="280"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="13" font-weight="650" text-anchor="middle" x="1184.5" y="298">800 输出</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" x="50" y="332">状态内容取决于模型：KV Pages / GDN State / Sparse Index / SWA Window</text>
+<path d="M30 418L1230 418" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="442">FIG. 01  ·  一次请求串联模型结构和服务系统</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="442">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>

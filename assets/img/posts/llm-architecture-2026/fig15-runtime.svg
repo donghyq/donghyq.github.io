@@ -1,0 +1,45 @@
+<svg aria-label="Hybrid Runtime：多类型 State 的存储、传输与恢复" role="img" viewBox="0 0 1260 555" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#73859a"></path></marker><marker id="arrb" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 Z" fill="#3278bf"></path></marker></defs>
+<rect fill="#ffffff" height="554" rx="12" stroke="#d8e1ea" width="1259" x=".5" y=".5"></rect>
+<rect fill="#3278bf" height="28" rx="2" width="5" x="26" y="25"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="23" font-weight="650" text-anchor="start" x="45" y="45">Hybrid Runtime：多类型 State 的存储、传输与恢复</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" x="45" y="74">KV Page、Latent KV、Recurrent State、Conv、Indexer、SWA 的生命周期与 ABI 不同</text>
+<path d="M30 90L1230 90" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<rect fill="#e8f2ff" height="132" rx="11" stroke="#2563ad" stroke-width="1.5" width="236" x="28" y="145"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="146.0" y="205.0">Prefill Worker</text>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="146.0" y="227.0">计算 + 生成 State</text>
+<rect fill="#f0eafd" height="132" rx="11" stroke="#7650b3" stroke-width="1.5" width="248" x="505" y="145"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="629.0" y="205.0">State Store</text>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="629.0" y="227.0">HBM / Host / SSD</text>
+<rect fill="#e2f5ed" height="132" rx="11" stroke="#16806d" stroke-width="1.5" width="236" x="994" y="145"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="650" text-anchor="middle" x="1112.0" y="205.0">Decode Worker</text>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="1112.0" y="227.0">安装 + 继续生成</text>
+<path d="M265 209 L501 209" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<path d="M755 209 L991 209" fill="none" marker-end="url(#arrb)" stroke="#2563ad" stroke-width="2"></path>
+<rect fill="#eef1f5" height="121" rx="10" stroke="#d8e1ea" stroke-width="1.5" width="652" x="305" y="304"></rect>
+<text fill="#1b2a41" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="19" font-weight="650" text-anchor="middle" x="630" y="339">Manifest / Restore Admission</text>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="144" x="325" y="361"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="397.0" y="379">Model ABI</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="144" x="479" y="361"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="551.0" y="379">Prefix Pos</text>
+<rect fill="#fff3db" height="27" rx="13" stroke="#b9781c" stroke-width="1" width="144" x="633" y="361"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="705.0" y="379">Generation</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="144" x="787" y="361"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="859.0" y="379">TP Consistency</text>
+<path d="M630 278 L630 301" fill="none" marker-end="url(#arr)" stroke="#6f7e8c" stroke-width="2"></path>
+<rect fill="#e8f2ff" height="27" rx="13" stroke="#2563ad" stroke-width="1" width="180" x="55" y="454"></rect>
+<text fill="#2563ad" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="145.0" y="472">FULL KV</text>
+<rect fill="#e2f5ed" height="27" rx="13" stroke="#16806d" stroke-width="1" width="180" x="256" y="454"></rect>
+<text fill="#16806d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="346.0" y="472">MLA LATENT</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="180" x="457" y="454"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="547.0" y="472">GDN STATE</text>
+<rect fill="#f0eafd" height="27" rx="13" stroke="#7650b3" stroke-width="1" width="180" x="658" y="454"></rect>
+<text fill="#7650b3" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="748.0" y="472">CONV</text>
+<rect fill="#fff3db" height="27" rx="13" stroke="#b9781c" stroke-width="1" width="180" x="859" y="454"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="949.0" y="472">INDEX</text>
+<rect fill="#fff3db" height="27" rx="13" stroke="#b9781c" stroke-width="1" width="180" x="1060" y="454"></rect>
+<text fill="#b9781c" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="650" text-anchor="middle" x="1150.0" y="472">SWA</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="middle" x="630" y="518">Recover / Recompute 决策 = 传输成本、安装成本、状态边界与重新计算量</text>
+<path d="M30 513L1230 513" fill="none" stroke="#d8e1ea" stroke-width="1.4"></path>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" x="40" y="537">FIG. 15  ·  采用类型化 Cache Object，不同 State 分别治理</text>
+<text fill="#66788d" font-family="Noto Sans CJK SC,PingFang SC,Microsoft YaHei,Inter,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="end" x="1220" y="537">MODEL ARCHITECTURE NOTES  ·  2026</text>
+</svg>
