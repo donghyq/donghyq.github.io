@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-23T12:55:48.990450+00:00Z",
+  "generated_at": "2026-10-24T12:18:46.112363+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：TypeScript, Rust, Python）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：TypeScript, Python, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -13,52 +13,52 @@
           "url": "https://github.com/morluto/rea",
           "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
           "summary_zh": "用 AI Agent 逆向分析任意软件，从应用行为一路深挖到原生二进制",
-          "stars": 370389,
-          "forks": 92761,
+          "stars": 375758,
+          "forks": 93921,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 106341
+          "stars_period": 88243
         },
         {
           "name": "anomalyco/opencode",
           "url": "https://github.com/anomalyco/opencode",
           "description": "The open source coding agent.",
-          "summary_zh": "开源 TypeScript 编码智能体，让开发者用自然语言直接驱动代码生成与修改",
-          "stars": 220441,
-          "forks": 29476,
+          "summary_zh": "开源编码智能体，用 TypeScript 打造可自主读写代码、执行任务的 AI 编程助手",
+          "stars": 220907,
+          "forks": 29531,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6750
+          "stars_period": 6765
+        },
+        {
+          "name": "Graphify-Labs/graphify",
+          "url": "https://github.com/Graphify-Labs/graphify",
+          "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, ",
+          "summary_zh": "把任意代码库连同文档、SQL、配置和PDF转成可查询知识图谱的AI编码助手技能，本地确定性AST解析",
+          "stars": 134135,
+          "forks": 12809,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 6875
         },
         {
           "name": "stablyai/orca",
           "url": "https://github.com/stablyai/orca",
           "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on deskt",
-          "summary_zh": "用自有订阅跨桌面、移动和远程运行 Claude Code 等编码 Agent 集群的统一工作台",
-          "stars": 103367,
-          "forks": 6525,
+          "summary_zh": "用自有订阅统一调度 Grok Bot、Claude Code 等多编码 Agent，桌面移动远程皆可运行",
+          "stars": 104437,
+          "forks": 6594,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9401
-        },
-        {
-          "name": "ruvnet/ruflo",
-          "url": "https://github.com/ruvnet/ruflo",
-          "description": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features a",
-          "summary_zh": "原始多智能体编排框架，支持自适应记忆与自学习智能，可部署协作式AI工作流",
-          "stars": 78641,
-          "forks": 9239,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 3708
+          "stars_period": 9545
         }
       ]
     },
@@ -71,67 +71,53 @@
           "name": "xerj-org/xerj",
           "url": "https://github.com/xerj-org/xerj",
           "description": "Local-first search engine and MCP server for AI agents. One Rust binary indexes code, docs, logs, JSONL/CSV and PDFs for BM25 full-text, vector and hy",
-          "summary_zh": "单二进制本地优先搜索引擎与 MCP 服务器，为 AI Agent 统一索引代码文档日志并支持 BM25 全文、向量与混合检索",
-          "stars": 13281,
-          "forks": 968,
+          "summary_zh": "单文件 Rust 二进制为 AI Agent 提供本地优先的混合检索，索引代码文档日志免 grep 还带记忆",
+          "stars": 15169,
+          "forks": 1022,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 8064
+          "stars_period": 7783
+        },
+        {
+          "name": "abus-aikorea/voice-pro",
+          "url": "https://github.com/abus-aikorea/voice-pro",
+          "description": "Gradio WebUI for creators and developers, featuring key TTS (Edge-TTS, kokoro) and zero-shot Voice Cloning (E2 & F5-TTS, CosyVoice), with Whisper audi",
+          "summary_zh": "集成多引擎TTS与零样本声音克隆的Gradio WebUI，一站式搞定配音、音频处理与YouTube下载",
+          "stars": 13347,
+          "forks": 1926,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 339
         },
         {
           "name": "ModernRelay/omnigraph",
           "url": "https://github.com/ModernRelay/omnigraph",
           "description": "Object-storage native graph database with branching and typed ontology",
-          "summary_zh": "用 Rust 打造的对象存储原生图数据库，支持分支与类型化本体，让图数据像代码一样版本化管理",
-          "stars": 1686,
-          "forks": 238,
+          "summary_zh": "基于对象存储的原生图数据库，支持分支与类型化本体，用 Rust 打造",
+          "stars": 1724,
+          "forks": 241,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 378
+          "stars_period": 397
         },
         {
-          "name": "kividbio/kividb",
-          "url": "https://github.com/kividbio/kividb",
-          "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 打造的多线程 Redis/Valkey 替代品，可直接替换并内置全文与向量搜索",
-          "stars": 501,
-          "forks": 15,
-          "language": "Rust",
-          "topics": [
-            "cache",
-            "database",
-            "dragonfly-alternative",
-            "drop-in-replacement",
-            "full-text-search",
-            "high-performance"
-          ],
-          "created_at": "2026-10-16T01:07:52Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
-          "name": "cdcailf/cjkfold",
-          "url": "https://github.com/cdcailf/cjkfold",
-          "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "专治PDF提取中康熙部首等CJK形近字不匹配问题，用NFKC折叠让文本检索重新对齐",
-          "stars": 186,
-          "forks": 8,
-          "language": "Python",
-          "topics": [
-            "chinese",
-            "cjk",
-            "nfkc",
-            "nlp",
-            "pdf-extraction",
-            "rag"
-          ],
-          "created_at": "2026-10-13T02:16:26Z",
-          "source": "search",
-          "stars_period": 0
+          "name": "antonio-orionus/Arroxy",
+          "url": "https://github.com/antonio-orionus/Arroxy",
+          "description": "Free open-source downloader for YouTube and 2000+ sites on Windows, macOS, and Linux. Up to 8K HDR 60fps, Dolby audio, MP3, Shorts, playlists, channel",
+          "summary_zh": "跨平台免费下载器，支持2000+网站8K HDR视频与Dolby音频，还能下Shorts、播放列表和字幕并跳过赞助片段",
+          "stars": 775,
+          "forks": 99,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 172
         }
       ]
     },
@@ -144,53 +130,53 @@
           "name": "vllm-project/vllm",
           "url": "https://github.com/vllm-project/vllm",
           "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
-          "summary_zh": "高吞吐内存高效的大模型推理与服务引擎，用PagedAttention解决显存瓶颈大幅提升吞吐",
-          "stars": 95216,
-          "forks": 23837,
+          "summary_zh": "高吞吐且显存高效的大模型推理与服务引擎，用PagedAttention大幅提升并发吞吐并降低显存占用",
+          "stars": 95284,
+          "forks": 23880,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1341
+          "stars_period": 1363
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，支持智能路由、自动故障转移与密钥加密",
-          "stars": 39914,
-          "forks": 5393,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密，月省74亿token",
+          "stars": 40596,
+          "forks": 5472,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3854
+          "stars_period": 4077
         },
         {
           "name": "sgl-project/sglang",
           "url": "https://github.com/sgl-project/sglang",
           "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
-          "summary_zh": "高性能大模型与多模态模型推理服务框架，主打极致吞吐与低延迟调度",
-          "stars": 37661,
-          "forks": 9824,
+          "summary_zh": "高性能大模型与多模态模型推理服务框架，专注高吞吐低延迟的规模化部署",
+          "stars": 37686,
+          "forks": 9856,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 505
+          "stars_period": 511
         },
         {
           "name": "trymirai/uzu",
           "url": "https://github.com/trymirai/uzu",
           "description": "A high-performance inference engine for AI models",
           "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，主打极致速度与低资源占用",
-          "stars": 2547,
+          "stars": 2562,
           "forks": 146,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 198
+          "stars_period": 192
         }
       ]
     },
@@ -203,9 +189,9 @@
           "name": "Folkbench/folkbench",
           "url": "https://github.com/Folkbench/folkbench",
           "description": "AI API 中转站评测排行与切换工具：实测可用率、延迟与价格 · Open-source AI API relay benchmark, rankings & switcher for Claude Code / Codex",
-          "summary_zh": "实测各家 AI API 中转站的可用率延迟与价格并一键切换，帮 Claude Code 和 Codex 用户避开不稳定线路",
-          "stars": 2984,
-          "forks": 14,
+          "summary_zh": "实测各家 AI API 中转站可用率延迟价格并一键切换，帮 Claude Code 和 Codex 用户避开不稳定线路",
+          "stars": 3327,
+          "forks": 17,
           "language": "Rust",
           "topics": [
             "ai",
@@ -230,53 +216,60 @@
           "name": "Comfy-Org/ComfyUI",
           "url": "https://github.com/Comfy-Org/ComfyUI",
           "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
-          "summary_zh": "最强大的模块化扩散模型图形节点界面，全球最快本地推理引擎，让AI绘图工作流自由搭建",
-          "stars": 142209,
-          "forks": 16769,
+          "summary_zh": "最强大的模块化扩散模型图形节点界面，集本地推理引擎、API 与后端于一体，让复杂生成流程可视化搭建",
+          "stars": 142493,
+          "forks": 16802,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4375
+          "stars_period": 4531
         },
         {
           "name": "luongnv89/claude-howto",
           "url": "https://github.com/luongnv89/claude-howto",
           "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
-          "summary_zh": "用可视化示例和即拷即用模板带你从零掌握 Claude Code 基础概念到高级 Agent 开发的实战指南",
-          "stars": 43784,
-          "forks": 5432,
+          "summary_zh": "用可视化示例和可复制模板带你从零掌握 Claude Code 到进阶 Agent 的实战指南",
+          "stars": 44161,
+          "forks": 5467,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 982
+          "stars_period": 2012
         },
         {
           "name": "thesysdev/openui",
           "url": "https://github.com/thesysdev/openui",
           "description": "The Open Standard for Generative UI",
-          "summary_zh": "让大模型直接输出可交互 UI 的开放标准，用 TypeScript 定义生成式界面组件规范",
-          "stars": 13301,
-          "forks": 885,
+          "summary_zh": "让大模型直接生成可交互 UI 的开放标准，把 AI 输出从纯文本升级为可运行界面组件",
+          "stars": 13538,
+          "forks": 895,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2111
+          "stars_period": 2099
         },
         {
-          "name": "claration/impactor",
-          "url": "https://github.com/claration/impactor",
-          "description": "Cross-platform & feature rich iOS/iPadOS/tvOS sideloading application. Formerly known as PlumeImpactor.",
-          "summary_zh": "跨平台功能丰富的 iOS/iPadOS/tvOS 侧载工具，用 Rust 重写后性能更强，替代已停更的 Cydia Impactor 解决应用签名安装难题",
-          "stars": 3576,
-          "forks": 249,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 91
+          "name": "deeplethe/solid-glass",
+          "url": "https://github.com/deeplethe/solid-glass",
+          "description": "A design system for AI applications. Material, physical, tactile, technical.",
+          "summary_zh": "为 AI 应用打造的实体质感设计系统，让 Agent 与聊天界面拥有真实材质般的触感与专业观感",
+          "stars": 2193,
+          "forks": 35,
+          "language": "TypeScript",
+          "topics": [
+            "agent-ui",
+            "ai",
+            "ai-agents",
+            "chat-ui",
+            "design-system",
+            "llm"
+          ],
+          "created_at": "2026-10-12T09:19:02Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -286,56 +279,56 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "yt-dlp/yt-dlp",
-          "url": "https://github.com/yt-dlp/yt-dlp",
-          "description": "A feature-rich command-line audio/video downloader",
-          "summary_zh": "功能最全的命令行音视频下载器，支持数千网站并持续活跃更新",
-          "stars": 200721,
-          "forks": 17506,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 2510
-        },
-        {
           "name": "iptv-org/iptv",
           "url": "https://github.com/iptv-org/iptv",
           "description": "Collection of publicly available IPTV channels from all over the world",
-          "summary_zh": "汇集全球公开可用的 IPTV 频道源并自动校验更新，一站式解决找直播源难、失效快的问题",
-          "stars": 142076,
-          "forks": 8351,
+          "summary_zh": "汇集全球公开 IPTV 频道资源，一站式解决找台难问题，14 万星标见证其受欢迎程度",
+          "stars": 142177,
+          "forks": 8362,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1073
+          "stars_period": 1077
         },
         {
           "name": "fastapi/fastapi",
           "url": "https://github.com/fastapi/fastapi",
           "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
-          "summary_zh": "高性能Python Web框架，自动生成API文档，类型提示驱动开发，开箱即用适合生产部署",
-          "stars": 104036,
-          "forks": 10105,
+          "summary_zh": "高性能Python Web框架，用类型提示自动生成API文档，开发快且可直接上生产",
+          "stars": 104068,
+          "forks": 10113,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1008
+          "stars_period": 1013
         },
         {
           "name": "oven-sh/bun",
           "url": "https://github.com/oven-sh/bun",
           "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
-          "summary_zh": "用 Rust 打造的超快 JavaScript 运行时，集打包、测试、包管理于一体，一站式替代 Node.js 工具链",
-          "stars": 96356,
-          "forks": 5113,
+          "summary_zh": "用 Rust 打造的超快 JavaScript 运行时，集打包、测试、包管理于一体，一个工具替代 Node 全家桶",
+          "stars": 96379,
+          "forks": 5116,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 191
+          "stars_period": 197
+        },
+        {
+          "name": "debpalash/VoiceStudio",
+          "url": "https://github.com/debpalash/VoiceStudio",
+          "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
+          "summary_zh": "完全本地运行的 ElevenLabs 开源替代，集语音克隆、设计、配音、听写、转录与有声书制作于一体，支持 646 种语言",
+          "stars": 84156,
+          "forks": 9290,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 12526
         }
       ]
     }
@@ -350,7 +343,7 @@
           "url": "http://arxiv.org/abs/2610.31667v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31667v1",
           "abstract": "Test-time scaling has emerged as a key inference strategy for reasoning models, where a model generates a large number of candidate solutions in the hope of finding at least one correct solution. Runn",
-          "summary_zh": "提出直接Pass@k优化框架用于思维剪枝，在测试时推理中兼顾候选解质量与多样性，有效降低计算开销",
+          "summary_zh": "提出直接Pass@k优化框架用于思维剪枝，在测试时推理中兼顾候选解质量与多样性，显著降低计算开销",
           "authors": [
             "Mahdi Salmani",
             "Adel Javanmard",
@@ -367,7 +360,7 @@
           "url": "http://arxiv.org/abs/2610.31646v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31646v1",
           "abstract": "Many recent open-weight language models use n-gram embedding tables to improve performance. These tables store learned representations of short token sequences, such as pairs or triples of consecutive",
-          "summary_zh": "提出低比特n-gram嵌入表压缩方法，大幅降低语言模型内存占用且保持性能",
+          "summary_zh": "提出低比特n-gram嵌入表压缩方法，大幅降低语言模型内存占用同时保持性能",
           "authors": [
             "Stephen Chung",
             "Wenyu Du"
@@ -383,7 +376,7 @@
           "url": "http://arxiv.org/abs/2610.31639v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31639v1",
           "abstract": "Chain-of-thought (CoT) prompting elicits step-by-step rationales that appear to explain model predictions, but there is no guarantee these steps causally drive the final answer. In standard autoregres",
-          "summary_zh": "提出因果思维链方法，通过上下文隔离阻断注意力泄漏，确保推理步骤真正驱动最终答案",
+          "summary_zh": "提出因果链式思维提示方法，通过上下文隔离阻断注意力泄漏，确保推理步骤真正因果驱动最终答案",
           "authors": [
             "Gabriele Dominici",
             "Teague McMillan",
@@ -406,7 +399,7 @@
           "url": "http://arxiv.org/abs/2610.31636v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31636v1",
           "abstract": "Multilingual pipelines such as FineWeb2 apply one recipe across a thousand languages, leaving the failure modes of individual languages unanticipated. We use an LLM once, as a corpus debugger rather t",
-          "summary_zh": "提出用工具型LLM智能体以只读预算API审计斯洛伐克语FineWeb2语料，替代分类器定位单语失败模式",
+          "summary_zh": "提出用工具型LLM智能体以只读预算API审计斯洛伐克语FineWeb2语料，替代传统分类器定位多语言流水线失效模式",
           "authors": [
             "Marek Šuppa",
             "Ivan Vykopal",
@@ -422,7 +415,7 @@
           "url": "http://arxiv.org/abs/2610.31606v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31606v1",
           "abstract": "Purpose: To describe an evidence-aware retrieval evaluation protocol for a clinical retrieval-augmented generation (RAG) system over breast lesion management literature, addressing the dependence of r",
-          "summary_zh": "提出证据感知检索评估协议，揭示检索分数依赖标注覆盖度，并在18文档18查询乳腺病变语料上验证其必要性",
+          "summary_zh": "提出证据感知检索评估协议，揭示检索分数依赖标注覆盖度，并在18文档18查询乳腺病变语料上验证",
           "authors": [
             "Miguel Mochizuki Silva",
             "Samuel Ismael",
@@ -463,7 +456,7 @@
           "url": "http://arxiv.org/abs/2610.31656v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31656v1",
           "abstract": "Meta-reinforcement learning aims to train agents that adapt quickly to unseen tasks from limited interaction, but this requires representing task evidence over long interaction histories. Classical re",
-          "summary_zh": "提出记忆增强的元强化学习测试时适应方法METTA，通过检索长交互历史中的任务证据提升快速适应能力",
+          "summary_zh": "提出记忆增强的元强化学习测试时自适应框架METTA，通过检索长交互历史中的任务证据实现快速适应新任务",
           "authors": [
             "Ali Najar",
             "Hosein Hasani",
@@ -480,7 +473,7 @@
           "url": "http://arxiv.org/abs/2610.31650v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
           "abstract": "Tool-using language model agents rely on environmental facts to decide whether an action is permitted. When a tool response omits a safety-relevant fact, an agent may carry out a prohibited action eve",
-          "summary_zh": "提出EpiSEM-Bench基准评测工具型LLM代理在证据缺失下的安全与证据恢复能力，揭示代理在工具响应遗漏安全事实时仍执行违规操作的风险",
+          "summary_zh": "提出EpiSEM-Bench基准揭示工具响应缺失安全事实时智能体误执行风险并评估其证据恢复能力",
           "authors": [
             "Qijin Zhang",
             "Hanzhen Wang",
@@ -503,7 +496,7 @@
           "url": "http://arxiv.org/abs/2610.31670v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31670v1",
           "abstract": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests",
-          "summary_zh": "提出基于柏拉图表示假设的传感器运动对齐离线代理指标，无需闭环部署即可低成本评估具身策略能力",
+          "summary_zh": "提出传感器运动对齐作为具身策略成功的柏拉图式代理指标，用廉价离线对齐度替代昂贵闭环评估来预测机器人基础模型能力",
           "authors": [
             "Yunfei Xie",
             "Howard H. Qian",
@@ -538,7 +531,7 @@
           "url": "http://arxiv.org/abs/2610.31558v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31558v1",
           "abstract": "\\emph{Continuous-space} attacks find prompts that trigger malicious behaviors, such as overthinking, in black-box LLMs by sampling or optimizing over a low-dimensional Gaussian latent space and decodi",
-          "summary_zh": "提出面向扩散语言模型的困惑度感知黑盒攻击方法，利用扩散解码替代随机映射实现连续空间提示优化，显著提升攻击成功率",
+          "summary_zh": "提出面向困惑度的扩散语言模型黑盒攻击方法，通过连续空间采样与随机映射解码生成对抗提示，有效触发大模型过度思考等恶意行为",
           "authors": [
             "Ali Al-Lawati",
             "Elsayed Eshra",
@@ -562,7 +555,7 @@
           "url": "http://arxiv.org/abs/2610.31663v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31663v1",
           "abstract": "Constructing accurate and computationally tractable approximation spaces is a fundamental task in scientific computing. Partially trainable neural networks bridge fixed random features and fully adapt",
-          "summary_zh": "揭示部分可训练网络中随机特征到全可训练网络的相变规律并量化近似界",
+          "summary_zh": "揭示部分可训练网络中随机特征到全可训练网络的相变规律并量化其逼近界",
           "authors": [
             "Xin He",
             "Huan Lao",
@@ -580,7 +573,7 @@
           "url": "http://arxiv.org/abs/2610.31657v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31657v1",
           "abstract": "Wrong automatic routing of an IT support ticket can cost more than human triage. We evaluate cost-aware abstention as an offline, cost-conditional readiness assessment: select a routing policy on cali",
-          "summary_zh": "提出成本感知弃权框架用于IT工单分类，在标定数据上按显式成本选策略并在测试集冻结评估，实现离线成本条件就绪度评估",
+          "summary_zh": "提出成本感知弃权框架用于IT工单分类，在显式成本下校准路由策略并冻结评估，降低错误路由代价",
           "authors": [
             "Sachin Gupta"
           ],
@@ -596,7 +589,7 @@
           "url": "http://arxiv.org/abs/2610.31642v1",
           "pdf_url": "https://arxiv.org/pdf/2610.31642v1",
           "abstract": "Standard implementations of softmax, log-softmax, and cross-entropy have two numerical bugs. The first bug, Softmax Collapse, rounds the target logit's gradient to zero if that one logit is much large",
-          "summary_zh": "指出标准softmax与交叉熵存在梯度归零和抵消两个数值缺陷并提出修复方案使梯度正确求和为零",
+          "summary_zh": "揭示标准softmax与交叉熵存在梯度归零和抵消两处数值缺陷并提出修复方案使梯度恢复正确归一化",
           "authors": [
             "Jonathan T. Barron",
             "Dan Gnanapragasam",
