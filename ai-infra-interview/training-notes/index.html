@@ -1,0 +1,1151 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>AI Infra 基础与大模型训练 · 学习笔记</title><style>
+:root{--bg:#f5f7fb;--panel:#fff;--text:#23354a;--heading:#14263a;--muted:#617387;--rule:#e0e8ef;--accent:#187b84;--accent-soft:#e7f4f4;--shadow:0 5px 36px rgba(25,52,72,.045);--code:#192739;--code-fg:#e8eef5;--table-head:#f1f6fa;--button:#eff3f7}
+body.dark{--bg:#111b29;--panel:#182435;--text:#d3dfeb;--heading:#f0f7ff;--muted:#a7b7c7;--rule:#304255;--accent:#62ccd0;--accent-soft:#173b45;--shadow:0 8px 32px rgba(0,0,0,.18);--code:#101a28;--code-fg:#e7ecf6;--table-head:#25374b;--button:#263c50}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.78 -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.012em}
+::selection{background:#a0dad9;color:#15343a}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,input{font:inherit}
+#progress{height:3px;position:fixed;z-index:90;inset:0 auto auto 0;width:0;background:var(--accent);transition:width .1s}
+.topbar{position:fixed;top:3px;left:0;right:0;height:60px;background:var(--panel);border-bottom:1px solid var(--rule);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 max(28px,calc((100vw - 1350px)/2));gap:20px}
+.brand{font-size:14px;font-weight:750;letter-spacing:.09em;color:var(--heading);display:flex;align-items:center;gap:10px;white-space:nowrap}.brand::before{content:"";width:21px;height:21px;border-radius:6px;background:linear-gradient(145deg,#177e86,#80c7b4);display:inline-block}
+.toplinks{display:flex;gap:8px}.tool{border:1px solid var(--rule);background:var(--button);border-radius:8px;color:var(--text);font-size:13px;padding:6px 12px;cursor:pointer}.tool:hover{border-color:var(--accent)}
+.layout{max-width:1390px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;padding:90px 24px 80px}
+.sidebar{align-self:start;position:sticky;top:86px;max-height:calc(100vh - 103px);overflow-y:auto;scrollbar-width:thin;border-radius:14px;padding:18px 14px;background:var(--panel);border:1px solid var(--rule);box-shadow:var(--shadow)}
+.sidebar-label{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);padding:0 9px 7px;text-transform:uppercase}.toc-search{width:100%;border:1px solid var(--rule);border-radius:9px;background:var(--bg);color:var(--text);padding:8px 10px;font-size:12px;outline:none;margin-bottom:8px}.toc-search:focus{border-color:var(--accent)}
+nav a{display:block;color:var(--muted);font-size:12px;line-height:1.52;margin:1px 0;padding:6px 9px;border-radius:7px;overflow-wrap:anywhere}nav .nav-chapter{font-weight:700;color:var(--text);margin-top:6px;font-size:12.6px}nav .nav-section{padding-left:18px}nav a.active{background:var(--accent-soft);color:var(--accent);font-weight:750}nav a:hover{background:var(--accent-soft);text-decoration:none}
+.reader{min-width:0;background:var(--panel);border:1px solid var(--rule);box-shadow:var(--shadow);border-radius:16px;overflow:hidden}
+.hero{padding:54px 65px 34px;border-bottom:1px solid var(--rule);background:linear-gradient(118deg,rgba(24,123,132,.085),transparent 72%)}.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--accent);font-weight:800}.hero h1{font-size:38px;line-height:1.26;margin:17px 0 19px;color:var(--heading);font-weight:770;letter-spacing:-.024em}.deck{font-size:16px;line-height:1.85;max-width:820px;color:var(--muted);margin:0}.hero-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:22px}.hero-meta span{border-left:2px solid var(--rule);padding-left:10px}
+.article{max-width:1090px;padding:20px 64px 88px;margin:0 auto;font-size:15.4px;line-height:1.82}
+.article>h1:first-of-type{display:none}.article h1{font-size:29px;line-height:1.35;letter-spacing:-.025em;color:var(--heading);border-top:1px solid var(--rule);padding-top:34px;margin:54px 0 19px;scroll-margin-top:88px}
+.article h2{font-size:20px;color:var(--heading);margin:30px 0 12px;scroll-margin-top:88px;letter-spacing:-.015em}.article h3{font-size:17px;color:var(--heading);margin:25px 0 10px;scroll-margin-top:88px}
+.article p{margin:12px 0;overflow-wrap:anywhere}.article strong{font-weight:730;color:var(--heading)}.article hr{border:0;border-top:1px solid var(--rule);margin:39px 0}
+.article blockquote{margin:18px 0 24px;padding:12px 16px;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--accent-soft);color:var(--text)}.article blockquote p{margin:3px 0}.article ul,.article ol{padding-left:26px}.article li{margin:6px 0}
+.article code:not(pre code){font-size:.89em;font-family:ui-monospace,SFMono-Regular,Consolas,"Noto Sans Mono CJK SC",monospace;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:2px 4px;overflow-wrap:anywhere}
+pre.codebox,div.sourceCode{max-width:100%;background:var(--code);color:var(--code-fg);border-radius:11px;margin:17px 0 25px;overflow:auto;white-space:pre;font:12.8px/1.74 ui-monospace,Consolas,"Noto Sans Mono CJK SC",monospace;border:1px solid rgba(128,169,194,.13)}
+pre.codebox{padding:17px 20px}div.sourceCode pre.codebox{border:0;margin:0;padding:17px 20px}div.sourceCode pre,pre.sourceCode{background:var(--code)!important;color:var(--code-fg)!important}
+.sourceCode .kw{color:#c59eff}.sourceCode .st{color:#aadf97}.sourceCode .dv,.sourceCode .fl{color:#ffd08a}.sourceCode .co{color:#879daf}.sourceCode .fu,.sourceCode .bu{color:#96cafb}.sourceCode .op{color:#e4edff}.sourceCode .im{color:#d3b0ff}
+.table-scroll{width:100%;overflow-x:auto;margin:20px 0 27px;border:1px solid var(--rule);border-radius:10px}.article table{border-collapse:collapse;font-size:13.3px;min-width:650px;width:100%;line-height:1.64;margin:0}.article thead{background:var(--table-head);color:var(--heading)}.article th{font-weight:700;text-align:left;white-space:nowrap}.article td,.article th{border-bottom:1px solid var(--rule);padding:10px 13px;vertical-align:top}.article tr:last-child td{border-bottom:0}.article tbody tr:nth-child(even){background:rgba(105,139,167,.026)}
+figure.diagram{margin:24px auto 30px;border-radius:12px;border:1px solid var(--rule);padding:16px 15px 8px;background:#fff;text-align:center;max-width:100%;overflow:hidden}figure.diagram img{cursor:zoom-in}.lightbox{display:none;position:fixed;inset:0;background:rgba(6,17,27,.92);z-index:120;flex-direction:column}.lightbox.open{display:flex}.lightbox-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 16px;background:#102235;color:#fff}.lightbox-toolbar button{padding:4px 11px;background:#244159;border:1px solid #46677e;border-radius:8px;color:white;cursor:pointer}.lightbox-title{margin-right:auto;font-size:13px;color:#d4e3ed}.lightbox-canvas{flex:1;overflow:auto;padding:26px;display:block;text-align:center}.lightbox-canvas img{max-width:none;height:auto;display:block;margin:auto;background:#fff;border-radius:8px}.inline-svg{max-width:100%;height:auto;max-height:550px;object-fit:contain;display:block;margin:0 auto}.diagram figcaption{color:#687d8e;font-size:12px;padding:8px 0 4px}
+math[display="block"]{max-width:100%;overflow-x:auto;padding:8px 0;margin:12px 0;line-height:1.2;color:var(--heading)}
+.footer{border-top:1px solid var(--rule);text-align:center;padding:28px;color:var(--muted);font-size:12px}.mobile-toggle{display:none}
+@media(max-width:1150px){.layout{grid-template-columns:215px minmax(0,1fr);padding:84px 14px 60px;gap:14px}.hero{padding:40px 36px 30px}.article{padding:16px 36px 72px}.hero h1{font-size:32px}}
+@media(max-width:780px){.mobile-toggle{display:block}.topbar{height:56px;padding:0 13px}.brand{font-size:12px;letter-spacing:0}.tool{padding:6px 8px;font-size:12px}.toplinks .print{display:none}.layout{display:block;padding:71px 8px 30px}.sidebar{position:fixed;top:61px;bottom:0;left:-270px;max-height:none;width:264px;border-radius:0 12px 12px 0;z-index:41;box-shadow:0 12px 22px rgba(0,0,0,.18);transition:left .2s}.sidebar.show{left:0}.reader{border-radius:11px}.hero{padding:34px 21px 28px}.hero h1{font-size:29px}.article{padding:7px 20px 68px;font-size:14.5px}.article h1{font-size:23px;margin-top:40px}.article h2{font-size:18px}.article h3{font-size:16px}.article table{font-size:12.5px}.article pre{font-size:12px}figure.diagram{padding:10px}.inline-svg{max-height:420px}.toc-search{margin-top:6px}}
+@media print{body{background:white;color:black;font-size:11pt}.topbar,.sidebar,#progress,.footer{display:none!important}.layout{display:block;margin:0;padding:0;max-width:none}.reader{border:0;box-shadow:none}.hero{padding:0 0 16px;background:none}.hero h1{font-size:25pt}.article{padding:0;max-width:none;font-size:10.5pt}.article h1{page-break-before:always;font-size:18pt}.article h2,.article h3,figure,.table-scroll,blockquote{break-inside:avoid}figure.diagram{padding:0;border:0}.inline-svg{max-height:430px}pre.codebox{white-space:pre-wrap;word-break:break-word;color:#1f2937;background:#f3f4f6!important}.table-scroll{overflow:visible}.article table{min-width:unset;font-size:8pt}a{color:#214967;text-decoration:none}}
+</style></head><body><div id="progress"></div><header class="topbar"><a class="brand" href="../" title="返回 AI Infra 面试突击手册" aria-label="返回 AI Infra 面试突击手册">← AI INFRA / FIELD NOTES</a><div class="toplinks"><button class="tool mobile-toggle" id="toggle-menu" aria-expanded="false">目录</button><button class="tool" id="theme">深色</button><button class="tool print" onclick="window.print()">打印</button></div></header><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-label">学习目录 · CONTENTS</div><input class="toc-search" id="toc-filter" type="search" placeholder="搜索章节" aria-label="搜索章节"><nav id="toc"><a class="nav-section" href="#全书地图" title="全书地图">全书地图</a>
+<a class="nav-chapter" href="#gpu-执行模型与内存层次" title="01 · GPU 执行模型与内存层次">01 · GPU 执行模型与内存层次</a>
+<a class="nav-section" href="#gpu-到底怎样运行一个-kernel" title="1.1 GPU 到底怎样运行一个 Kernel？">1.1 GPU 到底怎样运行一个 Kernel？</a>
+<a class="nav-section" href="#gpu-存储层级谁存什么谁访问" title="1.2 GPU 存储层级：谁存什么、谁访问？">1.2 GPU 存储层级：谁存什么、谁访问？</a>
+<a class="nav-section" href="#roofline屋顶线模型算力与带宽的分界" title="1.3 Roofline（屋顶线模型）：算力与带宽的分界">1.3 Roofline（屋顶线模型）：算力与带宽的分界</a>
+<a class="nav-chapter" href="#cpugpu-异步执行与多-stream" title="02 · CPU/GPU 异步执行与多 Stream">02 · CPU/GPU 异步执行与多 Stream</a>
+<a class="nav-section" href="#cpu-提交任务gpu-排队执行" title="2.1 CPU 提交任务，GPU 排队执行">2.1 CPU 提交任务，GPU 排队执行</a>
+<a class="nav-section" href="#一段正确管理依赖的-pytorch-代码" title="2.2 一段正确管理依赖的 PyTorch 代码">2.2 一段正确管理依赖的 PyTorch 代码</a>
+<a class="nav-chapter" href="#pytorch-训练过程与-autograd" title="03 · PyTorch 训练过程与 Autograd">03 · PyTorch 训练过程与 Autograd</a>
+<a class="nav-section" href="#一轮-step-的执行过程" title="3.1 一轮 Step 的执行过程">3.1 一轮 Step 的执行过程</a>
+<a class="nav-section" href="#autograd-动态计算图如何产生" title="3.2 Autograd 动态计算图如何产生？">3.2 Autograd 动态计算图如何产生？</a>
+<a class="nav-section" href="#gradient-accumulation梯度累积" title="3.3 Gradient Accumulation（梯度累积）">3.3 Gradient Accumulation（梯度累积）</a>
+<a class="nav-section" href="#tensor-layout张量排布会影响-kernel" title="3.4 Tensor Layout（张量排布）会影响 Kernel">3.4 Tensor Layout（张量排布）会影响 Kernel</a>
+<a class="nav-chapter" href="#decoder-only-transformer-与-attention-变体" title="04 · Decoder-only Transformer 与 Attention 变体">04 · Decoder-only Transformer 与 Attention 变体</a>
+<a class="nav-section" href="#从张量看一层-transformer" title="4.1 从张量看一层 Transformer">4.1 从张量看一层 Transformer</a>
+<a class="nav-section" href="#mhagqamlakv-为什么越来越少" title="4.2 MHA、GQA、MLA：KV 为什么越来越少？">4.2 MHA、GQA、MLA：KV 为什么越来越少？</a>
+<a class="nav-section" href="#dense-与-moe-的计算差异" title="4.3 Dense 与 MoE 的计算差异">4.3 Dense 与 MoE 的计算差异</a>
+<a class="nav-chapter" href="#训练显存账本从-7b-手算到-fsdp" title="05 · 训练显存账本：从 7B 手算到 FSDP">05 · 训练显存账本：从 7B 手算到 FSDP</a>
+<a class="nav-section" href="#先确定优化器实现再算每参数字节" title="5.1 先确定优化器实现，再算每参数字节">5.1 先确定优化器实现，再算每参数字节</a>
+<a class="nav-section" href="#activation为什么序列长度会使-oom-更明显" title="5.2 Activation：为什么序列长度会使 OOM 更明显">5.2 Activation：为什么序列长度会使 OOM 更明显</a>
+<a class="nav-section" href="#b-放到-8-gpu分片后还剩什么" title="5.3 7B 放到 8 GPU：分片后还剩什么？">5.3 7B 放到 8 GPU：分片后还剩什么？</a>
+<a class="nav-chapter" href="#分布式通信原语与-nccl" title="06 · 分布式通信原语与 NCCL">06 · 分布式通信原语与 NCCL</a>
+<a class="nav-section" href="#一张表区分四种最常用的-collective" title="6.1 一张表区分四种最常用的 Collective">6.1 一张表区分四种最常用的 Collective</a>
+<a class="nav-section" href="#process-group-与-rank-mapping" title="6.2 Process Group 与 Rank Mapping">6.2 Process Group 与 Rank Mapping</a>
+<a class="nav-chapter" href="#tpsp-与-pp模型并行如何切" title="08 · TP、SP 与 PP：模型并行如何切">08 · TP、SP 与 PP：模型并行如何切</a>
+<a class="nav-section" href="#tp把一个大矩阵乘法分给多张-gpu" title="8.1 TP：把一个大矩阵乘法分给多张 GPU">8.1 TP：把一个大矩阵乘法分给多张 GPU</a>
+<a class="nav-section" href="#sp为什么-tp-之后还要切序列" title="8.2 SP：为什么 TP 之后还要切序列？">8.2 SP：为什么 TP 之后还要切序列？</a>
+<a class="nav-section" href="#pp每卡负责不同-transformer-层" title="8.3 PP：每卡负责不同 Transformer 层">8.3 PP：每卡负责不同 Transformer 层</a>
+<a class="nav-chapter" href="#cpep-与-moe-训练" title="09 · CP、EP 与 MoE 训练">09 · CP、EP 与 MoE 训练</a>
+<a class="nav-section" href="#cp一个-32k-上下文分给多卡计算" title="9.1 CP：一个 32K 上下文分给多卡计算">9.1 CP：一个 32K 上下文分给多卡计算</a>
+<a class="nav-section" href="#epexperts-分卡token-按-router-调度" title="9.2 EP：Experts 分卡，Token 按 Router 调度">9.2 EP：Experts 分卡，Token 按 Router 调度</a>
+<a class="nav-section" href="#n-d-并行不同-group-不是随便相乘" title="9.3 N-D 并行：不同 Group 不是随便相乘">9.3 N-D 并行：不同 Group 不是随便相乘</a>
+<a class="nav-chapter" href="#核心性能优化flashattention混合精度重计算" title="10 · 核心性能优化：FlashAttention、混合精度、重计算">10 · 核心性能优化：FlashAttention、混合精度、重计算</a>
+<a class="nav-section" href="#flashattention减少-hbm-中间量和-io" title="10.1 FlashAttention：减少 HBM 中间量和 IO">10.1 FlashAttention：减少 HBM 中间量和 IO</a>
+<a class="nav-section" href="#bf16fp16-与-fp8" title="10.2 BF16、FP16 与 FP8">10.2 BF16、FP16 与 FP8</a>
+<a class="nav-section" href="#activation-checkpointing-与-offload" title="10.3 Activation Checkpointing 与 Offload">10.3 Activation Checkpointing 与 Offload</a>
+<a class="nav-chapter" href="#性能分析从一份-trace-找到训练瓶颈" title="11 · 性能分析：从一份 Trace 找到训练瓶颈">11 · 性能分析：从一份 Trace 找到训练瓶颈</a>
+<a class="nav-section" href="#先统一性能指标的定义" title="11.1 先统一性能指标的定义">11.1 先统一性能指标的定义</a>
+<a class="nav-section" href="#pytorch-profiler看算子shapememory" title="11.2 PyTorch Profiler：看算子、Shape、Memory">11.2 PyTorch Profiler：看算子、Shape、Memory</a>
+<a class="nav-section" href="#nsight-systems看-cpu-和多-stream-的时间线" title="11.3 Nsight Systems：看 CPU 和多 Stream 的时间线">11.3 Nsight Systems：看 CPU 和多 Stream 的时间线</a>
+<a class="nav-section" href="#一个可复用的定位流程" title="11.4 一个可复用的定位流程">11.4 一个可复用的定位流程</a>
+<a class="nav-chapter" href="#阶段性任务从-tinygpt-到-8-卡-7b8b-训练" title="12 · 阶段性任务：从 TinyGPT 到 8 卡 7B/8B 训练">12 · 阶段性任务：从 TinyGPT 到 8 卡 7B/8B 训练</a>
+<a class="nav-section" href="#第一阶段小模型完整训练1-gpu-ddp" title="12.1 第一阶段：小模型完整训练（1 GPU → DDP）">12.1 第一阶段：小模型完整训练（1 GPU → DDP）</a>
+<a class="nav-section" href="#第二阶段torchtitan-8b-训练" title="12.2 第二阶段：TorchTitan 8B 训练">12.2 第二阶段：TorchTitan 8B 训练</a>
+<a class="nav-section" href="#六组消融实验" title="12.3 六组消融实验">12.3 六组消融实验</a>
+<a class="nav-section" href="#典型工程故障排查" title="12.4 典型工程故障排查">12.4 典型工程故障排查</a>
+<a class="nav-chapter" href="#面试速查把知识组织成可讲述的答案" title="13 · 面试速查：把知识组织成可讲述的答案">13 · 面试速查：把知识组织成可讲述的答案</a>
+<a class="nav-chapter" href="#两周动手顺序与验收标准" title="14 · 两周动手顺序与验收标准">14 · 两周动手顺序与验收标准</a>
+<a class="nav-chapter" href="#附录-a-阅读资料与代码入口" title="附录 A · 阅读资料与代码入口">附录 A · 阅读资料与代码入口</a>
+<a class="nav-chapter" href="#附录-b-配套项目文件" title="附录 B · 配套项目文件">附录 B · 配套项目文件</a></nav></aside><div class="reader"><header class="hero"><div class="eyebrow">AI INFRA · TRAINING FIELD NOTES</div><h1>从 CUDA 执行到 8 卡大模型训练</h1><p class="deck">GPU 与 PyTorch 基础、Decoder-only Transformer、N-D 并行、训练显存账本、Profiler 与 TorchTitan 实战。按一次真实训练 Step 串联核心概念。</p><div class="hero-meta"><span>2026 · 10 · 25</span><span>14 章 / 10 张技术图</span><span>CPU 单进程、双进程 DDP 已验证</span><span>单文件离线阅读</span></div></header><article class="article"><h1 id="ai-infra-基础与大模型训练">AI Infra 基础与大模型训练</h1>
+<blockquote>
+<p>从 CUDA 执行模型、PyTorch Autograd 出发，理解 Decoder-only Transformer、分布式并行、训练显存与性能分析。适合 AI Infra / LLM Training Infra / RL Infra 面试准备和动手实验。</p>
+</blockquote>
+<p><strong>阅读方法</strong>：每章按“问题 → 执行过程 → 数据布局/通信 → 代码 → 性能观察”组织。正文用一轮训练 Step 串联概念。图、代码、参数账本放在概念第一次出现的位置。末尾提供两条可运行实验路线：TinyGPT 和 TorchTitan 8B。</p>
+<p><strong>实践环境</strong>：优先单卡 PyTorch 完成训练，再用 <code>torchrun</code> 做双卡 DDP；8×A100 实验根据单卡 40GB/80GB、GPU 互联（NVLink 或 PCIe）以及实际可用显存调整配置。合成数据用于验证训练过程和系统性能，真实收敛实验需要可靠语料与有效评测。</p>
+<h2 id="全书地图">全书地图</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>章节</th>
+<th>需要回答的问题</th>
+<th>学完能做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01 GPU 执行与访存</td>
+<td>一个 Kernel 为什么快或慢？</td>
+<td>看懂 Grid/Warp/SM、Coalescing、Bank Conflict</td>
+</tr>
+<tr class="even">
+<td>02 CUDA 异步与 Stream</td>
+<td>CPU、拷贝、计算如何交叠？</td>
+<td>正确使用 Event、Pinned Memory、计时</td>
+</tr>
+<tr class="odd">
+<td>03 PyTorch 训练与 Autograd</td>
+<td>Loss 如何变成参数更新？</td>
+<td>写出模型、优化器、Scheduler、梯度累积</td>
+</tr>
+<tr class="even">
+<td>04 Transformer 与 Attention</td>
+<td>Decoder、GQA、MLA、MoE 如何计算？</td>
+<td>从张量形状理解前向、反向与 KV</td>
+</tr>
+<tr class="odd">
+<td>05 训练显存账本</td>
+<td>7B 模型到底需要多少显存？</td>
+<td>分解权重/梯度/优化器/激活/临时缓冲</td>
+</tr>
+<tr class="even">
+<td>06 集合通信</td>
+<td>多卡如何交换张量？</td>
+<td>手画 AllReduce / AllGather / RS / A2A</td>
+</tr>
+<tr class="odd">
+<td>07 DDP / ZeRO / FSDP2</td>
+<td>模型副本和分片如何工作？</td>
+<td>分析显存与通信的变化</td>
+</tr>
+<tr class="even">
+<td>08 TP / SP / PP</td>
+<td>层内切分和层间流水线如何实现？</td>
+<td>画出每卡持有的张量与通信位置</td>
+</tr>
+<tr class="odd">
+<td>09 CP / EP / MoE</td>
+<td>长上下文和专家模型如何扩展？</td>
+<td>理解 KV 交换、Token Dispatch、负载均衡</td>
+</tr>
+<tr class="even">
+<td>10 常用优化</td>
+<td>FlashAttention、BF16、Checkpoint 做了什么？</td>
+<td>预测它们对显存、吞吐的影响</td>
+</tr>
+<tr class="odd">
+<td>11 Profiler / Nsight</td>
+<td>Step 慢在 CPU、Kernel 还是 NCCL？</td>
+<td>完成基准、定位瓶颈、写消融报告</td>
+</tr>
+<tr class="even">
+<td>12 7B/8B 实验</td>
+<td>如何选策略、验收真实效果？</td>
+<td>使用 TorchTitan 形成可复现训练报告</td>
+</tr>
+</tbody>
+</table></div>
+<figure>
+<figure class="diagram"><img alt="PyTorch 到 CUDA、GPU 和 NCCL 的执行栈" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMTE3cHQiIGhlaWdodD0iMTc3cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTExNy4wMCAxNzcuMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDE4IDE1OSkiPgo8dGl0bGU+RzwvdGl0bGU+CjxnIGlkPSJjbHVzdDEiIGNsYXNzPSJjbHVzdGVyIj4KPHRpdGxlPmNsdXN0ZXJfaG9zdDwvdGl0bGU+CjxwYXRoIGZpbGw9InRyYW5zcGFyZW50IiBzdHJva2U9IiNjYmQ3ZTEiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMiIgZD0iTTIwLC0yNUMyMCwtMjUgMzY2LC0yNSAzNjYsLTI1IDM3MiwtMjUgMzc4LC0zMSAzNzgsLTM3IDM3OCwtMzcgMzc4LC04OCAzNzgsLTg4IDM3OCwtOTQgMzcyLC0xMDAgMzY2LC0xMDAgMzY2LC0xMDAgMjAsLTEwMCAyMCwtMTAwIDE0LC0xMDAgOCwtOTQgOCwtODggOCwtODggOCwtMzcgOCwtMzcgOCwtMzEgMTQsLTI1IDIwLC0yNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxOTMiIHk9Ii04NC44IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzI1MzI0NiI+SG9zdCDCtyBDUFU8L3RleHQ+CjwvZz4KPGcgaWQ9ImNsdXN0MiIgY2xhc3M9ImNsdXN0ZXIiPgo8dGl0bGU+Y2x1c3Rlcl9ncHU8L3RpdGxlPgo8cGF0aCBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSIjN2NiM2JjIiBzdHJva2UtZGFzaGFycmF5PSI1LDIiIGQ9Ik00MjUsLTU4QzQyNSwtNTggMTA2MSwtNTggMTA2MSwtNTggMTA2NywtNTggMTA3MywtNjQgMTA3MywtNzAgMTA3MywtNzAgMTA3MywtMTIxIDEwNzMsLTEyMSAxMDczLC0xMjcgMTA2NywtMTMzIDEwNjEsLTEzMyAxMDYxLC0xMzMgNDI1LC0xMzMgNDI1LC0xMzMgNDE5LC0xMzMgNDEzLC0xMjcgNDEzLC0xMjEgNDEzLC0xMjEgNDEzLC03MCA0MTMsLTcwIDQxMywtNjQgNDE5LC01OCA0MjUsLTU4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijc0MyIgeT0iLTExNy44IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzI1MzI0NiI+RGV2aWNlIMK3IEdQVTwvdGV4dD4KPC9nPgo8IS0tIFB5dGhvbiAvIERhdGFMb2FkZXIgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UHl0aG9uIC8gRGF0YUxvYWRlcjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmY3ZTUiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xNzYsLTY5QzE3NiwtNjkgMjgsLTY5IDI4LC02OSAyMiwtNjkgMTYsLTYzIDE2LC01NyAxNiwtNTcgMTYsLTQ1IDE2LC00NSAxNiwtMzkgMjIsLTMzIDI4LC0zMyAyOCwtMzMgMTc2LC0zMyAxNzYsLTMzIDE4MiwtMzMgMTg4LC0zOSAxODgsLTQ1IDE4OCwtNDUgMTg4LC01NyAxODgsLTU3IDE4OCwtNjMgMTgyLC02OSAxNzYsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMiIgeT0iLTQ3LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5QeXRob24gLyBEYXRhTG9hZGVyPC90ZXh0Pgo8L2c+CjwhLS0gQVRlbiAvIEF1dG9ncmFkIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkFUZW4gLyBBdXRvZ3JhZDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmY3ZTUiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zNTgsLTY5QzM1OCwtNjkgMjQ1LC02OSAyNDUsLTY5IDIzOSwtNjkgMjMzLC02MyAyMzMsLTU3IDIzMywtNTcgMjMzLC00NSAyMzMsLTQ1IDIzMywtMzkgMjM5LC0zMyAyNDUsLTMzIDI0NSwtMzMgMzU4LC0zMyAzNTgsLTMzIDM2NCwtMzMgMzcwLC0zOSAzNzAsLTQ1IDM3MCwtNDUgMzcwLC01NyAzNzAsLTU3IDM3MCwtNjMgMzY0LC02OSAzNTgsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMwMS41IiB5PSItNDcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkFUZW4gLyBBdXRvZ3JhZDwvdGV4dD4KPC9nPgo8IS0tIFB5dGhvbiAvIERhdGFMb2FkZXImIzQ1OyZndDtBVGVuIC8gQXV0b2dyYWQgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+UHl0aG9uIC8gRGF0YUxvYWRlciYjNDU7Jmd0O0FUZW4gLyBBdXRvZ3JhZDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xODguMDUsLTUxQzE4OC4wNSwtNTEgMjI1Ljg1LC01MSAyMjUuODUsLTUxIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMjI1Ljg1LC01My40NSAyMzIuODUsLTUxIDIyNS44NSwtNDguNTUgMjI1Ljg1LC01My40NSIvPgo8L2c+CjwhLS0gQ1VEQSBSdW50aW1lIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkNVREEgUnVudGltZTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmMmY3ZmIiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik01NDAsLTEwMkM1NDAsLTEwMiA0MzMsLTEwMiA0MzMsLTEwMiA0MjcsLTEwMiA0MjEsLTk2IDQyMSwtOTAgNDIxLC05MCA0MjEsLTc4IDQyMSwtNzggNDIxLC03MiA0MjcsLTY2IDQzMywtNjYgNDMzLC02NiA1NDAsLTY2IDU0MCwtNjYgNTQ2LC02NiA1NTIsLTcyIDU1MiwtNzggNTUyLC03OCA1NTIsLTkwIDU1MiwtOTAgNTUyLC05NiA1NDYsLTEwMiA1NDAsLTEwMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0ODYuNSIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5DVURBIFJ1bnRpbWU8L3RleHQ+CjwvZz4KPCEtLSBBVGVuIC8gQXV0b2dyYWQmIzQ1OyZndDtDVURBIFJ1bnRpbWUgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QVRlbiAvIEF1dG9ncmFkJiM0NTsmZ3Q7Q1VEQSBSdW50aW1lPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTM3MC4wNSwtNTFDNDIyLjg5LC01MSA0ODcsLTUxIDQ4NywtNTEgNDg3LC01MSA0ODcsLTU4Ljk2IDQ4NywtNTguOTYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI0ODQuNTUsLTU4Ljk2IDQ4NywtNjUuOTYgNDg5LjQ1LC01OC45NiA0ODQuNTUsLTU4Ljk2Ii8+CjwvZz4KPCEtLSBOQ0NMIGNvbGxlY3RpdmVzIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPk5DQ0wgY29sbGVjdGl2ZXM8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNTQ2LC0zNkM1NDYsLTM2IDQyNywtMzYgNDI3LC0zNiA0MjEsLTM2IDQxNSwtMzAgNDE1LC0yNCA0MTUsLTI0IDQxNSwtMTIgNDE1LC0xMiA0MTUsLTYgNDIxLDAgNDI3LDAgNDI3LDAgNTQ2LDAgNTQ2LDAgNTUyLDAgNTU4LC02IDU1OCwtMTIgNTU4LC0xMiA1NTgsLTI0IDU1OCwtMjQgNTU4LC0zMCA1NTIsLTM2IDU0NiwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDg2LjUiIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+TkNDTCBjb2xsZWN0aXZlczwvdGV4dD4KPC9nPgo8IS0tIEFUZW4gLyBBdXRvZ3JhZCYjNDU7Jmd0O05DQ0wgY29sbGVjdGl2ZXMgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QVRlbiAvIEF1dG9ncmFkJiM0NTsmZ3Q7TkNDTCBjb2xsZWN0aXZlczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMiIgZD0iTTMwMiwtMzIuOTRDMzAyLC0yNC41OSAzMDIsLTE2LjUgMzAyLC0xNi41IDMwMiwtMTYuNSA0MDcuOSwtMTYuNSA0MDcuOSwtMTYuNSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjQwNy45LC0xOC45NSA0MTQuOSwtMTYuNSA0MDcuOSwtMTQuMDUgNDA3LjksLTE4Ljk1Ii8+CjwvZz4KPCEtLSBTdHJlYW0gLyBLZXJuZWwgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+U3RyZWFtIC8gS2VybmVsPC90aXRsZT4KPHBhdGggZmlsbD0iI2UwZjRmMCIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTcyOCwtMTAyQzcyOCwtMTAyIDYxNSwtMTAyIDYxNSwtMTAyIDYwOSwtMTAyIDYwMywtOTYgNjAzLC05MCA2MDMsLTkwIDYwMywtNzggNjAzLC03OCA2MDMsLTcyIDYwOSwtNjYgNjE1LC02NiA2MTUsLTY2IDcyOCwtNjYgNzI4LC02NiA3MzQsLTY2IDc0MCwtNzIgNzQwLC03OCA3NDAsLTc4IDc0MCwtOTAgNzQwLC05MCA3NDAsLTk2IDczNCwtMTAyIDcyOCwtMTAyIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjY3MS41IiB5PSItODAuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlN0cmVhbSAvIEtlcm5lbDwvdGV4dD4KPC9nPgo8IS0tIENVREEgUnVudGltZSYjNDU7Jmd0O1N0cmVhbSAvIEtlcm5lbCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5DVURBIFJ1bnRpbWUmIzQ1OyZndDtTdHJlYW0gLyBLZXJuZWw8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNTUyLjI0LC04NEM1NTIuMjQsLTg0IDU5NS44NCwtODQgNTk1Ljg0LC04NCIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjU5NS44NCwtODYuNDUgNjAyLjg0LC04NCA1OTUuODQsLTgxLjU1IDU5NS44NCwtODYuNDUiLz4KPC9nPgo8IS0tIFNNIC8gVGVuc29yIENvcmUgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+U00gLyBUZW5zb3IgQ29yZTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlMGY0ZjAiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik05MTgsLTEwMkM5MTgsLTEwMiA3OTcsLTEwMiA3OTcsLTEwMiA3OTEsLTEwMiA3ODUsLTk2IDc4NSwtOTAgNzg1LC05MCA3ODUsLTc4IDc4NSwtNzggNzg1LC03MiA3OTEsLTY2IDc5NywtNjYgNzk3LC02NiA5MTgsLTY2IDkxOCwtNjYgOTI0LC02NiA5MzAsLTcyIDkzMCwtNzggOTMwLC03OCA5MzAsLTkwIDkzMCwtOTAgOTMwLC05NiA5MjQsLTEwMiA5MTgsLTEwMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI4NTcuNSIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5TTSAvIFRlbnNvciBDb3JlPC90ZXh0Pgo8L2c+CjwhLS0gU3RyZWFtIC8gS2VybmVsJiM0NTsmZ3Q7U00gLyBUZW5zb3IgQ29yZSAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5TdHJlYW0gLyBLZXJuZWwmIzQ1OyZndDtTTSAvIFRlbnNvciBDb3JlPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTc0MC4yMywtODRDNzQwLjIzLC04NCA3NzgsLTg0IDc3OCwtODQiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI3NzgsLTg2LjQ1IDc4NSwtODQgNzc4LC04MS41NSA3NzgsLTg2LjQ1Ii8+CjwvZz4KPCEtLSBMMiAvIEhCTSAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5MMiAvIEhCTTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlMGY0ZjAiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xMDUzLC0xMDJDMTA1MywtMTAyIDk4NywtMTAyIDk4NywtMTAyIDk4MSwtMTAyIDk3NSwtOTYgOTc1LC05MCA5NzUsLTkwIDk3NSwtNzggOTc1LC03OCA5NzUsLTcyIDk4MSwtNjYgOTg3LC02NiA5ODcsLTY2IDEwNTMsLTY2IDEwNTMsLTY2IDEwNTksLTY2IDEwNjUsLTcyIDEwNjUsLTc4IDEwNjUsLTc4IDEwNjUsLTkwIDEwNjUsLTkwIDEwNjUsLTk2IDEwNTksLTEwMiAxMDUzLC0xMDIiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTAyMCIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5MMiAvIEhCTTwvdGV4dD4KPC9nPgo8IS0tIFNNIC8gVGVuc29yIENvcmUmIzQ1OyZndDtMMiAvIEhCTSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5TTSAvIFRlbnNvciBDb3JlJiM0NTsmZ3Q7TDIgLyBIQk08L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNOTMwLjE5LC04NEM5MzAuMTksLTg0IDk2Ny44OCwtODQgOTY3Ljg4LC04NCIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9Ijk2Ny44OCwtODYuNDUgOTc0Ljg4LC04NCA5NjcuODgsLTgxLjU1IDk2Ny44OCwtODYuNDUiLz4KPC9nPgo8IS0tIE5DQ0wgY29sbGVjdGl2ZXMmIzQ1OyZndDtTdHJlYW0gLyBLZXJuZWwgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TkNDTCBjb2xsZWN0aXZlcyYjNDU7Jmd0O1N0cmVhbSAvIEtlcm5lbDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMiIgZD0iTTU1OC4yMiwtMThDNjEwLjQyLC0xOCA2NzIsLTE4IDY3MiwtMTggNjcyLC0xOCA2NzIsLTU4Ljk3IDY3MiwtNTguOTciLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2NjkuNTUsLTU4Ljk3IDY3MiwtNjUuOTcgNjc0LjQ1LC01OC45NyA2NjkuNTUsLTU4Ljk3Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>PyTorch 到 CUDA、GPU 和 NCCL 的执行栈</figcaption></figure>
+<figcaption aria-hidden="true">PyTorch 到 CUDA、GPU 和 NCCL 的执行栈</figcaption>
+</figure>
+<hr/>
+<h1 id="gpu-执行模型与内存层次">01 · GPU 执行模型与内存层次</h1>
+<h2 id="gpu-到底怎样运行一个-kernel">1.1 GPU 到底怎样运行一个 Kernel？</h2>
+<p>一个 CUDA Kernel 会启动一组线程（<strong>Grid，线程网格</strong>）。Grid 由多个 <strong>Thread Block（线程块）</strong>组成，每个 Block 再包含多个 Thread（线程）。在 NVIDIA GPU 上，<strong>Warp（线程束）</strong>通常是 32 个线程，是执行指令和调度的基本分组。Block 会被调度到某个 <strong>SM（Streaming Multiprocessor，流式多处理器）</strong>上，SM 内的 Warp Scheduler 选择可执行的 Warp 发射指令。</p>
+<figure>
+<figure class="diagram"><img alt="CUDA 软件线程层级与 GPU 硬件对应关系" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIyNTVwdCIgaGVpZ2h0PSI1NThwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCAyNTUuMDAgNTU4LjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSgxOCA1NDApIj4KPHRpdGxlPkc8L3RpdGxlPgo8IS0tIENVREEgR3JpZCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5DVURBIEdyaWQ8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmNGRkIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTQ4LC01MjJDMTQ4LC01MjIgNzEsLTUyMiA3MSwtNTIyIDY1LC01MjIgNTksLTUxNiA1OSwtNTEwIDU5LC01MTAgNTksLTQ5OCA1OSwtNDk4IDU5LC00OTIgNjUsLTQ4NiA3MSwtNDg2IDcxLC00ODYgMTQ4LC00ODYgMTQ4LC00ODYgMTU0LC00ODYgMTYwLC00OTIgMTYwLC00OTggMTYwLC00OTggMTYwLC01MTAgMTYwLC01MTAgMTYwLC01MTYgMTU0LC01MjIgMTQ4LC01MjIiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTA5LjUiIHk9Ii01MDAuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkNVREEgR3JpZDwvdGV4dD4KPC9nPgo8IS0tIFRocmVhZCBCbG9jayAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5UaHJlYWQgQmxvY2s8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmNGRkIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTU3LjUsLTQ0MUMxNTcuNSwtNDQxIDYxLjUsLTQ0MSA2MS41LC00NDEgNTUuNSwtNDQxIDQ5LjUsLTQzNSA0OS41LC00MjkgNDkuNSwtNDI5IDQ5LjUsLTQxNyA0OS41LC00MTcgNDkuNSwtNDExIDU1LjUsLTQwNSA2MS41LC00MDUgNjEuNSwtNDA1IDE1Ny41LC00MDUgMTU3LjUsLTQwNSAxNjMuNSwtNDA1IDE2OS41LC00MTEgMTY5LjUsLTQxNyAxNjkuNSwtNDE3IDE2OS41LC00MjkgMTY5LjUsLTQyOSAxNjkuNSwtNDM1IDE2My41LC00NDEgMTU3LjUsLTQ0MSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDkuNSIgeT0iLTQxOS41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+VGhyZWFkIEJsb2NrPC90ZXh0Pgo8L2c+CjwhLS0gQ1VEQSBHcmlkJiM0NTsmZ3Q7VGhyZWFkIEJsb2NrIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkNVREEgR3JpZCYjNDU7Jmd0O1RocmVhZCBCbG9jazwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMDkuNSwtNDg1LjYyQzEwOS41LC00ODUuNjIgMTA5LjUsLTQ0OC4wMyAxMDkuNSwtNDQ4LjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTExLjk1LC00NDguMDMgMTA5LjUsLTQ0MS4wMyAxMDcuMDUsLTQ0OC4wMyAxMTEuOTUsLTQ0OC4wMyIvPgo8L2c+CjwhLS0gV2FycO+8mjMyIHRocmVhZHMgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+V2FycO+8mjMyIHRocmVhZHM8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmNGRkIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTczLjUsLTM2MEMxNzMuNSwtMzYwIDQ1LjUsLTM2MCA0NS41LC0zNjAgMzkuNSwtMzYwIDMzLjUsLTM1NCAzMy41LC0zNDggMzMuNSwtMzQ4IDMzLjUsLTMzNiAzMy41LC0zMzYgMzMuNSwtMzMwIDM5LjUsLTMyNCA0NS41LC0zMjQgNDUuNSwtMzI0IDE3My41LC0zMjQgMTczLjUsLTMyNCAxNzkuNSwtMzI0IDE4NS41LC0zMzAgMTg1LjUsLTMzNiAxODUuNSwtMzM2IDE4NS41LC0zNDggMTg1LjUsLTM0OCAxODUuNSwtMzU0IDE3OS41LC0zNjAgMTczLjUsLTM2MCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDkuNSIgeT0iLTMzOC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+V2FycO+8mjMyIHRocmVhZHM8L3RleHQ+CjwvZz4KPCEtLSBUaHJlYWQgQmxvY2smIzQ1OyZndDtXYXJw77yaMzIgdGhyZWFkcyAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5UaHJlYWQgQmxvY2smIzQ1OyZndDtXYXJw77yaMzIgdGhyZWFkczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMDkuNSwtNDA0LjYyQzEwOS41LC00MDQuNjIgMTA5LjUsLTM2Ny4wMyAxMDkuNSwtMzY3LjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTExLjk1LC0zNjcuMDMgMTA5LjUsLTM2MC4wMyAxMDcuMDUsLTM2Ny4wMyAxMTEuOTUsLTM2Ny4wMyIvPgo8L2c+CjwhLS0gU00wIC8gU00xIC8g4oCmIC8gU01uIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlNNMCAvIFNNMSAvIOKApiAvIFNNbjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNkN2VlZTkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xODIsLTI3OUMxODIsLTI3OSAzNywtMjc5IDM3LC0yNzkgMzEsLTI3OSAyNSwtMjczIDI1LC0yNjcgMjUsLTI2NyAyNSwtMjU1IDI1LC0yNTUgMjUsLTI0OSAzMSwtMjQzIDM3LC0yNDMgMzcsLTI0MyAxODIsLTI0MyAxODIsLTI0MyAxODgsLTI0MyAxOTQsLTI0OSAxOTQsLTI1NSAxOTQsLTI1NSAxOTQsLTI2NyAxOTQsLTI2NyAxOTQsLTI3MyAxODgsLTI3OSAxODIsLTI3OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDkuNSIgeT0iLTI1Ny41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+U00wIC8gU00xIC8g4oCmIC8gU01uPC90ZXh0Pgo8L2c+CjwhLS0gV2FycO+8mjMyIHRocmVhZHMmIzQ1OyZndDtTTTAgLyBTTTEgLyDigKYgLyBTTW4gLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+V2FycO+8mjMyIHRocmVhZHMmIzQ1OyZndDtTTTAgLyBTTTEgLyDigKYgLyBTTW48L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTA5LjUsLTMyMy42MkMxMDkuNSwtMzIzLjYyIDEwOS41LC0yODYuMDMgMTA5LjUsLTI4Ni4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjExMS45NSwtMjg2LjAzIDEwOS41LC0yNzkuMDMgMTA3LjA1LC0yODYuMDMgMTExLjk1LC0yODYuMDMiLz4KPC9nPgo8IS0tIFJlZ2lzdGVycyAvIFNoYXJlZCBNZW0gLyBMMSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5SZWdpc3RlcnMgLyBTaGFyZWQgTWVtIC8gTDE8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMjA3LC0xOThDMjA3LC0xOTggMTIsLTE5OCAxMiwtMTk4IDYsLTE5OCAwLC0xOTIgMCwtMTg2IDAsLTE4NiAwLC0xNzQgMCwtMTc0IDAsLTE2OCA2LC0xNjIgMTIsLTE2MiAxMiwtMTYyIDIwNywtMTYyIDIwNywtMTYyIDIxMywtMTYyIDIxOSwtMTY4IDIxOSwtMTc0IDIxOSwtMTc0IDIxOSwtMTg2IDIxOSwtMTg2IDIxOSwtMTkyIDIxMywtMTk4IDIwNywtMTk4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwOS41IiB5PSItMTc2LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5SZWdpc3RlcnMgLyBTaGFyZWQgTWVtIC8gTDE8L3RleHQ+CjwvZz4KPCEtLSBTTTAgLyBTTTEgLyDigKYgLyBTTW4mIzQ1OyZndDtSZWdpc3RlcnMgLyBTaGFyZWQgTWVtIC8gTDEgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+U00wIC8gU00xIC8g4oCmIC8gU01uJiM0NTsmZ3Q7UmVnaXN0ZXJzIC8gU2hhcmVkIE1lbSAvIEwxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEwOS41LC0yNDIuNjJDMTA5LjUsLTI0Mi42MiAxMDkuNSwtMjA1LjAzIDEwOS41LC0yMDUuMDMiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxMTEuOTUsLTIwNS4wMyAxMDkuNSwtMTk4LjAzIDEwNy4wNSwtMjA1LjAzIDExMS45NSwtMjA1LjAzIi8+CjwvZz4KPCEtLSBEZXZpY2UmIzQ1O3dpZGUgTDIgQ2FjaGUgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGV2aWNlJiM0NTt3aWRlIEwyIENhY2hlPC90aXRsZT4KPHBhdGggZmlsbD0iI2UzZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE4NywtMTE3QzE4NywtMTE3IDMyLC0xMTcgMzIsLTExNyAyNiwtMTE3IDIwLC0xMTEgMjAsLTEwNSAyMCwtMTA1IDIwLC05MyAyMCwtOTMgMjAsLTg3IDI2LC04MSAzMiwtODEgMzIsLTgxIDE4NywtODEgMTg3LC04MSAxOTMsLTgxIDE5OSwtODcgMTk5LC05MyAxOTksLTkzIDE5OSwtMTA1IDE5OSwtMTA1IDE5OSwtMTExIDE5MywtMTE3IDE4NywtMTE3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwOS41IiB5PSItOTUuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkRldmljZSYjNDU7d2lkZSBMMiBDYWNoZTwvdGV4dD4KPC9nPgo8IS0tIFJlZ2lzdGVycyAvIFNoYXJlZCBNZW0gLyBMMSYjNDU7Jmd0O0RldmljZSYjNDU7d2lkZSBMMiBDYWNoZSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SZWdpc3RlcnMgLyBTaGFyZWQgTWVtIC8gTDEmIzQ1OyZndDtEZXZpY2UmIzQ1O3dpZGUgTDIgQ2FjaGU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTA5LjUsLTE2MS42MkMxMDkuNSwtMTYxLjYyIDEwOS41LC0xMjQuMDMgMTA5LjUsLTEyNC4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjExMS45NSwtMTI0LjAzIDEwOS41LC0xMTcuMDMgMTA3LjA1LC0xMjQuMDMgMTExLjk1LC0xMjQuMDMiLz4KPC9nPgo8IS0tIEhCTSAvIEdsb2JhbCBNZW1vcnkgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+SEJNIC8gR2xvYmFsIE1lbW9yeTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlM2VkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xODcsLTM2QzE4NywtMzYgMzIsLTM2IDMyLC0zNiAyNiwtMzYgMjAsLTMwIDIwLC0yNCAyMCwtMjQgMjAsLTEyIDIwLC0xMiAyMCwtNiAyNiwwIDMyLDAgMzIsMCAxODcsMCAxODcsMCAxOTMsMCAxOTksLTYgMTk5LC0xMiAxOTksLTEyIDE5OSwtMjQgMTk5LC0yNCAxOTksLTMwIDE5MywtMzYgMTg3LC0zNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDkuNSIgeT0iLTE0LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5IQk0gLyBHbG9iYWwgTWVtb3J5PC90ZXh0Pgo8L2c+CjwhLS0gRGV2aWNlJiM0NTt3aWRlIEwyIENhY2hlJiM0NTsmZ3Q7SEJNIC8gR2xvYmFsIE1lbW9yeSAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5EZXZpY2UmIzQ1O3dpZGUgTDIgQ2FjaGUmIzQ1OyZndDtIQk0gLyBHbG9iYWwgTWVtb3J5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEwOS41LC04MC42MkMxMDkuNSwtODAuNjIgMTA5LjUsLTQzLjAzIDEwOS41LC00My4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjExMS45NSwtNDMuMDMgMTA5LjUsLTM2LjAzIDEwNy4wNSwtNDMuMDMgMTExLjk1LC00My4wMyIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=="/><figcaption>CUDA 软件线程层级与 GPU 硬件对应关系</figcaption></figure>
+<figcaption aria-hidden="true">CUDA 软件线程层级与 GPU 硬件对应关系</figcaption>
+</figure>
+<p>以向量加法为例，<code>N=1,000,000</code>、<code>blockDim.x=256</code>，需要 <code>ceil(N/256)=3907</code> 个 Block。每个线程处理一个下标：</p>
+<pre class="cuda codebox"><code>__global__ void vec_add(const float* a, const float* b, float* c, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i &lt; n) c[i] = a[i] + b[i];
+}
+
+int threads = 256;
+int blocks = (n + threads - 1) / threads;
+vec_add&lt;&lt;&lt;blocks, threads&gt;&gt;&gt;(a, b, c, n);</code></pre>
+<p>这里有三层约束：<strong>线程够不够多</strong>决定并行度，<strong>每线程寄存器/每 Block Shared Memory</strong>影响 SM 能驻留多少 Warp，<strong>访存模式与运算类型</strong>决定实际吞吐。</p>
+<p><strong>Occupancy（占用率）</strong>是驻留的活跃 Warp 相对于架构上限的比例。提高 Occupancy 可以帮助隐藏访存延迟，但寄存器压力、访存事务和 Tensor Core 利用率通常更值得结合 Profile 一起看。Occupancy 高并不自动意味着 Kernel 快。</p>
+<h2 id="gpu-存储层级谁存什么谁访问">1.2 GPU 存储层级：谁存什么、谁访问？</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>存储位置</th>
+<th>作用域 / 生命周期</th>
+<th>典型用途</th>
+<th>需要警惕</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Register（寄存器）</td>
+<td>每线程私有，SM 内</td>
+<td>累加器、地址、临时标量</td>
+<td>寄存器溢出后访问 Local Memory，可能落入显存层级</td>
+</tr>
+<tr class="even">
+<td>Shared Memory（共享内存）</td>
+<td>同一 Block 线程共享，SM 内</td>
+<td>Tiling、数据复用、归约</td>
+<td>Bank Conflict、容量挤占 Occupancy</td>
+</tr>
+<tr class="odd">
+<td>L1 Cache</td>
+<td>通常为 SM 级缓存</td>
+<td>缓存局部数据访问</td>
+<td>缓存命中率、访存策略</td>
+</tr>
+<tr class="even">
+<td>L2 Cache</td>
+<td>全 GPU 共享缓存</td>
+<td>跨 SM 数据复用、HBM 缓冲</td>
+<td>容量和流量争用</td>
+</tr>
+<tr class="odd">
+<td>HBM / Global Memory</td>
+<td>GPU 全局可访问</td>
+<td>模型参数、激活、梯度</td>
+<td>带宽有限、延迟高于片上存储</td>
+</tr>
+<tr class="even">
+<td>Host RAM / Pinned Memory</td>
+<td>CPU 内存</td>
+<td>数据加载、异步 DMA 传输</td>
+<td>PCIe/NVLink 带宽、固定页成本</td>
+</tr>
+</tbody>
+</table></div>
+<p>理解 <code>matmul</code> 的出发点是：<strong>从 HBM 读入 Tile 到 Shared Memory，复用多次后再写回</strong>。一次 <code>M×K @ K×N</code> 的 FLOPs 约为 <code>2MNK</code>；每个元素被重复利用的次数越多，同样的 HBM 流量能完成越多乘加。</p>
+<h3 id="coalescing合并访存">Coalescing（合并访存）</h3>
+<p>连续 32 个线程分别读取 <code>x[lane]</code>，可以让相邻地址的内存请求合并成少量 Memory Transaction。若每个线程读 <code>x[lane * 32]</code>，访问跨度大，事务数量和浪费的传输字节数可能明显增加。</p>
+<p>对按行连续存储的 <code>[B,S,H]</code> 张量，最后一维 <code>H</code> 通常最适合让相邻线程连续访问。<code>tensor.stride()</code> 比只看 <code>shape</code> 更能说明真实访存位置：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">128</span>, <span class="dv">1024</span>)</span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="bu">print</span>(x.stride())          <span class="co"># (131072, 1024, 1)</span></span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a>y <span class="op">=</span> x.transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a><span class="bu">print</span>(y.shape, y.stride()) <span class="co"># (2, 1024, 128), stride 变了</span></span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a><span class="co"># y.contiguous() 会为连续排布复制数据；它也有时间/显存开销。</span></span></code></pre></div>
+<h3 id="bank-conflictshared-memory-的经典面试题">Bank Conflict：Shared Memory 的经典面试题</h3>
+<p>Ampere 等 NVIDIA 架构常用 32 个 Shared Memory Bank（按 32-bit 字映射）。假设声明 <code>float tile[32][32]</code>，Warp 的 32 个 Lane 同时按列读取不同 Row：</p>
+<pre class="cuda codebox"><code>__shared__ float tile[32][32];
+// lane 0..31 分别访问 tile[lane][column]
+// bank = (lane * 32 + column) % 32 = column
+// 32 个 lane 命中同一个 Bank 的不同地址 → 可能发生 32-way conflict
+
+__shared__ float padded[32][33];
+// bank = (lane * 33 + column) % 32 = (lane + column) % 32
+// 每个 lane 对应不同 Bank → 典型的 Padding 解法</code></pre>
+<p>进阶还要掌握 <strong>Swizzle（地址重排）/ XOR 映射</strong>，通过改变不同 Warp/Lane 的片上数据布局减少冲突。Hopper 的 TMA / WGMMA 引入了更复杂的 Tile 组织与流水线，面试时通常会从这个 Padding 例子继续追问。</p>
+<h2 id="roofline屋顶线模型算力与带宽的分界">1.3 Roofline（屋顶线模型）：算力与带宽的分界</h2>
+<p>定义 <strong>Arithmetic Intensity（计算强度）</strong>：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mfrac><mtext mathvariant="normal">FLOPs</mtext><mtext mathvariant="normal">Bytes transferred</mtext></mfrac></mrow><annotation encoding="application/x-tex">I = \frac{\text{FLOPs}}{\text{Bytes transferred}}</annotation></semantics></math></p>
+<p>粗略性能上限：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>≤</mo><mo>min</mo><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>P</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">k</mi></mrow></msub><mo>,</mo><mspace width="0.278em"></mspace><mi>B</mi><msub><mi>W</mi><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">B</mi><mi mathvariant="normal">M</mi></mrow></msub><mo>⋅</mo><mi>I</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">P \leq \min(P_{\mathrm{peak}},\; BW_{\mathrm{HBM}}\cdot I)</annotation></semantics></math></p>
+<p>向量加法 <code>c=a+b</code>，每个 <code>float32</code> 元素读两个、写一个：<code>1 FLOP / 12 B = 0.083 FLOP/B</code>，容易受 HBM 带宽限制。大矩阵乘法能复用数据，往往更接近 Tensor Core 的计算峰值。相同运算换成小 Batch、小矩阵、非对齐 Shape 后，又可能出现利用率下降和 Launch Overhead（启动开销）。</p>
+<blockquote>
+<p><strong>本章自测</strong>：给定 <code>float tile[32][32]</code>，说清每个 Lane 访问的地址、Bank 编号，以及为何 <code>32→33</code> 能消除这类列访问冲突；再解释寄存器使用过多为什么可能降低性能。</p>
+</blockquote>
+<hr/>
+<h1 id="cpugpu-异步执行与多-stream">02 · CPU/GPU 异步执行与多 Stream</h1>
+<h2 id="cpu-提交任务gpu-排队执行">2.1 CPU 提交任务，GPU 排队执行</h2>
+<p><code>cudaLaunchKernel</code> / PyTorch GPU 算子通常在 CPU 侧<strong>异步提交</strong>。CPU 函数返回，不代表 GPU 已经完成。<strong>CUDA Stream（CUDA 执行流）</strong>是顺序提交队列：同一 Stream 内按顺序执行，多个 Stream 的任务在依赖和资源允许时能够并发。</p>
+<figure>
+<figure class="diagram"><img alt="异步拷贝与计算交叠的示意时间线" class="inline-svg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjMxNSIgdmlld0JveD0iMCAwIDEwNDAgMzE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkNQVSBDVURBIFN0cmVhbXMg5LiOIEgyRCDlpI3liLblkozorqHnrpfnmoTkuqTlj6Dml7bpl7Tnur8iPgo8c3R5bGU+dGV4dHtmb250LWZhbWlseTonTm90byBTYW5zIENKSyBTQycsc2Fucy1zZXJpZjtmaWxsOiMyNDNiNTA7Zm9udC1zaXplOjE3cHh9LnNtYWxse2ZvbnQtc2l6ZToxM3B4O2ZpbGw6IzY0NzQ4Yn0ubGluZXtzdHJva2U6I2I0YzZkNTtzdHJva2Utd2lkdGg6MS42O3N0cm9rZS1kYXNoYXJyYXk6NCA1fS5jcHV7ZmlsbDojZjZlMmJifS5jb3B5e2ZpbGw6I2I5ZTJlZH0uY29tcHV0ZXtmaWxsOiNiN2U2ZDV9LmV2ZW50e2ZpbGw6I2YzYzdjZH08L3N0eWxlPgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSIzMTUiIGZpbGw9IiNmZmYiIHJ4PSIxNiIvPgo8dGV4dCB4PSIyNiIgeT0iMzYiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtd2VpZ2h0PSI3MDAiPkNQVSAvIENVREEgU3RyZWFtcyDlvILmraXml7bpl7Tnur88L3RleHQ+CjxsaW5lIHgxPSIxODUiIHkxPSI1OCIgeDI9Ijk5MCIgeTI9IjU4IiBzdHJva2U9IiM3NThlYTEiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iOTkwLDU4IDk4MCw1MiA5ODAsNjQiIGZpbGw9IiM3NThlYTEiLz48dGV4dCB4PSI5MjAiIHk9IjQ2IiBjbGFzcz0ic21hbGwiPuaXtumXtCDihpI8L3RleHQ+Cjx0ZXh0IHg9IjI0IiB5PSIxMDIiPkNQVSBIb3N0PC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIxNjUiPkNvcHkgU3RyZWFtPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIyMjUiPkNvbXB1dGUgU3RyZWFtPC90ZXh0Pgo8cGF0aCBkPSJNMTg1LDExOCBIOTkwIE0xODUsMTgwIEg5OTAgTTE4NSwyNDAgSDk5MCIgY2xhc3M9ImxpbmUiLz4KPHJlY3QgeD0iMjAwIiB5PSI4NCIgd2lkdGg9IjEyMiIgaGVpZ2h0PSIzMiIgcng9IjUiIGNsYXNzPSJjcHUiLz48dGV4dCB4PSIyMTgiIHk9IjEwNiIgY2xhc3M9InNtYWxsIj5lbnF1ZXVlIEgyRDwvdGV4dD4KPHJlY3QgeD0iMzI1IiB5PSI4NCIgd2lkdGg9IjEzMyIgaGVpZ2h0PSIzMiIgcng9IjUiIGNsYXNzPSJjcHUiLz48dGV4dCB4PSIzNDAiIHk9IjEwNiIgY2xhc3M9InNtYWxsIj5lbnF1ZXVlIEtlcm5lbDwvdGV4dD4KPHJlY3QgeD0iNDY1IiB5PSI4NCIgd2lkdGg9IjExMCIgaGVpZ2h0PSIzMiIgcng9IjUiIGNsYXNzPSJjcHUiLz48dGV4dCB4PSI0ODAiIHk9IjEwNiIgY2xhc3M9InNtYWxsIj5QeXRob24gbG9naWM8L3RleHQ+CjxyZWN0IHg9IjMyNiIgeT0iMTQ3IiB3aWR0aD0iMjY1IiBoZWlnaHQ9IjMyIiByeD0iNSIgY2xhc3M9ImNvcHkiLz48dGV4dCB4PSI0MDQiIHk9IjE2OCIgY2xhc3M9InNtYWxsIj5IMkQgQmF0Y2ggbisxPC90ZXh0Pgo8cmVjdCB4PSIyMjYiIHk9IjIwOSIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIzMiIgcng9IjUiIGNsYXNzPSJjb21wdXRlIi8+PHRleHQgeD0iMzQ0IiB5PSIyMzAiIGNsYXNzPSJzbWFsbCI+Q29tcHV0ZSBCYXRjaCBuPC90ZXh0Pgo8cmVjdCB4PSI2MDAiIHk9IjIwOSIgd2lkdGg9IjUyIiBoZWlnaHQ9IjMyIiByeD0iNSIgY2xhc3M9ImV2ZW50Ii8+PHRleHQgeD0iNjA2IiB5PSIyMzAiIGNsYXNzPSJzbWFsbCI+d2FpdDwvdGV4dD4KPHJlY3QgeD0iNjU1IiB5PSIyMDkiIHdpZHRoPSIyNjAiIGhlaWdodD0iMzIiIHJ4PSI1IiBjbGFzcz0iY29tcHV0ZSIvPjx0ZXh0IHg9IjcyMiIgeT0iMjMwIiBjbGFzcz0ic21hbGwiPkNvbXB1dGUgQmF0Y2ggbisxPC90ZXh0Pgo8cGF0aCBkPSJNNTg4IDE3OSBMNjI2IDIwOSIgc3Ryb2tlPSIjZDI4ZDk5IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPgo8dGV4dCB4PSIyNCIgeT0iMjg4IiBjbGFzcz0ic21hbGwiPuWJjeaPkO+8mnBpbm5lZCBob3N0IG1lbW9yeeOAgemdnumYu+WhnuWkjeWItuOAgeehrOS7tuS4juS+nei1luWFgeiuuCBvdmVybGFw77ybd2FpdF9ldmVudCAvIHdhaXRfc3RyZWFtIOehruS/nea2iOi0ueWJjeaVsOaNruWwsee7quOAgjwvdGV4dD4KPC9zdmc+"/><figcaption>异步拷贝与计算交叠的示意时间线</figcaption></figure>
+<figcaption aria-hidden="true">异步拷贝与计算交叠的示意时间线</figcaption>
+</figure>
+<p>常见同步点：<code>torch.cuda.synchronize()</code> 等待设备当前未完成任务；<code>stream.synchronize()</code> 等待某条 Stream；<code>tensor.item()</code> 把 GPU 标量送回 CPU，可能导致 Host 等待。性能测量时，别把这些同步开销无意间加在每个训练 Microbatch 里。</p>
+<h2 id="一段正确管理依赖的-pytorch-代码">2.2 一段正确管理依赖的 PyTorch 代码</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>cpu_batch <span class="op">=</span> torch.randn(<span class="dv">1_000_000</span>).pin_memory()</span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a>copy_stream <span class="op">=</span> torch.cuda.Stream()</span>
+<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a>compute_stream <span class="op">=</span> torch.cuda.current_stream()</span>
+<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a><span class="cf">with</span> torch.cuda.stream(copy_stream):</span>
+<span id="cb4-6"><a aria-hidden="true" href="#cb4-6" tabindex="-1"></a>    gpu_batch <span class="op">=</span> cpu_batch.to(<span class="st">'cuda'</span>, non_blocking<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-7"><a aria-hidden="true" href="#cb4-7" tabindex="-1"></a>    ready <span class="op">=</span> torch.cuda.Event()</span>
+<span id="cb4-8"><a aria-hidden="true" href="#cb4-8" tabindex="-1"></a>    ready.record(copy_stream)</span>
+<span id="cb4-9"><a aria-hidden="true" href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a aria-hidden="true" href="#cb4-10" tabindex="-1"></a>compute_stream.wait_event(ready)  <span class="co"># 让 GPU 等待数据就绪；CPU 不必阻塞</span></span>
+<span id="cb4-11"><a aria-hidden="true" href="#cb4-11" tabindex="-1"></a>gpu_batch.record_stream(compute_stream)  <span class="co"># 告诉分配器另一个 stream 也会用它</span></span>
+<span id="cb4-12"><a aria-hidden="true" href="#cb4-12" tabindex="-1"></a>result <span class="op">=</span> gpu_batch.square().<span class="bu">sum</span>()</span></code></pre></div>
+<p><code>pin_memory()</code> 可帮助 CPU→GPU DMA（直接存储器访问）异步传输。<code>non_blocking=True</code>、独立 Copy Engine、可交叠的 Kernel 和满足条件的硬件拓扑共同决定是否真实重叠。Event 决定正确依赖，<code>record_stream</code> 还关系到缓存分配器能否安全复用内存。</p>
+<h3 id="cuda-时间为什么不能只用-time.time">CUDA 时间为什么不能只用 <code>time.time()</code>？</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>start <span class="op">=</span> torch.cuda.Event(enable_timing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a>end <span class="op">=</span> torch.cuda.Event(enable_timing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a>start.record()</span>
+<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">@</span> w</span>
+<span id="cb5-5"><a aria-hidden="true" href="#cb5-5" tabindex="-1"></a>end.record()</span>
+<span id="cb5-6"><a aria-hidden="true" href="#cb5-6" tabindex="-1"></a>end.synchronize()</span>
+<span id="cb5-7"><a aria-hidden="true" href="#cb5-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'GPU elapsed ms:'</span>, start.elapsed_time(end))</span></code></pre></div>
+<p>CUDA Event 测 GPU Stream 上的执行区间；使用 CPU 计时器测端到端 Step 时，<strong>需要在起止位置明确同步</strong>，否则测到的可能主要是 Host 提交速度。</p>
+<blockquote>
+<p><strong>本章自测</strong>：画出 DataLoader、H2D、Forward 三条时间线，指出 Event 应放在哪里，并解释为什么两个 Stream 不一定比一个快。</p>
+</blockquote>
+<hr/>
+<h1 id="pytorch-训练过程与-autograd">03 · PyTorch 训练过程与 Autograd</h1>
+<h2 id="一轮-step-的执行过程">3.1 一轮 Step 的执行过程</h2>
+<figure>
+<figure class="diagram"><img alt="PyTorch 训练 Step 的数据与计算流" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMDQ2cHQiIGhlaWdodD0iODhwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCAxMDQ2LjAwIDg4LjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSgxOCA3MCkiPgo8dGl0bGU+RzwvdGl0bGU+CjwhLS0gTG9hZCAvIEgyRCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Mb2FkIC8gSDJEPC90aXRsZT4KPHBhdGggZmlsbD0iI2ZmZjFkOCIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTkzLC00NEM5MywtNDQgMTIsLTQ0IDEyLC00NCA2LC00NCAwLC0zOCAwLC0zMiAwLC0zMiAwLC0yMCAwLC0yMCAwLC0xNCA2LC04IDEyLC04IDEyLC04IDkzLC04IDkzLC04IDk5LC04IDEwNSwtMTQgMTA1LC0yMCAxMDUsLTIwIDEwNSwtMzIgMTA1LC0zMiAxMDUsLTM4IDk5LC00NCA5MywtNDQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTIuNSIgeT0iLTIyLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5Mb2FkIC8gSDJEPC90ZXh0Pgo8L2c+CjwhLS0gRm9yd2FyZCAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Gb3J3YXJkPC90aXRsZT4KPHBhdGggZmlsbD0iI2YyZjdmYiIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTIyNSwtNDRDMjI1LC00NCAxNjIsLTQ0IDE2MiwtNDQgMTU2LC00NCAxNTAsLTM4IDE1MCwtMzIgMTUwLC0zMiAxNTAsLTIwIDE1MCwtMjAgMTUwLC0xNCAxNTYsLTggMTYyLC04IDE2MiwtOCAyMjUsLTggMjI1LC04IDIzMSwtOCAyMzcsLTE0IDIzNywtMjAgMjM3LC0yMCAyMzcsLTMyIDIzNywtMzIgMjM3LC0zOCAyMzEsLTQ0IDIyNSwtNDQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTkzLjUiIHk9Ii0yMi41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Rm9yd2FyZDwvdGV4dD4KPC9nPgo8IS0tIExvYWQgLyBIMkQmIzQ1OyZndDtGb3J3YXJkIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkxvYWQgLyBIMkQmIzQ1OyZndDtGb3J3YXJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEwNSwtMjZDMTA1LC0yNiAxNDIuNzIsLTI2IDE0Mi43MiwtMjYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxNDIuNzIsLTI4LjQ1IDE0OS43MiwtMjYgMTQyLjcyLC0yMy41NSAxNDIuNzIsLTI4LjQ1Ii8+CjwvZz4KPCEtLSBMb3NzIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkxvc3M8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMzI5LC00NEMzMjksLTQ0IDI5NCwtNDQgMjk0LC00NCAyODgsLTQ0IDI4MiwtMzggMjgyLC0zMiAyODIsLTMyIDI4MiwtMjAgMjgyLC0yMCAyODIsLTE0IDI4OCwtOCAyOTQsLTggMjk0LC04IDMyOSwtOCAzMjksLTggMzM1LC04IDM0MSwtMTQgMzQxLC0yMCAzNDEsLTIwIDM0MSwtMzIgMzQxLC0zMiAzNDEsLTM4IDMzNSwtNDQgMzI5LC00NCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzMTEuNSIgeT0iLTIyLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5Mb3NzPC90ZXh0Pgo8L2c+CjwhLS0gRm9yd2FyZCYjNDU7Jmd0O0xvc3MgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Rm9yd2FyZCYjNDU7Jmd0O0xvc3M8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMjM3LjEsLTI2QzIzNy4xLC0yNiAyNzQuNjgsLTI2IDI3NC42OCwtMjYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIyNzQuNjgsLTI4LjQ1IDI4MS42OCwtMjYgMjc0LjY4LC0yMy41NSAyNzQuNjgsLTI4LjQ1Ii8+CjwvZz4KPCEtLSBCYWNrd2FyZCAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5CYWNrd2FyZDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmMmY3ZmIiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik00NzIsLTQ0QzQ3MiwtNDQgMzk4LC00NCAzOTgsLTQ0IDM5MiwtNDQgMzg2LC0zOCAzODYsLTMyIDM4NiwtMzIgMzg2LC0yMCAzODYsLTIwIDM4NiwtMTQgMzkyLC04IDM5OCwtOCAzOTgsLTggNDcyLC04IDQ3MiwtOCA0NzgsLTggNDg0LC0xNCA0ODQsLTIwIDQ4NCwtMjAgNDg0LC0zMiA0ODQsLTMyIDQ4NCwtMzggNDc4LC00NCA0NzIsLTQ0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQzNSIgeT0iLTIyLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5CYWNrd2FyZDwvdGV4dD4KPC9nPgo8IS0tIExvc3MmIzQ1OyZndDtCYWNrd2FyZCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5Mb3NzJiM0NTsmZ3Q7QmFja3dhcmQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMzQxLjA4LC0yNkMzNDEuMDgsLTI2IDM3OC44OSwtMjYgMzc4Ljg5LC0yNiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjM3OC44OSwtMjguNDUgMzg1Ljg5LC0yNiAzNzguODksLTIzLjU1IDM3OC44OSwtMjguNDUiLz4KPC9nPgo8IS0tIEdyYWQgU3luYwpERFA6IEFSIC8gRlNEUDogUlMgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R3JhZCBTeW5jCkREUDogQVIgLyBGU0RQOiBSUzwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlOGVkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik02NzgsLTUyQzY3OCwtNTIgNTQxLC01MiA1NDEsLTUyIDUzNSwtNTIgNTI5LC00NiA1MjksLTQwIDUyOSwtNDAgNTI5LC0xMiA1MjksLTEyIDUyOSwtNiA1MzUsMCA1NDEsMCA1NDEsMCA2NzgsMCA2NzgsMCA2ODQsMCA2OTAsLTYgNjkwLC0xMiA2OTAsLTEyIDY5MCwtNDAgNjkwLC00MCA2OTAsLTQ2IDY4NCwtNTIgNjc4LC01MiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2MDkuNSIgeT0iLTMxIiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R3JhZCBTeW5jPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2MDkuNSIgeT0iLTE0IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+RERQOiBBUiAvIEZTRFA6IFJTPC90ZXh0Pgo8L2c+CjwhLS0gQmFja3dhcmQmIzQ1OyZndDtHcmFkIFN5bmMKRERQOiBBUiAvIEZTRFA6IFJTIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkJhY2t3YXJkJiM0NTsmZ3Q7R3JhZCBTeW5jCkREUDogQVIgLyBGU0RQOiBSUzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik00ODQuMDcsLTI2QzQ4NC4wNywtMjYgNTIxLjc2LC0yNiA1MjEuNzYsLTI2Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iNTIxLjc2LC0yOC40NSA1MjguNzYsLTI2IDUyMS43NiwtMjMuNTUgNTIxLjc2LC0yOC40NSIvPgo8L2c+CjwhLS0gQWRhbVcgU3RlcCAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5BZGFtVyBTdGVwPC90aXRsZT4KPHBhdGggZmlsbD0iI2Q3ZWVlOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTgzOSwtNDRDODM5LC00NCA3NDcsLTQ0IDc0NywtNDQgNzQxLC00NCA3MzUsLTM4IDczNSwtMzIgNzM1LC0zMiA3MzUsLTIwIDczNSwtMjAgNzM1LC0xNCA3NDEsLTggNzQ3LC04IDc0NywtOCA4MzksLTggODM5LC04IDg0NSwtOCA4NTEsLTE0IDg1MSwtMjAgODUxLC0yMCA4NTEsLTMyIDg1MSwtMzIgODUxLC0zOCA4NDUsLTQ0IDgzOSwtNDQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzkzIiB5PSItMjIuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkFkYW1XIFN0ZXA8L3RleHQ+CjwvZz4KPCEtLSBHcmFkIFN5bmMKRERQOiBBUiAvIEZTRFA6IFJTJiM0NTsmZ3Q7QWRhbVcgU3RlcCAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5HcmFkIFN5bmMKRERQOiBBUiAvIEZTRFA6IFJTJiM0NTsmZ3Q7QWRhbVcgU3RlcDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik02OTAuMjUsLTI2QzY5MC4yNSwtMjYgNzI3LjgxLC0yNiA3MjcuODEsLTI2Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iNzI3LjgxLC0yOC40NSA3MzQuODEsLTI2IDcyNy44MSwtMjMuNTUgNzI3LjgxLC0yOC40NSIvPgo8L2c+CjwhLS0gTFIgU2NoZWR1bGUgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+TFIgU2NoZWR1bGU8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNOTk4LC00NEM5OTgsLTQ0IDkwOCwtNDQgOTA4LC00NCA5MDIsLTQ0IDg5NiwtMzggODk2LC0zMiA4OTYsLTMyIDg5NiwtMjAgODk2LC0yMCA4OTYsLTE0IDkwMiwtOCA5MDgsLTggOTA4LC04IDk5OCwtOCA5OTgsLTggMTAwNCwtOCAxMDEwLC0xNCAxMDEwLC0yMCAxMDEwLC0yMCAxMDEwLC0zMiAxMDEwLC0zMiAxMDEwLC0zOCAxMDA0LC00NCA5OTgsLTQ0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk1MyIgeT0iLTIyLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5MUiBTY2hlZHVsZTwvdGV4dD4KPC9nPgo8IS0tIEFkYW1XIFN0ZXAmIzQ1OyZndDtMUiBTY2hlZHVsZSAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5BZGFtVyBTdGVwJiM0NTsmZ3Q7TFIgU2NoZWR1bGU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNODUxLjIyLC0yNkM4NTEuMjIsLTI2IDg4OC45LC0yNiA4ODguOSwtMjYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI4ODguOSwtMjguNDUgODk1LjksLTI2IDg4OC45LC0yMy41NSA4ODguOSwtMjguNDUiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo="/><figcaption>PyTorch 训练 Step 的数据与计算流</figcaption></figure>
+<figcaption aria-hidden="true">PyTorch 训练 Step 的数据与计算流</figcaption>
+</figure>
+<p>训练循环的七步：读取 Batch → Forward（前向）→ Loss → Backward（反向）→ 分布式同步梯度 → Optimizer Step（更新）→ LR Scheduler（学习率调度）。<code>optimizer.zero_grad(set_to_none=True)</code> 一般放在当前梯度累积周期开始前。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>model.train()</span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a><span class="cf">for</span> tokens, labels <span class="kw">in</span> loader:</span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a>    tokens, labels <span class="op">=</span> tokens.cuda(non_blocking<span class="op">=</span><span class="va">True</span>), labels.cuda(non_blocking<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-4"><a aria-hidden="true" href="#cb6-4" tabindex="-1"></a>    optimizer.zero_grad(set_to_none<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a aria-hidden="true" href="#cb6-5" tabindex="-1"></a>    <span class="cf">with</span> torch.autocast(<span class="st">'cuda'</span>, dtype<span class="op">=</span>torch.bfloat16):</span>
+<span id="cb6-6"><a aria-hidden="true" href="#cb6-6" tabindex="-1"></a>        logits <span class="op">=</span> model(tokens)</span>
+<span id="cb6-7"><a aria-hidden="true" href="#cb6-7" tabindex="-1"></a>        loss <span class="op">=</span> F.cross_entropy(logits.<span class="bu">float</span>().flatten(<span class="dv">0</span>, <span class="dv">1</span>), labels.reshape(<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb6-8"><a aria-hidden="true" href="#cb6-8" tabindex="-1"></a>    loss.backward()                <span class="co"># autograd 计算参数梯度</span></span>
+<span id="cb6-9"><a aria-hidden="true" href="#cb6-9" tabindex="-1"></a>    torch.nn.utils.clip_grad_norm_(model.parameters(), <span class="fl">1.0</span>)</span>
+<span id="cb6-10"><a aria-hidden="true" href="#cb6-10" tabindex="-1"></a>    optimizer.step()               <span class="co"># 更新模型参数</span></span>
+<span id="cb6-11"><a aria-hidden="true" href="#cb6-11" tabindex="-1"></a>    scheduler.step()               <span class="co"># 一次 optimizer step 对应一次 scheduler step</span></span></code></pre></div>
+<p>本项目的完整可运行版本在 <a href="examples/train_tiny_gpt.py"><code>examples/train_tiny_gpt.py</code></a>，包括 AdamW、Cosine + Warmup、BF16、DDP、Gradient Accumulation 和 Profiler。</p>
+<h2 id="autograd-动态计算图如何产生">3.2 Autograd 动态计算图如何产生？</h2>
+<p>PyTorch Eager Mode（即时执行模式）在前向计算时为可微算子记录反向关系。例如 <code>y = (x @ w).relu()</code> 依次创建矩阵乘法和 ReLU 的求导节点；<code>loss.backward()</code> 从 Loss 沿着反向依赖传播梯度，最终累积到叶子参数的 <code>.grad</code>。对于一个矩阵乘法 <code>Y=XW</code>：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mi>L</mi></mrow><mrow><mi>∂</mi><mi>X</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>∂</mi><mi>L</mi></mrow><mrow><mi>∂</mi><mi>Y</mi></mrow></mfrac><msup><mi>W</mi><mi>T</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mi>∂</mi><mi>L</mi></mrow><mrow><mi>∂</mi><mi>W</mi></mrow></mfrac><mo>=</mo><msup><mi>X</mi><mi>T</mi></msup><mfrac><mrow><mi>∂</mi><mi>L</mi></mrow><mrow><mi>∂</mi><mi>Y</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\partial L}{\partial X} = \frac{\partial L}{\partial Y}W^T,\qquad \frac{\partial L}{\partial W}=X^T\frac{\partial L}{\partial Y}</annotation></semantics></math></p>
+<p>为了算这些导数，框架会保存部分前向张量。<strong>Activation（激活值）显存</strong>正是这样产生的。Activation Checkpointing（激活重计算）只保留部分检查点，反向时重新计算需要的激活值，用额外 FLOPs 换显存。</p>
+<p><code>torch.no_grad()</code> 适合无需计算梯度的前向；<code>torch.inference_mode()</code> 进一步关闭部分 Tensor 追踪机制。训练循环的模型前向必须保留梯度记录。</p>
+<h2 id="gradient-accumulation梯度累积">3.3 Gradient Accumulation（梯度累积）</h2>
+<p>当显存只允许每卡 Batch=1，却想要有效 Batch=64，可以连续做多个 Microbatch 的 Forward/Backward，最后调用一次 <code>optimizer.step()</code>。一个全局有效 Batch 的定义：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>g</mi><mi>l</mi><mi>o</mi><mi>b</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>B</mi><mrow><mi>m</mi><mi>i</mi><mi>c</mi><mi>r</mi><mi>o</mi></mrow></msub><mo>×</mo><msub><mi>N</mi><mrow><mi>g</mi><mi>r</mi><mi>a</mi><mi>d</mi><mi>_</mi><mi>a</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>m</mi></mrow></msub><mo>×</mo><msub><mi>N</mi><mrow><mi>D</mi><mi>P</mi></mrow></msub></mrow><annotation encoding="application/x-tex">B_{global}=B_{micro}\times N_{grad\_accum}\times N_{DP}</annotation></semantics></math></p>
+<p>（若还使用 PP，需要同时考虑流水线 Microbatch 的定义；上式适合常规 DP/FSDP 训练批次口径。）</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>optimizer.zero_grad(set_to_none<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a><span class="cf">for</span> micro <span class="kw">in</span> <span class="bu">range</span>(accum_steps):</span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a>    <span class="cf">with</span> (model.no_sync() <span class="cf">if</span> distributed <span class="kw">and</span> micro <span class="op">&lt;</span> accum_steps <span class="op">-</span> <span class="dv">1</span> <span class="cf">else</span> nullcontext()):</span>
+<span id="cb7-4"><a aria-hidden="true" href="#cb7-4" tabindex="-1"></a>        loss <span class="op">=</span> calc_loss(model, next_batch()) <span class="op">/</span> accum_steps</span>
+<span id="cb7-5"><a aria-hidden="true" href="#cb7-5" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb7-6"><a aria-hidden="true" href="#cb7-6" tabindex="-1"></a>optimizer.step()</span>
+<span id="cb7-7"><a aria-hidden="true" href="#cb7-7" tabindex="-1"></a>scheduler.step()</span></code></pre></div>
+<p><code>DDP.no_sync()</code> 可避免每个 Microbatch 都发一次梯度 AllReduce。应确保 Forward 和 Backward 都在该上下文内。对实际任务要留意最后一个不满 Batch、不同长度 Token Loss 权重等问题；简单除以 <code>accum_steps</code> 适合各 Microbatch 等权的设定。</p>
+<h2 id="tensor-layout张量排布会影响-kernel">3.4 Tensor Layout（张量排布）会影响 Kernel</h2>
+<p>对 <code>B=2,S=2048,H=4096</code> 的 BF16 激活 <code>x[B,S,H]</code>，数据量：<code>2×2048×4096×2 B ≈ 32 MiB</code>。<code>transpose</code> 多半只改变 stride；后续执行 <code>contiguous()</code> 可能引入完整拷贝。训练时算子融合、Tensor Parallel（张量并行）、FlashAttention 都需要精确识别 Shape、Stride、Dtype 和布局转换。</p>
+<blockquote>
+<p><strong>本章自测</strong>：用 <code>torch.autograd.grad</code> 对 <code>x @ w</code> 求导，与手工推导的 <code>dX</code>、<code>dW</code> 比较；打开/关闭重计算，记录 <code>max_memory_allocated</code> 和 Step Time。</p>
+</blockquote>
+<hr/>
+<h1 id="decoder-only-transformer-与-attention-变体">04 · Decoder-only Transformer 与 Attention 变体</h1>
+<h2 id="从张量看一层-transformer">4.1 从张量看一层 Transformer</h2>
+<figure>
+<figure class="diagram"><img alt="Decoder-only 单层结构及输出" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIyNzhwdCIgaGVpZ2h0PSI4MDFwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCAyNzguMDAgODAxLjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSgxOCA3ODMpIj4KPHRpdGxlPkc8L3RpdGxlPgo8IS0tIFRva2VucyBbQixTXSAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Ub2tlbnMgW0IsU108L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmMWQ4IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTY2LjUsLTc2NUMxNjYuNSwtNzY1IDc1LjUsLTc2NSA3NS41LC03NjUgNjkuNSwtNzY1IDYzLjUsLTc1OSA2My41LC03NTMgNjMuNSwtNzUzIDYzLjUsLTc0MSA2My41LC03NDEgNjMuNSwtNzM1IDY5LjUsLTcyOSA3NS41LC03MjkgNzUuNSwtNzI5IDE2Ni41LC03MjkgMTY2LjUsLTcyOSAxNzIuNSwtNzI5IDE3OC41LC03MzUgMTc4LjUsLTc0MSAxNzguNSwtNzQxIDE3OC41LC03NTMgMTc4LjUsLTc1MyAxNzguNSwtNzU5IDE3Mi41LC03NjUgMTY2LjUsLTc2NSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMjEiIHk9Ii03NDMuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlRva2VucyBbQixTXTwvdGV4dD4KPC9nPgo8IS0tIEVtYmVkZGluZyBbQixTLEhdIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkVtYmVkZGluZyBbQixTLEhdPC90aXRsZT4KPHBhdGggZmlsbD0iI2YyZjdmYiIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE4OS41LC02ODRDMTg5LjUsLTY4NCA1Mi41LC02ODQgNTIuNSwtNjg0IDQ2LjUsLTY4NCA0MC41LC02NzggNDAuNSwtNjcyIDQwLjUsLTY3MiA0MC41LC02NjAgNDAuNSwtNjYwIDQwLjUsLTY1NCA0Ni41LC02NDggNTIuNSwtNjQ4IDUyLjUsLTY0OCAxODkuNSwtNjQ4IDE4OS41LC02NDggMTk1LjUsLTY0OCAyMDEuNSwtNjU0IDIwMS41LC02NjAgMjAxLjUsLTY2MCAyMDEuNSwtNjcyIDIwMS41LC02NzIgMjAxLjUsLTY3OCAxOTUuNSwtNjg0IDE4OS41LC02ODQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTIxIiB5PSItNjYyLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5FbWJlZGRpbmcgW0IsUyxIXTwvdGV4dD4KPC9nPgo8IS0tIFRva2VucyBbQixTXSYjNDU7Jmd0O0VtYmVkZGluZyBbQixTLEhdIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlRva2VucyBbQixTXSYjNDU7Jmd0O0VtYmVkZGluZyBbQixTLEhdPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEyMSwtNzI4LjYyQzEyMSwtNzI4LjYyIDEyMSwtNjkxLjAzIDEyMSwtNjkxLjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTIzLjQ1LC02OTEuMDMgMTIxLC02ODQuMDMgMTE4LjU1LC02OTEuMDMgMTIzLjQ1LC02OTEuMDMiLz4KPC9nPgo8IS0tIFJNU05vcm0gLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Uk1TTm9ybTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmMmY3ZmIiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xNTguNSwtNjAzQzE1OC41LC02MDMgODMuNSwtNjAzIDgzLjUsLTYwMyA3Ny41LC02MDMgNzEuNSwtNTk3IDcxLjUsLTU5MSA3MS41LC01OTEgNzEuNSwtNTc5IDcxLjUsLTU3OSA3MS41LC01NzMgNzcuNSwtNTY3IDgzLjUsLTU2NyA4My41LC01NjcgMTU4LjUsLTU2NyAxNTguNSwtNTY3IDE2NC41LC01NjcgMTcwLjUsLTU3MyAxNzAuNSwtNTc5IDE3MC41LC01NzkgMTcwLjUsLTU5MSAxNzAuNSwtNTkxIDE3MC41LC01OTcgMTY0LjUsLTYwMyAxNTguNSwtNjAzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEyMSIgeT0iLTU4MS41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Uk1TTm9ybTwvdGV4dD4KPC9nPgo8IS0tIEVtYmVkZGluZyBbQixTLEhdJiM0NTsmZ3Q7Uk1TTm9ybSAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5FbWJlZGRpbmcgW0IsUyxIXSYjNDU7Jmd0O1JNU05vcm08L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTIxLC02NDcuNjJDMTIxLC02NDcuNjIgMTIxLC02MTAuMDMgMTIxLC02MTAuMDMiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxMjMuNDUsLTYxMC4wMyAxMjEsLTYwMy4wMyAxMTguNTUsLTYxMC4wMyAxMjMuNDUsLTYxMC4wMyIvPgo8L2c+CjwhLS0gQXR0ZW50aW9u77yaUUtWICsgUm9QRSArIFNEUEEgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QXR0ZW50aW9u77yaUUtWICsgUm9QRSArIFNEUEE8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMjMwLC01MjJDMjMwLC01MjIgMTIsLTUyMiAxMiwtNTIyIDYsLTUyMiAwLC01MTYgMCwtNTEwIDAsLTUxMCAwLC00OTggMCwtNDk4IDAsLTQ5MiA2LC00ODYgMTIsLTQ4NiAxMiwtNDg2IDIzMCwtNDg2IDIzMCwtNDg2IDIzNiwtNDg2IDI0MiwtNDkyIDI0MiwtNDk4IDI0MiwtNDk4IDI0MiwtNTEwIDI0MiwtNTEwIDI0MiwtNTE2IDIzNiwtNTIyIDIzMCwtNTIyIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEyMSIgeT0iLTUwMC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+QXR0ZW50aW9u77yaUUtWICsgUm9QRSArIFNEUEE8L3RleHQ+CjwvZz4KPCEtLSBSTVNOb3JtJiM0NTsmZ3Q7QXR0ZW50aW9u77yaUUtWICsgUm9QRSArIFNEUEEgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Uk1TTm9ybSYjNDU7Jmd0O0F0dGVudGlvbu+8mlFLViArIFJvUEUgKyBTRFBBPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEyMSwtNTY2LjYyQzEyMSwtNTY2LjYyIDEyMSwtNTI5LjAzIDEyMSwtNTI5LjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTIzLjQ1LC01MjkuMDMgMTIxLC01MjIuMDMgMTE4LjU1LC01MjkuMDMgMTIzLjQ1LC01MjkuMDMiLz4KPC9nPgo8IS0tIFJlc2lkdWFsIEFkZCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5SZXNpZHVhbCBBZGQ8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTY4LC00NDFDMTY4LC00NDEgNzQsLTQ0MSA3NCwtNDQxIDY4LC00NDEgNjIsLTQzNSA2MiwtNDI5IDYyLC00MjkgNjIsLTQxNyA2MiwtNDE3IDYyLC00MTEgNjgsLTQwNSA3NCwtNDA1IDc0LC00MDUgMTY4LC00MDUgMTY4LC00MDUgMTc0LC00MDUgMTgwLC00MTEgMTgwLC00MTcgMTgwLC00MTcgMTgwLC00MjkgMTgwLC00MjkgMTgwLC00MzUgMTc0LC00NDEgMTY4LC00NDEiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTIxIiB5PSItNDE5LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5SZXNpZHVhbCBBZGQ8L3RleHQ+CjwvZz4KPCEtLSBBdHRlbnRpb27vvJpRS1YgKyBSb1BFICsgU0RQQSYjNDU7Jmd0O1Jlc2lkdWFsIEFkZCAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5BdHRlbnRpb27vvJpRS1YgKyBSb1BFICsgU0RQQSYjNDU7Jmd0O1Jlc2lkdWFsIEFkZDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMjEsLTQ4NS42MkMxMjEsLTQ4NS42MiAxMjEsLTQ0OC4wMyAxMjEsLTQ0OC4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjEyMy40NSwtNDQ4LjAzIDEyMSwtNDQxLjAzIDExOC41NSwtNDQ4LjAzIDEyMy40NSwtNDQ4LjAzIi8+CjwvZz4KPCEtLSBSTVNOb3JtIDIgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Uk1TTm9ybSAyPC90aXRsZT4KPHBhdGggZmlsbD0iI2YyZjdmYiIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE2NCwtMzYwQzE2NCwtMzYwIDc4LC0zNjAgNzgsLTM2MCA3MiwtMzYwIDY2LC0zNTQgNjYsLTM0OCA2NiwtMzQ4IDY2LC0zMzYgNjYsLTMzNiA2NiwtMzMwIDcyLC0zMjQgNzgsLTMyNCA3OCwtMzI0IDE2NCwtMzI0IDE2NCwtMzI0IDE3MCwtMzI0IDE3NiwtMzMwIDE3NiwtMzM2IDE3NiwtMzM2IDE3NiwtMzQ4IDE3NiwtMzQ4IDE3NiwtMzU0IDE3MCwtMzYwIDE2NCwtMzYwIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEyMSIgeT0iLTMzOC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Uk1TTm9ybSAyPC90ZXh0Pgo8L2c+CjwhLS0gUmVzaWR1YWwgQWRkJiM0NTsmZ3Q7Uk1TTm9ybSAyIC0tPgo8ZyBpZD0iZWRnZTUiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlJlc2lkdWFsIEFkZCYjNDU7Jmd0O1JNU05vcm0gMjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMjEsLTQwNC42MkMxMjEsLTQwNC42MiAxMjEsLTM2Ny4wMyAxMjEsLTM2Ny4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjEyMy40NSwtMzY3LjAzIDEyMSwtMzYwLjAzIDExOC41NSwtMzY3LjAzIDEyMy40NSwtMzY3LjAzIi8+CjwvZz4KPCEtLSBTd2lHTFUgLyBNb0UgRkZOIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPlN3aUdMVSAvIE1vRSBGRk48L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTg2LjUsLTI3OUMxODYuNSwtMjc5IDU1LjUsLTI3OSA1NS41LC0yNzkgNDkuNSwtMjc5IDQzLjUsLTI3MyA0My41LC0yNjcgNDMuNSwtMjY3IDQzLjUsLTI1NSA0My41LC0yNTUgNDMuNSwtMjQ5IDQ5LjUsLTI0MyA1NS41LC0yNDMgNTUuNSwtMjQzIDE4Ni41LC0yNDMgMTg2LjUsLTI0MyAxOTIuNSwtMjQzIDE5OC41LC0yNDkgMTk4LjUsLTI1NSAxOTguNSwtMjU1IDE5OC41LC0yNjcgMTk4LjUsLTI2NyAxOTguNSwtMjczIDE5Mi41LC0yNzkgMTg2LjUsLTI3OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMjEiIHk9Ii0yNTcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlN3aUdMVSAvIE1vRSBGRk48L3RleHQ+CjwvZz4KPCEtLSBSTVNOb3JtIDImIzQ1OyZndDtTd2lHTFUgLyBNb0UgRkZOIC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlJNU05vcm0gMiYjNDU7Jmd0O1N3aUdMVSAvIE1vRSBGRk48L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTIxLC0zMjMuNjJDMTIxLC0zMjMuNjIgMTIxLC0yODYuMDMgMTIxLC0yODYuMDMiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxMjMuNDUsLTI4Ni4wMyAxMjEsLTI3OS4wMyAxMTguNTUsLTI4Ni4wMyAxMjMuNDUsLTI4Ni4wMyIvPgo8L2c+CjwhLS0gUmVzaWR1YWwgQWRkIDIgLS0+CjxnIGlkPSJub2RlOCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UmVzaWR1YWwgQWRkIDI8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTczLjUsLTE5OEMxNzMuNSwtMTk4IDY4LjUsLTE5OCA2OC41LC0xOTggNjIuNSwtMTk4IDU2LjUsLTE5MiA1Ni41LC0xODYgNTYuNSwtMTg2IDU2LjUsLTE3NCA1Ni41LC0xNzQgNTYuNSwtMTY4IDYyLjUsLTE2MiA2OC41LC0xNjIgNjguNSwtMTYyIDE3My41LC0xNjIgMTczLjUsLTE2MiAxNzkuNSwtMTYyIDE4NS41LC0xNjggMTg1LjUsLTE3NCAxODUuNSwtMTc0IDE4NS41LC0xODYgMTg1LjUsLTE4NiAxODUuNSwtMTkyIDE3OS41LC0xOTggMTczLjUsLTE5OCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMjEiIHk9Ii0xNzYuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlJlc2lkdWFsIEFkZCAyPC90ZXh0Pgo8L2c+CjwhLS0gU3dpR0xVIC8gTW9FIEZGTiYjNDU7Jmd0O1Jlc2lkdWFsIEFkZCAyIC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlN3aUdMVSAvIE1vRSBGRk4mIzQ1OyZndDtSZXNpZHVhbCBBZGQgMjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMjEsLTI0Mi42MkMxMjEsLTI0Mi42MiAxMjEsLTIwNS4wMyAxMjEsLTIwNS4wMyIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjEyMy40NSwtMjA1LjAzIDEyMSwtMTk4LjAzIDExOC41NSwtMjA1LjAzIDEyMy40NSwtMjA1LjAzIi8+CjwvZz4KPCEtLSBMTSBIZWFkIFtCLFMsVl0gLS0+CjxnIGlkPSJub2RlOSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+TE0gSGVhZCBbQixTLFZdPC90aXRsZT4KPHBhdGggZmlsbD0iI2YyZjdmYiIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE3Ny41LC0xMTdDMTc3LjUsLTExNyA2NC41LC0xMTcgNjQuNSwtMTE3IDU4LjUsLTExNyA1Mi41LC0xMTEgNTIuNSwtMTA1IDUyLjUsLTEwNSA1Mi41LC05MyA1Mi41LC05MyA1Mi41LC04NyA1OC41LC04MSA2NC41LC04MSA2NC41LC04MSAxNzcuNSwtODEgMTc3LjUsLTgxIDE4My41LC04MSAxODkuNSwtODcgMTg5LjUsLTkzIDE4OS41LC05MyAxODkuNSwtMTA1IDE4OS41LC0xMDUgMTg5LjUsLTExMSAxODMuNSwtMTE3IDE3Ny41LC0xMTciLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTIxIiB5PSItOTUuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkxNIEhlYWQgW0IsUyxWXTwvdGV4dD4KPC9nPgo8IS0tIFJlc2lkdWFsIEFkZCAyJiM0NTsmZ3Q7TE0gSGVhZCBbQixTLFZdIC0tPgo8ZyBpZD0iZWRnZTgiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlJlc2lkdWFsIEFkZCAyJiM0NTsmZ3Q7TE0gSGVhZCBbQixTLFZdPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTEyMSwtMTYxLjYyQzEyMSwtMTYxLjYyIDEyMSwtMTI0LjAzIDEyMSwtMTI0LjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTIzLjQ1LC0xMjQuMDMgMTIxLC0xMTcuMDMgMTE4LjU1LC0xMjQuMDMgMTIzLjQ1LC0xMjQuMDMiLz4KPC9nPgo8IS0tIENyb3NzIEVudHJvcHkgLS0+CjxnIGlkPSJub2RlMTAiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkNyb3NzIEVudHJvcHk8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmMWQ4IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMTcxLjUsLTM2QzE3MS41LC0zNiA3MC41LC0zNiA3MC41LC0zNiA2NC41LC0zNiA1OC41LC0zMCA1OC41LC0yNCA1OC41LC0yNCA1OC41LC0xMiA1OC41LC0xMiA1OC41LC02IDY0LjUsMCA3MC41LDAgNzAuNSwwIDE3MS41LDAgMTcxLjUsMCAxNzcuNSwwIDE4My41LC02IDE4My41LC0xMiAxODMuNSwtMTIgMTgzLjUsLTI0IDE4My41LC0yNCAxODMuNSwtMzAgMTc3LjUsLTM2IDE3MS41LC0zNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMjEiIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Q3Jvc3MgRW50cm9weTwvdGV4dD4KPC9nPgo8IS0tIExNIEhlYWQgW0IsUyxWXSYjNDU7Jmd0O0Nyb3NzIEVudHJvcHkgLS0+CjxnIGlkPSJlZGdlOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TE0gSGVhZCBbQixTLFZdJiM0NTsmZ3Q7Q3Jvc3MgRW50cm9weTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0xMjEsLTgwLjYyQzEyMSwtODAuNjIgMTIxLC00My4wMyAxMjEsLTQzLjAzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTIzLjQ1LC00My4wMyAxMjEsLTM2LjAzIDExOC41NSwtNDMuMDMgMTIzLjQ1LC00My4wMyIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=="/><figcaption>Decoder-only 单层结构及输出</figcaption></figure>
+<figcaption aria-hidden="true">Decoder-only 单层结构及输出</figcaption>
+</figure>
+<p>以 Pre-Norm Decoder 为例（现代模型常见的结构），一层主要是两块：<code>RMSNorm → Attention → Residual</code> 和 <code>RMSNorm → FFN/MoE → Residual</code>。堆叠多层后，末端经过 LM Head 投影到词表 <code>V</code>，用 Next-token Cross Entropy 训练。</p>
+<p>设 <code>B=2, S=4096, H=4096, n_q=32, d=128, n_kv=8</code>：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr class="header">
+<th>张量</th>
+<th>Shape</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hidden States</td>
+<td><code>[B,S,H]</code></td>
+<td>每个 Token 的表示</td>
+</tr>
+<tr class="even">
+<td>Q</td>
+<td><code>[B,32,S,128]</code></td>
+<td>Query 投影后分 Head</td>
+</tr>
+<tr class="odd">
+<td>K / V</td>
+<td><code>[B,8,S,128]</code></td>
+<td>GQA 的 KV Head 数小于 Query Head</td>
+</tr>
+<tr class="even">
+<td>Attention Output</td>
+<td><code>[B,32,S,128]</code></td>
+<td>按 Head 计算再合并成 <code>[B,S,H]</code></td>
+</tr>
+<tr class="odd">
+<td>SwiGLU 中间激活</td>
+<td><code>[B,S,H_ff]</code>（两支）</td>
+<td>门控分支和 Value 分支</td>
+</tr>
+<tr class="even">
+<td>Logits</td>
+<td><code>[B,S,V]</code></td>
+<td>词表可能极大，Loss 计算需关注显存</td>
+</tr>
+</tbody>
+</table></div>
+<p>这份笔记以 Decoder-only 为主。Encoder-only 典型用于双向编码，Encoder–Decoder 常用于条件生成；文本生成式 LLM 的训练基础可以优先围绕 Causal Decoder 学习。</p>
+<h2 id="mhagqamlakv-为什么越来越少">4.2 MHA、GQA、MLA：KV 为什么越来越少？</h2>
+<p>标准 Attention 的公式：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">A</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>Q</mi><mo>,</mo><mi>K</mi><mo>,</mo><mi>V</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mfrac><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><msqrt><mi>d</mi></msqrt></mfrac><mo>+</mo><mi>M</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d}}+M\right)V</annotation></semantics></math></p>
+<ul>
+<li><strong>MHA（Multi-Head Attention，多头注意力）</strong>：Query/K/V 的 Head 数相同。每个 Query Head 有一组 KV。</li>
+<li><strong>GQA（Grouped-Query Attention，分组查询注意力）</strong>：多个 Query Head 共用一组 KV。若 <code>n_q=32, n_kv=8</code>，4 个 Q Head 共享一组 KV。KV Cache 相比 MHA 的 Head 部分理论上缩至 <code>1/4</code>。</li>
+<li><strong>MLA（Multi-head Latent Attention，多头潜在注意力）</strong>：把 KV 的信息编码到较低维潜空间，再配合投影还原 Attention 所需的表示；通常还要考虑解耦 RoPE 等结构细节。压缩显著影响推理 KV 占用，也改变训练侧的矩阵乘、Projection（投影）和 Attention 实现路径。</li>
+</ul>
+<p>GQA 对训练的直接收益常来自 QKV Projection 中 KV 部分的参数与计算减少，也可能减少与 KV 相关的通信；Self-Attention 的 QK/AV 主体计算并未因此按相同比例下降。MLA 在训练上还会增加或改变某些 Projection 计算，因此一定要结合端到端 Profiling 判断。</p>
+<p>PyTorch 示例（<code>[B,H,S,D]</code>）：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>q <span class="op">=</span> torch.randn(B, <span class="dv">32</span>, S, <span class="dv">128</span>, device<span class="op">=</span><span class="st">'cuda'</span>, dtype<span class="op">=</span>torch.bfloat16)</span>
+<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a>k <span class="op">=</span> torch.randn(B, <span class="dv">8</span>,  S, <span class="dv">128</span>, device<span class="op">=</span><span class="st">'cuda'</span>, dtype<span class="op">=</span>torch.bfloat16)</span>
+<span id="cb8-3"><a aria-hidden="true" href="#cb8-3" tabindex="-1"></a>v <span class="op">=</span> torch.randn(B, <span class="dv">8</span>,  S, <span class="dv">128</span>, device<span class="op">=</span><span class="st">'cuda'</span>, dtype<span class="op">=</span>torch.bfloat16)</span>
+<span id="cb8-4"><a aria-hidden="true" href="#cb8-4" tabindex="-1"></a>y <span class="op">=</span> F.scaled_dot_product_attention(q, k, v, is_causal<span class="op">=</span><span class="va">True</span>, enable_gqa<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>实际可用后端和 GQA 支持范围受设备、PyTorch 版本和 Tensor Shape 影响，Profiler 中要确认调用了什么内核。</p>
+<h2 id="dense-与-moe-的计算差异">4.3 Dense 与 MoE 的计算差异</h2>
+<p><strong>Dense（稠密模型）</strong>的每个 Token 都经过同一套 FFN。<strong>MoE（Mixture of Experts，混合专家模型）</strong>在每层由 Router 选择 Top-K Experts，每个 Token 仅运行被选中的 Expert。关键张量路径为：</p>
+<p><code>Hidden [N,H] → Router Logits [N,E] → TopK(ids,weights) → Dispatch → Expert GEMM → Combine</code>。</p>
+<p>训练 MoE 时，<strong>总参数量</strong>与<strong>每 Token 激活参数量</strong>不同。计算量估算应优先按每 Token 实际激活的 Experts 统计；显存则取决于每卡持有哪些 Experts、优化器分片以及 Token Dispatch 缓冲。</p>
+<blockquote>
+<p><strong>本章自测</strong>：在纸上写出 32 个 Q Head、8 个 KV Head 的 GQA 映射；解释为什么“推理 KV 降到 1/4”并不意味着训练耗时降到 1/4。</p>
+</blockquote>
+<hr/>
+<h1 id="训练显存账本从-7b-手算到-fsdp">05 · 训练显存账本：从 7B 手算到 FSDP</h1>
+<h2 id="先确定优化器实现再算每参数字节">5.1 先确定优化器实现，再算每参数字节</h2>
+<p>训练显存至少由 <strong>模型参数、梯度、优化器状态、激活、临时通信/算子缓冲</strong> 组成。以 AdamW 为例，常见账本有两种；二者都很常用，区别在是否单独保存 FP32 Master Weights（主权重）。</p>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 27%"/>
+<col style="width: 36%"/>
+<col style="width: 36%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>项目</th>
+<th style="text-align: right;">BF16 参数 + FP32 Adam moments</th>
+<th style="text-align: right;">再额外保留 FP32 Master Weights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>模型参数（BF16）</td>
+<td style="text-align: right;">2 B/参数</td>
+<td style="text-align: right;">2 B/参数</td>
+</tr>
+<tr class="even">
+<td>梯度（按 BF16 估算）</td>
+<td style="text-align: right;">2 B/参数</td>
+<td style="text-align: right;">2 B/参数</td>
+</tr>
+<tr class="odd">
+<td>Adam 一阶动量（FP32）</td>
+<td style="text-align: right;">4 B/参数</td>
+<td style="text-align: right;">4 B/参数</td>
+</tr>
+<tr class="even">
+<td>Adam 二阶动量（FP32）</td>
+<td style="text-align: right;">4 B/参数</td>
+<td style="text-align: right;">4 B/参数</td>
+</tr>
+<tr class="odd">
+<td>独立 FP32 Master Weights</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4 B/参数</td>
+</tr>
+<tr class="even">
+<td><strong>静态合计</strong></td>
+<td style="text-align: right;"><strong>12 B/参数</strong></td>
+<td style="text-align: right;"><strong>16 B/参数</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>对 7B 参数，分别约 <strong>84 GB</strong> 与 <strong>112 GB</strong>（十进制 GB）。精确值要以训练框架、Parameter Dtype、Gradient Dtype、优化器和分片方案为准。例如有些混合精度实现让优化器实际持有 FP32 参数分片，部分梯度也使用 FP32，可能出现其他组合。</p>
+<blockquote>
+<p>记住估算方法：<strong>先列出存在的 Tensor，再乘元素大小。</strong> “7B 必须 16 B/参数”不是通用硬件规律。</p>
+</blockquote>
+<h2 id="activation为什么序列长度会使-oom-更明显">5.2 Activation：为什么序列长度会使 OOM 更明显</h2>
+<p>单个 <code>[B,S,H]</code> 激活的 BF16 体积：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>a</mi><mi>c</mi><mi>t</mi><mo>,</mo><mi>o</mi><mi>n</mi><mi>e</mi></mrow></msub><mo>=</mo><mi>B</mi><mo>⋅</mo><mi>S</mi><mo>⋅</mo><mi>H</mi><mo>⋅</mo><mn>2</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">M_{act,one}=B\cdot S\cdot H\cdot 2\ \mathrm{bytes}</annotation></semantics></math></p>
+<p>假设 <code>B=1,S=8192,H=4096</code>，一个这样的激活就是 <code>64 MiB</code>。一层内可能保存多份 Q/K/V、Attention 输出、FFN 中间量、归一化输入等；堆叠多层后会迅速增加。朴素 Attention 如果显式保存 <code>[B,n_h,S,S]</code> Score / Probability，空间随着 <code>S²</code> 增长；FlashAttention 类实现通过 Tiling 与重计算减少 HBM 中间量。</p>
+<p>OOM 时建议按实际诊断顺序检查：Step 峰值显存发生在前向、反向还是 Optimizer；激活与参数分片各占多少；通信 All-Gather 的瞬时完整参数缓冲是否过大；是否发生不必要的 <code>contiguous()</code> / 输出 Logits 物化。</p>
+<h2 id="b-放到-8-gpu分片后还剩什么">5.3 7B 放到 8 GPU：分片后还剩什么？</h2>
+<p>以带 FP32 Master 权重的 16 B/参数账本为例，若 FSDP 理想地把静态状态均匀分到 8 卡：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>c</mi><mo>,</mo><mi>G</mi><mi>P</mi><mi>U</mi></mrow></msub><mo>≈</mo><mfrac><mrow><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>×</mo><mn>16</mn></mrow><mn>8</mn></mfrac><mo>=</mo><mn>14</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">G</mi><mi mathvariant="normal">B</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">G</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">U</mi></mrow></mrow><annotation encoding="application/x-tex">M_{static,GPU}\approx\frac{7\times10^9\times16}{8}=14\ \mathrm{GB/GPU}</annotation></semantics></math></p>
+<p>这个值是<strong>静态状态基线</strong>。FSDP 会临时 All-Gather 当前 Module 的参数，反向期间保存激活，还可能需要通信 Bucket、CUDA Context 和算子 Workspace。单卡 40GB A100 上能否训练，主要看 FSDP Wrap Granularity（分片模块粒度）、序列长度、Microbatch、激活重计算和具体配置。</p>
+<blockquote>
+<p><strong>本章自测</strong>：手算 7B / 8B 在 12 B、16 B 两种账本下的静态状态显存；再解释为什么实际 <code>max_memory_reserved</code> 大于理论状态值。</p>
+</blockquote>
+<hr/>
+<h1 id="分布式通信原语与-nccl">06 · 分布式通信原语与 NCCL</h1>
+<h2 id="一张表区分四种最常用的-collective">6.1 一张表区分四种最常用的 Collective</h2>
+<p><strong>NCCL（NVIDIA Collective Communications Library，NVIDIA 集合通信库）</strong>能在 NVLink / NVSwitch、PCIe 和 InfiniBand / RoCE 上执行 GPU 之间的数据交换。分布式训练中的“切分策略”，最终几乎都能归结为几种通信原语。</p>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>原语</th>
+<th>2 Rank 输入 → 输出示意</th>
+<th>训练中出现的位置</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Broadcast</td>
+<td><code>A / _ → A / A</code></td>
+<td>初始化模型参数、控制状态</td>
+</tr>
+<tr class="even">
+<td>All-Reduce（AR）</td>
+<td><code>A / B → A+B / A+B</code></td>
+<td>DDP 聚合并平均梯度</td>
+</tr>
+<tr class="odd">
+<td>All-Gather（AG）</td>
+<td><code>A / B → [A,B] / [A,B]</code></td>
+<td>FSDP 临时聚合完整参数；部分 TP/CP</td>
+</tr>
+<tr class="even">
+<td>Reduce-Scatter（RS）</td>
+<td><code>[a0,a1] / [b0,b1] → a0+b0 / a1+b1</code></td>
+<td>FSDP 梯度聚合并分片</td>
+</tr>
+<tr class="odd">
+<td>All-to-All（A2A）</td>
+<td>各 Rank 向其他 Rank 发不同 Chunk</td>
+<td>MoE Token Dispatch / Ulysses 布局转换</td>
+</tr>
+<tr class="even">
+<td>Point-to-Point（P2P）</td>
+<td>Rank i → Rank j</td>
+<td>PP Activation / Gradient、Ring KV</td>
+</tr>
+</tbody>
+</table></div>
+<p>经典 Ring All-Reduce 可以分为 Reduce-Scatter + All-Gather 两阶段。设每 Rank 待同步梯度为 <code>M</code> 字节，<code>P</code> 为通信 Rank 数，忽略启动延迟和拓扑因素时，每 Rank 数据发送量近似为：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mrow><mi>r</mi><mi>i</mi><mi>n</mi><mi>g</mi><mspace width="0.222em"></mspace><mi>A</mi><mi>R</mi></mrow></msub><mo>≈</mo><mn>2</mn><mfrac><mrow><mi>P</mi><mo>−</mo><mn>1</mn></mrow><mi>P</mi></mfrac><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathrm{Bytes}_{ring\ AR} \approx 2\frac{P-1}{P}M</annotation></semantics></math></p>
+<p>这个公式说明：增加 GPU 数后，<strong>梯度同步字节数不会简单变成 <code>M/P</code></strong>。集群规模越大，还需关心链路带宽、拓扑、异构慢 Rank 与 Kernel 计算时间能否遮蔽通信。</p>
+<h2 id="process-group-与-rank-mapping">6.2 Process Group 与 Rank Mapping</h2>
+<ul>
+<li><strong>World Size</strong>：总进程数。常见单 GPU 对应一个进程。</li>
+<li><strong>Global Rank</strong>：全局进程编号；<strong>Local Rank</strong>：本机进程编号。</li>
+<li><strong>Process Group</strong>：一组需要彼此通信的 Rank。N-D 并行会建立不同 Group。</li>
+<li><strong>Rank Mapping</strong>：决定哪些 Rank 组成 TP/DP/CP/EP Group，它影响 NVLink、PCIe 和跨机网络上的实际通信代价。</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="im">import</span> os, torch, torch.distributed <span class="im">as</span> dist</span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a>local_rank <span class="op">=</span> <span class="bu">int</span>(os.environ[<span class="st">'LOCAL_RANK'</span>])</span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a>torch.cuda.set_device(local_rank)</span>
+<span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a>dist.init_process_group(backend<span class="op">=</span><span class="st">'nccl'</span>)</span>
+<span id="cb9-5"><a aria-hidden="true" href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'rank/world:'</span>, dist.get_rank(), dist.get_world_size())</span></code></pre></div>
+<p>启动：<code>torchrun --standalone --nproc_per_node=8 train.py</code>。所有参与 Collective 的 Rank 必须以兼容的次序进入通信；其中一个 Rank 跳过 Collective，其他 Rank 往往会 Hang（卡死）。先检查进程状态、Loss 是否 NaN、输入长度是否导致控制流分歧，再看 NCCL Debug 日志。</p>
+<blockquote>
+<p><strong>本章自测</strong>：用两个数组模拟 AR、RS、AG；解释为什么 DDP Bucket Ready 后可边反向边 All-Reduce。</p>
+</blockquote>
+<div class="table-scroll"><table style="width:6%;">
+<colgroup>
+<col style="width: 5%"/>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># 07 · DDP、ZeRO 与 FSDP2</td>
+</tr>
+<tr class="even">
+<td>## 7.1 DDP：每张 GPU 训练不同数据、持有完整模型</td>
+</tr>
+<tr class="odd">
+<td><strong>DDP（Distributed Data Parallel，分布式数据并行）</strong>复制参数、梯度和优化器状态。假设 2 GPU，各自得到不同 Batch。GPU0 和 GPU1 独立做 Forward/Backward；梯度 Bucket（梯度桶）就绪时，DDP 发起 All-Reduce，将梯度聚合为一致值，再分别更新本地参数。</td>
+</tr>
+<tr class="even">
+<td><code>text Global Batch /            \ Batch 0          Batch 1 GPU 0            GPU 1 full weights     full weights forward/back    forward/back grads -- All-Reduce -- grads AdamW update    AdamW update W(t+1)          W(t+1)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>通信时间能否隐藏</strong>取决于反向计算剩余工作量、Bucket 大小和互联带宽。DDP 反向过程中一个 Bucket Ready 就可以进入通信 Stream，因此在 Nsight 上通常能看到 NCCL 与其他 Backward Kernel 重叠。</td>
+</tr>
+<tr class="even">
+<td>DDP 的典型限制：每卡需要容纳完整模型和优化器状态。7B 用 AdamW 时，仅静态状态就可能超出单张 80GB 的容量，因此训练 7B 更常先用参数/优化器分片方案。</td>
+</tr>
+<tr class="odd">
+<td>## 7.2 ZeRO：按什么顺序切分训练状态？</td>
+</tr>
+<tr class="even">
+<td><strong>ZeRO（Zero Redundancy Optimizer，零冗余优化器）</strong>消除 DP 组内的训练状态重复。设模型静态状态使用上一章的 16 B/参数账本，<code>P</code> 个 Rank：</td>
+</tr>
+<tr class="odd">
+<td>| 方法 | 每 Rank 主要持有的静态状态（概念估算） | 通信特点 | |—|—|—| | DDP | <code>2P + 2P + 12P = 16P</code> 字节 | 反向梯度 All-Reduce | | ZeRO-1 | <code>2P + 2P + 12P/N</code> | 优化器状态分片，更新后同步参数 | | ZeRO-2 | <code>2P + (2P+12P)/N</code> | 梯度 RS、更新后参数同步 | | ZeRO-3 | <code>16P/N</code> | 前向/反向需要聚合参数，梯度 RS |</td>
+</tr>
+<tr class="even">
+<td>表中 <code>P</code> 代表参数总数，<code>N</code> 代表 DP 分片数量。它展示的是状态分片的主体，没有算激活、临时参数 All-Gather、通信缓存；具体 dtype/实现变化会影响系数。</td>
+</tr>
+<tr class="odd">
+<td>## 7.3 FSDP2：按模块 All-Gather 参数、Reduce-Scatter 梯度</td>
+</tr>
+<tr class="even">
+<td><strong>FSDP2（Fully Sharded Data Parallel v2，第二代完全分片数据并行）</strong>通过 PyTorch <code>fully_shard</code>，将模型参数按 Device Mesh（设备网格）拆成 <strong>DTensor（分布式张量）</strong>。每个 Rank 长期保存自己的参数与优化器分片；当前模块运行前恢复所需的参数，计算后释放完整参数缓冲；梯度则 Reduce-Scatter 回各 Rank。</td>
+</tr>
+<tr class="odd">
+<td><figure class="diagram"><img alt="FSDP2 的参数聚合和梯度分片流程" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMDExcHQiIGhlaWdodD0iMTM4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTAxMS4wMCAxMzguMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDE4IDEyMCkiPgo8dGl0bGU+RzwvdGl0bGU+CjwhLS0gR1BVMCDmjIHmnIkgc2hhcmQgMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5HUFUwIOaMgeaciSBzaGFyZCAwPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE0MiwtMTAyQzE0MiwtMTAyIDEyLC0xMDIgMTIsLTEwMiA2LC0xMDIgMCwtOTYgMCwtOTAgMCwtOTAgMCwtNzggMCwtNzggMCwtNzIgNiwtNjYgMTIsLTY2IDEyLC02NiAxNDIsLTY2IDE0MiwtNjYgMTQ4LC02NiAxNTQsLTcyIDE1NCwtNzggMTU0LC03OCAxNTQsLTkwIDE1NCwtOTAgMTU0LC05NiAxNDgsLTEwMiAxNDIsLTEwMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3NyIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5HUFUwIOaMgeaciSBzaGFyZCAwPC90ZXh0Pgo8L2c+CjwhLS0gQWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zNjUsLTY5QzM2NSwtNjkgMjExLC02OSAyMTEsLTY5IDIwNSwtNjkgMTk5LC02MyAxOTksLTU3IDE5OSwtNTcgMTk5LC00NSAxOTksLTQ1IDE5OSwtMzkgMjA1LC0zMyAyMTEsLTMzIDIxMSwtMzMgMzY1LC0zMyAzNjUsLTMzIDM3MSwtMzMgMzc3LC0zOSAzNzcsLTQ1IDM3NywtNDUgMzc3LC01NyAzNzcsLTU3IDM3NywtNjMgMzcxLC02OSAzNjUsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI4OCIgeT0iLTQ3LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5BbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RleHQ+CjwvZz4KPCEtLSBHUFUwIOaMgeaciSBzaGFyZCAwJiM0NTsmZ3Q7QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkdQVTAg5oyB5pyJIHNoYXJkIDAmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTAzLC02NS43OUMxMDMsLTYwLjQ1IDEwMywtNTYgMTAzLC01NiAxMDMsLTU2IDE5MS43NSwtNTYgMTkxLjc1LC01NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43NSwtNTguNDUgMTk4Ljc1LC01NiAxOTEuNzUsLTUzLjU1IDE5MS43NSwtNTguNDUiLz4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlN2VkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xNDIsLTM2QzE0MiwtMzYgMTIsLTM2IDEyLC0zNiA2LC0zNiAwLC0zMCAwLC0yNCAwLC0yNCAwLC0xMiAwLC0xMiAwLC02IDYsMCAxMiwwIDEyLDAgMTQyLDAgMTQyLDAgMTQ4LDAgMTU0LC02IDE1NCwtMTIgMTU0LC0xMiAxNTQsLTI0IDE1NCwtMjQgMTU0LC0zMCAxNDgsLTM2IDE0MiwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzciIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGV4dD4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbAgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMSYjNDU7Jmd0O0FsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik01MiwtMzYuMjFDNTIsLTQxLjU1IDUyLC00NiA1MiwtNDYgNTIsLTQ2IDE5MS43OCwtNDYgMTkxLjc4LC00NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43OCwtNDguNDUgMTk4Ljc4LC00NiAxOTEuNzgsLTQzLjU1IDE5MS43OCwtNDguNDUiLz4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNkN2VlZTkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik01NzgsLTc3QzU3OCwtNzcgNDM0LC03NyA0MzQsLTc3IDQyOCwtNzcgNDIyLC03MSA0MjIsLTY1IDQyMiwtNjUgNDIyLC0zNyA0MjIsLTM3IDQyMiwtMzEgNDI4LC0yNSA0MzQsLTI1IDQzNCwtMjUgNTc4LC0yNSA1NzgsLTI1IDU4NCwtMjUgNTkwLC0zMSA1OTAsLTM3IDU5MCwtMzcgNTkwLC02NSA1OTAsLTY1IDU5MCwtNzEgNTg0LC03NyA1NzgsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjUwNiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Rm9yd2FyZCAvIEJhY2t3YXJkPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MDYiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuW9k+WJjeWxgjwvdGV4dD4KPC9nPgo8IS0tIEFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsCYjNDU7Jmd0O0ZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwJiM0NTsmZ3Q7Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0zNzcuMywtNTFDMzc3LjMsLTUxIDQxNC43NiwtNTEgNDE0Ljc2LC01MSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjQxNC43NiwtNTMuNDUgNDIxLjc2LC01MSA0MTQuNzYsLTQ4LjU1IDQxNC43NiwtNTMuNDUiLz4KPC9nPgo8IS0tIFJlZHVjZSYjNDU7U2NhdHRlcgror6XlsYLmoq/luqYgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6pjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik03NTcsLTc3Qzc1NywtNzcgNjQ3LC03NyA2NDcsLTc3IDY0MSwtNzcgNjM1LC03MSA2MzUsLTY1IDYzNSwtNjUgNjM1LC0zNyA2MzUsLTM3IDYzNSwtMzEgNjQxLC0yNSA2NDcsLTI1IDY0NywtMjUgNzU3LC0yNSA3NTcsLTI1IDc2MywtMjUgNzY5LC0zMSA3NjksLTM3IDc2OSwtMzcgNzY5LC02NSA3NjksLTY1IDc2OSwtNzEgNzYzLC03NyA3NTcsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwMiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+UmVkdWNlJiM0NTtTY2F0dGVyPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MDIiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuivpeWxguair+W6pjwvdGV4dD4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTU5MC4yNiwtNTFDNTkwLjI2LC01MSA2MjcuOTYsLTUxIDYyNy45NiwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2MjcuOTYsLTUzLjQ1IDYzNC45NiwtNTEgNjI3Ljk2LC00OC41NSA2MjcuOTYsLTUzLjQ1Ii8+CjwvZz4KPCEtLSDmr4/ljaHmm7TmlrDmnKzlnLAgc2hhcmQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTk2MywtNjlDOTYzLC02OSA4MjYsLTY5IDgyNiwtNjkgODIwLC02OSA4MTQsLTYzIDgxNCwtNTcgODE0LC01NyA4MTQsLTQ1IDgxNCwtNDUgODE0LC0zOSA4MjAsLTMzIDgyNiwtMzMgODI2LC0zMyA5NjMsLTMzIDk2MywtMzMgOTY5LC0zMyA5NzUsLTM5IDk3NSwtNDUgOTc1LC00NSA5NzUsLTU3IDk3NSwtNTcgOTc1LC02MyA5NjksLTY5IDk2MywtNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODk0LjUiIHk9Ii00Ny41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90ZXh0Pgo8L2c+CjwhLS0gUmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6piYjNDU7Jmd0O+avj+WNoeabtOaWsOacrOWcsCBzaGFyZCAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmJiM0NTsmZ3Q75q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTc2OS4wNiwtNTFDNzY5LjA2LC01MSA4MDYuNzgsLTUxIDgwNi43OCwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI4MDYuNzgsLTUzLjQ1IDgxMy43OCwtNTEgODA2Ljc4LC00OC41NSA4MDYuNzgsLTUzLjQ1Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>FSDP2 的参数聚合和梯度分片流程</figcaption></figure></td>
+</tr>
+<tr class="even">
+<td>以连续两层 <code>Block0</code>、<code>Block1</code> 为例：</td>
+</tr>
+<tr class="odd">
+<td><code>text Compute Stream:     [Block0 FWD] [Block1 FWD] ... [Block1 BWD] [Block0 BWD] NCCL Stream:    [AG Block0] [AG Block1] ... [AG for BWD] [RS Block1] [RS Block0] ↑          ↑                       ↑ 计算前数据就绪    预取下一层                 梯度已产生</code></td>
+</tr>
+<tr class="even">
+<td>关键变量是 <strong>Wrap Granularity（分片粒度）</strong>：若整个 7B 模型只看作一个大分片单元，一次性聚合的参数缓冲可能非常大；按 Transformer Block 分片，显存峰值更容易控制，也为 Prefetch（预取）和通信重叠创造空间。粒度太细则会增加 Collective 启动数量。</td>
+</tr>
+<tr class="odd">
+<td>PyTorch FSDP2 风格片段：</td>
+</tr>
+<tr class="even">
+<td>```python from torch.distributed.fsdp import fully_shard</td>
+</tr>
+<tr class="odd">
+<td># 通常在模型构建并完成相应的设备/mesh 配置后执行： for block in model.blocks: fully_shard(block, mesh=dp_mesh) fully_shard(model, mesh=dp_mesh) # optimizer 应在 sharding 后基于 model.parameters() 构建 ```</td>
+</tr>
+<tr class="even">
+<td><strong>选型依据</strong>：模型能完整放进每卡且需要吞吐扩展，优先 DDP；参数/优化器状态限制了 Microbatch、序列长度或模型规模，则考虑 FSDP/ZeRO；模型单层计算本身也太大、All-Gather 代价很高时，再考虑 TP/PP 配合。</td>
+</tr>
+<tr class="odd">
+<td>&gt; <strong>本章自测</strong>：解释为什么 FSDP <code>All-Gather</code> 发生在 Forward 之前，以及为什么反向通常还需要一次参数聚合。画出 2 层 FSDP 的通信时间线，指出哪些步骤有机会与计算重叠。</td>
+</tr>
+</tbody>
+</table></div>
+<h1 id="tpsp-与-pp模型并行如何切">08 · TP、SP 与 PP：模型并行如何切</h1>
+<h2 id="tp把一个大矩阵乘法分给多张-gpu">8.1 TP：把一个大矩阵乘法分给多张 GPU</h2>
+<p><strong>TP（Tensor Parallelism，张量并行）</strong>按张量维度切分层内权重，以典型 FFN 的两层矩阵乘法为例：</p>
+<pre class="text codebox"><code>             W1 [H,4H]       W2 [4H,H]
+X [B,S,H] ── Column TP ──→ A0 / A1 ── Row TP ──→ Y0 + Y1
+             （按输出列）       （按输入行）      All-Reduce
+
+TP=2：
+GPU0: W1[:, :2H], W2[:2H, :] → Y0 [B,S,H]
+GPU1: W1[:, 2H:], W2[2H:, :] → Y1 [B,S,H]
+最终 Y=Y0+Y1</code></pre>
+<figure>
+<figure class="diagram"><img alt="TP 的列并行和行并行数据流" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSI3NjVwdCIgaGVpZ2h0PSIxMzhwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA3NjUuMDAgMTM4LjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSgxOCAxMjApIj4KPHRpdGxlPkc8L3RpdGxlPgo8IS0tIFggW0IsUyxIXSAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5YIFtCLFMsSF08L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmMWQ4IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNzcsLTY5Qzc3LC02OSAxMiwtNjkgMTIsLTY5IDYsLTY5IDAsLTYzIDAsLTU3IDAsLTU3IDAsLTQ1IDAsLTQ1IDAsLTM5IDYsLTMzIDEyLC0zMyAxMiwtMzMgNzcsLTMzIDc3LC0zMyA4MywtMzMgODksLTM5IDg5LC00NSA4OSwtNDUgODksLTU3IDg5LC01NyA4OSwtNjMgODMsLTY5IDc3LC02OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NC41IiB5PSItNDcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlggW0IsUyxIXTwvdGV4dD4KPC9nPgo8IS0tIENvbHVtblBhcmFsbGVsClcxIOaMiei+k+WHuuWIl+WIhyAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Db2x1bW5QYXJhbGxlbApXMSDmjInovpPlh7rliJfliIc8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMjU5LC03N0MyNTksLTc3IDE0NiwtNzcgMTQ2LC03NyAxNDAsLTc3IDEzNCwtNzEgMTM0LC02NSAxMzQsLTY1IDEzNCwtMzcgMTM0LC0zNyAxMzQsLTMxIDE0MCwtMjUgMTQ2LC0yNSAxNDYsLTI1IDI1OSwtMjUgMjU5LC0yNSAyNjUsLTI1IDI3MSwtMzEgMjcxLC0zNyAyNzEsLTM3IDI3MSwtNjUgMjcxLC02NSAyNzEsLTcxIDI2NSwtNzcgMjU5LC03NyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMDIuNSIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Q29sdW1uUGFyYWxsZWw8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIwMi41IiB5PSItMzkiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5XMSDmjInovpPlh7rliJfliIc8L3RleHQ+CjwvZz4KPCEtLSBYIFtCLFMsSF0mIzQ1OyZndDtDb2x1bW5QYXJhbGxlbApXMSDmjInovpPlh7rliJfliIcgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+WCBbQixTLEhdJiM0NTsmZ3Q7Q29sdW1uUGFyYWxsZWwKVzEg5oyJ6L6T5Ye65YiX5YiHPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTg5LjM1LC01MUM4OS4zNSwtNTEgMTI2LjkyLC01MSAxMjYuOTIsLTUxIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMTI2LjkyLC01My40NSAxMzMuOTIsLTUxIDEyNi45MiwtNDguNTUgMTI2LjkyLC01My40NSIvPgo8L2c+CjwhLS0gR1BVMDogWTAgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R1BVMDogWTA8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZjJmN2ZiIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMzk2LC0xMDJDMzk2LC0xMDIgMzI4LC0xMDIgMzI4LC0xMDIgMzIyLC0xMDIgMzE2LC05NiAzMTYsLTkwIDMxNiwtOTAgMzE2LC03OCAzMTYsLTc4IDMxNiwtNzIgMzIyLC02NiAzMjgsLTY2IDMyOCwtNjYgMzk2LC02NiAzOTYsLTY2IDQwMiwtNjYgNDA4LC03MiA0MDgsLTc4IDQwOCwtNzggNDA4LC05MCA0MDgsLTkwIDQwOCwtOTYgNDAyLC0xMDIgMzk2LC0xMDIiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzYyIiB5PSItODAuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkdQVTA6IFkwPC90ZXh0Pgo8L2c+CjwhLS0gQ29sdW1uUGFyYWxsZWwKVzEg5oyJ6L6T5Ye65YiX5YiHJiM0NTsmZ3Q7R1BVMDogWTAgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Q29sdW1uUGFyYWxsZWwKVzEg5oyJ6L6T5Ye65YiX5YiHJiM0NTsmZ3Q7R1BVMDogWTA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMjcxLjA3LC03MS41QzI3MS4wNywtNzEuNSAzMDguNTgsLTcxLjUgMzA4LjU4LC03MS41Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMzA4LjU4LC03My45NSAzMTUuNTgsLTcxLjUgMzA4LjU4LC02OS4wNSAzMDguNTgsLTczLjk1Ii8+CjwvZz4KPCEtLSBHUFUxOiBZMSAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5HUFUxOiBZMTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmMmY3ZmIiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zOTYsLTM2QzM5NiwtMzYgMzI4LC0zNiAzMjgsLTM2IDMyMiwtMzYgMzE2LC0zMCAzMTYsLTI0IDMxNiwtMjQgMzE2LC0xMiAzMTYsLTEyIDMxNiwtNiAzMjIsMCAzMjgsMCAzMjgsMCAzOTYsMCAzOTYsMCA0MDIsMCA0MDgsLTYgNDA4LC0xMiA0MDgsLTEyIDQwOCwtMjQgNDA4LC0yNCA0MDgsLTMwIDQwMiwtMzYgMzk2LC0zNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIiIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVMTogWTE8L3RleHQ+CjwvZz4KPCEtLSBDb2x1bW5QYXJhbGxlbApXMSDmjInovpPlh7rliJfliIcmIzQ1OyZndDtHUFUxOiBZMSAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5Db2x1bW5QYXJhbGxlbApXMSDmjInovpPlh7rliJfliIcmIzQ1OyZndDtHUFUxOiBZMTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0yNzEuMDcsLTMwLjVDMjcxLjA3LC0zMC41IDMwOC41OCwtMzAuNSAzMDguNTgsLTMwLjUiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIzMDguNTgsLTMyLjk1IDMxNS41OCwtMzAuNSAzMDguNTgsLTI4LjA1IDMwOC41OCwtMzIuOTUiLz4KPC9nPgo8IS0tIFJvd1BhcmFsbGVsClcyIOaMiei+k+WFpeihjOWIhyAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Sb3dQYXJhbGxlbApXMiDmjInovpPlhaXooYzliIc8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNTY5LC03N0M1NjksLTc3IDQ2NSwtNzcgNDY1LC03NyA0NTksLTc3IDQ1MywtNzEgNDUzLC02NSA0NTMsLTY1IDQ1MywtMzcgNDUzLC0zNyA0NTMsLTMxIDQ1OSwtMjUgNDY1LC0yNSA0NjUsLTI1IDU2OSwtMjUgNTY5LC0yNSA1NzUsLTI1IDU4MSwtMzEgNTgxLC0zNyA1ODEsLTM3IDU4MSwtNjUgNTgxLC02NSA1ODEsLTcxIDU3NSwtNzcgNTY5LC03NyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MTciIHk9Ii01NiIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlJvd1BhcmFsbGVsPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MTciIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlcyIOaMiei+k+WFpeihjOWIhzwvdGV4dD4KPC9nPgo8IS0tIEdQVTA6IFkwJiM0NTsmZ3Q7Um93UGFyYWxsZWwKVzIg5oyJ6L6T5YWl6KGM5YiHIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkdQVTA6IFkwJiM0NTsmZ3Q7Um93UGFyYWxsZWwKVzIg5oyJ6L6T5YWl6KGM5YiHPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTQwOC4wOSwtNzEuNUM0MDguMDksLTcxLjUgNDQ1LjczLC03MS41IDQ0NS43MywtNzEuNSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjQ0NS43MywtNzMuOTUgNDUyLjczLC03MS41IDQ0NS43MywtNjkuMDUgNDQ1LjczLC03My45NSIvPgo8L2c+CjwhLS0gR1BVMTogWTEmIzQ1OyZndDtSb3dQYXJhbGxlbApXMiDmjInovpPlhaXooYzliIcgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMTogWTEmIzQ1OyZndDtSb3dQYXJhbGxlbApXMiDmjInovpPlhaXooYzliIc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNDA4LjA5LC0zMC41QzQwOC4wOSwtMzAuNSA0NDUuNzMsLTMwLjUgNDQ1LjczLC0zMC41Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iNDQ1LjczLC0zMi45NSA0NTIuNzMsLTMwLjUgNDQ1LjczLC0yOC4wNSA0NDUuNzMsLTMyLjk1Ii8+CjwvZz4KPCEtLSBBbGwmIzQ1O1JlZHVjZQpZPVkwK1kxIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkFsbCYjNDU7UmVkdWNlClk9WTArWTE8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZmZmMWQ4IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNzE3LC03N0M3MTcsLTc3IDYzOCwtNzcgNjM4LC03NyA2MzIsLTc3IDYyNiwtNzEgNjI2LC02NSA2MjYsLTY1IDYyNiwtMzcgNjI2LC0zNyA2MjYsLTMxIDYzMiwtMjUgNjM4LC0yNSA2MzgsLTI1IDcxNywtMjUgNzE3LC0yNSA3MjMsLTI1IDcyOSwtMzEgNzI5LC0zNyA3MjksLTM3IDcyOSwtNjUgNzI5LC02NSA3MjksLTcxIDcyMywtNzcgNzE3LC03NyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2NzcuNSIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+QWxsJiM0NTtSZWR1Y2U8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjY3Ny41IiB5PSItMzkiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5ZPVkwK1kxPC90ZXh0Pgo8L2c+CjwhLS0gUm93UGFyYWxsZWwKVzIg5oyJ6L6T5YWl6KGM5YiHJiM0NTsmZ3Q7QWxsJiM0NTtSZWR1Y2UKWT1ZMCtZMSAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5Sb3dQYXJhbGxlbApXMiDmjInovpPlhaXooYzliIcmIzQ1OyZndDtBbGwmIzQ1O1JlZHVjZQpZPVkwK1kxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTU4MS4zNiwtNTFDNTgxLjM2LC01MSA2MTguOTYsLTUxIDYxOC45NiwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2MTguOTYsLTUzLjQ1IDYyNS45NiwtNTEgNjE4Ljk2LC00OC41NSA2MTguOTYsLTUzLjQ1Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>TP 的列并行和行并行数据流</figcaption></figure>
+<figcaption aria-hidden="true">TP 的列并行和行并行数据流</figcaption>
+</figure>
+<p>第一层 W1 按<strong>输出维度</strong>切分，两 GPU 各自输出一部分 FFN 通道，暂时无需合并。第二层 W2 按<strong>输入维度</strong>切分，各自算出一个完整 <code>H</code> 维输出的 Partial Sum，最后 All-Reduce 求和。</p>
+<p>TP 也用于 QKV/O Projection。典型设计下，把 Head 分给各 GPU，减少每卡权重和中间计算，但每层会出现至少一次集体通信；具体算子、并行布局、是否采用 SP 会改变通信原语及次数。</p>
+<p>对高速互联，TP 可以把大 GEMM 切成更适合每张 GPU 的尺寸；切分过度则可能令单卡 GEMM 变小、Tensor Core 利用率降低、通信占比提高。<strong>TP 的最优 Degree 要结合矩阵形状、拓扑和 Profile 确定。</strong></p>
+<h2 id="sp为什么-tp-之后还要切序列">8.2 SP：为什么 TP 之后还要切序列？</h2>
+<p>Megatron 风格的 <strong>SP（Sequence Parallelism，序列并行）</strong>与 TP 配套，主要在 LayerNorm、Dropout 和残差等部分按 <code>S</code> 维分片，减少这些中间激活在 TP Group 内的重复存储。</p>
+<p>一个典型 Forward 边界：</p>
+<p><code>[S/TP, B, H] → All-Gather(sequence) → TP GEMM → Reduce-Scatter(sequence) → [S/TP, B, H]</code>。</p>
+<p>需要掌握的转换位置：<strong>在哪个算子前必须恢复完整序列或特征布局，哪个算子后可以继续切分？</strong> 例如 TP 的 Column/Row Parallel Linear 和 SP 的 <code>All-Gather/Reduce-Scatter</code> 可以协同设计，使通信发生在更有利的位置。不要把 SP 和 CP 混成一种方案；CP 在 Attention 计算本身也保持序列分片。</p>
+<h2 id="pp每卡负责不同-transformer-层">8.3 PP：每卡负责不同 Transformer 层</h2>
+<p><strong>PP（Pipeline Parallelism，流水线并行）</strong>沿网络深度切。例如 32 层模型，PP4 每个 Stage 负责 8 层。Forward 时把 <code>[B,S,H]</code> Activation 传给下一 Stage；Backward 时再把对应梯度传回上一个 Stage。为充分利用所有 Stage，会把 Batch 切成多个 <strong>Microbatch（微批次）</strong>。</p>
+<pre class="text codebox"><code>时间 →
+Stage 0:  F0   F1   F2   F3   B0   B1   B2   B3
+Stage 1:   ·   F0   F1   F2   B0   B1   B2   ·
+Stage 2:   ·    ·   F0   F1   B0   B1   ·    ·
+Stage 3:   ·    ·    ·   F0   B0   ·    ·    ·
+
+F: Forward，B: Backward；示意图仅表达 fill/drain，并非严格的 1F1B 调度表。</code></pre>
+<p>Pipeline Bubble（流水线气泡）来自开始时 Stage 尚未填满、结束时部分 Stage 已空闲。对于等时 Stage 的理想简化流水线，常用 <code>(p-1)/(m+p-1)</code> 量级估算 Bubble 占比，其中 <code>p</code> 为 Stage 数，<code>m</code> 为 Microbatch 数。真实 1F1B（One-Forward-One-Backward）还需考虑不同阶段前反向耗时、通信、权重版本、激活保留及调度表。</p>
+<p>PP 的优点是每卡放更少的网络层；代价包括 Activation/Gradient P2P 传输、Bubble、跨 Stage 负载不均，以及多阶段 Checkpoint、容错的工程复杂度。</p>
+<blockquote>
+<p><strong>本章自测</strong>：把 <code>H=4096 → 4H=16384 → H=4096</code> 的 FFN 划分成 TP2，写出两卡的权重 Shape、输出 Shape 和 All-Reduce 位置；再画一个 4 Stage、8 Microbatch 的流水线。</p>
+</blockquote>
+<hr/>
+<h1 id="cpep-与-moe-训练">09 · CP、EP 与 MoE 训练</h1>
+<h2 id="cp一个-32k-上下文分给多卡计算">9.1 CP：一个 32K 上下文分给多卡计算</h2>
+<p><strong>CP（Context Parallelism，上下文并行）</strong>沿序列维切分整个 Decoder Layer 中的激活。例如 <code>S=32768, CP=4</code>，各卡本地只有 8192 个 Token 的 Q/中间激活。问题出现在 Attention：本地 Query 必须看到因果掩码允许范围内的其他 Token 的 KV，因此需要在 CP Group 中交换 KV。</p>
+<p>两类典型路径：</p>
+<ol type="1">
+<li><strong>Ring / P2P KV Exchange</strong>：每张卡保持自己 Sequence Chunk 的 Q，通过 Ring 逐步交换其他卡的 K/V Chunk，配合 Online Softmax 累积输出。通信可以与部分 Attention 计算重叠。</li>
+<li><strong>Ulysses / A2A Layout Transpose</strong>：各卡先持有部分序列、完整 Head，经 All-to-All 变换成<strong>完整序列的一部分 Heads</strong>，完成 Attention 后再 A2A 恢复原布局。可并行度受 Head 数（GQA 时尤其关注 KV Head）和实现约束影响。</li>
+</ol>
+<p>Megatron 的 CP 通常采用 KV All-Gather / Ring P2P 等方式；经典 Megatron SP 主要节省非 Attention 部分激活。<strong>CP 切整个序列计算，SP 与 TP 配套切部分激活</strong>，这是面试里最重要的区别。</p>
+<p>CP 后每卡计算 Token 数减少，但 Ring KV 或 A2A 有额外通信，长序列下通常更容易体现价值。GQA/MLA 改变传输中的 KV 形状，CP 性能因此也受 Attention 架构影响。</p>
+<h2 id="epexperts-分卡token-按-router-调度">9.2 EP：Experts 分卡，Token 按 Router 调度</h2>
+<p><strong>EP（Expert Parallelism，专家并行）</strong>把不同 Experts 分到多个 Rank。MoE Block 的一次 Forward 包括 Router 选择 Top-K、Dispatch Tokens 到目标 Expert 所在 Rank、运行 Grouped GEMM / Expert FFN、Combine 回原 Token 顺序并加权。</p>
+<figure>
+<figure class="diagram"><img alt="MoE EP 的 Token Dispatch、Expert 执行和 Combine" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMTU1cHQiIGhlaWdodD0iMTM4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTE1NS4wMCAxMzguMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDE4IDEyMCkiPgo8dGl0bGU+RzwvdGl0bGU+CjwhLS0gVG9rZW4gc3RhdGVzIC0tPgo8ZyBpZD0ibm9kZTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlRva2VuIHN0YXRlczwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xMDMsLTY5QzEwMywtNjkgMTIsLTY5IDEyLC02OSA2LC02OSAwLC02MyAwLC01NyAwLC01NyAwLC00NSAwLC00NSAwLC0zOSA2LC0zMyAxMiwtMzMgMTIsLTMzIDEwMywtMzMgMTAzLC0zMyAxMDksLTMzIDExNSwtMzkgMTE1LC00NSAxMTUsLTQ1IDExNSwtNTcgMTE1LC01NyAxMTUsLTYzIDEwOSwtNjkgMTAzLC02OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1Ny41IiB5PSItNDcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlRva2VuIHN0YXRlczwvdGV4dD4KPC9nPgo8IS0tIFJvdXRlciBUb3AmIzQ1O0sgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Um91dGVyIFRvcCYjNDU7SzwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0yNjgsLTY5QzI2OCwtNjkgMTcyLC02OSAxNzIsLTY5IDE2NiwtNjkgMTYwLC02MyAxNjAsLTU3IDE2MCwtNTcgMTYwLC00NSAxNjAsLTQ1IDE2MCwtMzkgMTY2LC0zMyAxNzIsLTMzIDE3MiwtMzMgMjY4LC0zMyAyNjgsLTMzIDI3NCwtMzMgMjgwLC0zOSAyODAsLTQ1IDI4MCwtNDUgMjgwLC01NyAyODAsLTU3IDI4MCwtNjMgMjc0LC02OSAyNjgsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyMCIgeT0iLTQ3LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5Sb3V0ZXIgVG9wJiM0NTtLPC90ZXh0Pgo8L2c+CjwhLS0gVG9rZW4gc3RhdGVzJiM0NTsmZ3Q7Um91dGVyIFRvcCYjNDU7SyAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5Ub2tlbiBzdGF0ZXMmIzQ1OyZndDtSb3V0ZXIgVG9wJiM0NTtLPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTExNS4yNSwtNTFDMTE1LjI1LC01MSAxNTIuOTcsLTUxIDE1Mi45NywtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxNTIuOTcsLTUzLjQ1IDE1OS45NywtNTEgMTUyLjk3LC00OC41NSAxNTIuOTcsLTUzLjQ1Ii8+CjwvZz4KPCEtLSBEaXNwYXRjaCBBbGwmIzQ1O3RvJiM0NTtBbGwgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGlzcGF0Y2ggQWxsJiM0NTt0byYjNDU7QWxsPC90aXRsZT4KPHBhdGggZmlsbD0iI2U4ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTQ2NSwtNjlDNDY1LC02OSAzMzcsLTY5IDMzNywtNjkgMzMxLC02OSAzMjUsLTYzIDMyNSwtNTcgMzI1LC01NyAzMjUsLTQ1IDMyNSwtNDUgMzI1LC0zOSAzMzEsLTMzIDMzNywtMzMgMzM3LC0zMyA0NjUsLTMzIDQ2NSwtMzMgNDcxLC0zMyA0NzcsLTM5IDQ3NywtNDUgNDc3LC00NSA0NzcsLTU3IDQ3NywtNTcgNDc3LC02MyA0NzEsLTY5IDQ2NSwtNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDAxIiB5PSItNDcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkRpc3BhdGNoIEFsbCYjNDU7dG8mIzQ1O0FsbDwvdGV4dD4KPC9nPgo8IS0tIFJvdXRlciBUb3AmIzQ1O0smIzQ1OyZndDtEaXNwYXRjaCBBbGwmIzQ1O3RvJiM0NTtBbGwgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Um91dGVyIFRvcCYjNDU7SyYjNDU7Jmd0O0Rpc3BhdGNoIEFsbCYjNDU7dG8mIzQ1O0FsbDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0yODAuMDIsLTUxQzI4MC4wMiwtNTEgMzE3LjcsLTUxIDMxNy43LC01MSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjMxNy43LC01My40NSAzMjQuNywtNTEgMzE3LjcsLTQ4LjU1IDMxNy43LC01My40NSIvPgo8L2c+CjwhLS0gR1BVMDogRXhwZXJ0cyAw4oCTMyAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5HUFUwOiBFeHBlcnRzIDDigJMzPC90aXRsZT4KPHBhdGggZmlsbD0iI2Q3ZWVlOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTY2NCwtMTAyQzY2NCwtMTAyIDUzNCwtMTAyIDUzNCwtMTAyIDUyOCwtMTAyIDUyMiwtOTYgNTIyLC05MCA1MjIsLTkwIDUyMiwtNzggNTIyLC03OCA1MjIsLTcyIDUyOCwtNjYgNTM0LC02NiA1MzQsLTY2IDY2NCwtNjYgNjY0LC02NiA2NzAsLTY2IDY3NiwtNzIgNjc2LC03OCA2NzYsLTc4IDY3NiwtOTAgNjc2LC05MCA2NzYsLTk2IDY3MCwtMTAyIDY2NCwtMTAyIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU5OSIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5HUFUwOiBFeHBlcnRzIDDigJMzPC90ZXh0Pgo8L2c+CjwhLS0gRGlzcGF0Y2ggQWxsJiM0NTt0byYjNDU7QWxsJiM0NTsmZ3Q7R1BVMDogRXhwZXJ0cyAw4oCTMyAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5EaXNwYXRjaCBBbGwmIzQ1O3RvJiM0NTtBbGwmIzQ1OyZndDtHUFUwOiBFeHBlcnRzIDDigJMzPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTQwMSwtNjkuMDZDNDAxLC03Ny40MSA0MDEsLTg1LjUgNDAxLC04NS41IDQwMSwtODUuNSA1MTQuODgsLTg1LjUgNTE0Ljg4LC04NS41Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iNTE0Ljg4LC04Ny45NSA1MjEuODgsLTg1LjUgNTE0Ljg4LC04My4wNSA1MTQuODgsLTg3Ljk1Ii8+CjwvZz4KPCEtLSBHUFUxOiBFeHBlcnRzIDTigJM3IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkdQVTE6IEV4cGVydHMgNOKAkzc8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZDdlZWU5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNjY0LC0zNkM2NjQsLTM2IDUzNCwtMzYgNTM0LC0zNiA1MjgsLTM2IDUyMiwtMzAgNTIyLC0yNCA1MjIsLTI0IDUyMiwtMTIgNTIyLC0xMiA1MjIsLTYgNTI4LDAgNTM0LDAgNTM0LDAgNjY0LDAgNjY0LDAgNjcwLDAgNjc2LC02IDY3NiwtMTIgNjc2LC0xMiA2NzYsLTI0IDY3NiwtMjQgNjc2LC0zMCA2NzAsLTM2IDY2NCwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTk5IiB5PSItMTQuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPkdQVTE6IEV4cGVydHMgNOKAkzc8L3RleHQ+CjwvZz4KPCEtLSBEaXNwYXRjaCBBbGwmIzQ1O3RvJiM0NTtBbGwmIzQ1OyZndDtHUFUxOiBFeHBlcnRzIDTigJM3IC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkRpc3BhdGNoIEFsbCYjNDU7dG8mIzQ1O0FsbCYjNDU7Jmd0O0dQVTE6IEV4cGVydHMgNOKAkzc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNDAxLC0zMi45NEM0MDEsLTI0LjU5IDQwMSwtMTYuNSA0MDEsLTE2LjUgNDAxLC0xNi41IDUxNC44OCwtMTYuNSA1MTQuODgsLTE2LjUiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI1MTQuODgsLTE4Ljk1IDUyMS44OCwtMTYuNSA1MTQuODgsLTE0LjA1IDUxNC44OCwtMTguOTUiLz4KPC9nPgo8IS0tIENvbWJpbmUgQWxsJiM0NTt0byYjNDU7QWxsIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkNvbWJpbmUgQWxsJiM0NTt0byYjNDU7QWxsPC90aXRsZT4KPHBhdGggZmlsbD0iI2U4ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTg2NCwtNjlDODY0LC02OSA3MzMsLTY5IDczMywtNjkgNzI3LC02OSA3MjEsLTYzIDcyMSwtNTcgNzIxLC01NyA3MjEsLTQ1IDcyMSwtNDUgNzIxLC0zOSA3MjcsLTMzIDczMywtMzMgNzMzLC0zMyA4NjQsLTMzIDg2NCwtMzMgODcwLC0zMyA4NzYsLTM5IDg3NiwtNDUgODc2LC00NSA4NzYsLTU3IDg3NiwtNTcgODc2LC02MyA4NzAsLTY5IDg2NCwtNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzk4LjUiIHk9Ii00Ny41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Q29tYmluZSBBbGwmIzQ1O3RvJiM0NTtBbGw8L3RleHQ+CjwvZz4KPCEtLSBHUFUwOiBFeHBlcnRzIDDigJMzJiM0NTsmZ3Q7Q29tYmluZSBBbGwmIzQ1O3RvJiM0NTtBbGwgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMDogRXhwZXJ0cyAw4oCTMyYjNDU7Jmd0O0NvbWJpbmUgQWxsJiM0NTt0byYjNDU7QWxsPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTYyNSwtNjUuNzlDNjI1LC02MC40NSA2MjUsLTU2IDYyNSwtNTYgNjI1LC01NiA3MTMuODgsLTU2IDcxMy44OCwtNTYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI3MTMuODgsLTU4LjQ1IDcyMC44OCwtNTYgNzEzLjg4LC01My41NSA3MTMuODgsLTU4LjQ1Ii8+CjwvZz4KPCEtLSBHUFUxOiBFeHBlcnRzIDTigJM3JiM0NTsmZ3Q7Q29tYmluZSBBbGwmIzQ1O3RvJiM0NTtBbGwgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMTogRXhwZXJ0cyA04oCTNyYjNDU7Jmd0O0NvbWJpbmUgQWxsJiM0NTt0byYjNDU7QWxsPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTU3NCwtMzYuMjFDNTc0LC00MS41NSA1NzQsLTQ2IDU3NCwtNDYgNTc0LC00NiA3MTMuOTMsLTQ2IDcxMy45MywtNDYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI3MTMuOTMsLTQ4LjQ1IDcyMC45MywtNDYgNzEzLjkzLC00My41NSA3MTMuOTMsLTQ4LjQ1Ii8+CjwvZz4KPCEtLSBXZWlnaHRlZCBzdW0gKyByZXNpZHVhbCAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5XZWlnaHRlZCBzdW0gKyByZXNpZHVhbDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmMmY3ZmIiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xMTA3LC02OUMxMTA3LC02OSA5MzMsLTY5IDkzMywtNjkgOTI3LC02OSA5MjEsLTYzIDkyMSwtNTcgOTIxLC01NyA5MjEsLTQ1IDkyMSwtNDUgOTIxLC0zOSA5MjcsLTMzIDkzMywtMzMgOTMzLC0zMyAxMTA3LC0zMyAxMTA3LC0zMyAxMTEzLC0zMyAxMTE5LC0zOSAxMTE5LC00NSAxMTE5LC00NSAxMTE5LC01NyAxMTE5LC01NyAxMTE5LC02MyAxMTEzLC02OSAxMTA3LC02OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDIwIiB5PSItNDcuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPldlaWdodGVkIHN1bSArIHJlc2lkdWFsPC90ZXh0Pgo8L2c+CjwhLS0gQ29tYmluZSBBbGwmIzQ1O3RvJiM0NTtBbGwmIzQ1OyZndDtXZWlnaHRlZCBzdW0gKyByZXNpZHVhbCAtLT4KPGcgaWQ9ImVkZ2U3IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5Db21iaW5lIEFsbCYjNDU7dG8mIzQ1O0FsbCYjNDU7Jmd0O1dlaWdodGVkIHN1bSArIHJlc2lkdWFsPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTg3Ni4yOCwtNTFDODc2LjI4LC01MSA5MTMuNjMsLTUxIDkxMy42MywtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI5MTMuNjMsLTUzLjQ1IDkyMC42MywtNTEgOTEzLjYzLC00OC41NSA5MTMuNjMsLTUzLjQ1Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>MoE EP 的 Token Dispatch、Expert 执行和 Combine</figcaption></figure>
+<figcaption aria-hidden="true">MoE EP 的 Token Dispatch、Expert 执行和 Combine</figcaption>
+</figure>
+<p>以 <code>E=8 experts、top_k=2、EP=2</code> 为例，GPU0 持 Expert 0–3，GPU1 持 Expert 4–7。如果一个 Token 选择 Experts 2 和 6，两个分支分别发送到两卡执行，再把输出按 Routing Weight 合并。训练反向时也要恢复对应梯度路径。</p>
+<p>三个关键问题：</p>
+<ul>
+<li><strong>Load Imbalance（负载不均）</strong>：Router 使某些 Experts 收到更多 Tokens，最慢 Expert 决定该层完成时间。考察 <code>tokens_per_expert</code> 分布、Padding / Capacity、辅助平衡损失、Dropless 路径。</li>
+<li><strong>通信开销</strong>：Dispatch/Combine 常对应 All-to-All，传输的是 Token Hidden States（加必要的路由索引），不是把完整 Expert 权重来回发送。</li>
+<li><strong>Grouped GEMM</strong>：各 Expert 收到不同大小的 Token Bucket，小矩阵太多可能使 Tensor Core 利用率下降；Grouped GEMM 和输入重排可改善执行效率。</li>
+</ul>
+<p><strong>DeepEP</strong> 面向 MoE 的高性能 Expert Parallel 通信，可在训练/Prefill 场景使用高吞吐 Dispatch/Combine 路径，也提供适配低延迟场景的实现。需要把它理解为 <strong>EP 的数据搬运优化</strong>，并结合 Router、Grouped GEMM、负载分布一起评估。</p>
+<h2 id="n-d-并行不同-group-不是随便相乘">9.3 N-D 并行：不同 Group 不是随便相乘</h2>
+<p>8 GPU 的一个 Dense 模型布局可以是 <code>TP=2 × FSDP=4</code>；每两个 GPU 构成 TP Group，四组之间对应的 TP Slice 再组成 FSDP Group。一个物理 GPU 属于多个逻辑通信组，每个组的维度和成员不同。</p>
+<figure>
+<figure class="diagram"><img alt="8 GPU 的 TP2 × FSDP4 通信组示意" class="inline-svg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjQxMCIgdmlld0JveD0iMCAwIDExMDAgNDEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IjggR1BVIFRQMiBGU0RQNO+8mlRQIOe7hOWGhemDqOi/nuaOpe+8jEZTRFAg57uE6Leo5YiX6L+e5o6lIj4KPHN0eWxlPnRleHR7Zm9udC1mYW1pbHk6J05vdG8gU2FucyBDSksgU0MnLHNhbnMtc2VyaWY7ZmlsbDojMjU0MTU0O2ZvbnQtc2l6ZToxN3B4fS5zdWJ7Zm9udC1zaXplOjE0cHg7ZmlsbDojNTI3MTg0fS5sYWJlbHtmb250LXNpemU6MTZweDtmb250LXdlaWdodDo3MDB9LmZzZHB7ZmlsbDpub25lO3N0cm9rZTojZDZhMTRjO3N0cm9rZS13aWR0aDozO3N0cm9rZS1kYXNoYXJyYXk6OCA2fS50cHtzdHJva2U6IzIxOGE5ODtzdHJva2Utd2lkdGg6NH08L3N0eWxlPgo8cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI0MTAiIHJ4PSIxOCIgZmlsbD0iI2ZmZmZmZiIvPjx0ZXh0IHg9IjI2IiB5PSIzOCIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNCI+OCBHUFXvvJpUUDIgw5cgRlNEUDQg55qEIFJhbmsg5YiG57uEPC90ZXh0Pgo8dGV4dCB4PSIyNiIgeT0iNzIiIGNsYXNzPSJzdWIiPuavj+WIlyAyIOW8oCBHUFUg5omn6KGMIFRQ77yb55u45ZCM5p2D6YeNIFNsaWNlIOi3qCA0IOWIl+aJp+ihjCBGU0RQIOWPguaVsOWIhueJh+S4juair+W6puW9kue6pjwvdGV4dD4KPHBhdGggZD0iTTEyNSAxMDUgSDk3NSIgY2xhc3M9ImZzZHAiLz48cGF0aCBkPSJNMTI1IDM0NiBIOTc1IiBjbGFzcz0iZnNkcCIvPgo8dGV4dCB4PSIyOCIgeT0iMTA1IiBjbGFzcz0ic3ViIj5GU0RQLUE8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjM1MCIgY2xhc3M9InN1YiI+RlNEUC1CPC90ZXh0Pgo8cmVjdCB4PSIxMzgiIHk9IjEyMCIgd2lkdGg9IjIwNSIgaGVpZ2h0PSIyMDQiIHJ4PSIxNCIgZmlsbD0iI2YxZjdmYiIgc3Ryb2tlPSIjYzhkY2U2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjQwIiB5PSIxNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+VFAgR3JvdXAgMCDCtyBUUDI8L3RleHQ+CjxyZWN0IHg9IjE1MiIgeT0iMTcxIiB3aWR0aD0iMTc3IiBoZWlnaHQ9IjUyIiByeD0iOCIgZmlsbD0iI2Q5ZjBlYiIvPgo8dGV4dCB4PSIyNDEiIHk9IjIwMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9IjcwMCI+R1BVIDAgwrcgU2xpY2UgMDwvdGV4dD4KPGxpbmUgeDE9IjI0MSIgeTE9IjIyNSIgeDI9IjI0MSIgeTI9IjI1NCIgY2xhc3M9InRwIi8+Cjxwb2x5Z29uIHBvaW50cz0iMjM1LDI0OSAyNDcsMjQ5IDI0MSwyNTkiIGZpbGw9IiMyMThhOTgiLz4KPHJlY3QgeD0iMTUyIiB5PSIyNjEiIHdpZHRoPSIxNzciIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjZGZlYWY5Ii8+Cjx0ZXh0IHg9IjI0MSIgeT0iMjkzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNzAwIj5HUFUgMSDCtyBTbGljZSAxPC90ZXh0Pgo8cGF0aCBkPSJNMjQwIDEyMCBWMTA1IE0yNDAgMzEzIFYzNDYiIHN0cm9rZT0iI2Q2YTE0YyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CjxyZWN0IHg9IjM3NSIgeT0iMTIwIiB3aWR0aD0iMjA1IiBoZWlnaHQ9IjIwNCIgcng9IjE0IiBmaWxsPSIjZjFmN2ZiIiBzdHJva2U9IiNjOGRjZTYiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI0NzciIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9ImxhYmVsIj5UUCBHcm91cCAxIMK3IFRQMjwvdGV4dD4KPHJlY3QgeD0iMzg5IiB5PSIxNzEiIHdpZHRoPSIxNzciIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjZDlmMGViIi8+Cjx0ZXh0IHg9IjQ3OCIgeT0iMjAzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNzAwIj5HUFUgMiDCtyBTbGljZSAwPC90ZXh0Pgo8bGluZSB4MT0iNDc4IiB5MT0iMjI1IiB4Mj0iNDc4IiB5Mj0iMjU0IiBjbGFzcz0idHAiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzIsMjQ5IDQ4NCwyNDkgNDc4LDI1OSIgZmlsbD0iIzIxOGE5OCIvPgo8cmVjdCB4PSIzODkiIHk9IjI2MSIgd2lkdGg9IjE3NyIgaGVpZ2h0PSI1MiIgcng9IjgiIGZpbGw9IiNkZmVhZjkiLz4KPHRleHQgeD0iNDc4IiB5PSIyOTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSI3MDAiPkdQVSAzIMK3IFNsaWNlIDE8L3RleHQ+CjxwYXRoIGQ9Ik00NzcgMTIwIFYxMDUgTTQ3NyAzMTMgVjM0NiIgc3Ryb2tlPSIjZDZhMTRjIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iNjEyIiB5PSIxMjAiIHdpZHRoPSIyMDUiIGhlaWdodD0iMjA0IiByeD0iMTQiIGZpbGw9IiNmMWY3ZmIiIHN0cm9rZT0iI2M4ZGNlNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjcxNCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ibGFiZWwiPlRQIEdyb3VwIDIgwrcgVFAyPC90ZXh0Pgo8cmVjdCB4PSI2MjYiIHk9IjE3MSIgd2lkdGg9IjE3NyIgaGVpZ2h0PSI1MiIgcng9IjgiIGZpbGw9IiNkOWYwZWIiLz4KPHRleHQgeD0iNzE1IiB5PSIyMDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSI3MDAiPkdQVSA0IMK3IFNsaWNlIDA8L3RleHQ+CjxsaW5lIHgxPSI3MTUiIHkxPSIyMjUiIHgyPSI3MTUiIHkyPSIyNTQiIGNsYXNzPSJ0cCIvPgo8cG9seWdvbiBwb2ludHM9IjcwOSwyNDkgNzIxLDI0OSA3MTUsMjU5IiBmaWxsPSIjMjE4YTk4Ii8+CjxyZWN0IHg9IjYyNiIgeT0iMjYxIiB3aWR0aD0iMTc3IiBoZWlnaHQ9IjUyIiByeD0iOCIgZmlsbD0iI2RmZWFmOSIvPgo8dGV4dCB4PSI3MTUiIHk9IjI5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9IjcwMCI+R1BVIDUgwrcgU2xpY2UgMTwvdGV4dD4KPHBhdGggZD0iTTcxNCAxMjAgVjEwNSBNNzE0IDMxMyBWMzQ2IiBzdHJva2U9IiNkNmExNGMiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8cmVjdCB4PSI4NDkiIHk9IjEyMCIgd2lkdGg9IjIwNSIgaGVpZ2h0PSIyMDQiIHJ4PSIxNCIgZmlsbD0iI2YxZjdmYiIgc3Ryb2tlPSIjYzhkY2U2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iOTUxIiB5PSIxNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJsYWJlbCI+VFAgR3JvdXAgMyDCtyBUUDI8L3RleHQ+CjxyZWN0IHg9Ijg2MyIgeT0iMTcxIiB3aWR0aD0iMTc3IiBoZWlnaHQ9IjUyIiByeD0iOCIgZmlsbD0iI2Q5ZjBlYiIvPgo8dGV4dCB4PSI5NTIiIHk9IjIwMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9IjcwMCI+R1BVIDYgwrcgU2xpY2UgMDwvdGV4dD4KPGxpbmUgeDE9Ijk1MiIgeTE9IjIyNSIgeDI9Ijk1MiIgeTI9IjI1NCIgY2xhc3M9InRwIi8+Cjxwb2x5Z29uIHBvaW50cz0iOTQ2LDI0OSA5NTgsMjQ5IDk1MiwyNTkiIGZpbGw9IiMyMThhOTgiLz4KPHJlY3QgeD0iODYzIiB5PSIyNjEiIHdpZHRoPSIxNzciIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSIjZGZlYWY5Ii8+Cjx0ZXh0IHg9Ijk1MiIgeT0iMjkzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNzAwIj5HUFUgNyDCtyBTbGljZSAxPC90ZXh0Pgo8cGF0aCBkPSJNOTUxIDEyMCBWMTA1IE05NTEgMzEzIFYzNDYiIHN0cm9rZT0iI2Q2YTE0YyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjU0NyIgeT0iMzg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBjbGFzcz0ic3ViIj7ok53nu7/oibLlrp7nur/vvJpUUCDlsYLlhoXpgJrkv6HjgIDvvZzjgIDph5HoibLomZrnur/vvJrnm7jlkIwgU2xpY2Ug55qEIEZTRFAgR3JvdXA8L3RleHQ+PC9zdmc+"/><figcaption>8 GPU 的 TP2 × FSDP4 通信组示意</figcaption></figure>
+<figcaption aria-hidden="true">8 GPU 的 TP2 × FSDP4 通信组示意</figcaption>
+</figure>
+<p>MoE 中 EP 往往会与 Expert Data Parallel（专家数据并行）和 Dense 层的 DP/TP 采用不同映射，不能机械地把所有字母的 Degree 都当成独立的乘法因子。标准的 Dense 训练常用 <code>DP × TP × PP × CP = world_size</code> 表示正交的逻辑维度；具体到 EP，需结合框架的 Process Mesh 定义。</p>
+<blockquote>
+<p><strong>本章自测</strong>：解释 Ring Attention 为什么要传 K/V，Ulysses 为什么对 Head 数有限制；给定 8 张 GPU，画出 TP2 × FSDP4 的每个 Process Group，指出一个 Rank 参与了哪些 Collective。</p>
+</blockquote>
+<hr/>
+<h1 id="核心性能优化flashattention混合精度重计算">10 · 核心性能优化：FlashAttention、混合精度、重计算</h1>
+<h2 id="flashattention减少-hbm-中间量和-io">10.1 FlashAttention：减少 HBM 中间量和 IO</h2>
+<p>普通 Attention 若显式产生 <code>S=QKᵀ</code> 和 <code>P=softmax(S)</code>，中间矩阵的 Shape 为 <code>[B,H,S,S]</code>。对 <code>B=1,H=32,S=8192</code>，仅一个 BF16 的 <code>S×S</code> 张量就是 <code>4 GiB</code> 量级（<code>32×8192²×2 B = 4 GiB</code>）。训练反向还需要相关中间量，进一步放大显存压力。</p>
+<p><strong>FlashAttention（闪存注意力算法）</strong>把 Q/K/V 分 Tile 加载到片上存储，在 Tile 内做 Matmul，使用 <strong>Online Softmax（在线归一化）</strong>维护每行的最大值 <code>m</code> 和指数和 <code>l</code>，无需把整个 <code>S×S</code> Attention Matrix 写回 HBM。</p>
+<p>对于一个 Query 行，新旧 Tile 的数值稳定更新可写为：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>′</mi><mo>=</mo><mo>max</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>m</mi><mo>,</mo><munder><mo>max</mo><mi>j</mi></munder><msub><mi>s</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">m'=\max(m,\max_j s_j)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>′</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>m</mi><mo>−</mo><mi>m</mi><mi>′</mi></mrow></msup><mi>l</mi><mo>+</mo><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>−</mo><mi>m</mi><mi>′</mi></mrow></msup></mrow><annotation encoding="application/x-tex">l'=e^{m-m'}l + \sum_j e^{s_j-m'}</annotation></semantics></math></p>
+<p>设旧归一化输出为 <code>o</code>，则：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi><mi>′</mi><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>m</mi><mo>−</mo><mi>m</mi><mi>′</mi></mrow></msup><mi>l</mi><mo>⋅</mo><mi>o</mi><mo>+</mo><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>−</mo><mi>m</mi><mi>′</mi></mrow></msup><msub><mi>V</mi><mi>j</mi></msub></mrow><mrow><mi>l</mi><mi>′</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">o'=\frac{e^{m-m'}l\cdot o+\sum_j e^{s_j-m'}V_j}{l'}</annotation></semantics></math></p>
+<p>关键点：<strong>完整 Attention 的算术量仍主要是 <code>O(S²d)</code>，但 HBM 中间数据 IO 和激活保存量大幅下降</strong>。反向计算可根据必要统计量重算部分 Attention 中间量。FlashAttention-2 改进了线程块工作分配、并行度和非 Matmul 计算占比。是否提升端到端训练吞吐，取决于序列长度、Head Dim、Batch 以及后端 Kernel。</p>
+<p>对应学习路径：先看 Safe Softmax → Online Softmax → 共享内存 Tiling → FlashAttention V1/V2；可以通过 PyTorch 的 <code>F.scaled_dot_product_attention</code> 调用当前可用的优化后端，再用 Profiler 验证。</p>
+<h2 id="bf16fp16-与-fp8">10.2 BF16、FP16 与 FP8</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>精度</th>
+<th>主要特点</th>
+<th>训练中的用法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FP32</td>
+<td>动态范围和精度较高，存储开销大</td>
+<td>优化器 Moments、部分归一化/归约</td>
+</tr>
+<tr class="even">
+<td>FP16</td>
+<td>5 位指数，10 位尾数</td>
+<td>Tensor Core 加速，训练常需 Grad Scaling</td>
+</tr>
+<tr class="odd">
+<td>BF16</td>
+<td>8 位指数，7 位尾数</td>
+<td>动态范围接近 FP32，常用于模型主计算</td>
+</tr>
+<tr class="even">
+<td>FP8 E4M3/E5M2</td>
+<td>更低存储与传输开销，需要 Scale</td>
+<td>量化 GEMM/激活/梯度等场景，要求硬件与数值方案支持</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>autocast(dtype=torch.bfloat16)</code> 让框架针对算子选择适用 dtype；部分归约与 Loss 在 FP32 更稳定。若使用 FP16，通常结合 <code>GradScaler</code> 防止微小梯度 Underflow（下溢）；BF16 经常无需 Loss Scaling。</p>
+<p>对硬件要有准确边界：<strong>A100（Ampere）支持 BF16 Tensor Core，但没有 Hopper 那类原生 FP8 Tensor Core 能力</strong>。FP8 训练的完整性能消融优先在 H100/H200/更新架构上开展，并核对 Transformer Engine 或训练框架后端支持情况。</p>
+<h2 id="activation-checkpointing-与-offload">10.3 Activation Checkpointing 与 Offload</h2>
+<p><strong>Activation Checkpointing（激活重计算）</strong>：前向只保存特定节点的输入/输出，反向时重放相关前向计算，减少保存的激活体积。大模型训练常按 Transformer Block 设置检查点，以增加反向计算换取更大序列或 Microbatch。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="im">from</span> torch.utils.checkpoint <span class="im">import</span> checkpoint</span>
+<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a>x <span class="op">=</span> checkpoint(decoder_block, x, use_reentrant<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<p><strong>Offload（卸载）</strong>可以把部分参数、梯度、优化器状态或激活移到 CPU/NVMe，降低 GPU 驻留显存，但增加 H2D/D2H 与 PCIe/网络 IO，需通过 Prefetch 和 Asynchronous Transfer 尽量隐藏代价。</p>
+<p>实践中的优化顺序建议由 Profile 决定：先确定显存瓶颈来自参数状态还是激活；再比较 FSDP、重计算与 Offload 的代价，观察是吞吐提升、峰值显存降低，还是仅仅能够把实验跑起来。</p>
+<blockquote>
+<p><strong>本章自测</strong>：解释 FlashAttention 为什么减少 IO 仍保持 Attention 的 <code>O(S²)</code> 算术复杂度；说出 BF16 vs FP16 的指数/尾数区别；比较重计算和 CPU Offload 的性能代价。</p>
+</blockquote>
+<hr/>
+<h1 id="性能分析从一份-trace-找到训练瓶颈">11 · 性能分析：从一份 Trace 找到训练瓶颈</h1>
+<h2 id="先统一性能指标的定义">11.1 先统一性能指标的定义</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>计算方式 / 口径</th>
+<th>常用来判断</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Step Time</td>
+<td>完成一次 <code>optimizer.step()</code> 所用的墙钟时间</td>
+<td>最直观的总体性能</td>
+</tr>
+<tr class="even">
+<td>Global Tokens/s</td>
+<td><code>有效 global_batch × seq_len / step_time</code></td>
+<td>吞吐；变长场景要排除 Padding</td>
+</tr>
+<tr class="odd">
+<td>Peak Allocated Memory</td>
+<td>PyTorch 实际存活 Tensor 所分配的 CUDA 内存峰值</td>
+<td>张量内存压力</td>
+</tr>
+<tr class="even">
+<td>Peak Reserved Memory</td>
+<td>PyTorch Caching Allocator 从设备保留的显存峰值</td>
+<td>分配器缓存、碎片等</td>
+</tr>
+<tr class="odd">
+<td>MFU（Model FLOPs Utilization，模型算力利用率）</td>
+<td>有效模型 FLOPs / GPU 理论峰值 FLOPs</td>
+<td>模型计算效率估算</td>
+</tr>
+<tr class="even">
+<td>NCCL Wait / Overlap</td>
+<td>通信耗时、暴露在关键路径上的等待时间</td>
+<td>分布式扩展瓶颈</td>
+</tr>
+</tbody>
+</table></div>
+<p>针对 Dense Decoder 的常见粗估：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">F</mi><mi mathvariant="normal">U</mi></mrow><mo>≈</mo><mfrac><mrow><mn>6</mn><mi>N</mi><mo>⋅</mo><msub><mi>T</mi><mrow><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>s</mi><mi>/</mi><mi>s</mi></mrow></msub></mrow><mrow><mi>G</mi><mo>⋅</mo><msub><mi>F</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathrm{MFU}\approx \frac{6N\cdot T_{tokens/s}}{G\cdot F_{peak}}</annotation></semantics></math></p>
+<p>其中 <code>N</code> 为参数量、<code>G</code> 为 GPU 数量、<code>F_peak</code> 为该硬件在对应 dtype/稀疏假设下的理论 FLOPs/s。精确计算应纳入长序列 Attention 的额外 FLOPs、Embedding/LM Head、Gradient Checkpointing、MoE 的激活参数量等，并注明 FLOP 估算口径。<strong>MFU 是模型工作量与峰值算力的比值；它不是 GPU Utilization 指标。</strong></p>
+<h2 id="pytorch-profiler看算子shapememory">11.2 PyTorch Profiler：看算子、Shape、Memory</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a><span class="im">from</span> torch.profiler <span class="im">import</span> profile, schedule, ProfilerActivity, tensorboard_trace_handler</span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a aria-hidden="true" href="#cb13-3" tabindex="-1"></a><span class="cf">with</span> profile(</span>
+<span id="cb13-4"><a aria-hidden="true" href="#cb13-4" tabindex="-1"></a>    activities<span class="op">=</span>[ProfilerActivity.CPU, ProfilerActivity.CUDA],</span>
+<span id="cb13-5"><a aria-hidden="true" href="#cb13-5" tabindex="-1"></a>    schedule<span class="op">=</span>schedule(wait<span class="op">=</span><span class="dv">2</span>, warmup<span class="op">=</span><span class="dv">2</span>, active<span class="op">=</span><span class="dv">3</span>, repeat<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb13-6"><a aria-hidden="true" href="#cb13-6" tabindex="-1"></a>    on_trace_ready<span class="op">=</span>tensorboard_trace_handler(<span class="st">'./traces'</span>),</span>
+<span id="cb13-7"><a aria-hidden="true" href="#cb13-7" tabindex="-1"></a>    record_shapes<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-8"><a aria-hidden="true" href="#cb13-8" tabindex="-1"></a>    profile_memory<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-9"><a aria-hidden="true" href="#cb13-9" tabindex="-1"></a>    with_stack<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb13-10"><a aria-hidden="true" href="#cb13-10" tabindex="-1"></a>) <span class="im">as</span> prof:</span>
+<span id="cb13-11"><a aria-hidden="true" href="#cb13-11" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">7</span>):</span>
+<span id="cb13-12"><a aria-hidden="true" href="#cb13-12" tabindex="-1"></a>        train_step()</span>
+<span id="cb13-13"><a aria-hidden="true" href="#cb13-13" tabindex="-1"></a>        prof.step()</span></code></pre></div>
+<p>先读 <code>key_averages().table(sort_by='self_cuda_time_total')</code>（不同 PyTorch 版本输出字段略有差异），找大头算子和 CUDA 耗时，再从 Trace 时间线看它和邻近操作的依赖。打开 <code>record_shapes=True</code> 会增加一定开销，因此不要用全面 Profiling 的 Step Time 作为最终 Benchmark 吞吐。</p>
+<h2 id="nsight-systems看-cpu-和多-stream-的时间线">11.3 Nsight Systems：看 CPU 和多 Stream 的时间线</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash codebox"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="co"># 例：只采集短时间窗口，避免 Trace 过大</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a><span class="ex">nsys</span> profile <span class="dt">\</span></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a>  <span class="at">--trace</span><span class="op">=</span>cuda,nvtx,osrt <span class="dt">\</span></span>
+<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a>  <span class="at">--sample</span><span class="op">=</span>none <span class="at">--cpuctxsw</span><span class="op">=</span>none <span class="dt">\</span></span>
+<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a>  <span class="at">--delay</span><span class="op">=</span>5 <span class="at">--duration</span><span class="op">=</span>15 <span class="dt">\</span></span>
+<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a>  <span class="at">-o</span> train_profile <span class="dt">\</span></span>
+<span id="cb14-7"><a aria-hidden="true" href="#cb14-7" tabindex="-1"></a>  python examples/train_tiny_gpt.py <span class="at">--steps</span> 100</span></code></pre></div>
+<p>打开 <code>.nsys-rep</code> 时从以下顺序读：CPU 线程有没有长时间等待？Kernel Launch 之间有无可观的空洞？不同 CUDA Stream 的计算、Memcpy、NCCL 是否重叠？哪个 Rank 的 NCCL 先进入、最后完成？为了让时间线更易读，可在 Python 中用 <code>torch.cuda.nvtx.range_push/pop</code> 或训练框架已有的 NVTX 标记 Forward、Backward、Optimizer。</p>
+<p><strong>Nsight Compute（<code>ncu</code>）</strong>进一步分析热点 Kernel 的 Roofline、Memory Transaction、Register Usage、SM Occupancy、Tensor Core 指标。它与 Nsight Systems 的区别可以理解为：Systems 负责定位<strong>哪里卡住</strong>，Compute 负责解释<strong>某个 Kernel 为什么慢</strong>。</p>
+<h2 id="一个可复用的定位流程">11.4 一个可复用的定位流程</h2>
+<figure>
+<figure class="diagram"><img alt="从低吞吐定位 CPU、GPU、通信瓶颈" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSI4MjVwdCIgaGVpZ2h0PSI1NDJwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA4MjQuNTAgNTQyLjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSgxOCA1MjQpIj4KPHRpdGxlPkc8L3RpdGxlPgo8IS0tIFRva2Vucy9zIOS9jiAvIFN0ZXAgdGltZSDpq5ggLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+VG9rZW5zL3Mg5L2OIC8gU3RlcCB0aW1lIOmrmDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zMDYsLTUwNkMzMDYsLTUwNiAxMjQsLTUwNiAxMjQsLTUwNiAxMTgsLTUwNiAxMTIsLTUwMCAxMTIsLTQ5NCAxMTIsLTQ5NCAxMTIsLTQ4MiAxMTIsLTQ4MiAxMTIsLTQ3NiAxMTgsLTQ3MCAxMjQsLTQ3MCAxMjQsLTQ3MCAzMDYsLTQ3MCAzMDYsLTQ3MCAzMTIsLTQ3MCAzMTgsLTQ3NiAzMTgsLTQ4MiAzMTgsLTQ4MiAzMTgsLTQ5NCAzMTgsLTQ5NCAzMTgsLTUwMCAzMTIsLTUwNiAzMDYsLTUwNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMTUiIHk9Ii00ODQuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPlRva2Vucy9zIOS9jiAvIFN0ZXAgdGltZSDpq5g8L3RleHQ+CjwvZz4KPCEtLSBHUFUgdGltZWxpbmUg5pyJ5piO5pi+56m65rSe77yfIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkdQVSB0aW1lbGluZSDmnInmmI7mmL7nqbrmtJ7vvJ88L3RpdGxlPgo8cGF0aCBmaWxsPSIjZTdlZGY5IiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMjAzLjE2LC00MjEuMDdDMjAzLjE2LC00MjEuMDcgMTEuODQsLTM4OS45MyAxMS44NCwtMzg5LjkzIDUuOTIsLTM4OC45NiA1LjkyLC0zODcuMDQgMTEuODQsLTM4Ni4wNyAxMS44NCwtMzg2LjA3IDIwMy4xNiwtMzU0LjkzIDIwMy4xNiwtMzU0LjkzIDIwOS4wOCwtMzUzLjk2IDIyMC45MiwtMzUzLjk2IDIyNi44NCwtMzU0LjkzIDIyNi44NCwtMzU0LjkzIDQxOC4xNiwtMzg2LjA3IDQxOC4xNiwtMzg2LjA3IDQyNC4wOCwtMzg3LjA0IDQyNC4wOCwtMzg4Ljk2IDQxOC4xNiwtMzg5LjkzIDQxOC4xNiwtMzg5LjkzIDIyNi44NCwtNDIxLjA3IDIyNi44NCwtNDIxLjA3IDIyMC45MiwtNDIyLjA0IDIwOS4wOCwtNDIyLjA0IDIwMy4xNiwtNDIxLjA3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIxNSIgeT0iLTM4NC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVIHRpbWVsaW5lIOacieaYjuaYvuepuua0nu+8nzwvdGV4dD4KPC9nPgo8IS0tIFRva2Vucy9zIOS9jiAvIFN0ZXAgdGltZSDpq5gmIzQ1OyZndDtHUFUgdGltZWxpbmUg5pyJ5piO5pi+56m65rSe77yfIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlRva2Vucy9zIOS9jiAvIFN0ZXAgdGltZSDpq5gmIzQ1OyZndDtHUFUgdGltZWxpbmUg5pyJ5piO5pi+56m65rSe77yfPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTIxNSwtNDY5LjY2QzIxNSwtNDY5LjY2IDIxNSwtNDMwLjIzIDIxNSwtNDMwLjIzIi8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMjE3LjQ1LC00MzAuMjMgMjE1LC00MjMuMjMgMjEyLjU1LC00MzAuMjMgMjE3LjQ1LC00MzAuMjMiLz4KPC9nPgo8IS0tIENQVSBsYXVuY2ggLyBkYXRhIC8gc3luYyAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5DUFUgbGF1bmNoIC8gZGF0YSAvIHN5bmM8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZTFmMmVhIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNMjczLC0yNzdDMjczLC0yNzcgMTAzLC0yNzcgMTAzLC0yNzcgOTcsLTI3NyA5MSwtMjcxIDkxLC0yNjUgOTEsLTI2NSA5MSwtMjUzIDkxLC0yNTMgOTEsLTI0NyA5NywtMjQxIDEwMywtMjQxIDEwMywtMjQxIDI3MywtMjQxIDI3MywtMjQxIDI3OSwtMjQxIDI4NSwtMjQ3IDI4NSwtMjUzIDI4NSwtMjUzIDI4NSwtMjY1IDI4NSwtMjY1IDI4NSwtMjcxIDI3OSwtMjc3IDI3MywtMjc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE4OCIgeT0iLTI1NS41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Q1BVIGxhdW5jaCAvIGRhdGEgLyBzeW5jPC90ZXh0Pgo8L2c+CjwhLS0gR1BVIHRpbWVsaW5lIOacieaYjuaYvuepuua0nu+8nyYjNDU7Jmd0O0NQVSBsYXVuY2ggLyBkYXRhIC8gc3luYyAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5HUFUgdGltZWxpbmUg5pyJ5piO5pi+56m65rSe77yfJiM0NTsmZ3Q7Q1BVIGxhdW5jaCAvIGRhdGEgLyBzeW5jPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTE4OCwtMzU3LjFDMTg4LC0zNTcuMSAxODgsLTI4NC4zIDE4OCwtMjg0LjMiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSIxOTAuNDUsLTI4NC4zIDE4OCwtMjc3LjMgMTg1LjU1LC0yODQuMyAxOTAuNDUsLTI4NC4zIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE5Ny41IiB5PSItMzIwLjQiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjEyLjAwIiBmaWxsPSIjNGI2Mzc1Ij5ZZXM8L3RleHQ+CjwvZz4KPCEtLSBHUFUg5b+Z5L2GIEtlcm5lbCDmhaLvvJ8gLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R1BVIOW/meS9hiBLZXJuZWwg5oWi77yfPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTQ3Ny4yNCwtMjkxLjYzQzQ3Ny4yNCwtMjkxLjYzIDMyNi43NiwtMjYxLjM3IDMyNi43NiwtMjYxLjM3IDMyMC44OCwtMjYwLjE4IDMyMC44OCwtMjU3LjgyIDMyNi43NiwtMjU2LjYzIDMyNi43NiwtMjU2LjYzIDQ3Ny4yNCwtMjI2LjM3IDQ3Ny4yNCwtMjI2LjM3IDQ4My4xMiwtMjI1LjE4IDQ5NC44OCwtMjI1LjE4IDUwMC43NiwtMjI2LjM3IDUwMC43NiwtMjI2LjM3IDY1MS4yNCwtMjU2LjYzIDY1MS4yNCwtMjU2LjYzIDY1Ny4xMiwtMjU3LjgyIDY1Ny4xMiwtMjYwLjE4IDY1MS4yNCwtMjYxLjM3IDY1MS4yNCwtMjYxLjM3IDUwMC43NiwtMjkxLjYzIDUwMC43NiwtMjkxLjYzIDQ5NC44OCwtMjkyLjgyIDQ4My4xMiwtMjkyLjgyIDQ3Ny4yNCwtMjkxLjYzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ4OSIgeT0iLTI1NS41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVIOW/meS9hiBLZXJuZWwg5oWi77yfPC90ZXh0Pgo8L2c+CjwhLS0gR1BVIHRpbWVsaW5lIOacieaYjuaYvuepuua0nu+8nyYjNDU7Jmd0O0dQVSDlv5nkvYYgS2VybmVsIOaFou+8nyAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5HUFUgdGltZWxpbmUg5pyJ5piO5pi+56m65rSe77yfJiM0NTsmZ3Q7R1BVIOW/meS9hiBLZXJuZWwg5oWi77yfPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTM3Mi41LC0zNzguM0MzNzIuNSwtMzc4LjMgMzcyLjUsLTI3Ny42NCAzNzIuNSwtMjc3LjY0Ii8+Cjxwb2x5Z29uIGZpbGw9IiM3ODkwYTQiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHBvaW50cz0iMzc0Ljk1LC0yNzcuNjQgMzcyLjUsLTI3MC42NCAzNzAuMDUsLTI3Ny42NCAzNzQuOTUsLTI3Ny42NCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNzMuNSIgeT0iLTMyMC40IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxMi4wMCIgZmlsbD0iIzRiNjM3NSI+Tm88L3RleHQ+CjwvZz4KPCEtLSBOc2lnaHQgQ29tcHV0ZSAvIFJvb2ZsaW5lIC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPk5zaWdodCBDb21wdXRlIC8gUm9vZmxpbmU8L3RpdGxlPgo8cGF0aCBmaWxsPSIjZTFmMmVhIiBzdHJva2U9IiNkNWUyZWUiIHN0cm9rZS13aWR0aD0iMS4yIiBkPSJNNTA1LjUsLTE0OEM1MDUuNSwtMTQ4IDMxOC41LC0xNDggMzE4LjUsLTE0OCAzMTIuNSwtMTQ4IDMwNi41LC0xNDIgMzA2LjUsLTEzNiAzMDYuNSwtMTM2IDMwNi41LC0xMjQgMzA2LjUsLTEyNCAzMDYuNSwtMTE4IDMxMi41LC0xMTIgMzE4LjUsLTExMiAzMTguNSwtMTEyIDUwNS41LC0xMTIgNTA1LjUsLTExMiA1MTEuNSwtMTEyIDUxNy41LC0xMTggNTE3LjUsLTEyNCA1MTcuNSwtMTI0IDUxNy41LC0xMzYgNTE3LjUsLTEzNiA1MTcuNSwtMTQyIDUxMS41LC0xNDggNTA1LjUsLTE0OCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MTIiIHk9Ii0xMjYuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPk5zaWdodCBDb21wdXRlIC8gUm9vZmxpbmU8L3RleHQ+CjwvZz4KPCEtLSBHUFUg5b+Z5L2GIEtlcm5lbCDmhaLvvJ8mIzQ1OyZndDtOc2lnaHQgQ29tcHV0ZSAvIFJvb2ZsaW5lIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkdQVSDlv5nkvYYgS2VybmVsIOaFou+8nyYjNDU7Jmd0O05zaWdodCBDb21wdXRlIC8gUm9vZmxpbmU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNDE2LjI1LC0yMzguNTZDNDE2LjI1LC0yMzguNTYgNDE2LjI1LC0xNTUuMjYgNDE2LjI1LC0xNTUuMjYiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI0MTguNywtMTU1LjI2IDQxNi4yNSwtMTQ4LjI2IDQxMy44LC0xNTUuMjYgNDE4LjcsLTE1NS4yNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MjEuNSIgeT0iLTE5MS40IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxMi4wMCIgZmlsbD0iIzRiNjM3NSI+WWVzPC90ZXh0Pgo8L2c+CjwhLS0g6YCa5L+h562J5b6F5aSn77yfIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPumAmuS/oeetieW+heWkp++8nzwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlN2VkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik02NTUuNDksLTE2MS42MUM2NTUuNDksLTE2MS42MSA1NTkuNTEsLTEzMy4zOSA1NTkuNTEsLTEzMy4zOSA1NTMuNzYsLTEzMS42OSA1NTMuNzYsLTEyOC4zMSA1NTkuNTEsLTEyNi42MSA1NTkuNTEsLTEyNi42MSA2NTUuNDksLTk4LjM5IDY1NS40OSwtOTguMzkgNjYxLjI0LC05Ni42OSA2NzIuNzYsLTk2LjY5IDY3OC41MSwtOTguMzkgNjc4LjUxLC05OC4zOSA3NzQuNDksLTEyNi42MSA3NzQuNDksLTEyNi42MSA3ODAuMjQsLTEyOC4zMSA3ODAuMjQsLTEzMS42OSA3NzQuNDksLTEzMy4zOSA3NzQuNDksLTEzMy4zOSA2NzguNTEsLTE2MS42MSA2NzguNTEsLTE2MS42MSA2NzIuNzYsLTE2My4zMSA2NjEuMjQsLTE2My4zMSA2NTUuNDksLTE2MS42MSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2NjciIHk9Ii0xMjYuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPumAmuS/oeetieW+heWkp++8nzwvdGV4dD4KPC9nPgo8IS0tIEdQVSDlv5nkvYYgS2VybmVsIOaFou+8nyYjNDU7Jmd0O+mAmuS/oeetieW+heWkp++8nyAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5HUFUg5b+Z5L2GIEtlcm5lbCDmhaLvvJ8mIzQ1OyZndDvpgJrkv6HnrYnlvoXlpKfvvJ88L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNjA1LjUsLTI0Ny4xQzYwNS41LC0yNDcuMSA2MDUuNSwtMTU0LjEzIDYwNS41LC0xNTQuMTMiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2MDcuOTUsLTE1NC4xMyA2MDUuNSwtMTQ3LjEzIDYwMy4wNSwtMTU0LjEzIDYwNy45NSwtMTU0LjEzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU3NC41IiB5PSItMTkxLjQiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjEyLjAwIiBmaWxsPSIjNGI2Mzc1Ij5ObzwvdGV4dD4KPC9nPgo8IS0tIE5DQ0wgLyBSYW5rIG1hcHBpbmcgLyBvdmVybGFwIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPk5DQ0wgLyBSYW5rIG1hcHBpbmcgLyBvdmVybGFwPC90aXRsZT4KPHBhdGggZmlsbD0iI2UxZjJlYSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTc3Ni41LC0zNkM3NzYuNSwtMzYgNTU3LjUsLTM2IDU1Ny41LC0zNiA1NTEuNSwtMzYgNTQ1LjUsLTMwIDU0NS41LC0yNCA1NDUuNSwtMjQgNTQ1LjUsLTEyIDU0NS41LC0xMiA1NDUuNSwtNiA1NTEuNSwwIDU1Ny41LDAgNTU3LjUsMCA3NzYuNSwwIDc3Ni41LDAgNzgyLjUsMCA3ODguNSwtNiA3ODguNSwtMTIgNzg4LjUsLTEyIDc4OC41LC0yNCA3ODguNSwtMjQgNzg4LjUsLTMwIDc4Mi41LC0zNiA3NzYuNSwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjY3IiB5PSItMTQuNSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPk5DQ0wgLyBSYW5rIG1hcHBpbmcgLyBvdmVybGFwPC90ZXh0Pgo8L2c+CjwhLS0g6YCa5L+h562J5b6F5aSn77yfJiM0NTsmZ3Q7TkNDTCAvIFJhbmsgbWFwcGluZyAvIG92ZXJsYXAgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+6YCa5L+h562J5b6F5aSn77yfJiM0NTsmZ3Q7TkNDTCAvIFJhbmsgbWFwcGluZyAvIG92ZXJsYXA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNjY3LC05NC44N0M2NjcsLTk0Ljg3IDY2NywtNDMuMSA2NjcsLTQzLjEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2NjkuNDUsLTQzLjEgNjY3LC0zNi4xIDY2NC41NSwtNDMuMSA2NjkuNDUsLTQzLjEiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjc2LjUiIHk9Ii02Mi40IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxMi4wMCIgZmlsbD0iIzRiNjM3NSI+WWVzPC90ZXh0Pgo8L2c+CjwvZz4KPC9zdmc+Cg=="/><figcaption>从低吞吐定位 CPU、GPU、通信瓶颈</figcaption></figure>
+<figcaption aria-hidden="true">从低吞吐定位 CPU、GPU、通信瓶颈</figcaption>
+</figure>
+<p>具体观察方式：</p>
+<p><strong>A. GPU 空洞很多</strong>：看 DataLoader/H2D、Python Launch、<code>loss.item()</code>、动态 Shape、隐式同步。优先比较预取、Pinned Memory、<code>torch.compile</code> 或 CUDA Graph 是否适用。</p>
+<p><strong>B. GPU 一直很忙但 Tokens/s 低</strong>：查 Kernel 时间聚合、实际 GEMM Shape、Tensor Core 利用率、Memory Bandwidth、Bank Conflict、寄存器溢出。</p>
+<p><strong>C. NCCL 占比很大</strong>：查 DP/TP/CP/EP 的 Group Mapping，Gradient Bucket，通信等待是否暴露在 Critical Path（关键路径），以及同步/Overlap 条件。</p>
+<p><strong>D. 显存紧张</strong>：区分静态状态、激活、通信缓冲和 Caching Allocator 预留；按前向/反向/更新不同阶段记录峰值，再针对性试 FSDP、重计算、Offload、序列分片。</p>
+<blockquote>
+<p><strong>本章自测</strong>：截一张 Nsight Systems 时间线，用箭头标注三处：CPU 空洞、Kernel 计算、NCCL 等待。对每处给出一个可以验证的假设，不要直接把 GPU Utilization 当作 MFU。</p>
+</blockquote>
+<hr/>
+<h1 id="阶段性任务从-tinygpt-到-8-卡-7b8b-训练">12 · 阶段性任务：从 TinyGPT 到 8 卡 7B/8B 训练</h1>
+<h2 id="第一阶段小模型完整训练1-gpu-ddp">12.1 第一阶段：小模型完整训练（1 GPU → DDP）</h2>
+<p>本项目已经提供 <a href="examples/train_tiny_gpt.py"><code>examples/train_tiny_gpt.py</code></a>。TinyGPT 使用 Causal Attention、RMSNorm、SwiGLU、AdamW、学习率 Warmup/Cosine 等基础模块，结构简化，便于单步调试。<strong>脚本没有实现完整的 RoPE/GQA/MLA，也没有加载预训练权重</strong>；7B/8B 阶段通过成熟框架和配置验证这些结构与并行方式。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash codebox"><code class="sourceCode bash"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a><span class="co"># 不需要 GPU，先跑训练控制流</span></span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a><span class="ex">python</span> examples/train_tiny_gpt.py <span class="at">--steps</span> 12</span>
+<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a aria-hidden="true" href="#cb15-4" tabindex="-1"></a><span class="co"># 单卡 GPU + BF16 + 重计算（需要 CUDA）</span></span>
+<span id="cb15-5"><a aria-hidden="true" href="#cb15-5" tabindex="-1"></a><span class="ex">python</span> examples/train_tiny_gpt.py <span class="at">--steps</span> 30 <span class="at">--bf16</span> <span class="at">--checkpoint</span></span>
+<span id="cb15-6"><a aria-hidden="true" href="#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a aria-hidden="true" href="#cb15-7" tabindex="-1"></a><span class="co"># 两进程 DDP；CPU 会使用 Gloo，有 CUDA 时使用 NCCL</span></span>
+<span id="cb15-8"><a aria-hidden="true" href="#cb15-8" tabindex="-1"></a><span class="ex">torchrun</span> <span class="at">--standalone</span> <span class="at">--nproc_per_node</span><span class="op">=</span>2 examples/train_tiny_gpt.py <span class="at">--steps</span> 30</span>
+<span id="cb15-9"><a aria-hidden="true" href="#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a aria-hidden="true" href="#cb15-10" tabindex="-1"></a><span class="co"># 生成 PyTorch Profiler trace</span></span>
+<span id="cb15-11"><a aria-hidden="true" href="#cb15-11" tabindex="-1"></a><span class="ex">python</span> examples/train_tiny_gpt.py <span class="at">--steps</span> 12 <span class="at">--profile</span></span></code></pre></div>
+<p>这个阶段记录：Loss 是否可反传、Gradient Norm 是否有限、学习率是否变化、每 Step 耗时、Tokens/s、开启/关闭 <code>--checkpoint</code> 后的显存和性能差异。随机输入用于跑通系统流程，不适合用来判断语言模型收敛效果。</p>
+<h2 id="第二阶段torchtitan-8b-训练">12.2 第二阶段：TorchTitan 8B 训练</h2>
+<p><a href="https://github.com/pytorch/torchtitan">TorchTitan</a> 是 PyTorch 原生的大模型训练平台，提供 FSDP2、TP、PP、CP、EP、训练 Profiling 等能力。当前仓库采用 Python <strong>Recipe（训练配方）</strong>组织模型与并行配置，<code>run_train.sh</code> 根据 <code>MODULE</code> 与 <code>CONFIG</code> 选择 Recipe。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash codebox"><code class="sourceCode bash"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a><span class="co"># 按官方仓库中的要求安装匹配的 PyTorch/CUDA 版本</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a> <span class="fu">git</span> clone https://github.com/pytorch/torchtitan</span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a> <span class="bu">cd</span> torchtitan</span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a><span class="co"># Debug 模型：小规模测试配置，优先确认环境</span></span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a> <span class="va">NGPU</span><span class="op">=</span>1 <span class="ex">./run_train.sh</span></span>
+<span id="cb16-8"><a aria-hidden="true" href="#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a aria-hidden="true" href="#cb16-9" tabindex="-1"></a><span class="co"># 下载 Llama 3.1 的 tokenizer 等资源后，8 GPU 示例</span></span>
+<span id="cb16-10"><a aria-hidden="true" href="#cb16-10" tabindex="-1"></a> <span class="va">MODULE</span><span class="op">=</span>torchtitan_recipes.models.llama3 <span class="dt">\</span></span>
+<span id="cb16-11"><a aria-hidden="true" href="#cb16-11" tabindex="-1"></a> <span class="va">CONFIG</span><span class="op">=</span>llama3_8b <span class="va">NGPU</span><span class="op">=</span>8 <span class="ex">./run_train.sh</span></span></code></pre></div>
+<p>使用 Hugging Face 的受限资源可能需要先获得模型访问权限并提供 Token。真实数据配置、Dataloader、Sequence Length、Checkpoint 路径应在 Recipe 中明确固定。单卡环境的 Debug 配方先跑通，再切换到目标规模。</p>
+<p>若要构建 <code>TP2×FSDP4</code> 的消融，可新增自己的 Python Recipe（示意）：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python codebox"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a><span class="im">from</span> torchtitan_recipes.models.llama3 <span class="im">import</span> llama3_8b</span>
+<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a aria-hidden="true" href="#cb17-3" tabindex="-1"></a><span class="kw">def</span> llama3_8b_tp2_fsdp4():</span>
+<span id="cb17-4"><a aria-hidden="true" href="#cb17-4" tabindex="-1"></a>    cfg <span class="op">=</span> llama3_8b()</span>
+<span id="cb17-5"><a aria-hidden="true" href="#cb17-5" tabindex="-1"></a>    cfg.parallelism.tensor_parallel_degree <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb17-6"><a aria-hidden="true" href="#cb17-6" tabindex="-1"></a>    cfg.parallelism.data_parallel_shard_degree <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb17-7"><a aria-hidden="true" href="#cb17-7" tabindex="-1"></a>    <span class="cf">return</span> cfg</span></code></pre></div>
+<p>实际使用时将函数放到仓库可导入的模块，令 <code>MODULE=... CONFIG=llama3_8b_tp2_fsdp4</code>，并校验当前 TorchTitan 版本的 Recipe 字段、TP 支持和 GPU 拓扑。配置应与代码版本一起锁定，不同版本可能更改训练参数或支持范围。</p>
+<h2 id="六组消融实验">12.3 六组消融实验</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+<col style="width: 25%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>实验</th>
+<th>配置</th>
+<th>主要观测</th>
+<th>验证问题</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E0</td>
+<td>FSDP8 + BF16</td>
+<td>Step、Tokens/s、峰值显存</td>
+<td>基线资源使用</td>
+</tr>
+<tr class="even">
+<td>E1</td>
+<td>E0 + Activation Checkpointing</td>
+<td>激活显存、Backward 时间</td>
+<td>用多少计算换多少显存</td>
+</tr>
+<tr class="odd">
+<td>E2</td>
+<td>TP2 × FSDP4</td>
+<td>NCCL、GEMM Shape、MFU</td>
+<td>机内 TP 是否值得</td>
+</tr>
+<tr class="even">
+<td>E3</td>
+<td>E2 + 通信重叠策略</td>
+<td>NCCL 可见等待时长</td>
+<td>Overlap 能隐藏多少通信</td>
+</tr>
+<tr class="odd">
+<td>E4</td>
+<td>长上下文 + CP2</td>
+<td>Attention 与 KV 通信</td>
+<td>序列分片能降低多少峰值</td>
+</tr>
+<tr class="even">
+<td>E5</td>
+<td>E0 + 不同 Microbatch / GradAccum</td>
+<td>Kernel Shape、Tokens/s</td>
+<td>Batch 对计算利用率的影响</td>
+</tr>
+</tbody>
+</table></div>
+<p>实验控制变量：相同模型结构、权重初始化/随机种子、序列长度、全局有效 Batch、数据形状、精度、GPU 数量和测量区间。改变 CP 或 TP 时，必须检查数据并行 Degree 与有效 Batch 是否仍一致。单次结果容易受编译预热、缓存、系统负载干扰，建议每项至少重复几次并记录中位数与波动范围。</p>
+<p>建议采集字段：<code>step_time_p50/p95、global_tokens_s、peak_allocated/reserved、estimated_MFU、forward_time、backward_time、optimizer_time、nccl_exposed_time</code>。在确有 Profile 或日志证据前不填写“提升百分比”。</p>
+<h2 id="典型工程故障排查">12.4 典型工程故障排查</h2>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OOM（Out Of Memory）</td>
+<td>单卡显存、模型 shard、激活 Checkpoint、Microbatch、FSDP AG 缓冲、NCCL Buffer</td>
+</tr>
+<tr class="even">
+<td>DDP Hang</td>
+<td>各 Rank 是否都执行了 Collective、Step 数是否一致、DataLoader 是否分片、异常退出 Rank</td>
+</tr>
+<tr class="odd">
+<td>NCCL 效率差</td>
+<td><code>nvidia-smi topo -m</code>、TP Group 是否跨 PCIe/节点、消息大小、重叠情况</td>
+</tr>
+<tr class="even">
+<td>Loss NaN</td>
+<td>梯度范围、混合精度、溢出/下溢、Softmax、数据质量、学习率</td>
+</tr>
+<tr class="odd">
+<td>Profile 波动大</td>
+<td>Warmup、torch.compile 重编译、CUDA 异步测量、系统干扰、输入形状变化</td>
+</tr>
+<tr class="even">
+<td>MFU 很低</td>
+<td>小 GEMM、CPU Launch、NCCL、Mask/Padding、参数量/FLOPs 估算口径</td>
+</tr>
+</tbody>
+</table></div>
+<hr/>
+<h1 id="面试速查把知识组织成可讲述的答案">13 · 面试速查：把知识组织成可讲述的答案</h1>
+<div class="table-scroll"><table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>面试问题</th>
+<th>60 秒回答的核心抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CUDA Stream 和 CPU 异步如何工作？</td>
+<td>CPU 只提交任务；同 Stream 顺序；跨 Stream 用 Event；Event/同步决定依赖与可见性</td>
+</tr>
+<tr class="even">
+<td>为什么两个 Stream 没有加速？</td>
+<td>无独立资源、依赖链、隐式同步、H2D 未 Pin、Kernel 资源已占满</td>
+</tr>
+<tr class="odd">
+<td>Warp 和 Block 的区别？</td>
+<td>Warp 为 32 线程执行组；Block 为共享 Memory/同步边界；Block 被调度到 SM</td>
+</tr>
+<tr class="even">
+<td>Shared Memory Bank Conflict 如何解决？</td>
+<td>按 Lane 推导 Bank 编号；Padding 33、Swizzle/XOR；检查 ncu 指标</td>
+</tr>
+<tr class="odd">
+<td>PyTorch Autograd 如何保存激活？</td>
+<td>Forward 记录算子反向节点与所需 Tensor；Backward 依赖反向执行；Checkpoint 重算</td>
+</tr>
+<tr class="even">
+<td>BF16 和 FP16 区别？</td>
+<td>相同 16 位；BF16 指数范围大、有效位少；FP16 常配合 Loss Scaling</td>
+</tr>
+<tr class="odd">
+<td>7B 训练需要多少显存？</td>
+<td>先确认 dtype/optimizer；常见 12/16 B 每参数，再加激活、通信缓冲</td>
+</tr>
+<tr class="even">
+<td>DDP 为什么不同卡参数仍一致？</td>
+<td>相同初始权重、聚合平均梯度、相同优化器规则；关注随机性与同步时序</td>
+</tr>
+<tr class="odd">
+<td>DDP Gradient Bucket 有什么用？</td>
+<td>分 Bucket 梯度就绪立刻通信，与剩余 Backward 重叠</td>
+</tr>
+<tr class="even">
+<td>ZeRO-1/2/3 分别切什么？</td>
+<td>优化器；再加梯度；再加参数；通信与内存成本逐级改变</td>
+</tr>
+<tr class="odd">
+<td>FSDP 为什么 Forward 要 All-Gather？</td>
+<td>本地长期只有参数 Shard；运行当前层需要完整参数计算</td>
+</tr>
+<tr class="even">
+<td>TP 的 Column/Row Linear 如何通信？</td>
+<td>列切输出通道；行切输入通道并聚合 Partial Output</td>
+</tr>
+<tr class="odd">
+<td>SP 和 CP 区别？</td>
+<td>SP 与 TP 协同切非 Attention 激活；CP 切全序列并需跨卡交换 Attention KV</td>
+</tr>
+<tr class="even">
+<td>PP Bubble 如何降低？</td>
+<td>更多 Microbatch、1F1B、Interleaving、Stage 负载均衡，权衡激活与调度复杂度</td>
+</tr>
+<tr class="odd">
+<td>MoE EP 的两次 All-to-All 在做什么？</td>
+<td>Dispatch Token Hidden State 到 Expert；Combine 输出回 Token 原位置</td>
+</tr>
+<tr class="even">
+<td>FlashAttention 为什么快？</td>
+<td>IO-Aware Tiling 与 Online Softmax，省 S² HBM 中间量，算术量仍大体不变</td>
+</tr>
+<tr class="odd">
+<td>MFU 如何计算？</td>
+<td>明确模型有效 FLOPs、总 Tokens/s、GPU 个数与峰值算力精度，修正长序列/MoE</td>
+</tr>
+<tr class="even">
+<td>Nsight Systems、Compute、Profiler 怎么分工？</td>
+<td>Systems 时间线；Compute 单算子硬件计数；Profiler 算子、调用栈与 Tensor Memory</td>
+</tr>
+<tr class="odd">
+<td>8 卡 A100 用哪种并行？</td>
+<td>先看每卡 40/80GB、模型状态/激活、拓扑；FSDP 作为 7B 起点，再评估 TP/CP</td>
+</tr>
+<tr class="even">
+<td>为什么多卡训练吞吐不线性？</td>
+<td>通信、同步、慢 Rank、TP 切小 GEMM、PP Bubble、数据加载和实际 Batch 不匹配</td>
+</tr>
+</tbody>
+</table></div>
+<hr/>
+<h1 id="两周动手顺序与验收标准">14 · 两周动手顺序与验收标准</h1>
+<p><strong>第 1–2 天</strong>：运行 TinyGPT；掌握 CUDA Grid/Block/Warp、寄存器/Shared Memory、Coalescing。CUDA C 写一次 VecAdd 并解释线程索引。</p>
+<p><strong>第 3–4 天</strong>：用 <code>torch.cuda.Stream</code> + Event 做异步 H2D；理解 Autograd 和 Gradient Accumulation；单卡 BF16、Optimizer、Scheduler 跑通。</p>
+<p><strong>第 5–6 天</strong>：完成双卡 DDP；画梯度 Bucket 的同步时序；阅读 FSDP2 完整参数 Gather / 梯度 RS 路径。</p>
+<p><strong>第 7–8 天</strong>：学习 Transformer、GQA/MLA、FlashAttention；用 Tensor Shape 推导显存和 FLOPs；读 Online Softmax 更新式。</p>
+<p><strong>第 9–10 天</strong>：学习 TP/SP、PP、EP、CP；手画 <code>TP2×FSDP4</code> 的 Rank 布局与通信原语。</p>
+<p><strong>第 11–12 天</strong>：单卡跑 Profiler、Nsight Systems；锁定 TorchTitan 版本和 Recipe，完成 8GPU Debug/8B 训练步骤。</p>
+<p><strong>第 13–14 天</strong>：完成 BF16、Checkpoint、TP/CP 等有代表性的消融，写出吞吐/显存/MFU 的比较与解释。</p>
+<p><strong>验收门槛</strong>：能用 5 分钟解释一轮训练 Step、7B 静态显存账本、DDP/FSDP/TP 数据布局；能用 10 分钟对照一份 Nsight Trace 讲清性能瓶颈与验证方法；手里有训练日志、实验参数和可复现命令。</p>
+<hr/>
+<h1 id="附录-a-阅读资料与代码入口">附录 A · 阅读资料与代码入口</h1>
+<p>本学习笔记参考 <a href="https://github.com/caomaolufei/AIInfraGuide">caomaolufei/AIInfraGuide</a> 的<strong>按基础机制—源码/代码—性能优化—练习组织章节</strong>的方法；图、示例与总结重新编排，并加入 PyTorch 训练到 TorchTitan 8B 的实验主线。</p>
+<p><strong>结合原仓库阅读</strong>：</p>
+<ul>
+<li><a href="https://github.com/caomaolufei/AIInfraGuide/blob/main/docs/guides/模块二-CUDA编程与算子优化/1.2-CUDA编程模型.md">CUDA 编程模型</a> — Grid/Block/Warp / Kernel Launch。</li>
+<li><a href="https://github.com/caomaolufei/AIInfraGuide/blob/main/docs/guides/模块二-CUDA编程与算子优化/2.2-内存访问优化.md">内存访问优化</a> — Coalescing、Padding/Swizzle、访存效率。</li>
+<li><a href="https://github.com/caomaolufei/AIInfraGuide/blob/main/docs/guides/模块二-CUDA编程与算子优化/6.1-FlashAttention%20V1详解.md">FlashAttention V1 详解</a> — IO-Aware、Tiling、Online Softmax。</li>
+<li><a href="https://github.com/caomaolufei/AIInfraGuide/blob/main/docs/guides/模块三-分布式训练/1.1%20分布式训练总论.md">分布式训练总论</a> — 显存账本与五类并行策略。</li>
+<li><a href="https://github.com/caomaolufei/AIInfraGuide/blob/main/docs/guides/模块三-分布式训练/4.2%20PyTorch%20数据并行从原理到实战.md">PyTorch 数据并行实战</a> — torchrun、DDP/FSDP 和错误排查。</li>
+</ul>
+<p><strong>以官方文档校准 API 与实现细节</strong>：</p>
+<ul>
+<li><a href="https://docs.nvidia.com/cuda/cuda-programming-guide/">NVIDIA CUDA Programming Guide</a> — CUDA 执行、Stream、Memory、Synchronization。</li>
+<li><a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">PyTorch Learn the Basics</a> — Tensor、Autograd、Optimization。</li>
+<li><a href="https://docs.pytorch.org/docs/stable/distributed.fsdp.fully_shard.html">PyTorch FSDP2 <code>fully_shard</code></a> — DTensor 参数状态、FSDP Hooks 与 Prefetch。</li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention">PyTorch Scaled Dot Product Attention</a> — Attention Backend 和 GQA。</li>
+<li><a href="https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html">PyTorch Profiler</a> 与 <a href="https://docs.nvidia.com/nsight-systems/UserGuide/index.html">Nsight Systems</a> — 性能分析。</li>
+<li><a href="https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html">NVIDIA Megatron Core CP</a> — SP / CP 区别与 KV 通信。</li>
+<li><a href="https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html">NVIDIA Megatron Core Parallelism Guide</a> — TP/PP/CP/EP 组合。</li>
+<li><a href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html">NVIDIA NCCL Collectives</a> — Collective 语义。</li>
+<li><a href="https://github.com/Dao-AILab/flash-attention">FlashAttention Repo</a> — 论文与 CUDA Kernel。</li>
+<li><a href="https://github.com/pytorch/torchtitan">TorchTitan Repo</a> 与 <a href="https://github.com/pytorch/torchtitan/blob/main/torchtitan/config/README.md">配置说明</a> — Recipe、运行命令、N-D Parallel。</li>
+<li><a href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a> — 高性能模型并行与训练框架实现。</li>
+</ul>
+<h1 id="附录-b-配套项目文件">附录 B · 配套项目文件</h1>
+<ul>
+<li><code>examples/train_tiny_gpt.py</code>：Tiny Decoder-only 训练脚本（单卡/DDP/BF16/Checkpoint/Profiler）；已运行 CPU 单进程和双进程 DDP 冒烟测试。</li>
+<li><code>examples/cuda_stream_demo.py</code>：跨 Stream H2D + Event + <code>record_stream</code> 示例（需要 CUDA GPU）。</li>
+<li><code>examples/vec_add.cu</code>：完整 CUDA C 向量加法，建议用 <code>nvcc -O2 examples/vec_add.cu -o vec_add</code> 编译（需要 CUDA Toolkit）。</li>
+<li><code>reports/experiment_template.md</code>：记录每组运行环境、吞吐、显存、MFU、Trace 截图与性能结论。</li>
+</ul>
+<blockquote>
+<p><strong>验证状态（2026-10-25）</strong>：PyTorch 训练样例通过 CPU 单进程、双进程 DDP 冒烟测试；CUDA Stream / NVIDIA Nsight / 8×A100 TorchTitan 实机实验需在可用 GPU 环境执行。实际性能数据留空，由实验填入。</p>
+</blockquote>
+</article><footer class="footer">本文件包含全部插图，无需联网 · 参考资料链接仅在联网时可访问</footer></div></div><div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><div class="lightbox-toolbar"><span class="lightbox-title" id="lightbox-title"></span><button id="lightbox-out" title="缩小">−</button><button id="lightbox-in" title="放大">＋</button><button id="lightbox-close" title="关闭">关闭</button></div><div class="lightbox-canvas"><img id="lightbox-img" alt="放大的技术图" /></div></div><script>
+(function(){
+const root=document.body,side=document.getElementById('sidebar'),navlinks=[...document.querySelectorAll('#toc a')];
+const darkBtn=document.getElementById('theme'),toggle=document.getElementById('toggle-menu');
+let activeId='';
+const stored=(()=>{try{return localStorage.getItem('infra-note-theme')}catch(e){return null}})();
+if(stored==='dark'){root.classList.add('dark');darkBtn.textContent='浅色';}
+darkBtn.onclick=()=>{root.classList.toggle('dark');darkBtn.textContent=root.classList.contains('dark')?'浅色':'深色';try{localStorage.setItem('infra-note-theme',root.classList.contains('dark')?'dark':'light')}catch(e){}};
+toggle.onclick=()=>{side.classList.toggle('show');toggle.setAttribute('aria-expanded',side.classList.contains('show')?'true':'false')};
+navlinks.forEach(a=>a.addEventListener('click',()=>side.classList.remove('show')));
+const lb=document.getElementById('lightbox'),big=document.getElementById('lightbox-img'),title=document.getElementById('lightbox-title');let scale=1,basewidth=1000;
+function resize(){big.style.width=Math.round(basewidth*scale)+'px'}
+function closeLightbox(){lb.classList.remove('open');big.removeAttribute('src');document.body.style.overflow=''}
+function openLightbox(im){scale=1;big.src=im.src;title.textContent=im.alt||'技术架构图';basewidth=Math.max(900,im.naturalWidth||1000);resize();lb.classList.add('open');document.body.style.overflow='hidden'}
+document.querySelectorAll('figure.diagram img').forEach(im=>{im.tabIndex=0;im.title='点击放大架构图';im.addEventListener('click',()=>openLightbox(im));im.addEventListener('keydown',e=>{if(e.key==='Enter')openLightbox(im)})});
+document.getElementById('lightbox-close').onclick=closeLightbox;
+document.getElementById('lightbox-in').onclick=()=>{scale=Math.min(3,scale*1.25);resize()};
+document.getElementById('lightbox-out').onclick=()=>{scale=Math.max(.45,scale/1.25);resize()};
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox()});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+const headings=[...document.querySelectorAll('.article h1[id],.article h2[id]')];
+function update(){const h=document.documentElement;let ratio=(h.scrollTop/(h.scrollHeight-h.clientHeight||1));document.getElementById('progress').style.width=(Math.min(1,Math.max(0,ratio))*100)+'%';
+let current=headings[0]?.id;for(const item of headings){if(item.getBoundingClientRect().top<132) current=item.id;else break}
+if(current!==activeId){activeId=current;navlinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}}
+window.addEventListener('scroll',update,{passive:true});update();
+const s=document.getElementById('toc-filter');s.addEventListener('input',()=>{const q=s.value.toLowerCase().trim();navlinks.forEach(a=>{a.style.display=a.textContent.toLowerCase().includes(q)?'':'none'});});
+})();
+</script></body></html>
