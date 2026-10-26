@@ -53,6 +53,10 @@ math[display="block"]{max-width:100%;overflow-x:auto;padding:8px 0;margin:12px 0
 <a class="nav-chapter" href="#分布式通信原语与-nccl" title="06 · 分布式通信原语与 NCCL">06 · 分布式通信原语与 NCCL</a>
 <a class="nav-section" href="#一张表区分四种最常用的-collective" title="6.1 一张表区分四种最常用的 Collective">6.1 一张表区分四种最常用的 Collective</a>
 <a class="nav-section" href="#process-group-与-rank-mapping" title="6.2 Process Group 与 Rank Mapping">6.2 Process Group 与 Rank Mapping</a>
+<a class="nav-chapter" href="#ddp-zero-fsdp2" title="07 · DDP、ZeRO 与 FSDP2">07 · DDP、ZeRO 与 FSDP2</a>
+<a class="nav-section" href="#ddp-full-model" title="7.1 DDP：每张 GPU 训练不同数据、持有完整模型">7.1 DDP：每张 GPU 训练不同数据、持有完整模型</a>
+<a class="nav-section" href="#zero-state-sharding" title="7.2 ZeRO：按什么顺序切分训练状态？">7.2 ZeRO：按什么顺序切分训练状态？</a>
+<a class="nav-section" href="#fsdp2-parameter-gradient-sharding" title="7.3 FSDP2：按模块 All-Gather 参数、Reduce-Scatter 梯度">7.3 FSDP2：按模块 All-Gather 参数、Reduce-Scatter 梯度</a>
 <a class="nav-chapter" href="#tpsp-与-pp模型并行如何切" title="08 · TP、SP 与 PP：模型并行如何切">08 · TP、SP 与 PP：模型并行如何切</a>
 <a class="nav-section" href="#tp把一个大矩阵乘法分给多张-gpu" title="8.1 TP：把一个大矩阵乘法分给多张 GPU">8.1 TP：把一个大矩阵乘法分给多张 GPU</a>
 <a class="nav-section" href="#sp为什么-tp-之后还要切序列" title="8.2 SP：为什么 TP 之后还要切序列？">8.2 SP：为什么 TP 之后还要切序列？</a>
@@ -553,76 +557,52 @@ __shared__ float padded[32][33];
 <blockquote>
 <p><strong>本章自测</strong>：用两个数组模拟 AR、RS、AG；解释为什么 DDP Bucket Ready 后可边反向边 All-Reduce。</p>
 </blockquote>
-<div class="table-scroll"><table style="width:6%;">
-<colgroup>
-<col style="width: 5%"/>
-</colgroup>
+<h1 id="ddp-zero-fsdp2">07 · DDP、ZeRO 与 FSDP2</h1>
+<h2 id="ddp-full-model">7.1 DDP：每张 GPU 训练不同数据、持有完整模型</h2>
+<p><strong>DDP（Distributed Data Parallel，分布式数据并行）</strong>复制参数、梯度和优化器状态。假设 2 GPU，各自得到不同 Batch。GPU0 和 GPU1 独立做 Forward/Backward；梯度 Bucket（梯度桶）就绪时，DDP 发起 All-Reduce，将梯度聚合为一致值，再分别更新本地参数。</p>
+<pre class="codebox"><code>                  Global Batch
+                 /            \
+             Batch 0          Batch 1
+              GPU 0            GPU 1
+           full weights     full weights
+           forward/back     forward/back
+              grads -- All-Reduce -- grads
+           AdamW update     AdamW update
+              W(t+1)           W(t+1)</code></pre>
+<p><strong>通信时间能否隐藏</strong>取决于反向计算剩余工作量、Bucket 大小和互联带宽。DDP 反向过程中一个 Bucket Ready 就可以进入通信 Stream，因此在 Nsight 上通常能看到 NCCL 与其他 Backward Kernel 重叠。</p>
+<p>DDP 的典型限制：每卡需要容纳完整模型和优化器状态。7B 用 AdamW 时，仅静态状态就可能超出单张 80GB 的容量，因此训练 7B 更常先用参数/优化器分片方案。</p>
+<h2 id="zero-state-sharding">7.2 ZeRO：按什么顺序切分训练状态？</h2>
+<p><strong>ZeRO（Zero Redundancy Optimizer，零冗余优化器）</strong>消除 DP 组内的训练状态重复。设模型静态状态使用上一章的 16 B/参数账本，<code>P</code> 个 Rank：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr><th>方法</th><th>每 Rank 主要持有的静态状态（概念估算）</th><th>通信特点</th></tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td># 07 · DDP、ZeRO 与 FSDP2</td>
-</tr>
-<tr class="even">
-<td>## 7.1 DDP：每张 GPU 训练不同数据、持有完整模型</td>
-</tr>
-<tr class="odd">
-<td><strong>DDP（Distributed Data Parallel，分布式数据并行）</strong>复制参数、梯度和优化器状态。假设 2 GPU，各自得到不同 Batch。GPU0 和 GPU1 独立做 Forward/Backward；梯度 Bucket（梯度桶）就绪时，DDP 发起 All-Reduce，将梯度聚合为一致值，再分别更新本地参数。</td>
-</tr>
-<tr class="even">
-<td><code>text Global Batch /            \ Batch 0          Batch 1 GPU 0            GPU 1 full weights     full weights forward/back    forward/back grads -- All-Reduce -- grads AdamW update    AdamW update W(t+1)          W(t+1)</code></td>
-</tr>
-<tr class="odd">
-<td><strong>通信时间能否隐藏</strong>取决于反向计算剩余工作量、Bucket 大小和互联带宽。DDP 反向过程中一个 Bucket Ready 就可以进入通信 Stream，因此在 Nsight 上通常能看到 NCCL 与其他 Backward Kernel 重叠。</td>
-</tr>
-<tr class="even">
-<td>DDP 的典型限制：每卡需要容纳完整模型和优化器状态。7B 用 AdamW 时，仅静态状态就可能超出单张 80GB 的容量，因此训练 7B 更常先用参数/优化器分片方案。</td>
-</tr>
-<tr class="odd">
-<td>## 7.2 ZeRO：按什么顺序切分训练状态？</td>
-</tr>
-<tr class="even">
-<td><strong>ZeRO（Zero Redundancy Optimizer，零冗余优化器）</strong>消除 DP 组内的训练状态重复。设模型静态状态使用上一章的 16 B/参数账本，<code>P</code> 个 Rank：</td>
-</tr>
-<tr class="odd">
-<td>| 方法 | 每 Rank 主要持有的静态状态（概念估算） | 通信特点 | |—|—|—| | DDP | <code>2P + 2P + 12P = 16P</code> 字节 | 反向梯度 All-Reduce | | ZeRO-1 | <code>2P + 2P + 12P/N</code> | 优化器状态分片，更新后同步参数 | | ZeRO-2 | <code>2P + (2P+12P)/N</code> | 梯度 RS、更新后参数同步 | | ZeRO-3 | <code>16P/N</code> | 前向/反向需要聚合参数，梯度 RS |</td>
-</tr>
-<tr class="even">
-<td>表中 <code>P</code> 代表参数总数，<code>N</code> 代表 DP 分片数量。它展示的是状态分片的主体，没有算激活、临时参数 All-Gather、通信缓存；具体 dtype/实现变化会影响系数。</td>
-</tr>
-<tr class="odd">
-<td>## 7.3 FSDP2：按模块 All-Gather 参数、Reduce-Scatter 梯度</td>
-</tr>
-<tr class="even">
-<td><strong>FSDP2（Fully Sharded Data Parallel v2，第二代完全分片数据并行）</strong>通过 PyTorch <code>fully_shard</code>，将模型参数按 Device Mesh（设备网格）拆成 <strong>DTensor（分布式张量）</strong>。每个 Rank 长期保存自己的参数与优化器分片；当前模块运行前恢复所需的参数，计算后释放完整参数缓冲；梯度则 Reduce-Scatter 回各 Rank。</td>
-</tr>
-<tr class="odd">
-<td><figure class="diagram"><img alt="FSDP2 的参数聚合和梯度分片流程" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMDExcHQiIGhlaWdodD0iMTM4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTAxMS4wMCAxMzguMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDE4IDEyMCkiPgo8dGl0bGU+RzwvdGl0bGU+CjwhLS0gR1BVMCDmjIHmnIkgc2hhcmQgMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5HUFUwIOaMgeaciSBzaGFyZCAwPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE0MiwtMTAyQzE0MiwtMTAyIDEyLC0xMDIgMTIsLTEwMiA2LC0xMDIgMCwtOTYgMCwtOTAgMCwtOTAgMCwtNzggMCwtNzggMCwtNzIgNiwtNjYgMTIsLTY2IDEyLC02NiAxNDIsLTY2IDE0MiwtNjYgMTQ4LC02NiAxNTQsLTcyIDE1NCwtNzggMTU0LC03OCAxNTQsLTkwIDE1NCwtOTAgMTU0LC05NiAxNDgsLTEwMiAxNDIsLTEwMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3NyIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5HUFUwIOaMgeaciSBzaGFyZCAwPC90ZXh0Pgo8L2c+CjwhLS0gQWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zNjUsLTY5QzM2NSwtNjkgMjExLC02OSAyMTEsLTY5IDIwNSwtNjkgMTk5LC02MyAxOTksLTU3IDE5OSwtNTcgMTk5LC00NSAxOTksLTQ1IDE5OSwtMzkgMjA1LC0zMyAyMTEsLTMzIDIxMSwtMzMgMzY1LC0zMyAzNjUsLTMzIDM3MSwtMzMgMzc3LC0zOSAzNzcsLTQ1IDM3NywtNDUgMzc3LC01NyAzNzcsLTU3IDM3NywtNjMgMzcxLC02OSAzNjUsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI4OCIgeT0iLTQ3LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5BbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RleHQ+CjwvZz4KPCEtLSBHUFUwIOaMgeaciSBzaGFyZCAwJiM0NTsmZ3Q7QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkdQVTAg5oyB5pyJIHNoYXJkIDAmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTAzLC02NS43OUMxMDMsLTYwLjQ1IDEwMywtNTYgMTAzLC01NiAxMDMsLTU2IDE5MS43NSwtNTYgMTkxLjc1LC01NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43NSwtNTguNDUgMTk4Ljc1LC01NiAxOTEuNzUsLTUzLjU1IDE5MS43NSwtNTguNDUiLz4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlN2VkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xNDIsLTM2QzE0MiwtMzYgMTIsLTM2IDEyLC0zNiA2LC0zNiAwLC0zMCAwLC0yNCAwLC0yNCAwLC0xMiAwLC0xMiAwLC02IDYsMCAxMiwwIDEyLDAgMTQyLDAgMTQyLDAgMTQ4LDAgMTU0LC02IDE1NCwtMTIgMTU0LC0xMiAxNTQsLTI0IDE1NCwtMjQgMTU0LC0zMCAxNDgsLTM2IDE0MiwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzciIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGV4dD4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbAgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMSYjNDU7Jmd0O0FsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik01MiwtMzYuMjFDNTIsLTQxLjU1IDUyLC00NiA1MiwtNDYgNTIsLTQ2IDE5MS43OCwtNDYgMTkxLjc4LC00NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43OCwtNDguNDUgMTk4Ljc4LC00NiAxOTEuNzgsLTQzLjU1IDE5MS43OCwtNDguNDUiLz4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNkN2VlZTkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik01NzgsLTc3QzU3OCwtNzcgNDM0LC03NyA0MzQsLTc3IDQyOCwtNzcgNDIyLC03MSA0MjIsLTY1IDQyMiwtNjUgNDIyLC0zNyA0MjIsLTM3IDQyMiwtMzEgNDI4LC0yNSA0MzQsLTI1IDQzNCwtMjUgNTc4LC0yNSA1NzgsLTI1IDU4NCwtMjUgNTkwLC0zMSA1OTAsLTM3IDU5MCwtMzcgNTkwLC02NSA1OTAsLTY1IDU5MCwtNzEgNTg0LC03NyA1NzgsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjUwNiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Rm9yd2FyZCAvIEJhY2t3YXJkPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MDYiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuW9k+WJjeWxgjwvdGV4dD4KPC9nPgo8IS0tIEFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsCYjNDU7Jmd0O0ZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwJiM0NTsmZ3Q7Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0zNzcuMywtNTFDMzc3LjMsLTUxIDQxNC43NiwtNTEgNDE0Ljc2LC01MSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjQxNC43NiwtNTMuNDUgNDIxLjc2LC01MSA0MTQuNzYsLTQ4LjU1IDQxNC43NiwtNTMuNDUiLz4KPC9nPgo8IS0tIFJlZHVjZSYjNDU7U2NhdHRlcgror6XlsYLmoq/luqYgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6pjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik03NTcsLTc3Qzc1NywtNzcgNjQ3LC03NyA2NDcsLTc3IDY0MSwtNzcgNjM1LC03MSA2MzUsLTY1IDYzNSwtNjUgNjM1LC0zNyA2MzUsLTM3IDYzNSwtMzEgNjQxLC0yNSA2NDcsLTI1IDY0NywtMjUgNzU3LC0yNSA3NTcsLTI1IDc2MywtMjUgNzY5LC0zMSA3NjksLTM3IDc2OSwtMzcgNzY5LC02NSA3NjksLTY1IDc2OSwtNzEgNzYzLC03NyA3NTcsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwMiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+UmVkdWNlJiM0NTtTY2F0dGVyPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MDIiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuivpeWxguair+W6pjwvdGV4dD4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTU5MC4yNiwtNTFDNTkwLjI2LC01MSA2MjcuOTYsLTUxIDYyNy45NiwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2MjcuOTYsLTUzLjQ1IDYzNC45NiwtNTEgNjI3Ljk2LC00OC41NSA2MjcuOTYsLTUzLjQ1Ii8+CjwvZz4KPCEtLSDmr4/ljaHmm7TmlrDmnKzlnLAgc2hhcmQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTk2MywtNjlDOTYzLC02OSA4MjYsLTY5IDgyNiwtNjkgODIwLC02OSA4MTQsLTYzIDgxNCwtNTcgODE0LC01NyA4MTQsLTQ1IDgxNCwtNDUgODE0LC0zOSA4MjAsLTMzIDgyNiwtMzMgODI2LC0zMyA5NjMsLTMzIDk2MywtMzMgOTY5LC0zMyA5NzUsLTM5IDk3NSwtNDUgOTc1LC00NSA5NzUsLTU3IDk3NSwtNTcgOTc1LC02MyA5NjksLTY5IDk2MywtNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODk0LjUiIHk9Ii00Ny41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90ZXh0Pgo8L2c+CjwhLS0gUmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6piYjNDU7Jmd0O+avj+WNoeabtOaWsOacrOWcsCBzaGFyZCAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmJiM0NTsmZ3Q75q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTc2OS4wNiwtNTFDNzY5LjA2LC01MSA4MDYuNzgsLTUxIDgwNi43OCwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI4MDYuNzgsLTUzLjQ1IDgxMy43OCwtNTEgODA2Ljc4LC00OC41NSA4MDYuNzgsLTUzLjQ1Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>FSDP2 的参数聚合和梯度分片流程</figcaption></figure></td>
-</tr>
-<tr class="even">
-<td>以连续两层 <code>Block0</code>、<code>Block1</code> 为例：</td>
-</tr>
-<tr class="odd">
-<td><code>text Compute Stream:     [Block0 FWD] [Block1 FWD] ... [Block1 BWD] [Block0 BWD] NCCL Stream:    [AG Block0] [AG Block1] ... [AG for BWD] [RS Block1] [RS Block0] ↑          ↑                       ↑ 计算前数据就绪    预取下一层                 梯度已产生</code></td>
-</tr>
-<tr class="even">
-<td>关键变量是 <strong>Wrap Granularity（分片粒度）</strong>：若整个 7B 模型只看作一个大分片单元，一次性聚合的参数缓冲可能非常大；按 Transformer Block 分片，显存峰值更容易控制，也为 Prefetch（预取）和通信重叠创造空间。粒度太细则会增加 Collective 启动数量。</td>
-</tr>
-<tr class="odd">
-<td>PyTorch FSDP2 风格片段：</td>
-</tr>
-<tr class="even">
-<td>```python from torch.distributed.fsdp import fully_shard</td>
-</tr>
-<tr class="odd">
-<td># 通常在模型构建并完成相应的设备/mesh 配置后执行： for block in model.blocks: fully_shard(block, mesh=dp_mesh) fully_shard(model, mesh=dp_mesh) # optimizer 应在 sharding 后基于 model.parameters() 构建 ```</td>
-</tr>
-<tr class="even">
-<td><strong>选型依据</strong>：模型能完整放进每卡且需要吞吐扩展，优先 DDP；参数/优化器状态限制了 Microbatch、序列长度或模型规模，则考虑 FSDP/ZeRO；模型单层计算本身也太大、All-Gather 代价很高时，再考虑 TP/PP 配合。</td>
-</tr>
-<tr class="odd">
-<td>&gt; <strong>本章自测</strong>：解释为什么 FSDP <code>All-Gather</code> 发生在 Forward 之前，以及为什么反向通常还需要一次参数聚合。画出 2 层 FSDP 的通信时间线，指出哪些步骤有机会与计算重叠。</td>
-</tr>
-</tbody>
-</table></div>
+<tr><td>DDP</td><td><code>2P + 2P + 12P = 16P</code> 字节</td><td>反向梯度 All-Reduce</td></tr>
+<tr><td>ZeRO-1</td><td><code>2P + 2P + 12P/N</code></td><td>优化器状态分片，更新后同步参数</td></tr>
+<tr><td>ZeRO-2</td><td><code>2P + (2P+12P)/N</code></td><td>梯度 RS、更新后参数同步</td></tr>
+<tr><td>ZeRO-3</td><td><code>16P/N</code></td><td>前向/反向需要聚合参数，梯度 RS</td></tr>
+</tbody></table></div>
+<p>表中 <code>P</code> 代表参数总数，<code>N</code> 代表 DP 分片数量。它展示的是状态分片的主体，没有算激活、临时参数 All-Gather、通信缓存；具体 dtype/实现变化会影响系数。</p>
+<h2 id="fsdp2-parameter-gradient-sharding">7.3 FSDP2：按模块 All-Gather 参数、Reduce-Scatter 梯度</h2>
+<p><strong>FSDP2（Fully Sharded Data Parallel v2，第二代完全分片数据并行）</strong>通过 PyTorch <code>fully_shard</code>，将模型参数按 Device Mesh（设备网格）拆成 <strong>DTensor（分布式张量）</strong>。每个 Rank 长期保存自己的参数与优化器分片；当前模块运行前恢复所需的参数，计算后释放完整参数缓冲；梯度则 Reduce-Scatter 回各 Rank。</p>
+<figure class="diagram"><img alt="FSDP2 的参数聚合和梯度分片流程" class="inline-svg" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDIuNCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMDExcHQiIGhlaWdodD0iMTM4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTAxMS4wMCAxMzguMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDE4IDEyMCkiPgo8dGl0bGU+RzwvdGl0bGU+CjwhLS0gR1BVMCDmjIHmnIkgc2hhcmQgMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5HUFUwIOaMgeaciSBzaGFyZCAwPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTE0MiwtMTAyQzE0MiwtMTAyIDEyLC0xMDIgMTIsLTEwMiA2LC0xMDIgMCwtOTYgMCwtOTAgMCwtOTAgMCwtNzggMCwtNzggMCwtNzIgNiwtNjYgMTIsLTY2IDEyLC02NiAxNDIsLTY2IDE0MiwtNjYgMTQ4LC02NiAxNTQsLTcyIDE1NCwtNzggMTU0LC03OCAxNTQsLTkwIDE1NCwtOTAgMTU0LC05NiAxNDgsLTEwMiAxNDIsLTEwMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3NyIgeT0iLTgwLjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5HUFUwIOaMgeaciSBzaGFyZCAwPC90ZXh0Pgo8L2c+CjwhLS0gQWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0zNjUsLTY5QzM2NSwtNjkgMjExLC02OSAyMTEsLTY5IDIwNSwtNjkgMTk5LC02MyAxOTksLTU3IDE5OSwtNTcgMTk5LC00NSAxOTksLTQ1IDE5OSwtMzkgMjA1LC0zMyAyMTEsLTMzIDIxMSwtMzMgMzY1LC0zMyAzNjUsLTMzIDM3MSwtMzMgMzc3LC0zOSAzNzcsLTQ1IDM3NywtNDUgMzc3LC01NyAzNzcsLTU3IDM3NywtNjMgMzcxLC02OSAzNjUsLTY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI4OCIgeT0iLTQ3LjUiIGZvbnQtZmFtaWx5PSJOb3RvIFNhbnMgQ0pLIFNDIiBmb250LXNpemU9IjE1LjAwIiBmaWxsPSIjMTkzNDRjIj5BbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RleHQ+CjwvZz4KPCEtLSBHUFUwIOaMgeaciSBzaGFyZCAwJiM0NTsmZ3Q7QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkdQVTAg5oyB5pyJIHNoYXJkIDAmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNMTAzLC02NS43OUMxMDMsLTYwLjQ1IDEwMywtNTYgMTAzLC01NiAxMDMsLTU2IDE5MS43NSwtNTYgMTkxLjc1LC01NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43NSwtNTguNDUgMTk4Ljc1LC01NiAxOTEuNzUsLTUzLjU1IDE5MS43NSwtNTguNDUiLz4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGl0bGU+CjxwYXRoIGZpbGw9IiNlN2VkZjkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik0xNDIsLTM2QzE0MiwtMzYgMTIsLTM2IDEyLC0zNiA2LC0zNiAwLC0zMCAwLC0yNCAwLC0yNCAwLC0xMiAwLC0xMiAwLC02IDYsMCAxMiwwIDEyLDAgMTQyLDAgMTQyLDAgMTQ4LDAgMTU0LC02IDE1NCwtMTIgMTU0LC0xMiAxNTQsLTI0IDE1NCwtMjQgMTU0LC0zMCAxNDgsLTM2IDE0MiwtMzYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzciIHk9Ii0xNC41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+R1BVMSDmjIHmnIkgc2hhcmQgMTwvdGV4dD4KPC9nPgo8IS0tIEdQVTEg5oyB5pyJIHNoYXJkIDEmIzQ1OyZndDtBbGwmIzQ1O0dhdGhlciDlvZPliY3lsYLlj4LmlbAgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+R1BVMSDmjIHmnIkgc2hhcmQgMSYjNDU7Jmd0O0FsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik01MiwtMzYuMjFDNTIsLTQxLjU1IDUyLC00NiA1MiwtNDYgNTIsLTQ2IDE5MS43OCwtNDYgMTkxLjc4LC00NiIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjE5MS43OCwtNDguNDUgMTk4Ljc4LC00NiAxOTEuNzgsLTQzLjU1IDE5MS43OCwtNDguNDUiLz4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNkN2VlZTkiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik01NzgsLTc3QzU3OCwtNzcgNDM0LC03NyA0MzQsLTc3IDQyOCwtNzcgNDIyLC03MSA0MjIsLTY1IDQyMiwtNjUgNDIyLC0zNyA0MjIsLTM3IDQyMiwtMzEgNDI4LC0yNSA0MzQsLTI1IDQzNCwtMjUgNTc4LC0yNSA1NzgsLTI1IDU4NCwtMjUgNTkwLC0zMSA1OTAsLTM3IDU5MCwtMzcgNTkwLC02NSA1OTAsLTY1IDU5MCwtNzEgNTg0LC03NyA1NzgsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjUwNiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+Rm9yd2FyZCAvIEJhY2t3YXJkPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MDYiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuW9k+WJjeWxgjwvdGV4dD4KPC9nPgo8IS0tIEFsbCYjNDU7R2F0aGVyIOW9k+WJjeWxguWPguaVsCYjNDU7Jmd0O0ZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWxsJiM0NTtHYXRoZXIg5b2T5YmN5bGC5Y+C5pWwJiM0NTsmZ3Q7Rm9yd2FyZCAvIEJhY2t3YXJkCuW9k+WJjeWxgjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc4OTBhNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGQ9Ik0zNzcuMywtNTFDMzc3LjMsLTUxIDQxNC43NiwtNTEgNDE0Ljc2LC01MSIvPgo8cG9seWdvbiBmaWxsPSIjNzg5MGE0IiBzdHJva2U9IiM3ODkwYTQiIHN0cm9rZS13aWR0aD0iMS42IiBwb2ludHM9IjQxNC43NiwtNTMuNDUgNDIxLjc2LC01MSA0MTQuNzYsLTQ4LjU1IDQxNC43NiwtNTMuNDUiLz4KPC9nPgo8IS0tIFJlZHVjZSYjNDU7U2NhdHRlcgror6XlsYLmoq/luqYgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6pjwvdGl0bGU+CjxwYXRoIGZpbGw9IiNmZmYxZDgiIHN0cm9rZT0iI2Q1ZTJlZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGQ9Ik03NTcsLTc3Qzc1NywtNzcgNjQ3LC03NyA2NDcsLTc3IDY0MSwtNzcgNjM1LC03MSA2MzUsLTY1IDYzNSwtNjUgNjM1LC0zNyA2MzUsLTM3IDYzNSwtMzEgNjQxLC0yNSA2NDcsLTI1IDY0NywtMjUgNzU3LC0yNSA3NTcsLTI1IDc2MywtMjUgNzY5LC0zMSA3NjksLTM3IDc2OSwtMzcgNzY5LC02NSA3NjksLTY1IDc2OSwtNzEgNzYzLC03NyA3NTcsLTc3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwMiIgeT0iLTU2IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+UmVkdWNlJiM0NTtTY2F0dGVyPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MDIiIHk9Ii0zOSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBDSksgU0MiIGZvbnQtc2l6ZT0iMTUuMDAiIGZpbGw9IiMxOTM0NGMiPuivpeWxguair+W6pjwvdGV4dD4KPC9nPgo8IS0tIEZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkZvcndhcmQgLyBCYWNrd2FyZArlvZPliY3lsYImIzQ1OyZndDtSZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTU5MC4yNiwtNTFDNTkwLjI2LC01MSA2MjcuOTYsLTUxIDYyNy45NiwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI2MjcuOTYsLTUzLjQ1IDYzNC45NiwtNTEgNjI3Ljk2LC00OC41NSA2MjcuOTYsLTUzLjQ1Ii8+CjwvZz4KPCEtLSDmr4/ljaHmm7TmlrDmnKzlnLAgc2hhcmQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0iI2U3ZWRmOSIgc3Ryb2tlPSIjZDVlMmVlIiBzdHJva2Utd2lkdGg9IjEuMiIgZD0iTTk2MywtNjlDOTYzLC02OSA4MjYsLTY5IDgyNiwtNjkgODIwLC02OSA4MTQsLTYzIDgxNCwtNTcgODE0LC01NyA4MTQsLTQ1IDgxNCwtNDUgODE0LC0zOSA4MjAsLTMzIDgyNiwtMzMgODI2LC0zMyA5NjMsLTMzIDk2MywtMzMgOTY5LC0zMyA5NzUsLTM5IDk3NSwtNDUgOTc1LC00NSA5NzUsLTU3IDk3NSwtNTcgOTc1LC02MyA5NjksLTY5IDk2MywtNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODk0LjUiIHk9Ii00Ny41IiBmb250LWZhbWlseT0iTm90byBTYW5zIENKSyBTQyIgZm9udC1zaXplPSIxNS4wMCIgZmlsbD0iIzE5MzQ0YyI+5q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90ZXh0Pgo8L2c+CjwhLS0gUmVkdWNlJiM0NTtTY2F0dGVyCuivpeWxguair+W6piYjNDU7Jmd0O+avj+WNoeabtOaWsOacrOWcsCBzaGFyZCAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SZWR1Y2UmIzQ1O1NjYXR0ZXIK6K+l5bGC5qKv5bqmJiM0NTsmZ3Q75q+P5Y2h5pu05paw5pys5ZywIHNoYXJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgZD0iTTc2OS4wNiwtNTFDNzY5LjA2LC01MSA4MDYuNzgsLTUxIDgwNi43OCwtNTEiLz4KPHBvbHlnb24gZmlsbD0iIzc4OTBhNCIgc3Ryb2tlPSIjNzg5MGE0IiBzdHJva2Utd2lkdGg9IjEuNiIgcG9pbnRzPSI4MDYuNzgsLTUzLjQ1IDgxMy43OCwtNTEgODA2Ljc4LC00OC41NSA4MDYuNzgsLTUzLjQ1Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K"/><figcaption>FSDP2 的参数聚合和梯度分片流程</figcaption></figure>
+<p>以连续两层 <code>Block0</code>、<code>Block1</code> 为例：</p>
+<pre class="codebox"><code>Compute Stream:     [Block0 FWD] [Block1 FWD] ... [Block1 BWD] [Block0 BWD]
+NCCL Stream:    [AG Block0] [AG Block1] ... [AG for BWD] [RS Block1] [RS Block0]
+                    ↑          ↑                          ↑
+              计算前数据就绪  预取下一层                  梯度已产生</code></pre>
+<p>关键变量是 <strong>Wrap Granularity（分片粒度）</strong>：若整个 7B 模型只看作一个大分片单元，一次性聚合的参数缓冲可能非常大；按 Transformer Block 分片，显存峰值更容易控制，也为 Prefetch（预取）和通信重叠创造空间。粒度太细则会增加 Collective 启动数量。</p>
+<p>PyTorch FSDP2 风格片段：</p>
+<pre class="codebox"><code class="language-python">from torch.distributed.fsdp import fully_shard
+
+# 通常在模型构建并完成相应的设备/mesh 配置后执行：
+for block in model.blocks:
+    fully_shard(block, mesh=dp_mesh)
+fully_shard(model, mesh=dp_mesh)
+# optimizer 应在 sharding 后基于 model.parameters() 构建</code></pre>
+<p><strong>选型依据</strong>：模型能完整放进每卡且需要吞吐扩展，优先 DDP；参数/优化器状态限制了 Microbatch、序列长度或模型规模，则考虑 FSDP/ZeRO；模型单层计算本身也太大、All-Gather 代价很高时，再考虑 TP/PP 配合。</p>
+<blockquote><p><strong>本章自测</strong>：解释为什么 FSDP <code>All-Gather</code> 发生在 Forward 之前，以及为什么反向通常还需要一次参数聚合。画出 2 层 FSDP 的通信时间线，指出哪些步骤有机会与计算重叠。</p></blockquote>
 <h1 id="tpsp-与-pp模型并行如何切">08 · TP、SP 与 PP：模型并行如何切</h1>
 <h2 id="tp把一个大矩阵乘法分给多张-gpu">8.1 TP：把一个大矩阵乘法分给多张 GPU</h2>
 <p><strong>TP（Tensor Parallelism，张量并行）</strong>按张量维度切分层内权重，以典型 FFN 的两层矩阵乘法为例：</p>
