@@ -39,7 +39,7 @@ toc: true
 
 假设一个 Research Agent 已经与模型交互了多轮，历史上下文累计 128K Token。这次工具返回约 2K Token 的检索结果，模型需要继续生成 800 Token。一次典型执行可以拆成四段：恢复可复用的历史状态，Prefill 新输入，Decode 新输出，提交这次运行产生的可复用状态。
 
-![图 1｜128K Agent 请求：从历史上下文到下一个 Token](/assets/img/posts/llm-architecture-2026/fig01-request.svg)
+![图 1｜128K Agent 请求：从历史上下文到下一个 Token](/assets/img/posts/llm-architecture-2026/fig01-request.png)
 
 对于传统 Decoder-only Transformer，每一层都为已经处理过的 Token 保存 K/V。历史越长，Decode 每步需要读取的 KV 越多；如果上下文没有命中缓存，新一轮 Prefill 还要重新计算历史输入。128K 长上下文下，模型结构的变化直接改变了四个成本项：**算多少、读多少、存多少、搬多少**。
 
@@ -64,7 +64,7 @@ Transformer Block 的基础结构仍很稳定：归一化、Token Mixer（词元
 2. **Channel Mixer**：怎样分配计算。Dense FFN 或 MoE 决定每个 Token 激活哪些参数，以及是否需要跨 GPU 派发 Token。
 3. **Residual / Auxiliary Memory**：信息沿层传播和外部参数查找的方式。mHC、Gated Residual、Engram/N-gram Embedding 改变残差通路或引入条件记忆。
 
-![图 2｜一层 Transformer 的三个架构扩展点](/assets/img/posts/llm-architecture-2026/fig02-transformer.svg)
+![图 2｜一层 Transformer 的三个架构扩展点](/assets/img/posts/llm-architecture-2026/fig02-transformer.png)
 
 图中 Token Mixer 和 FFN 是每个 Block 的主要计算路径；Residual 负责把上下层的 Hidden States（隐藏状态）连接起来。这里的 *Hidden State* 指当前前向计算的激活；GDN 的 *Recurrent State* 则是跨 Token 保留的历史状态；Engram/N-gram Embedding 是持久的模型权重。这三种“状态/记忆”对应完全不同的内存生命周期。
 
@@ -98,7 +98,7 @@ $$B_{KV}=L\cdot N_{\mathrm{layers}}\cdot 2\cdot H_{KV}\cdot d_h\cdot b.$$
 
 以一个**说明计算方法的配置**为例：32 层、8 个 KV Head、Head Dim 128、BF16、128K Token，逻辑 KV 占用为 **8 GiB**。改用 2 个 KV Head，在其余参数相同时容量为 2 GiB。模型参数及 Attention Head 划分必须一起看；仅凭总参数量无法推断 KV 大小。
 
-![图 3｜MHA / GQA / MLA 的历史缓存布局](/assets/img/posts/llm-architecture-2026/fig03-kv-mla.svg)
+![图 3｜MHA / GQA / MLA 的历史缓存布局](/assets/img/posts/llm-architecture-2026/fig03-kv-mla.png)
 
 ### 3.2 GQA：减少 K/V 的组数
 
@@ -156,7 +156,7 @@ y_t&=S_t^{\top}q_t.
 
 `α_t` 控制旧状态保留比例；`β_t` 控制新关联写入强度。Qwen 的实现还对 Q/K/V 加入短因果卷积（Short Causal Conv）、Q/K L2 Normalization、Sigmoid 输出门和最终线性投影。GDN 的数学公式与 Qwen3.8-Flash-Next 报告第 2.1.1 节一致。
 
-![图 4｜GDN 的 Read → Delta Update → Output 数据流](/assets/img/posts/llm-architecture-2026/fig04-gdn-flow.svg)
+![图 4｜GDN 的 Read → Delta Update → Output 数据流](/assets/img/posts/llm-architecture-2026/fig04-gdn-flow.png)
 
 用简化伪代码表示单步 Decode：
 
@@ -179,7 +179,7 @@ def gdn_step(q, k, v, S, alpha, beta):
 
 GDN 的短因果卷积需要记录最近 `kernel_size − 1` 个输入；循环计算需要记录矩阵 `S`。这两块一起构成一次请求在该层的可续算状态。
 
-![图 5｜GDN State 的张量排布：Recurrent Matrix + Conv Ring](/assets/img/posts/llm-architecture-2026/fig05-gdn-layout.svg)
+![图 5｜GDN State 的张量排布：Recurrent Matrix + Conv Ring](/assets/img/posts/llm-architecture-2026/fig05-gdn-layout.png)
 
 使用 Qwen3.8-2.4T 的公开部署配置来计算一层状态（vLLM，BF16 State）：
 
@@ -207,7 +207,7 @@ $$\mathcal I_t=\operatorname{TopK}(\operatorname{Indexer}(q_t,K_{\mathrm{index}}
 
 实际开销必须计入 Indexer；减少核心 Attention FLOPs 后，Index Score、TopK、Gather 和非连续内存访问常常变成主要成本。
 
-![图 6｜全量历史 → 轻量 Indexer → 稀疏选择 → Core Attention](/assets/img/posts/llm-architecture-2026/fig06-sparse.svg)
+![图 6｜全量历史 → 轻量 Indexer → 稀疏选择 → Core Attention](/assets/img/posts/llm-architecture-2026/fig06-sparse.png)
 
 ### 5.1 DSA 与 IndexShare
 
@@ -244,7 +244,7 @@ $$y_t=\sum_{e\in\operatorname{TopK}(r(h_t))}p_{t,e}\,\mathrm{FFN}_e(h_t)+\mathrm
 
 是否有 Shared Expert（共享专家）、Router 分数如何归一化，取决于具体模型。
 
-![图 7｜MoE：Router、All-to-All Dispatch、Expert GEMM 与 Combine](/assets/img/posts/llm-architecture-2026/fig07-moe.svg)
+![图 7｜MoE：Router、All-to-All Dispatch、Expert GEMM 与 Combine](/assets/img/posts/llm-architecture-2026/fig07-moe.png)
 
 在 Expert Parallelism（专家并行，EP）部署下，一层的执行包含五个阶段：Router 得分；Top-K 选择；按照 Expert 排列 Token；跨 GPU Dispatch；专家 GEMM；再 Combine 回原序。真正困难的场景发生在小 Batch 或负载不均时：专家收到的 Token 数不同，某些设备在排队等待；跨 GPU All-to-All 使端到端时间受到网络拓扑限制。
 
@@ -255,7 +255,7 @@ $$y_t=\sum_{e\in\operatorname{TopK}(r(h_t))}p_{t,e}\,\mathrm{FFN}_e(h_t)+\mathrm
 
 Qwen3.8-2.4T-A95B 的语言主干有 92 层，其层级结构是 `23 × [3 × (GDN → MoE) + 1 × (Gated Full Attention → MoE)]`。也就是 69 层 GDN、23 层全注意力。Full Attention 保留长程 Token 级随机访问，GDN 以固定循环状态承担大量连续上下文建模。
 
-![图 8｜Qwen3.8：92 层、23 组 3:1 Hybrid Attention](/assets/img/posts/llm-architecture-2026/fig08-qwen.svg)
+![图 8｜Qwen3.8：92 层、23 组 3:1 Hybrid Attention](/assets/img/posts/llm-architecture-2026/fig08-qwen.png)
 
 | 组件 | Qwen3.8-2.4T-A95B |
 | --- | --- |
@@ -279,7 +279,7 @@ $$B_{request}(L)=B_{GDN\,checkpoint}+L\cdot (23\cdot B_{KV/token/layer}).$$
 
 Qwen3.8-Flash-Next 的研究原型沿用了 GDN 混合骨架，但让部分全注意力层改为 QSA，并增加四分支 Gated Residual（门控残差）。Gated Residual 为每个残差分支引入读取门，稳定深层网络训练；研究中还引入额外约 51B 参数的 N-gram Embedding，将高频词组关联查表从通用矩阵计算中分离。该嵌入表可放在 Host Memory，通过异步加载供计算使用。
 
-![图 9｜Qwen3.8-Flash-Next：QSA、四路残差与 Host Embedding](/assets/img/posts/llm-architecture-2026/fig09-qwen-next.svg)
+![图 9｜Qwen3.8-Flash-Next：QSA、四路残差与 Host Embedding](/assets/img/posts/llm-architecture-2026/fig09-qwen-next.png)
 
 从成本上看，QSA 进一步减少全局注意力的 Indexer 负担，Gated Residual 改善优化稳定性，而大型 N-gram 表引入了另一种需要管理的非活跃权重访问方式。它们分别落在 Attention、Residual 和参数存储三条路径上。
 
@@ -296,7 +296,7 @@ GLM-5.3 仍需要在大量层上执行长上下文全局相关性选择。IndexS
 
 GLM-5.3-Flash 共 45 层：前 44 层采用 `[KDA,KDA,KDA,Sparse MLA] × 11`，末尾再接一层 KDA。第一到第三层是 Dense FFN，后 42 层采用 MoE。KDA（Kimi Delta Attention，Kimi 增量注意力）属于 Delta Rule 循环注意力家族，允许更细粒度的状态遗忘机制。Sparse MLA 的 Indexer 则借助 IndexPool 将四个历史索引 Key 压为一个汇总项，减轻 1M 上下文的检索成本。
 
-![图 10｜GLM-5.3-Flash：KDA / Sparse MLA、IndexPool 与两套 Pool](/assets/img/posts/llm-architecture-2026/fig10-glm.svg)
+![图 10｜GLM-5.3-Flash：KDA / Sparse MLA、IndexPool 与两套 Pool](/assets/img/posts/llm-architecture-2026/fig10-glm.png)
 
 | 组件 | GLM-5.3-Flash |
 | --- | --- |
@@ -329,7 +329,7 @@ $$C_l=H_{20}W^{KV}_l,\qquad Z_l=H_{20}W^Z_l,\qquad l>20.$$
 
 因此，对于长输入 Prefill，可以让计算主要经过 Encoder 20 层，然后从其最终表示生成上层 Global KV；Decoder 不必为了长提示词逐 Token 完整计算 20 层。Decoder 自己的 Sliding-Window Attention（滑动窗口注意力，SWA）仍然需要准备状态，后文的 Bounded Replay 负责这部分工作。
 
-![图 11｜DeepSeek-V4.1 CED：20 层 Encoder / 20 层 Decoder](/assets/img/posts/llm-architecture-2026/fig11-ced.svg)
+![图 11｜DeepSeek-V4.1 CED：20 层 Encoder / 20 层 Decoder](/assets/img/posts/llm-architecture-2026/fig11-ced.png)
 
 按照公开技术报告的模型激活口径，Prefill 激活约 8B 参数，Decode 约 16B，总主干参数 552B。这种输入与输出计算量的不对称适合多工具返回、长输入和相对短输出的 Agent 工作负载。
 
@@ -343,7 +343,7 @@ CSA2（Compressed Sparse Attention 2，压缩稀疏注意力第二版）把 Glob
 
 三种模式都会生成自己的 Query 和本层 SWA KV。它们在 Global Cache 和索引路径上的共享程度不同。
 
-![图 12｜CSA2：Full / Reindex / Reuse 的跨层共享](/assets/img/posts/llm-architecture-2026/fig12-csa2.svg)
+![图 12｜CSA2：Full / Reindex / Reuse 的跨层共享](/assets/img/posts/llm-architecture-2026/fig12-csa2.png)
 
 DeepSeek 还加入 Hierarchical Sparse Indexer（分层稀疏索引器）。Decoder 中较早的 Full 层先为当前查询建立一个候选池，后续 Reindex 层只在该池内重新评分。例如先选 2048 个 8-Token Block，就形成 16,384 个候选位置，再由各层挑选最终 Top-512。这样后续层的 Indexer 不需要每次扫描整个 1M 上下文。
 
@@ -357,7 +357,7 @@ DeepSeek-V4.1-Flash 在训练中加入 FP4 Main KV 的量化感知优化。Main 
 
 DeepSeek-V4.1-Flash 将 Global KV 与 SWA KV 分层管理：Global KV 在持久化缓存中保留较长时间，短生命周期的 SWA KV 放在 Host DRAM Pool；SWA 命中失败时，只重放最近一个有界窗口。Encoder SWA Replay 读取缓存的 Global KV，恢复缺失的局部状态；Decoder SWA Replay 为即将开始的 Decode 准备局部窗口。
 
-![图 13｜Global KV 长驻、SWA 短驻与 Bounded Replay](/assets/img/posts/llm-architecture-2026/fig13-replay.svg)
+![图 13｜Global KV 长驻、SWA 短驻与 Bounded Replay](/assets/img/posts/llm-architecture-2026/fig13-replay.png)
 
 完整重建深层 SWA 状态可能涉及多层窗口递归展开。Bounded Replay 用最近 `n_win` 个 Token 的有限重放截断这种依赖，属于模型验证过的近似恢复策略。由于可以不在长时间持久缓存中保存大量 SWA KV，V4.1 的持久化缓存占用约为 V4 的 **1/8**。这是模型结构、精度与缓存策略共同产生的效果。
 
@@ -374,7 +374,7 @@ GPT-6 与 Claude 5.5 是当前主流前沿闭源模型系列，但官方材料�
 
 GPT-6 已在 ChatGPT 产品中引入更强的推理和动态界面生成能力。OpenAI 对公开结构讲解较充分的模型是 `gpt-oss-120b`：**36 层**、约 **116.8B 总参数 / 5.1B 激活参数**，每层 MoE 有 128 个 Experts、每 Token Top-4，Attention 交替采用 Full 和宽度 128 的 Local Window，并采用 GQA、RoPE 与 MXFP4 专家权重量化。
 
-![图 14｜公开结构与闭源模型：gpt-oss / GPT-6 / Claude 5.5](/assets/img/posts/llm-architecture-2026/fig14-closed.svg)
+![图 14｜公开结构与闭源模型：gpt-oss / GPT-6 / Claude 5.5](/assets/img/posts/llm-architecture-2026/fig14-closed.png)
 
 这一公开模型很适合作为 MoE/GQA 的可复现实验参照。对 GPT-6 的具体内部 Attention/Expert 机制，当前更有价值的研究材料是它的 System Card、推理能力与工具/界面协同方式；这些信息主要反映模型输出和系统接口。
 
@@ -389,7 +389,7 @@ Claude Opus 5.5、Sonnet 5.5、Haiku 5.5 在成本、速度和任务深度上分
 
 到这里，把三家开源模型放回最开始的 128K Agent 请求会发现：Runtime（推理执行环境）管理的可复用状态已经远远超出一组 KV Tensor。
 
-![图 15｜多类型推理 State：生命周期、存储层与 P/D Transfer](/assets/img/posts/llm-architecture-2026/fig15-runtime.svg)
+![图 15｜多类型推理 State：生命周期、存储层与 P/D Transfer](/assets/img/posts/llm-architecture-2026/fig15-runtime.png)
 
 建议从数据结构上把状态类型区分开：
 
@@ -445,7 +445,7 @@ $$T_{recompute}\approx T_{schedule}+T_{prefill}(L_{missing},\mathrm{architecture
 
 这几代模型有一个明确趋势：**Attention 的存储优化从 Head 维度进入序列维、层维和状态生命周期。**
 
-![图 16｜缓存压缩的四个轴：Head × Token × Layer × Precision](/assets/img/posts/llm-architecture-2026/fig16-axes.svg)
+![图 16｜缓存压缩的四个轴：Head × Token × Layer × Precision](/assets/img/posts/llm-architecture-2026/fig16-axes.png)
 
 在模型侧，Qwen 将固定 GDN State 与稀疏全局访问混合；GLM 将 KDA 与 IndexPool 结合，并把部署推进到 EPD；DeepSeek 将缓存重用扩展到 Decoder 层之间，同时用 Bounded Replay 缩小必须持久保存的局部状态。这些架构分别推动不同的计算/内存边界。
 
