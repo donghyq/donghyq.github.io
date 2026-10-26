@@ -47,6 +47,14 @@ toc: true
 
 这些方案并行存在。一款模型可以同时使用 MoE、压缩 KV、稀疏索引和跨层共享。理解模型架构，需要把它们放回同一条请求路径里。
 
+## Attention 计算路线总览
+
+![图 0｜主流 Attention 的四条演进路线](/assets/img/posts/llm-architecture-2026/fig00-attention-routes.png)
+
+[查看 SVG 矢量原图](/assets/img/posts/llm-architecture-2026/fig00-attention-routes.svg)
+
+从存储方式看，MHA → GQA → MLA 仍保留可寻址的逐 Token 历史；Linear Attention → DeltaNet → GDN/KDA 则转向固定维度的循环 State。DSA/QSA/CSA2 通过稀疏索引减少实际访问量，CED 等结构进一步在 Layer 维度共享历史。FlashAttention、FlashMLA 和 FLA 则优化 GPU Kernel 的访存及计算执行。MoE 负责专家参数路由，与上述 Attention 设计正交。
+
 <a id="s2"></a>
 ## 2. Transformer 中三个独立的设计维度
 
