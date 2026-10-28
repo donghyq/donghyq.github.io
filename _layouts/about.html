@@ -24,10 +24,10 @@
     <header class="panel-left">
         <div>
             <h1>Dong Hanyu</h1>
-            <h2>AI Infra &amp; Search Engineer</h2>
+            <h2>AI Infra Engineer</h2>
             <p class="bio">
-                专注 LLM Serving、KV Cache、Agentic Search 与 GPU 向量检索，
-                持续探索推理系统中的存储、检索与内存优化。
+                专注大模型后训练、推理与智能检索，
+                关注计算、存储和数据流的协同设计。
             </p>
 
             <ul class="left-nav">
@@ -58,20 +58,15 @@
         <section id="about" class="section reveal">
             <div class="section-label">About</div>
             <p>
-                我是一名 AI Infra 与搜索架构工程师，2023 年加入<a href="https://about.meituan.com" target="_blank" rel="noopener">美团</a>搜索推荐技术部。
-                主要关注大模型推理、存储和智能检索，围绕数据生命周期优化计算、存储与传输效率。
+                我是一名 AI Infra 工程师，2023 年加入<a href="https://about.meituan.com" target="_blank" rel="noopener">美团</a>搜索推荐技术部，
+                主要从事大模型推理、AI 存储与智能检索。
             </p>
             <p>
-                工作中参与搜推大模型 <strong>KV Cache</strong> 体系建设，并负责 GPU 向量检索、
-                AI Search Agent 记忆与检索链路、Elasticsearch/Lucene 内核优化等项目。
-                相关实践覆盖 Cache-Aware 路由、分层缓存、PD 分离与 RDMA、HBM/DRAM 异构存储，
-                以及从离线构建、在线加载到灰度发布的完整工程链路。
+                围绕多轮 Agent 强化学习，研究 Rollout 数据管理、版本一致性与故障恢复，
+                关注训练效率与评测体系。
             </p>
             <p>
-                持续参与 SGLang 与 VeRL 开源项目建设
-            </p>
-            <p>
-                这个<a href="{{ site.url }}">博客</a>记录 AI Infra、搜索系统与性能工程方面的实践和思考。
+                持续参与 SGLang 与 verl 开源项目。这个<a href="{{ site.url }}">博客</a>记录 AI Infra、搜索系统与性能工程方面的实践和思考。
             </p>
         </section>
 
@@ -82,14 +77,16 @@
             <div class="timeline-item reveal">
                 <div class="timeline-date">2023 — 至今</div>
                 <div class="timeline-body">
-                    <h3>搜索架构工程师 · 美团</h3>
+                    <h3>AI Infra 工程师 · 美团</h3>
                     <div class="subtitle">搜索推荐技术部</div>
                     <p>
-                        从事大模型推理基础设施与搜索系统研发。参与 KV Cache 路由、分层存储及 PD 分离优化；
+                        从事大模型推理基础设施与搜索系统研发，关注多轮 Agent 异步 RL 的数据交付与恢复；
+                        参与 KV Cache 路由、分层存储及 PD 分离优化；
                         负责 GPU 向量检索的离线构建、在线加载与发布校验；建设 AI Search Agent 的多路召回、
                         LLM Rerank 和分层记忆链路；同时推进精排图编排与 Elasticsearch/Lucene 性能优化。
                     </p>
                     <div class="tags">
+                        <span class="tag">Agent RL</span>
                         <span class="tag">KV Cache</span>
                         <span class="tag">SGLang</span>
                         <span class="tag">RDMA</span>
@@ -295,9 +292,25 @@
                 <div class="gh-contrib-graph">
                     <img src="https://ghchart.rshah.org/5eead4/donghyq" alt="GitHub Contribution Graph" class="gh-chart-img">
                 </div>
-                <div class="gh-recent" id="ghRecent">
-                    <h4>近期活动</h4>
-                    <div class="gh-events-list" id="ghEvents">加载中...</div>
+                <div class="gh-prs">
+                    <h4>精选 Pull Requests</h4>
+                    <p class="gh-pr-note">状态核验于 2026-10-28，详情以 GitHub 为准。</p>
+                    <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/46427" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>SGLang #46427 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>拒绝不完整的 Mooncake KV 读取，避免将部分数据误判为缓存命中。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/46451" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>SGLang #46451 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>优化 KV 预取的内存准入与等待机制，减少瞬时容量不足造成的缓存失效。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/45572" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>SGLang #45572 <span class="arrow">↗</span></span><span class="gh-pr-status draft">Draft</span></div>
+                        <p>探索持久化混合模型的活动请求状态，支持新进程恢复生成。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/verl-project/verl/pull/8387" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>verl #8387 <span class="arrow">↗</span></span><span class="gh-pr-status draft">Draft</span></div>
+                        <p>处理 Rollout 副本停用时的请求竞态，使请求能够重试可用副本。</p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -398,40 +411,6 @@ fetch(`https://api.github.com/users/${GH_USER}`)
     document.getElementById('ghFollowers').textContent = u.followers;
     document.getElementById('ghFollowing').textContent = u.following;
   }).catch(() => {});
-
-fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=8`)
-  .then(r => r.json())
-  .then(events => {
-    const el = document.getElementById('ghEvents');
-    if (!events.length) { el.textContent = '暂无公开活动'; return; }
-    el.innerHTML = events.map(ev => {
-      const repo = ev.repo ? ev.repo.name : '';
-      const time = new Date(ev.created_at);
-      const ago = getTimeAgo(time);
-      let action = ev.type.replace('Event','');
-      if (ev.type === 'PushEvent') action = `Push ${ev.payload.commits ? ev.payload.commits.length : ''} commit(s) to`;
-      else if (ev.type === 'CreateEvent') action = `Created ${ev.payload.ref_type} in`;
-      else if (ev.type === 'WatchEvent') action = 'Starred';
-      else if (ev.type === 'ForkEvent') action = 'Forked';
-      else if (ev.type === 'IssuesEvent') action = `${ev.payload.action} issue in`;
-      else if (ev.type === 'PullRequestEvent') action = `${ev.payload.action} PR in`;
-      else if (ev.type === 'IssueCommentEvent') action = 'Commented on issue in';
-      else if (ev.type === 'DeleteEvent') action = `Deleted ${ev.payload.ref_type} in`;
-      return `<div class="gh-event">
-        <span class="gh-event-action">${action}</span>
-        <a href="https://github.com/${repo}" target="_blank" class="gh-event-repo">${repo}</a>
-        <span class="gh-event-time">${ago}</span>
-      </div>`;
-    }).join('');
-  }).catch(() => { document.getElementById('ghEvents').textContent = '加载失败'; });
-
-function getTimeAgo(date) {
-  const s = Math.floor((Date.now() - date.getTime()) / 1000);
-  if (s < 60) return '刚刚';
-  if (s < 3600) return Math.floor(s/60) + ' 分钟前';
-  if (s < 86400) return Math.floor(s/3600) + ' 小时前';
-  return Math.floor(s/86400) + ' 天前';
-}
 
 // ===== AI Trending (from pre-generated JSON) =====
 const TRENDING_JSON = '{{ "/assets/data/ai-trending.json" | relative_url }}';

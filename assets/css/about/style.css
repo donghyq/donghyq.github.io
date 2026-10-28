@@ -475,56 +475,51 @@ body {
   filter: brightness(0.95);
 }
 
-/* Recent Events */
-.gh-recent h4 {
+/* Selected pull requests */
+.gh-prs h4 {
   font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent);
-  text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.section .gh-pr-note {
+  color: var(--text-dim);
+  font-size: 0.75rem;
   margin-bottom: 1rem;
 }
-
-.gh-events-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.gh-event {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  padding: 0.55rem 1rem;
+.gh-pr {
+  display: block;
+  padding: 0.9rem 1rem;
   border-radius: 6px;
+  text-decoration: none;
   transition: background var(--ease);
 }
-.gh-event:hover {
-  background: var(--bg-card);
-}
-.gh-event-action {
-  color: var(--text);
-  flex-shrink: 0;
-}
-.gh-event-repo {
+.gh-pr:hover, .gh-pr:focus-visible { background: var(--bg-card); }
+.gh-pr-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
   color: var(--text-head);
-  text-decoration: none;
-  font-weight: 500;
-  word-break: break-all;
-  transition: color var(--ease);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
-.gh-event-repo:hover {
-  color: var(--accent);
-}
-.gh-event-time {
-  color: var(--text-dim);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  margin-left: auto;
+.gh-pr:hover .gh-pr-heading { color: var(--accent); }
+.gh-pr-status {
   flex-shrink: 0;
-  white-space: nowrap;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+.gh-pr-status.draft { color: var(--text-dim); }
+.section .gh-pr p {
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0.3rem 0 0;
 }
 
 /* ===== AI Trending section ===== */
@@ -760,13 +755,6 @@ body {
   }
   .gh-stats {
     justify-content: center;
-  }
-  .gh-event {
-    flex-wrap: wrap;
-  }
-  .gh-event-time {
-    margin-left: 0;
-    width: 100%;
   }
   .cursor-glow { display: none; }
 }
