@@ -122,106 +122,34 @@
             <div class="section-label">Projects</div>
 
             <div class="project-card reveal">
+                <div class="project-thumb">🧪</div>
+                <div class="project-body">
+                    <h3>后训练基础设施</h3>
+                    <p>面向多轮 Agent 强化学习的训练数据与运行基础设施。关注 Rollout 数据管理、版本一致性与故障恢复。</p>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
                 <div class="project-thumb">🔬</div>
                 <div class="project-body">
-                    <h3>大模型 KV Cache 体系 <span class="arrow">↗</span></h3>
-                    <p>
-                        面向搜推场景建设 Cache-Aware 与 Load-Aware 路由、HBM/DRAM/远端三级缓存，
-                        并优化 PD 分离架构下的 RDMA KV 传输与前缀复用。
-                    </p>
-                    <div class="metrics">
-                        <div class="metric"><div class="value">-56%</div><div class="label">LLM TTFT</div></div>
-                        <div class="metric"><div class="value">20+ GB/s</div><div class="label">KV 传输</div></div>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">SGLang</span>
-                        <span class="tag">RDMA</span>
-                        <span class="tag">RadixTree</span>
-                        <span class="tag">PD 分离</span>
-                    </div>
+                    <h3>推理与 KV Cache</h3>
+                    <p>面向大模型推理的 KV Cache 与存储优化。参与分层缓存、跨实例复用和 Prefill/Decode 分离，并探索细粒度 KV Cache 量化及其精度与存储开销评估。</p>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-thumb">🔍</div>
                 <div class="project-body">
-                    <h3>GPU 向量检索引擎 <span class="arrow">↗</span></h3>
-                    <p>
-                        面向两亿级商品向量，完成 Spark 离线构建、在线滚动加载、流量回放与灰度发布；
-                        通过 HBM/DRAM 分层和 FP16 降低显存与数据传输开销。
-                    </p>
-                    <div class="metrics">
-                        <div class="metric"><div class="value">25.4ms</div><div class="label">TP99</div></div>
-                        <div class="metric"><div class="value">100%</div><div class="label">召回率</div></div>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Faiss IVF-PQ</span>
-                        <span class="tag">CUDA Stream</span>
-                        <span class="tag">HBM/DRAM</span>
-                        <span class="tag">Spark</span>
-                    </div>
+                    <h3>GPU 检索与搜索引擎</h3>
+                    <p>面向大规模数据的检索系统与搜索引擎优化。涵盖 GPU 向量检索、索引构建与查询性能优化。</p>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-thumb">🧠</div>
                 <div class="project-body">
-                    <h3>AI Search Agent <span class="arrow">↗</span></h3>
-                    <p>
-                        构建“DAG 预编排 + ReAct”检索推理链路，覆盖多路并行召回、LLM Rerank 与摘要生成；
-                        落地短期会话、长期画像和结果缓存组成的分层记忆底座。
-                    </p>
-                    <div class="metrics">
-                        <div class="metric"><div class="value">↑15%</div><div class="label">相关性</div></div>
-                        <div class="metric"><div class="value">↓70%</div><div class="label">LLM 调用</div></div>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">LLM Agent</span>
-                        <span class="tag">Tool Use</span>
-                        <span class="tag">RAG</span>
-                        <span class="tag">Memory</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-thumb">⚡</div>
-                <div class="project-body">
-                    <h3>外卖精排图编排升级 <span class="arrow">↗</span></h3>
-                    <p>
-                        作为项目主 R，将多服务串行链路重构为单入口图内并行，
-                        通过按需特征拉取、diff 一致性验证与热点算子优化降低延迟和资源消耗。
-                    </p>
-                    <div class="metrics">
-                        <div class="metric"><div class="value">-23%</div><div class="label">精排 Avg</div></div>
-                        <div class="metric"><div class="value">-66%</div><div class="label">Rank CPU</div></div>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">WorldTree</span>
-                        <span class="tag">图编排</span>
-                        <span class="tag">异步并发</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-thumb">🔧</div>
-                <div class="project-body">
-                    <h3>ES 搜索引擎深度优化 <span class="arrow">↗</span></h3>
-                    <p>
-                        基于 Lucene SPI 与 MMAP 设计 DocValues 原地更新机制，实现段内 DocID O(1) 寻址；
-                        结合 RLE 倒排编码与查询前置过滤，支撑高频价格更新和低延迟检索。
-                    </p>
-                    <div class="metrics">
-                        <div class="metric"><div class="value">10W+</div><div class="label">QPS</div></div>
-                        <div class="metric"><div class="value">7×</div><div class="label">TP99 优化</div></div>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Lucene SPI</span>
-                        <span class="tag">MMAP</span>
-                        <span class="tag">RLE 编码</span>
-                        <span class="tag">P2P 分发</span>
-                    </div>
+                    <h3>AI Search 与评测</h3>
+                    <p>面向智能搜索的检索与评测体系。关注检索、记忆、评测及 AutoResearch 的协同。</p>
                 </div>
             </div>
         </section>
