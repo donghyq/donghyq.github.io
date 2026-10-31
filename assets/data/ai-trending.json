@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-30T14:40:23.160872+00:00Z",
+  "generated_at": "2026-10-31T13:58:23.488485+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Rust, Python, TypeScript）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Rust, TypeScript, Python）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "obra/superpowers",
           "url": "https://github.com/obra/superpowers",
           "description": "An agentic skills framework & software development methodology that works.",
-          "summary_zh": "面向 AI 编码 Agent 的可复用技能框架与开发方法论，让 Agent 按成熟工程流程稳定交付而非即兴发挥",
-          "stars": 309159,
-          "forks": 27498,
+          "summary_zh": "让 AI 编码 Agent 按成熟软件工程方法论工作的技能框架，把开发流程固化为可复用技能",
+          "stars": 309775,
+          "forks": 27555,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4894
+          "stars_period": 5474
         },
         {
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为 Claude Code、Cursor 等 AI 编码 Agent 提供技能、记忆、安全与性能优化的通用增强框架",
-          "stars": 293115,
-          "forks": 43370,
+          "summary_zh": "为 Claude Code 等 AI 编码 Agent 提供技能、直觉、记忆与安全层的性能优化框架，让 Agent 越用越聪明",
+          "stars": 293737,
+          "forks": 43468,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6594
+          "stars_period": 6506
         },
         {
           "name": "multica-ai/andrej-karpathy-skills",
           "url": "https://github.com/multica-ai/andrej-karpathy-skills",
           "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
-          "summary_zh": "单文件 CLAUDE.md 针对 Karpathy 总结的 LLM 编码陷阱约束 Claude Code 行为，让 AI 少犯低级错误",
-          "stars": 226672,
-          "forks": 22636,
+          "summary_zh": "基于 Karpathy 对 LLM 编码陷阱的观察提炼成单文件 CLAUDE.md，直击 AI 写代码常见坑",
+          "stars": 227233,
+          "forks": 22675,
           "language": "",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4250
+          "stars_period": 4178
         },
         {
           "name": "anomalyco/opencode",
           "url": "https://github.com/anomalyco/opencode",
           "description": "The open source coding agent.",
-          "summary_zh": "开源 TypeScript 编码智能体，让开发者用自然语言直接驱动 AI 完成代码编写与修改任务",
-          "stars": 223198,
-          "forks": 29946,
+          "summary_zh": "开源 TypeScript 编码智能体，让开发者用自然语言驱动 AI 完成代码编写与修改任务",
+          "stars": 223468,
+          "forks": 30005,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3292
+          "stars_period": 3106
         }
       ]
     },
@@ -71,35 +71,35 @@
           "name": "xerj-org/xerj",
           "url": "https://github.com/xerj-org/xerj",
           "description": "AI search engine and MCP server for bots and agents. One Rust binary indexes code, docs, logs, JSONL/CSV and PDFs for BM25 full-text, vector and hybri",
-          "summary_zh": "单二进制 Rust 实现的 AI 搜索引擎与 MCP 服务，统一索引代码文档日志并支持 BM25 全文、向量与混合检索，让 Agent 无需 grep 即可搜代码",
-          "stars": 17647,
-          "forks": 1360,
+          "summary_zh": "单 Rust 二进制即可索引代码文档日志与 PDF，为 AI Agent 提供 BM25 全文向量混合检索与免 grep 代码搜索及记忆能力",
+          "stars": 17851,
+          "forks": 1389,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4823
+          "stars_period": 4227
         },
         {
           "name": "stalwartlabs/stalwart",
           "url": "https://github.com/stalwartlabs/stalwart",
           "description": "All-in-one Mail & Collaboration server. Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).",
-          "summary_zh": "用 Rust 打造的一体化邮件与协作服务器，原生支持 IMAP、JMAP、SMTP、CalDAV 等全协议，安全可扩展",
-          "stars": 15530,
-          "forks": 1029,
+          "summary_zh": "用 Rust 打造的一体化邮件与协作服务器，安全可扩展且原生支持 IMAP、JMAP、SMTP、CalDAV、CardDAV、WebDAV 全协议",
+          "stars": 15565,
+          "forks": 1030,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 260
+          "stars_period": 286
         },
         {
           "name": "AienTech/dossier",
           "url": "https://github.com/AienTech/dossier",
           "description": "A self-hosted job search app that writes tailored resumes and cover letters from your profile.",
-          "summary_zh": "自托管求职管理工具，根据个人档案自动生成定制化简历和求职信，一站式追踪申请进度",
-          "stars": 3315,
-          "forks": 706,
+          "summary_zh": "自托管求职管理工具，根据个人档案自动生成定制简历和求职信，一站式追踪申请进度",
+          "stars": 3466,
+          "forks": 730,
           "language": "TypeScript",
           "topics": [
             "caprover",
@@ -117,9 +117,9 @@
           "name": "kividbio/kividb",
           "url": "https://github.com/kividbio/kividb",
           "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 重写的多线程 Redis/Valkey 替代品，可直接替换且内置全文与向量搜索",
-          "stars": 896,
-          "forks": 28,
+          "summary_zh": "用 Rust 写的多线程 Redis/Valkey 替代品，可直接替换且内置全文与向量搜索",
+          "stars": 948,
+          "forks": 29,
           "language": "Rust",
           "topics": [
             "cache",
@@ -144,53 +144,53 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "让 AI Agent 跨会话记住一切：自动捕获操作、AI 压缩后按需注入未来会话，解决上下文丢失痛点",
-          "stars": 105559,
-          "forks": 9302,
+          "summary_zh": "为AI Agent提供跨会话持久记忆，自动捕获操作记录并用AI压缩，将相关上下文注入后续会话",
+          "stars": 107144,
+          "forks": 9415,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2989
-        },
-        {
-          "name": "vllm-project/vllm",
-          "url": "https://github.com/vllm-project/vllm",
-          "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
-          "summary_zh": "高吞吐且显存高效的大模型推理与服务引擎，用 PagedAttention 显著提升吞吐并降低显存占用",
-          "stars": 95913,
-          "forks": 24185,
-          "language": "Python",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 768
+          "stars_period": 3518
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密，月省74亿Token",
-          "stars": 44413,
-          "forks": 6030,
+          "summary_zh": "聚合34家免费LLM提供商共635个模型端点于单一/v1接口，支持智能路由与自动故障转移，月省74亿Token",
+          "stars": 44996,
+          "forks": 6130,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4541
+          "stars_period": 4531
         },
         {
-          "name": "sgl-project/sglang",
-          "url": "https://github.com/sgl-project/sglang",
-          "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
-          "summary_zh": "高性能大模型与多模态模型推理服务框架，主打高吞吐低延迟的调度优化",
-          "stars": 38304,
-          "forks": 10028,
-          "language": "Python",
+          "name": "google/brotli",
+          "url": "https://github.com/google/brotli",
+          "description": "Brotli compression format",
+          "summary_zh": "谷歌开源的高压缩比无损压缩算法，比 gzip 小 20% 且解压更快，已被主流浏览器与 CDN 广泛采用",
+          "stars": 15070,
+          "forks": 1395,
+          "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 778
+          "stars_period": 100
+        },
+        {
+          "name": "trymirai/uzu",
+          "url": "https://github.com/trymirai/uzu",
+          "description": "A high-performance inference engine for AI models",
+          "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，主打极致速度与低资源占用",
+          "stars": 3128,
+          "forks": 206,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 534
         }
       ]
     },
@@ -203,8 +203,8 @@
           "name": "Folkbench/folkbench",
           "url": "https://github.com/Folkbench/folkbench",
           "description": "AI API 中转站评测排行与切换工具：实测可用率、延迟与价格 · Open-source AI API relay benchmark, rankings & switcher for Claude Code / Codex",
-          "summary_zh": "实测各家 AI API 中转站可用率延迟与价格并支持一键切换，帮 Claude Code 和 Codex 用户避开不稳定线路",
-          "stars": 3976,
+          "summary_zh": "实测各大 AI API 中转站可用率延迟与价格并支持一键切换，帮 Claude Code 和 Codex 用户避开不稳定中转、选到又快又便宜的通道",
+          "stars": 4047,
           "forks": 21,
           "language": "Rust",
           "topics": [
@@ -251,26 +251,39 @@
           "url": "https://github.com/rustdesk/rustdesk",
           "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
           "summary_zh": "开源远程桌面工具，可自托管替代 TeamViewer，用 Rust 编写，兼顾性能与数据自主可控",
-          "stars": 127582,
-          "forks": 20171,
+          "stars": 127693,
+          "forks": 20200,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1016
+          "stars_period": 1024
         },
         {
-          "name": "luongnv89/claude-howto",
-          "url": "https://github.com/luongnv89/claude-howto",
-          "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
-          "summary_zh": "面向 Claude Code 的可视化示例教程，从基础概念到高级 Agent 全覆盖，附可直接复制的模板即拿即用",
-          "stars": 46197,
-          "forks": 5666,
-          "language": "Python",
+          "name": "cjpais/Handy",
+          "url": "https://github.com/cjpais/Handy",
+          "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
+          "summary_zh": "完全离线运行的免费开源语音转文字应用，用 Rust 打造且支持扩展，隐私与可定制兼得",
+          "stars": 35744,
+          "forks": 3393,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3279
+          "stars_period": 1223
+        },
+        {
+          "name": "rivet-dev/rivet",
+          "url": "https://github.com/rivet-dev/rivet",
+          "description": "Rivet Actors are the primitive for stateful workloads. Built for AI agents, collaborative apps, and durable execution.",
+          "summary_zh": "用 Rust 打造的有状态工作负载原语，为 AI Agent、协作应用和持久化执行提供可靠的状态管理基础",
+          "stars": 6537,
+          "forks": 295,
+          "language": "Rust",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 213
         },
         {
           "name": "mmm1712/Local_AI_esp32",
@@ -304,52 +317,52 @@
           "url": "https://github.com/ruvnet/RuView",
           "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
           "summary_zh": "用普通WiFi信号实现实时空间感知、生命体征监测与存在检测，无需任何摄像头画面",
-          "stars": 101692,
-          "forks": 13209,
+          "stars": 101829,
+          "forks": 13227,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2479
+          "stars_period": 2551
         },
         {
           "name": "debpalash/VoiceStudio",
           "url": "https://github.com/debpalash/VoiceStudio",
           "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook ",
-          "summary_zh": "完全本地运行的 ElevenLabs 开源替代，集语音克隆、设计、视频配音、听写、转录与有声书制作于一体，支持 646 种语言",
-          "stars": 95174,
-          "forks": 10532,
+          "summary_zh": "完全本地运行的 ElevenLabs 开源替代，集声音克隆、设计、视频配音、听写、转录与有声书制作于一体，支持 646 种语言",
+          "stars": 96364,
+          "forks": 10691,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 12825
+          "stars_period": 12910
         },
         {
           "name": "remotion-dev/remotion",
           "url": "https://github.com/remotion-dev/remotion",
           "description": "🎥 Make videos programmatically with React",
-          "summary_zh": "用 React 组件像写网页一样编程生成视频，让开发者以熟悉的声明式方式实现视频自动化制作",
-          "stars": 69057,
-          "forks": 5655,
+          "summary_zh": "用 React 组件像写网页一样编程生成视频，让前端开发者零门槛实现视频自动化制作",
+          "stars": 69296,
+          "forks": 5679,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2583
+          "stars_period": 2507
         },
         {
           "name": "HKUDS/DeepTutor",
           "url": "https://github.com/HKUDS/DeepTutor",
           "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
-          "summary_zh": "港大开源的全生命周期个性化辅导系统，让 AI 导师记住你的学习轨迹并持续因材施教",
-          "stars": 51422,
-          "forks": 6297,
+          "summary_zh": "港大开源终身个性化辅导系统，让AI导师记住你的学习轨迹并持续适配教学节奏",
+          "stars": 52375,
+          "forks": 6417,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7509
+          "stars_period": 9440
         }
       ]
     }
@@ -364,7 +377,7 @@
           "url": "http://arxiv.org/abs/2610.40654v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40654v1",
           "abstract": "An estimator can be accurate and stable on typical data, yet sensitive to a few possible records. Differentially private mechanisms commonly scale their noise to the worst-case influence of a single r",
-          "summary_zh": "提出先提议后过滤再释放的隐私过滤框架，将噪声从最坏情况单记录影响降至典型敏感度，在保持差分隐私的同时显著提升估计精度",
+          "summary_zh": "提出先提议后过滤再释放的私有过滤框架，将噪声从最坏情况单记录影响降至典型敏感度，显著提升估计精度",
           "authors": [
             "Moshe Shenfeld",
             "Eliad Tsfadia",
@@ -397,7 +410,7 @@
           "url": "http://arxiv.org/abs/2610.40613v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40613v1",
           "abstract": "We present TextSeal2, a distortion-free watermark for large language models that keeps its signal under speculative decoding: tokens that replace rejected drafts remain watermarked with the same keys,",
-          "summary_zh": "提出Copula混合与无记忆竞争的无失真水印，在推测解码下保持信号且接受率不变，不损多样性与推理效率",
+          "summary_zh": "提出Copula混合与无记忆竞争的无失真水印，在投机解码下保持令牌水印与接受率不变，且不损多样性",
           "authors": [
             "Tom Sander",
             "Pierre Fernandez",
@@ -421,7 +434,7 @@
           "url": "http://arxiv.org/abs/2610.40655v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
           "abstract": "Data attribution methods for Language Models (LMs) are typically evaluated using downstream tasks like fact retrieval. However, existing evaluations vary multiple dataset properties simultaneously, ma",
-          "summary_zh": "提出解耦数据集属性的语言模型数据归因评估框架，可隔离归因算法失败原因并揭示设计空间关键因素",
+          "summary_zh": "提出解耦数据集属性的LM数据归因评估框架，可隔离失败原因并揭示现有方法在事实检索中的系统性缺陷",
           "authors": [
             "Steven Yu",
             "Sheng-Yu Wang",
@@ -437,7 +450,7 @@
           "url": "http://arxiv.org/abs/2610.40586v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40586v1",
           "abstract": "Integrated sensing and communications (ISAC) systems using 5G and beyond signals of opportunity enable joint wireless sensing and communication using shared infrastructure and spectrum resources. Whil",
-          "summary_zh": "提出基于深度学习的多基地ISAC杂波抑制方法，利用5G信号实现共享基础设施联合感知通信并扩展感知覆盖",
+          "summary_zh": "提出基于深度学习的多基地ISAC杂波抑制方法，利用5G信号实现分布式感知并有效提升动态杂波环境下的检测性能",
           "authors": [
             "Yalin E. Sagduyu",
             "Tugba Erpek",
@@ -461,7 +474,7 @@
           "url": "http://arxiv.org/abs/2610.40641v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40641v1",
           "abstract": "Extreme weather is forecast days ahead, yet its consequences for agriculture remain hard to predict: a forecast says where a storm will strike, not which crops will suffer or how much is at risk, and ",
-          "summary_zh": "提出首个智能体WxCrop，融合多源记录将极端天气预报转化为农业风险评估，实现灾前作物损失预判",
+          "summary_zh": "提出首个面向极端天气农业影响的智能体WxCrop，融合多源记录实现作物风险评估与预测",
           "authors": [
             "Minghan Yu",
             "Mengyu Dai",
@@ -478,7 +491,7 @@
           "url": "http://arxiv.org/abs/2610.40589v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40589v1",
           "abstract": "An autonomous research laboratory could conduct an entire study, from formulating questions to preparing manuscripts. Artificial intelligence (AI) offers one route towards this goal. Recent AI systems",
-          "summary_zh": "提出多智能体协作框架实现固态量子自旋实验全流程自主研究，通过证据校验机制避免无依据结论",
+          "summary_zh": "提出多智能体协作框架实现固态量子自旋实验全流程自主研究，通过证据校验机制避免无依据结论并完成从提问到撰稿的闭环",
           "authors": [
             "El Mustapha Mansouri",
             "Eikichi Kimura",
@@ -496,7 +509,7 @@
           "url": "http://arxiv.org/abs/2610.40588v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40588v1",
           "abstract": "When AI agents share channels and credentials, one agent can press another to break its operator's rule, a first step towards collusion. Output filters check only what an agent has already written. Ca",
-          "summary_zh": "提出在智能体即将屈服前用线性探针预判其违规倾向，实现对输出过滤的事前预警",
+          "summary_zh": "提出在智能体即将屈服前用线性探针预判其违规倾向，实现事前预警而非事后过滤",
           "authors": [
             "Leonidas Raghav"
           ],
@@ -516,7 +529,7 @@
           "url": "http://arxiv.org/abs/2610.40647v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40647v1",
           "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer det",
-          "summary_zh": "提出阅读分配路由三角色耦合的像素空间生成Transformer分词方法，在不增加全局通信开销的前提下捕捉更精细细节",
+          "summary_zh": "提出读分配路由角色耦合令牌化方法，让像素空间生成Transformer按细节需求动态分配令牌并稀疏路由，显著降低全局注意力开销",
           "authors": [
             "Jiongfan Yang",
             "Weichen Fan",
@@ -534,7 +547,7 @@
           "url": "http://arxiv.org/abs/2610.40644v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40644v1",
           "abstract": "Distributionally robust optimization (DRO) hedges data-driven two-stage stochastic programs against error in the distribution estimated from a finite record, and standard ambiguity sets differ in how ",
-          "summary_zh": "提出围绕学习密度模型自适应生成场景的KL-DRO方法，突破经验分布散度球对未观测样本的处理局限",
+          "summary_zh": "提出围绕学习密度模型自适应生成场景的KL-DRO方法，通过构建散度球处理未观测样本，提升分布鲁棒优化性能",
           "authors": [
             "Aron Brenner",
             "Saurabh Amin"
@@ -550,7 +563,7 @@
           "url": "http://arxiv.org/abs/2610.40643v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40643v1",
           "abstract": "Luggage re-identification (ReID) is a critical task in video surveillance for forensics, security or border management (suspicious or abandoned luggage recognition), as well as luggage management (los",
-          "summary_zh": "提出面向真实场景的行李重识别策略研究，构建多视角数据集并系统评估多种ReID方法，为监控与行李管理应用提供基准",
+          "summary_zh": "提出面向真实场景的行李重识别策略研究，系统评估多种方法并给出应用部署的关键设计要点",
           "authors": [
             "Quentin Dhôte",
             "Romaric Audigier"
@@ -572,7 +585,7 @@
           "url": "http://arxiv.org/abs/2610.40627v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40627v1",
           "abstract": "Safety alignment has enabled large language models to reliably refuse harmful requests directly, yet the same request distributed across a multi-turn conversation still succeeds far too often. This br",
-          "summary_zh": "提出利用浅层安全对齐构建多轮防御器ShallowDefend，将多轮对话攻击成功率显著降低",
+          "summary_zh": "提出利用浅层安全对齐机制构建多轮防御器，将多轮越狱攻击成功率显著降低",
           "authors": [
             "Qiyao Ma",
             "Xiaodong Liu",
@@ -594,7 +607,7 @@
           "url": "http://arxiv.org/abs/2610.40649v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40649v1",
           "abstract": "The Neural Thickets hypothesis posits that pretrained language models lie in dense neighborhoods of task-specific experts in weight space, which random Gaussian perturbations can uncover. We reproduce",
-          "summary_zh": "重新审视神经厚丛假设，发现高斯扰动带来的性能增益无需权重空间几何解释即可复现",
+          "summary_zh": "重新审视神经厚丛假设，发现随机高斯扰动带来的性能提升无需权重空间几何解释即可复现",
           "authors": [
             "Nicolas Dufour",
             "Elouan Gardès",
@@ -612,7 +625,7 @@
           "url": "http://arxiv.org/abs/2610.40637v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40637v1",
           "abstract": "World models can achieve strong control performance without faithfully capturing the dynamics of their environment, limiting their potential for mechanistic interpretability and scientific discovery. ",
-          "summary_zh": "提出无需奖励信号直接从观测学习潜在动力学的世界模型方法world2vec，实现机制可解释的世界建模",
+          "summary_zh": "提出world2vec从无奖励数据中学习潜在动力学以构建机制性世界模型，实现环境动态的忠实捕捉与可解释性",
           "authors": [
             "Tobias Schmidt",
             "Rodrigo Gonzalez Laiz",
@@ -628,7 +641,7 @@
           "url": "http://arxiv.org/abs/2610.40619v1",
           "pdf_url": "https://arxiv.org/pdf/2610.40619v1",
           "abstract": "Ask a language model whether sales tend to dip after a product recall, or whether one side effect tends to follow another after a vaccine, and it answers in a fluent sentence that reads like a finding",
-          "summary_zh": "提出基于时间线证据的意义检验框架，让语言模型对时序临床假设给出有统计检验支撑的结论而非流畅断言",
+          "summary_zh": "提出基于时间线证据的时序临床假设显著性检验框架，让语言模型断言附带统计检验而非空口结论",
           "authors": [
             "Chengyang He",
             "Wenlong Zhang",
