@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-01T14:36:01.765593+00:00Z",
+  "generated_at": "2026-11-02T17:31:27.071418+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Rust, TypeScript, Python）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 21 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 10 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "obra/superpowers",
           "url": "https://github.com/obra/superpowers",
           "description": "An agentic skills framework & software development methodology that works.",
-          "summary_zh": "让 AI 编码 Agent 按成熟工程方法论工作的技能框架，把开发流程沉淀为可复用技能",
-          "stars": 310404,
-          "forks": 27620,
+          "summary_zh": "让 AI 编码 Agent 按成熟软件工程方法论工作的技能框架，把开发流程沉淀为可复用技能",
+          "stars": 311078,
+          "forks": 27679,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5636
+          "stars_period": 5896
         },
         {
           "name": "affaan-m/ECC",
           "url": "https://github.com/affaan-m/ECC",
           "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod",
-          "summary_zh": "为 Claude Code、Cursor 等 AI 编码 Agent 提供技能、记忆、安全与性能优化的通用增强框架",
-          "stars": 294489,
-          "forks": 43596,
+          "summary_zh": "为 Claude Code 等 AI 编码 Agent 提供技能、直觉、记忆与安全层的性能优化框架，让 Agent 越用越聪明",
+          "stars": 295397,
+          "forks": 43716,
           "language": "JavaScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 6380
+          "stars_period": 6299
         },
         {
           "name": "multica-ai/andrej-karpathy-skills",
           "url": "https://github.com/multica-ai/andrej-karpathy-skills",
           "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
-          "summary_zh": "单文件CLAUDE.md提炼Karpathy对LLM编码陷阱的观察，直接改善Claude Code行为",
-          "stars": 227805,
-          "forks": 22723,
+          "summary_zh": "基于 Karpathy 对 LLM 编码陷阱的观察提炼成单文件 CLAUDE.md，直击 AI 写代码常见坑",
+          "stars": 228444,
+          "forks": 22777,
           "language": "",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4277
+          "stars_period": 4459
         },
         {
           "name": "anthropics/skills",
           "url": "https://github.com/anthropics/skills",
           "description": "Public repository for Agent Skills",
-          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用的模块化能力，让 Agent 快速掌握专业任务执行方法",
-          "stars": 186148,
-          "forks": 21981,
+          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用的标准化能力模块，让 Agent 快速掌握真实任务所需的专业技能",
+          "stars": 186684,
+          "forks": 22047,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2389
+          "stars_period": 2600
         }
       ]
     },
@@ -68,45 +68,38 @@
       "desc": "主动抓取社区、社媒、网页、GitHub 等外部信号",
       "repos": [
         {
+          "name": "KeygraphHQ/shannon",
+          "url": "https://github.com/KeygraphHQ/shannon",
+          "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove",
+          "summary_zh": "AI 渗透测试工具，通过分析源码定位攻击向量并执行真实漏洞利用，在上线前证明安全风险",
+          "stars": 50953,
+          "forks": 5924,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1595
+        },
+        {
           "name": "stalwartlabs/stalwart",
           "url": "https://github.com/stalwartlabs/stalwart",
           "description": "All-in-one Mail & Collaboration server. Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).",
-          "summary_zh": "用 Rust 打造的一体化邮件与协作服务器，安全可扩展且原生支持 IMAP、JMAP、SMTP、CalDAV、CardDAV、WebDAV 全协议",
-          "stars": 15614,
-          "forks": 1030,
+          "summary_zh": "用 Rust 打造的一体化邮件与协作服务器，原生支持 IMAP、JMAP、SMTP、CalDAV、CardDAV、WebDAV 全协议，安全可扩展",
+          "stars": 15654,
+          "forks": 1034,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 291
-        },
-        {
-          "name": "AienTech/dossier",
-          "url": "https://github.com/AienTech/dossier",
-          "description": "A self-hosted job search app that writes tailored resumes and cover letters from your profile.",
-          "summary_zh": "自托管求职助手，根据个人档案自动生成定制简历和求职信，一站式追踪职位申请进度",
-          "stars": 3652,
-          "forks": 768,
-          "language": "TypeScript",
-          "topics": [
-            "caprover",
-            "cover-letter",
-            "docker",
-            "job-application-tracker",
-            "job-search",
-            "llm"
-          ],
-          "created_at": "2026-10-03T21:26:15Z",
-          "source": "search",
-          "stars_period": 0
+          "stars_period": 331
         },
         {
           "name": "kividbio/kividb",
           "url": "https://github.com/kividbio/kividb",
           "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 重写的高性能多线程 Redis/Valkey 替代品，可直接替换且内置全文与向量检索",
-          "stars": 1002,
-          "forks": 35,
+          "summary_zh": "Rust 编写的高性能多线程 Redis 替代品，可直接替换并内置全文与向量搜索",
+          "stars": 1046,
+          "forks": 39,
           "language": "Rust",
           "topics": [
             "cache",
@@ -124,8 +117,8 @@
           "name": "cdcailf/cjkfold",
           "url": "https://github.com/cdcailf/cjkfold",
           "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "专治 PDF 提取文本中康熙部首等 CJK 形近字不匹配问题，用 NFKC 折叠让中文检索和 NLP 处理重新对齐",
-          "stars": 194,
+          "summary_zh": "专治 PDF 提取中文时康熙部首与常用汉字不匹配的痛点，通过折叠形近字让文本重新可检索",
+          "stars": 198,
           "forks": 8,
           "language": "Python",
           "topics": [
@@ -151,53 +144,53 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动捕获会话内容并用 AI 压缩，再将相关上下文注入后续会话",
-          "stars": 108644,
-          "forks": 9521,
+          "summary_zh": "让 AI Agent 跨会话记住一切：自动捕获操作记录、AI 压缩后按需注入未来会话，解决上下文丢失难题",
+          "stars": 110464,
+          "forks": 9640,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4575
+          "stars_period": 5852
+        },
+        {
+          "name": "MemPalace/mempalace",
+          "url": "https://github.com/MemPalace/mempalace",
+          "description": "The best-benchmarked open-source AI memory system. And it's free.",
+          "summary_zh": "免费开源的AI记忆系统，以最佳基准测试成绩解决AI长期记忆难题",
+          "stars": 60245,
+          "forks": 7636,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 541
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，支持智能路由、自动故障转移与密钥加密，月享74亿token",
-          "stars": 45488,
-          "forks": 6207,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，自带智能路由、自动故障转移与密钥加密，月省74亿token",
+          "stars": 46219,
+          "forks": 6313,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4435
-        },
-        {
-          "name": "google/brotli",
-          "url": "https://github.com/google/brotli",
-          "description": "Brotli compression format",
-          "summary_zh": "谷歌开源的高压缩比无损压缩算法，比 gzip 更小更快，专为网页传输优化",
-          "stars": 15072,
-          "forks": 1395,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 85
+          "stars_period": 4249
         },
         {
           "name": "trymirai/uzu",
           "url": "https://github.com/trymirai/uzu",
           "description": "A high-performance inference engine for AI models",
           "summary_zh": "用 Rust 打造的高性能 AI 模型推理引擎，主打极致速度与低资源占用",
-          "stars": 3158,
-          "forks": 210,
+          "stars": 3188,
+          "forks": 214,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 573
+          "stars_period": 590
         }
       ]
     },
@@ -210,8 +203,8 @@
           "name": "FrontiersMindAI/decisionformer",
           "url": "https://github.com/FrontiersMindAI/decisionformer",
           "description": "Transformers for decision models: fine-tune, load and serve calibrated decsion-model on any Hugging Face model.",
-          "summary_zh": "让任意 Hugging Face 模型一键微调、加载并部署为校准决策模型，把 Transformer 直接变成可用的决策引擎",
-          "stars": 42,
+          "summary_zh": "让决策模型像大模型一样微调加载部署，在任意 Hugging Face 模型上快速构建校准决策模型",
+          "stars": 43,
           "forks": 3,
           "language": "Python",
           "topics": [
@@ -234,56 +227,63 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "rustdesk/rustdesk",
-          "url": "https://github.com/rustdesk/rustdesk",
-          "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
-          "summary_zh": "开源远程桌面工具，可自建服务器替代 TeamViewer，用 Rust 编写兼顾性能与安全",
-          "stars": 127779,
-          "forks": 20233,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1037
-        },
-        {
           "name": "ghostty-org/ghostty",
           "url": "https://github.com/ghostty-org/ghostty",
           "description": "👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.",
-          "summary_zh": "用 Zig 编写、GPU 加速且跨平台的终端模拟器，以原生 UI 兼顾速度与丰富功能",
-          "stars": 63139,
-          "forks": 3812,
+          "summary_zh": "用 Zig 打造的原生 UI 加 GPU 加速跨平台终端模拟器，兼顾速度与丰富功能",
+          "stars": 63277,
+          "forks": 3824,
           "language": "Zig",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 556
+          "stars_period": 589
         },
         {
           "name": "cjpais/Handy",
           "url": "https://github.com/cjpais/Handy",
           "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
-          "summary_zh": "完全离线运行的免费开源语音转文字应用，用 Rust 打造且支持扩展",
-          "stars": 36158,
-          "forks": 3430,
+          "summary_zh": "完全离线的免费开源语音转文字应用，基于 Rust 构建且支持扩展，无需联网即可保护隐私",
+          "stars": 37071,
+          "forks": 3487,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1300
+          "stars_period": 1652
         },
         {
           "name": "guillaumemeyer/watermarks-remover",
           "url": "https://github.com/guillaumemeyer/watermarks-remover",
           "description": "A privacy-first app that strips AI watermarks from content you own.",
-          "summary_zh": "隐私优先的AI水印去除工具，帮你清除自有内容中的AI水印，已获2.5万星",
-          "stars": 25859,
-          "forks": 2946,
+          "summary_zh": "隐私优先的AI水印清除工具，帮你移除自有内容中的AI标记，兼顾版权与隐私保护",
+          "stars": 25987,
+          "forks": 2964,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1025
+          "stars_period": 1035
+        },
+        {
+          "name": "deeplethe/solid-glass",
+          "url": "https://github.com/deeplethe/solid-glass",
+          "description": "A design system for AI applications. Material, physical, tactile, technical.",
+          "summary_zh": "为 AI 应用打造的实体质感设计系统，让聊天与 Agent 界面拥有真实材质般的触觉体验",
+          "stars": 2032,
+          "forks": 42,
+          "language": "TypeScript",
+          "topics": [
+            "agent-ui",
+            "ai",
+            "ai-agents",
+            "chat-ui",
+            "design-system",
+            "llm"
+          ],
+          "created_at": "2026-10-12T09:19:02Z",
+          "source": "search",
+          "stars_period": 0
         }
       ]
     },
@@ -297,52 +297,52 @@
           "url": "https://github.com/ruvnet/RuView",
           "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
           "summary_zh": "用普通WiFi信号实现实时空间感知、生命体征监测与存在检测，无需任何摄像头画面",
-          "stars": 101940,
-          "forks": 13244,
+          "stars": 102083,
+          "forks": 13265,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2557
+          "stars_period": 2549
         },
         {
           "name": "remotion-dev/remotion",
           "url": "https://github.com/remotion-dev/remotion",
           "description": "🎥 Make videos programmatically with React",
           "summary_zh": "用 React 组件像写网页一样编程生成视频，让开发者以熟悉的声明式方式实现视频自动化制作",
-          "stars": 69637,
-          "forks": 5717,
+          "stars": 70022,
+          "forks": 5761,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2397
+          "stars_period": 2382
         },
         {
           "name": "HKUDS/DeepTutor",
           "url": "https://github.com/HKUDS/DeepTutor",
           "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
-          "summary_zh": "港大开源的可终身个性化辅导的AI导师，能记住你的学习轨迹并持续适配教学节奏",
-          "stars": 53421,
-          "forks": 6531,
+          "summary_zh": "港大开源的可终身个性化辅导的AI导师，能记住你的学习轨迹并持续调整教学策略",
+          "stars": 54214,
+          "forks": 6633,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 10185
+          "stars_period": 10982
         },
         {
           "name": "lfnovo/open-notebook",
           "url": "https://github.com/lfnovo/open-notebook",
           "description": "An Open Source implementation of Notebook LM with more flexibility and features",
-          "summary_zh": "开源版 Notebook LM，比原版更灵活、功能更丰富，可自建 AI 笔记与研究助手",
-          "stars": 41242,
-          "forks": 4744,
+          "summary_zh": "开源版 Notebook LM，比原版更灵活、功能更丰富，可自托管打造专属 AI 知识笔记助手",
+          "stars": 41364,
+          "forks": 4761,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 685
+          "stars_period": 724
         }
       ]
     }
@@ -353,55 +353,54 @@
       "name": "🧠 LLM 推理与优化",
       "papers": [
         {
-          "title": "Propose-Filter-Release: Scaling Noise to Typical Sensitivity via Private Filtering",
-          "url": "http://arxiv.org/abs/2610.40654v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40654v1",
-          "abstract": "An estimator can be accurate and stable on typical data, yet sensitive to a few possible records. Differentially private mechanisms commonly scale their noise to the worst-case influence of a single r",
-          "summary_zh": "提出先提议后过滤再释放的私有过滤框架，将噪声从最坏情况单记录影响降至典型敏感度，显著提升估计精度",
+          "title": "Latent Reasoning in Continuous Space for Unified Multimodal Models",
+          "url": "http://arxiv.org/abs/2610.42149v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42149v1",
+          "abstract": "Unified Multimodal Models (UMMs) achieve remarkable success on diverse multimodal understanding and generation tasks, yet they still struggle to effectively leverage language-based chain-of-thought re",
+          "summary_zh": "提出连续空间潜在推理框架使统一多模态模型摆脱文本思维链依赖，在图像生成任务上显著提升推理增强效果",
           "authors": [
-            "Moshe Shenfeld",
-            "Eliad Tsfadia",
-            "Katrina Ligett"
+            "Byungwoo Jeon",
+            "Yoonwoo Jeong",
+            "Hyunseok Lee"
           ],
           "categories": [
+            "cs.CV",
+            "cs.CL",
             "cs.LG"
           ],
-          "published": "2026-10-29T17:59:49Z"
+          "published": "2026-10-30T17:59:43Z"
         },
         {
-          "title": "An ODE-based Sampler for Discrete Diffusion Models",
-          "url": "http://arxiv.org/abs/2610.40618v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40618v1",
-          "abstract": "The marginals of a continuous diffusion model can be reproduced by a deterministic ordinary differential equation (ODE), known as the probability flow ODE, which provides a foundation for accelerated ",
-          "summary_zh": "提出离散扩散模型的概率流ODE采样器，实现确定性采样并支持加速与一致性蒸馏",
+          "title": "Flide: Accelerating Decision Inference with Exact State Forking",
+          "url": "http://arxiv.org/abs/2610.42148v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42148v1",
+          "abstract": "Decision models such as Jev have emerged as a highly promising paradigm for LLM agent systems, providing lightweight and reliable categorical reasoning for rapid System One execution. However, existin",
+          "summary_zh": "提出精确状态分叉的决策推理引擎Flide，支持Jev等决策模型高效并行分支推理，显著加速LLM智能体系统一快速执行",
           "authors": [
-            "Samson Gourevitch",
-            "Yazid Janati",
-            "Eric Moulines"
+            "Bobo Li",
+            "Jiajia Song",
+            "Hao Fei"
           ],
           "categories": [
-            "cs.LG",
-            "stat.ML"
-          ],
-          "published": "2026-10-29T17:55:25Z"
-        },
-        {
-          "title": "TextSeal2: Distortion-Free LLM Watermarking with Copula Mixing and Memoryless Races",
-          "url": "http://arxiv.org/abs/2610.40613v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40613v1",
-          "abstract": "We present TextSeal2, a distortion-free watermark for large language models that keeps its signal under speculative decoding: tokens that replace rejected drafts remain watermarked with the same keys,",
-          "summary_zh": "提出Copula混合与无记忆竞争的无失真水印，在投机解码下保持令牌水印与接受率不变并维持输出多样性",
-          "authors": [
-            "Tom Sander",
-            "Pierre Fernandez",
-            "Itai Gat"
-          ],
-          "categories": [
-            "cs.CR",
-            "cs.AI",
             "cs.CL"
           ],
-          "published": "2026-10-29T17:54:12Z"
+          "published": "2026-10-30T17:59:38Z"
+        },
+        {
+          "title": "Latent Sparse Attention: Towards Subquadratic Ultra-Long Context Attention",
+          "url": "http://arxiv.org/abs/2610.42147v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42147v1",
+          "abstract": "Agentic workflows are increasingly shifting towards long-horizon tasks, such as open-ended scientific work, where models benefit from long context windows. However, at ultra-long context (above 1M tok",
+          "summary_zh": "提出潜在稀疏注意力机制，通过可学习稀疏模式实现超长上下文亚二次复杂度，显著降低百万级token注意力计算成本",
+          "authors": [
+            "Ales Kubicek",
+            "Andrea Caciolai",
+            "Liangzu Peng"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "published": "2026-10-30T17:59:34Z"
         }
       ]
     },
@@ -410,38 +409,20 @@
       "name": "🔍 RAG 与检索增强",
       "papers": [
         {
-          "title": "Elucidating the Design Space of LM Data Attribution",
-          "url": "http://arxiv.org/abs/2610.40655v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
-          "abstract": "Data attribution methods for Language Models (LMs) are typically evaluated using downstream tasks like fact retrieval. However, existing evaluations vary multiple dataset properties simultaneously, ma",
-          "summary_zh": "提出解耦数据集属性的LM数据归因评估框架，可隔离归因算法失败原因并揭示设计空间关键因素",
+          "title": "DecisionRank: On-Policy Distillation for Decision-Model Rerankers",
+          "url": "http://arxiv.org/abs/2610.42128v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42128v1",
+          "abstract": "Decision models target structured tasks by directly predicting choices or scores, avoiding autoregressive decoding latency. However, transferring a generative LLM's ranking knowledge to a decision mod",
+          "summary_zh": "提出基于策略蒸馏的决策模型重排序方法DecisionRank，将生成式LLM的排序知识迁移至决策模型，避免自回归解码延迟",
           "authors": [
-            "Steven Yu",
-            "Sheng-Yu Wang",
-            "Kimia Hamidieh"
+            "Yanran Wu",
+            "Dian Yu",
+            "Chongyang Bai"
           ],
           "categories": [
             "cs.CL"
           ],
-          "published": "2026-10-29T17:59:53Z"
-        },
-        {
-          "title": "Multistatic ISAC with Deep Learning-Based Clutter Suppression for 5G and Beyond",
-          "url": "http://arxiv.org/abs/2610.40586v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40586v1",
-          "abstract": "Integrated sensing and communications (ISAC) systems using 5G and beyond signals of opportunity enable joint wireless sensing and communication using shared infrastructure and spectrum resources. Whil",
-          "summary_zh": "提出基于深度学习的多基地ISAC杂波抑制方法，利用5G及未来信号实现共享基础设施的联合感知与通信并提升密集动态环境下的感知覆盖",
-          "authors": [
-            "Yalin E. Sagduyu",
-            "Tugba Erpek",
-            "Sastry Kompella"
-          ],
-          "categories": [
-            "cs.NI",
-            "cs.AI",
-            "cs.LG"
-          ],
-          "published": "2026-10-29T17:47:02Z"
+          "published": "2026-10-30T17:56:58Z"
         }
       ]
     },
@@ -450,53 +431,39 @@
       "name": "🤖 Agent 与规划",
       "papers": [
         {
-          "title": "From extreme weather to agricultural consequences with agentic AI",
-          "url": "http://arxiv.org/abs/2610.40641v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40641v1",
-          "abstract": "Extreme weather is forecast days ahead, yet its consequences for agriculture remain hard to predict: a forecast says where a storm will strike, not which crops will suffer or how much is at risk, and ",
-          "summary_zh": "提出首个面向极端天气农业影响的智能体WxCrop，融合多源记录实现作物风险评估",
+          "title": "Hierarchical World Models with Implicit Dynamics",
+          "url": "http://arxiv.org/abs/2610.42146v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42146v1",
+          "abstract": "Planning with world models enables test-time adaptation for embodied agents, offering superior generalization over direct policy learning. However, long-horizon tasks remain hindered by cumulative err",
+          "summary_zh": "提出隐式动力学分层世界模型，用可学习抽象动作替代刚性宏动作以抑制累积误差并降低搜索复杂度",
           "authors": [
-            "Minghan Yu",
-            "Mengyu Dai",
-            "Yixin Wen"
+            "Gaoyue Zhou",
+            "Yvonne Wu",
+            "Zichen Jeff Cui"
           ],
           "categories": [
-            "physics.ao-ph",
+            "cs.RO",
             "cs.AI"
           ],
-          "published": "2026-10-29T17:58:53Z"
+          "published": "2026-10-30T17:59:25Z"
         },
         {
-          "title": "Collaborative AI agents for autonomous experimental research with solid-state quantum spins",
-          "url": "http://arxiv.org/abs/2610.40589v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40589v1",
-          "abstract": "An autonomous research laboratory could conduct an entire study, from formulating questions to preparing manuscripts. Artificial intelligence (AI) offers one route towards this goal. Recent AI systems",
-          "summary_zh": "提出多智能体协作框架实现固态量子自旋实验全流程自主研究，通过证据约束推理避免无依据结论",
+          "title": "RoboArchitect: Automating the Design of Robotic Agents with Persistent Memory",
+          "url": "http://arxiv.org/abs/2610.42141v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42141v1",
+          "abstract": "Recent work shows that a frozen robot policy performs far better inside an agent harness, where control code decides when to query the policy, consult vision tools, or command the arm directly. Yet to",
+          "summary_zh": "提出自动设计机器人智能体控制框架的方法并引入持久记忆，实现跨机器人平台与基准的自动化适配",
           "authors": [
-            "El Mustapha Mansouri",
-            "Eikichi Kimura",
-            "Masato Koga"
+            "Shengguang Wu",
+            "Suning Huang",
+            "Cherie Ho"
           ],
           "categories": [
+            "cs.RO",
             "cs.AI",
-            "cs.MA",
-            "quant-ph"
+            "cs.CV"
           ],
-          "published": "2026-10-29T17:47:50Z"
-        },
-        {
-          "title": "Pre-Crime for Agents, at the Last Second: Probing When a Recruited Agent Gives In",
-          "url": "http://arxiv.org/abs/2610.40588v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40588v1",
-          "abstract": "When AI agents share channels and credentials, one agent can press another to break its operator's rule, a first step towards collusion. Output filters check only what an agent has already written. Ca",
-          "summary_zh": "提出在智能体即将屈服前用线性探针预判其违规倾向，实现提前预警而非事后过滤",
-          "authors": [
-            "Leonidas Raghav"
-          ],
-          "categories": [
-            "cs.AI"
-          ],
-          "published": "2026-10-29T17:47:40Z"
+          "published": "2026-10-30T17:58:48Z"
         }
       ]
     },
@@ -505,76 +472,20 @@
       "name": "🖼️ 多模态",
       "papers": [
         {
-          "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
-          "url": "http://arxiv.org/abs/2610.40647v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40647v1",
-          "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer det",
-          "summary_zh": "提出读分配路由角色耦合令牌化方法，让像素空间生成Transformer按细节需求动态分配令牌并路由全局通信，显著降低注意力开销",
+          "title": "RangeSWA: Training-Free Length Extrapolation for Continuous Diffusion Language Models",
+          "url": "http://arxiv.org/abs/2610.42084v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42084v1",
+          "abstract": "Continuous diffusion language models show promising potential in text generation tasks, but are prone to problems such as text repetition, semantic drift, and generation quality degradation when the g",
+          "summary_zh": "提出免训练的范围滑动窗口注意力机制RangeSWA，解决连续扩散语言模型超长生成时的文本重复与语义漂移问题，显著提升外推生成质量",
           "authors": [
-            "Jiongfan Yang",
-            "Weichen Fan",
-            "Haiwen Diao"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI",
-            "cs.LG"
-          ],
-          "published": "2026-10-29T17:59:21Z"
-        },
-        {
-          "title": "Adaptive Scenario Generation for KL-DRO Around a Learned Density Model",
-          "url": "http://arxiv.org/abs/2610.40644v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40644v1",
-          "abstract": "Distributionally robust optimization (DRO) hedges data-driven two-stage stochastic programs against error in the distribution estimated from a finite record, and standard ambiguity sets differ in how ",
-          "summary_zh": "提出围绕学习密度模型自适应生成场景的KL-DRO方法，突破经验分布零密度限制，提升有限样本下的鲁棒决策性能",
-          "authors": [
-            "Aron Brenner",
-            "Saurabh Amin"
-          ],
-          "categories": [
-            "eess.SY",
-            "cs.LG"
-          ],
-          "published": "2026-10-29T17:59:01Z"
-        },
-        {
-          "title": "Luggage re-identification: A study of strategies towards a real-world application",
-          "url": "http://arxiv.org/abs/2610.40643v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40643v1",
-          "abstract": "Luggage re-identification (ReID) is a critical task in video surveillance for forensics, security or border management (suspicious or abandoned luggage recognition), as well as luggage management (los",
-          "summary_zh": "提出面向真实场景的行李重识别策略研究，系统评估多种ReID方法在监控视频中的性能并给出应用部署建议",
-          "authors": [
-            "Quentin Dhôte",
-            "Romaric Audigier"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI"
-          ],
-          "published": "2026-10-29T17:58:59Z"
-        }
-      ]
-    },
-    {
-      "id": "alignment-safety",
-      "name": "🛡️ 对齐与安全",
-      "papers": [
-        {
-          "title": "ShallowDefend: Harnessing Shallow Safety Alignment for Multi-Turn Defender",
-          "url": "http://arxiv.org/abs/2610.40627v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40627v1",
-          "abstract": "Safety alignment has enabled large language models to reliably refuse harmful requests directly, yet the same request distributed across a multi-turn conversation still succeeds far too often. This br",
-          "summary_zh": "提出利用浅层安全对齐机制构建多轮防御器，将多轮攻击成功率显著降低并揭示对齐浅层性是脆弱性根源",
-          "authors": [
-            "Qiyao Ma",
-            "Xiaodong Liu",
-            "Weiwei Yang"
+            "Guangfu Guo",
+            "Xiaoqian Lu",
+            "Linsey Pang"
           ],
           "categories": [
             "cs.CL"
           ],
-          "published": "2026-10-29T17:56:53Z"
+          "published": "2026-10-30T17:35:48Z"
         }
       ]
     },
@@ -583,55 +494,52 @@
       "name": "📝 其他前沿",
       "papers": [
         {
-          "title": "Rethinking Neural Thickets Without Weight Perturbations",
-          "url": "http://arxiv.org/abs/2610.40649v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40649v1",
-          "abstract": "The Neural Thickets hypothesis posits that pretrained language models lie in dense neighborhoods of task-specific experts in weight space, which random Gaussian perturbations can uncover. We reproduce",
-          "summary_zh": "复现神经厚丛增益并证明其不依赖权重空间几何解释，仅靠扰动单个模型即可获得同等提升",
+          "title": "Counting on Dummies: Privacy Amplification with Observable Counts and Truncated Batches",
+          "url": "http://arxiv.org/abs/2610.42139v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42139v1",
+          "abstract": "In many practical deployments of Differentially Private Stochastic Gradient Descent (DP-SGD), the server processes data in batches. Randomly sampling these batches allows for better privacy bounds via",
+          "summary_zh": "提出利用可观测计数与截断批次实现隐私放大的新采样方案，突破传统需隐藏采样结果的限制并给出更紧的隐私界",
           "authors": [
-            "Nicolas Dufour",
-            "Elouan Gardès",
-            "Amil Dravid"
+            "Vitaly Feldman",
+            "Audra McMillan",
+            "Kunal Talwar"
           ],
           "categories": [
             "cs.LG",
-            "cs.AI",
-            "cs.CV"
+            "cs.CR"
           ],
-          "published": "2026-10-29T17:59:29Z"
+          "published": "2026-10-30T17:58:42Z"
         },
         {
-          "title": "world2vec: Mechanistic world models through latent dynamics learning",
-          "url": "http://arxiv.org/abs/2610.40637v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40637v1",
-          "abstract": "World models can achieve strong control performance without faithfully capturing the dynamics of their environment, limiting their potential for mechanistic interpretability and scientific discovery. ",
-          "summary_zh": "提出无需奖励信号直接从观测学习潜在动力学的世界模型方法world2vec，实现机制可解释的世界建模",
+          "title": "Instance-dependent sequential limits as an exact information ledger",
+          "url": "http://arxiv.org/abs/2610.42133v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42133v1",
+          "abstract": "Instance-dependent limits for bandit regret, sequential tests, best-arm identification and Markov decision processes are proved by one chain. It runs from a divergence decomposition through data proce",
+          "summary_zh": "提出统一链式框架从散度分解经数据处理推导实例相关序贯极限，将类保证转化为历史统计要求，统一证明多类序贯决策问题",
           "authors": [
-            "Tobias Schmidt",
-            "Rodrigo Gonzalez Laiz",
-            "Krisztián Szuppinger"
+            "Akshay Balsubramani"
           ],
           "categories": [
-            "cs.LG"
+            "cs.LG",
+            "cs.IT",
+            "math.ST"
           ],
-          "published": "2026-10-29T17:58:23Z"
+          "published": "2026-10-30T17:57:44Z"
         },
         {
-          "title": "Testimony from Timelines: Evidence-Grounded Significance Testing of Temporal Clinical Hypotheses",
-          "url": "http://arxiv.org/abs/2610.40619v1",
-          "pdf_url": "https://arxiv.org/pdf/2610.40619v1",
-          "abstract": "Ask a language model whether sales tend to dip after a product recall, or whether one side effect tends to follow another after a vaccine, and it answers in a fluent sentence that reads like a finding",
-          "summary_zh": "提出基于时间线证据的临床时序假设显著性检验框架，为语言模型断言提供统计检验支撑而非仅凭流畅表述",
+          "title": "Physiological Trajectories and Observation Patterns in ICU Mortality Prediction: Transportability Under Changing Measurement Conditions",
+          "url": "http://arxiv.org/abs/2610.42126v1",
+          "pdf_url": "https://arxiv.org/pdf/2610.42126v1",
+          "abstract": "Objective: To distinguish the transferable predictive value of physiological trajectories from that of observation patterns in ICU mortality prediction, and to assess whether measurement timing affect",
+          "summary_zh": "区分生理轨迹与观测模式在ICU死亡预测中的可迁移价值，揭示测量时机独立于观测数量的影响",
           "authors": [
-            "Chengyang He",
-            "Wenlong Zhang",
-            "Koduvayur Subbalakshmi"
+            "Benjamin T. Pike"
           ],
           "categories": [
-            "cs.CL",
-            "cs.IR"
+            "cs.LG",
+            "q-bio.QM"
           ],
-          "published": "2026-10-29T17:55:30Z"
+          "published": "2026-10-30T17:56:10Z"
         }
       ]
     }
