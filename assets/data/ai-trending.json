@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-06T15:28:18.223832+00:00Z",
+  "generated_at": "2026-11-07T14:28:46.214314+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 15 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -9,56 +9,56 @@
       "desc": "把工程、产品、设计能力封装成可复用的 Skill / 工具模块",
       "repos": [
         {
-          "name": "obra/superpowers",
-          "url": "https://github.com/obra/superpowers",
-          "description": "An agentic skills framework & software development methodology that works.",
-          "summary_zh": "让 AI 编码 Agent 按成熟软件工程方法论工作的技能框架，把开发流程沉淀为可复用技能",
-          "stars": 313407,
-          "forks": 27883,
+          "name": "mattpocock/skills",
+          "url": "https://github.com/mattpocock/skills",
+          "description": "Skills for Real Engineers. Straight from my .agents directory.",
+          "summary_zh": "从真实工程师的 .agents 目录提炼的 AI 编码 Agent 技能库，让 Agent 按成熟工程实践干活",
+          "stars": 317282,
+          "forks": 26549,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5131
+          "stars_period": 9589
         },
         {
-          "name": "multica-ai/andrej-karpathy-skills",
-          "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-          "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
-          "summary_zh": "单文件 CLAUDE.md 直击 LLM 编码常见陷阱，让 Claude Code 少犯 Karpathy 总结的典型错误",
-          "stars": 230133,
-          "forks": 22906,
-          "language": "",
+          "name": "obra/superpowers",
+          "url": "https://github.com/obra/superpowers",
+          "description": "An agentic skills framework & software development methodology that works.",
+          "summary_zh": "让 AI 编码 Agent 按成熟软件工程方法论工作的技能框架，把开发流程沉淀为可复用技能",
+          "stars": 313912,
+          "forks": 27922,
+          "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3713
+          "stars_period": 4577
         },
         {
           "name": "anthropics/skills",
           "url": "https://github.com/anthropics/skills",
           "description": "Public repository for Agent Skills",
-          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用模块化能力扩展",
-          "stars": 188051,
-          "forks": 22180,
+          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 助手提供可复用的标准化能力模块，让智能体快速掌握各类专业任务",
+          "stars": 188418,
+          "forks": 22222,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3072
+          "stars_period": 3159
         },
         {
           "name": "github/spec-kit",
           "url": "https://github.com/github/spec-kit",
           "description": "💫 Toolkit to help you get started with SDD or any other process!",
-          "summary_zh": "GitHub 官方出品的 SDD 规范驱动开发入门工具包，帮开发者快速落地结构化开发流程",
-          "stars": 148108,
-          "forks": 13303,
+          "summary_zh": "帮助开发者快速落地规格驱动开发流程的Python工具包，让SDD从理念变成可执行的工作流",
+          "stars": 148322,
+          "forks": 13329,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4040
+          "stars_period": 4202
         }
       ]
     },
@@ -71,22 +71,22 @@
           "name": "D4Vinci/Scrapling",
           "url": "https://github.com/D4Vinci/Scrapling",
           "description": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EM",
-          "summary_zh": "一站式 Python 网页抓取框架，从单次请求到大规模爬取全搞定",
-          "stars": 98676,
-          "forks": 10331,
+          "summary_zh": "一站式 Python 网页抓取框架，从单次请求到大规模爬取全搞定，无需切换工具",
+          "stars": 99128,
+          "forks": 10384,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7487
+          "stars_period": 8372
         },
         {
           "name": "kividbio/kividb",
           "url": "https://github.com/kividbio/kividb",
           "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 打造的多线程 Redis/Valkey 平替，兼容现有协议并内置全文与向量搜索",
-          "stars": 963,
-          "forks": 98,
+          "summary_zh": "用 Rust 写的多线程 Redis/Valkey 替代品，可直接替换且内置全文与向量搜索",
+          "stars": 972,
+          "forks": 100,
           "language": "Rust",
           "topics": [
             "cache",
@@ -104,7 +104,7 @@
           "name": "cdcailf/cjkfold",
           "url": "https://github.com/cdcailf/cjkfold",
           "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "将康熙部首等形近CJK字形折叠归一，解决PDF提取文本因字形变体导致匹配失败的问题",
+          "summary_zh": "将康熙部首等CJK形近字折叠归一，让PDF提取的中文文本重新可匹配，解决检索与NLP预处理中的字形不一致难题",
           "stars": 201,
           "forks": 8,
           "language": "Python",
@@ -124,7 +124,7 @@
           "name": "l-wn/ClusterChat",
           "url": "https://github.com/l-wn/ClusterChat",
           "description": "A chatbot, with a large language model split across its users, entirely in the browser.",
-          "summary_zh": "把大模型拆分到多个用户浏览器中协同推理的分布式聊天机器人，无需服务器即可运行",
+          "summary_zh": "把大语言模型拆分到多个用户浏览器中协同推理的聊天机器人，无需服务器即可运行",
           "stars": 53,
           "forks": 4,
           "language": "JavaScript",
@@ -151,35 +151,35 @@
           "name": "thedotmack/claude-mem",
           "url": "https://github.com/thedotmack/claude-mem",
           "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "为 AI Agent 提供跨会话持久记忆，自动捕获会话内容并用 AI 压缩，再将相关上下文注入未来会话",
-          "stars": 113834,
-          "forks": 9877,
+          "summary_zh": "让 AI Agent 跨会话记住一切，自动压缩历史操作并回注相关上下文，解决会话失忆问题",
+          "stars": 114267,
+          "forks": 9916,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9318
+          "stars_period": 8726
         },
         {
           "name": "tashfeenahmed/freellmapi",
           "url": "https://github.com/tashfeenahmed/freellmapi",
           "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint",
-          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，支持智能路由与自动故障转移，月供74亿Token",
-          "stars": 48285,
-          "forks": 6642,
+          "summary_zh": "聚合34家免费LLM供应商共635个模型端点于单一/v1接口，支持智能路由、自动故障转移与密钥加密，月供74亿token",
+          "stars": 48674,
+          "forks": 6708,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4177
+          "stars_period": 3915
         },
         {
           "name": "wici-ai/inferssd",
           "url": "https://github.com/wici-ai/inferssd",
           "description": "Run models larger than your RAM or VRAM by streaming MoE experts from SSD. Built on llama.cpp.",
-          "summary_zh": "基于 llama.cpp 从 SSD 流式加载 MoE 专家，让超出内存或显存的模型也能跑推理",
-          "stars": 337,
-          "forks": 53,
+          "summary_zh": "让超大 MoE 模型从 SSD 流式加载专家权重，突破内存与显存限制跑推理，基于 llama.cpp 支持 CUDA 与 Apple Silicon",
+          "stars": 355,
+          "forks": 55,
           "language": "C++",
           "topics": [
             "apple-silicon",
@@ -197,9 +197,9 @@
           "name": "T-Crypt/berth",
           "url": "https://github.com/T-Crypt/berth",
           "description": "Berth is a lightweight GPU resource manager written in Go. It controls which applications get access to your GPU, when they get it, and how that acces",
-          "summary_zh": "用 Go 写的轻量 GPU 资源管理器，按需调度应用访问 GPU 并控制交接时机，让多任务共享显卡不再抢资源",
-          "stars": 287,
-          "forks": 31,
+          "summary_zh": "用 Go 编写的轻量级 GPU 资源管理器，按需调度应用访问 GPU 的时机与交接方式",
+          "stars": 289,
+          "forks": 30,
           "language": "Go",
           "topics": [
             "comfyui",
@@ -224,9 +224,9 @@
           "name": "ninetyhe-90/training-explore",
           "url": "https://github.com/ninetyhe-90/training-explore",
           "description": "Interactive explorer for learning how large language models are trained",
-          "summary_zh": "交互式探索大语言模型训练全流程的教学工具，用可视化方式让抽象的训练原理变得直观易懂",
-          "stars": 90,
-          "forks": 10,
+          "summary_zh": "交互式探索大语言模型训练全流程的可视化学习工具，把抽象训练原理变成可动手操作的直观体验",
+          "stars": 95,
+          "forks": 11,
           "language": "TypeScript",
           "topics": [],
           "created_at": "2026-11-04T14:26:41Z",
@@ -261,56 +261,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "janhq/jan",
-          "url": "https://github.com/janhq/jan",
-          "description": "Jan is an open source alternative to ChatGPT that runs 100% offline on your computer.",
-          "summary_zh": "完全离线运行在本地电脑的开源 ChatGPT 替代品，兼顾隐私与便捷",
-          "stars": 45522,
-          "forks": 3154,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 387
-        },
-        {
           "name": "Crosstalk-Solutions/project-nomad",
           "url": "https://github.com/Crosstalk-Solutions/project-nomad",
           "description": "Project NOMAD is an offline-first knowledge and education server. Wikipedia, thousands of books, courses, maps, and optional local AI, all running on ",
-          "summary_zh": "离线优先的知识教育服务器，把维基百科、数千书籍课程地图和可选本地AI装进自有硬件，断网也能用",
-          "stars": 42392,
-          "forks": 4343,
+          "summary_zh": "离线优先的知识教育服务器，把维基百科、数千本书籍课程地图和可选本地AI装进自有硬件，断网也能用",
+          "stars": 42470,
+          "forks": 4351,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1039
+          "stars_period": 1074
         },
         {
           "name": "cjpais/Handy",
           "url": "https://github.com/cjpais/Handy",
           "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
           "summary_zh": "完全离线运行的免费开源语音转文字应用，用 Rust 打造且支持扩展，兼顾隐私与性能",
-          "stars": 37773,
-          "forks": 3563,
+          "stars": 37886,
+          "forks": 3576,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2608
+          "stars_period": 2677
         },
         {
           "name": "guillaumemeyer/watermarks-remover",
           "url": "https://github.com/guillaumemeyer/watermarks-remover",
           "description": "A privacy-first app that strips AI watermarks from content you own.",
-          "summary_zh": "隐私优先的AI水印清除工具，帮你移除自有内容中的AI水印，已获2.6万星",
-          "stars": 26485,
-          "forks": 3025,
+          "summary_zh": "隐私优先的AI水印清除工具，帮你移除自有内容中的AI水印痕迹",
+          "stars": 26574,
+          "forks": 3028,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 901
+          "stars_period": 879
+        },
+        {
+          "name": "ethanplusai/sellbird",
+          "url": "https://github.com/ethanplusai/sellbird",
+          "description": "Sellbird (formerly Harvey): the open-source outreach platform that runs on your Claude or ChatGPT plan. Finds companies and decision makers, verifies ",
+          "summary_zh": "基于你的 Claude 或 ChatGPT 订阅运行的获客外联平台，自动找公司决策人、验证邮箱并撰写发送个性化冷邮件",
+          "stars": 4722,
+          "forks": 1005,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 1163
         }
       ]
     },
@@ -320,56 +320,56 @@
       "desc": "值得关注的其他 AI/ML 开源项目",
       "repos": [
         {
-          "name": "openclaw/openclaw",
-          "url": "https://github.com/openclaw/openclaw",
-          "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞",
-          "summary_zh": "跨平台 AI 智能体框架，能在任意操作系统上真正执行任务而非只聊天，以龙虾式独特方式落地自动化",
-          "stars": 394043,
-          "forks": 82807,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1005
-        },
-        {
           "name": "denoland/deno",
           "url": "https://github.com/denoland/deno",
           "description": "A modern runtime for JavaScript and TypeScript.",
-          "summary_zh": "原生支持 TypeScript 且默认安全的现代 JS 运行时，用 Rust 打造，免配置直接跑",
-          "stars": 108846,
-          "forks": 6636,
+          "summary_zh": "基于 Rust 构建的现代 JavaScript 与 TypeScript 运行时，内置安全沙箱与原生 TS 支持，无需额外配置即可直接运行",
+          "stars": 108909,
+          "forks": 6711,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 259
+          "stars_period": 280
         },
         {
           "name": "zed-industries/zed",
           "url": "https://github.com/zed-industries/zed",
           "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
-          "summary_zh": "Atom 与 Tree-sitter 作者打造的高性能多人协作代码编辑器，用 Rust 实现，让编码快到思维速度",
-          "stars": 93190,
-          "forks": 11468,
+          "summary_zh": "由 Atom 和 Tree-sitter 作者打造的高性能多人协作代码编辑器，用 Rust 实现，主打思维速度般的流畅编码体验",
+          "stars": 94087,
+          "forks": 11540,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 509
+          "stars_period": 995
         },
         {
-          "name": "remotion-dev/remotion",
-          "url": "https://github.com/remotion-dev/remotion",
-          "description": "🎥 Make videos programmatically with React",
-          "summary_zh": "用 React 组件像写网页一样编程生成视频，让开发者以熟悉的声明式方式实现视频自动化制作",
-          "stars": 71205,
-          "forks": 5878,
-          "language": "TypeScript",
+          "name": "dani-garcia/vaultwarden",
+          "url": "https://github.com/dani-garcia/vaultwarden",
+          "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs",
+          "summary_zh": "用 Rust 重写的轻量级 Bitwarden 兼容密码服务器，资源占用极低，一条命令即可自建私有密码库",
+          "stars": 70368,
+          "forks": 3430,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2227
+          "stars_period": 438
+        },
+        {
+          "name": "HKUDS/DeepTutor",
+          "url": "https://github.com/HKUDS/DeepTutor",
+          "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
+          "summary_zh": "港大开源的全生命周期个性化辅导系统，让 AI 导师记住你的学习轨迹并持续因材施教",
+          "stars": 56236,
+          "forks": 6875,
+          "language": "Python",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 4588
         }
       ]
     }
@@ -384,7 +384,7 @@
           "url": "http://arxiv.org/abs/2611.08465v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08465v1",
           "abstract": "To interpret a direction in a language model's residual stream, we can look for text that strongly activates it. But when such text is found by scanning a corpus, it is limited to what that corpus con",
-          "summary_zh": "提出最大激活示例元模型MAEMs，通过缩放激活反演为任意残差流方向生成强激活文本，突破语料库限制",
+          "summary_zh": "提出最大激活示例元模型MAEMs，通过缩放激活反演突破语料限制，为残差流任意方向生成强激活文本以辅助解释",
           "authors": [
             "Celeste De Schamphelaere",
             "Juan J. Vazquez",
@@ -401,7 +401,7 @@
           "url": "http://arxiv.org/abs/2611.08457v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08457v1",
           "abstract": "Adversarial Training (AT) is an important method for improving model robustness. We study the dynamics of deterministic Gradient Descent (GD) in AT. Most existing works in this direction focus on the ",
-          "summary_zh": "研究大步长对抗训练的梯度下降动力学，揭示其隐式偏差与优化特性并分析锐度，突破传统小步长连续流分析局限",
+          "summary_zh": "研究大步长对抗训练的梯度下降动力学，揭示其隐式偏差与优化特性并关联锐度，突破传统小步长连续流分析框架",
           "authors": [
             "Yi Feng",
             "Andrea Paudice"
@@ -417,7 +417,7 @@
           "url": "http://arxiv.org/abs/2611.08453v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08453v1",
           "abstract": "On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher's per-token supervision. Does this dense signal reduce the training FLOPs needed to reach a target accuracy com",
-          "summary_zh": "系统比较强到弱在线策略蒸馏与GRPO的计算效率，发现密集教师监督显著降低达到目标精度所需训练FLOPs",
+          "summary_zh": "系统比较强到弱在线策略蒸馏与GRPO的计算效率，揭示密集教师监督相比强化学习显著降低达成目标精度所需训练FLOPs",
           "authors": [
             "Zeyu Leo Liu",
             "Yang Li",
@@ -440,7 +440,7 @@
           "url": "http://arxiv.org/abs/2611.08487v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08487v1",
           "abstract": "User embeddings are central components of modern recommendation, personalization, and behavioral modeling systems. Though these embeddings can compactly encode rich behavioral information, they are in",
-          "summary_zh": "提出将用户嵌入分解为可解释行为模式叠加的方法，揭示其稀疏组合结构并提升推荐系统可解释性",
+          "summary_zh": "提出将用户嵌入分解为可解释行为模式叠加的方法，揭示其稀疏组合结构并提升行为建模可解释性",
           "authors": [
             "Jonathan Kozaczuk",
             "Zheng Dong",
@@ -456,7 +456,7 @@
           "url": "http://arxiv.org/abs/2611.08428v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08428v1",
           "abstract": "Chat remains the default surface for many large language model (LLM) tasks, even as agentic tools such as OpenCode excel at coding and automation. Yet the model sees the current dialogue but not the w",
-          "summary_zh": "提出元访问机制让助手获得结构化权限化工作区视图并在LLM聊天界面与聊天AI上验证其提升任务处理能力",
+          "summary_zh": "提出元访问机制让助手获得结构化权限化的工作区视图并在LLM聊天界面与聊天AI上验证其提升任务处理能力",
           "authors": [
             "Julian Kunkel",
             "Ali Doosthosseini"
@@ -471,7 +471,7 @@
           "url": "http://arxiv.org/abs/2611.08325v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08325v1",
           "abstract": "Retrieved web text can carry instructions aimed at the language model, or synthetic pages written to mislead. We test whether released open-weight decision models, which answer typed questions about a",
-          "summary_zh": "提出用开放权重决策模型作为检索门控筛选网页文本以抵御注入与污染攻击，在基准上验证其无需生成即可有效识别两类威胁",
+          "summary_zh": "提出用开放权重决策模型作为检索门控以非生成方式筛查网页文本的注入与污染，在基准上验证其可同时抵御两类威胁",
           "authors": [
             "Mahdi Ghadamyari",
             "Reza Habibi"
@@ -493,7 +493,7 @@
           "url": "http://arxiv.org/abs/2611.08483v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08483v1",
           "abstract": "LLM-guided evolutionary search uses AI agents to improve programs for mathematical and computational problems by iteratively refining solutions and combining high-scoring methods. However, the process",
-          "summary_zh": "提出潜在智能体群体进化框架SwarmEvolve，以隐空间并行搜索替代长链推理，显著加速程序优化与数学问题求解",
+          "summary_zh": "提出潜在智能体群体进化框架，以隐空间并行搜索替代长链推理，显著加速程序优化与数学发现",
           "authors": [
             "Qile Jiang",
             "George Em Karniadakis"
@@ -509,7 +509,7 @@
           "url": "http://arxiv.org/abs/2611.08478v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08478v1",
           "abstract": "AI-Scientists arrived, but a world for them to grow in did not. Human scientists take theirs for granted $-$ centuries of open problems and shared ideas, waiting in the scientific literature. To AI-Sc",
-          "summary_zh": "构建可运行的AI科学家研究世界Scientist World，将科学文献从可读转为可执行以支撑AI科学家成长",
+          "summary_zh": "构建可运行的AI科学家研究世界，将科学文献从可读转为可执行，为AI提供可交互演化的研究环境",
           "authors": [
             "Taiming Lu",
             "Sachin Konan",
@@ -551,7 +551,7 @@
           "url": "http://arxiv.org/abs/2611.08362v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08362v1",
           "abstract": "Masked diffusion language models offer parallel text generation, but independently sampling multiple tokens can disrupt their dependencies and change the output distribution. Exact continuous-time sam",
-          "summary_zh": "提出SpecCTMC实现扩散语言模型连续时间马尔可夫链的精确推测模拟，在保持精确采样分布的同时突破逐token串行评估瓶颈",
+          "summary_zh": "提出SpecCTMC实现扩散语言模型连续时间马尔可夫链的精确推测模拟，在保持精确采样分布的同时将每token一次串行评估降至并行加速",
           "authors": [
             "Siva Rajesh Kasa",
             "Yasong Dai",
@@ -573,7 +573,7 @@
           "url": "http://arxiv.org/abs/2611.08445v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08445v1",
           "abstract": "A defender anticipating an attacker needs a probability distribution over the attacker's next action from information available before that action occurs. Two structures complicate this: the attacker'",
-          "summary_zh": "提出隐马尔可夫偏好模型在线预测攻击者动作，可捕捉行为模式切换并融合操作与目标选择，提升预测准确率",
+          "summary_zh": "提出隐马尔可夫偏好模型在线预测攻击者动作，可同时捕捉行为模式持续与切换及动作多属性组合，提升预测准确性",
           "authors": [
             "Angel Daruna",
             "Michael Cogswell",
@@ -589,7 +589,7 @@
           "url": "http://arxiv.org/abs/2611.08433v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08433v1",
           "abstract": "LLM-based medical assistants that follow a patient across visits need a memory that keeps the patient's clinical state correct as it changes. We examine the errors of five memory systems on longitudin",
-          "summary_zh": "提出MedGraph图记忆方法维护患者临床状态，解决过时证据等三类记忆错误，提升长期医疗对话准确性",
+          "summary_zh": "提出基于图记忆维护患者状态的长期医疗对话方法，解决检索证据过时等三类错误，提升纵向临床状态准确性",
           "authors": [
             "Donghua Zhang",
             "Zizheng Wang",
@@ -612,7 +612,7 @@
           "url": "http://arxiv.org/abs/2611.08472v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08472v1",
           "abstract": "ML code should run where researchers choose, not where it was first written. Today, machine learning code mainly lives in two ecosystems, PyTorch on NVIDIA GPUs and JAX on Google TPUs. Migrating repos",
-          "summary_zh": "提出跨框架硬件迁移基准XStack，系统评测PyTorch与JAX在NVIDIA GPU和Google TPU间的仓库迁移能力",
+          "summary_zh": "提出首个跨PyTorch与JAX及NVIDIA与TPU的ML仓库迁移基准XStack，系统评测框架与硬件迁移的自动化能力",
           "authors": [
             "Linrong Cai",
             "Taiming Lu",
@@ -629,7 +629,7 @@
           "url": "http://arxiv.org/abs/2611.08469v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08469v1",
           "abstract": "Interpretability, AI auditing and assessments of machine consciousness increasingly rest on mechanism-level quantities: functionals of a system's causal transition law that describe how it computes, n",
-          "summary_zh": "提出有限干预下认证因果过渡律机制量的框架，证明行为等价系统可具不同整合信息机制并给出可认证边界",
+          "summary_zh": "提出有限干预下认证因果过渡律机制量的框架，揭示相同行为可对应不同底层机制，为AI可解释性与意识评估提供理论边界",
           "authors": [
             "Linqian Wu",
             "Diaoxuan He"
@@ -646,7 +646,7 @@
           "url": "http://arxiv.org/abs/2611.08439v1",
           "pdf_url": "https://arxiv.org/pdf/2611.08439v1",
           "abstract": "Typed-decision models score options that the caller supplies at request time, so their accuracy depends on label wording that the model's developer does not control. We compare two releases of a 307M-",
-          "summary_zh": "比较两版307M参数俄语交叉编码器发现标签措辞增强能提升模型对生词的处理表现但对缩写和代码无效",
+          "summary_zh": "比较307M参数多语言交叉编码器两版本，发现标签措辞增强提升生词表现但对缩写和代码无效",
           "authors": [
             "Vladimir Beskorovainyi"
           ],
