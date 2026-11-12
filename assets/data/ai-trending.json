@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-11T15:41:51.684308+00:00Z",
+  "generated_at": "2026-11-12T16:25:07.903752+00:00Z",
   "lookback_days": 30,
-  "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, Rust, TypeScript）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
+  "digest": "过去 30 天，共追踪到 23 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
     {
       "id": "agent-tools",
@@ -12,53 +12,53 @@
           "name": "mattpocock/skills",
           "url": "https://github.com/mattpocock/skills",
           "description": "Skills for Real Engineers. Straight from my .agents directory.",
-          "summary_zh": "来自资深工程师 .agents 目录的 AI 编码 Agent 实战技能集，让 Agent 真正像成熟工程师一样干活",
-          "stars": 321662,
-          "forks": 26967,
+          "summary_zh": "从真实工程目录提炼的 AI Agent 技能库，让编码助手按成熟工程师的方式工作",
+          "stars": 322751,
+          "forks": 27069,
           "language": "Shell",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 9872
+          "stars_period": 9575
         },
         {
           "name": "anthropics/skills",
           "url": "https://github.com/anthropics/skills",
           "description": "Public repository for Agent Skills",
-          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用的标准化能力模块",
-          "stars": 192898,
-          "forks": 22701,
+          "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用的模块化能力，让 Agent 快速掌握专业任务执行方法",
+          "stars": 193557,
+          "forks": 22769,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5014
+          "stars_period": 5738
         },
         {
           "name": "github/spec-kit",
           "url": "https://github.com/github/spec-kit",
           "description": "💫 Toolkit to help you get started with SDD or any other process!",
-          "summary_zh": "GitHub 官方开源的 SDD 规范驱动开发工具包，帮开发者快速落地结构化开发流程",
-          "stars": 149311,
-          "forks": 13408,
+          "summary_zh": "GitHub 官方开源的 SDD 规范驱动开发工具包，帮助开发者快速落地规格先行的工程流程",
+          "stars": 149500,
+          "forks": 13433,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2907
+          "stars_period": 2336
         },
         {
-          "name": "Graphify-Labs/graphify",
-          "url": "https://github.com/Graphify-Labs/graphify",
-          "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, ",
-          "summary_zh": "把任意代码库连同文档、SQL、配置和PDF转成可查询知识图谱的AI编码Agent技能，本地确定性AST解析",
-          "stars": 145992,
-          "forks": 13983,
+          "name": "harry0703/MoneyPrinterTurbo",
+          "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+          "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+          "summary_zh": "输入主题或关键词即可通过 AI 自动化工作流一键生成高清短视频，大幅降低短视频创作门槛",
+          "stars": 142806,
+          "forks": 22852,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4012
+          "stars_period": 3906
         }
       ]
     },
@@ -72,41 +72,47 @@
           "url": "https://github.com/D4Vinci/Scrapling",
           "description": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EM",
           "summary_zh": "一站式 Python 网页抓取框架，从单次请求到大规模爬取全搞定",
-          "stars": 101515,
-          "forks": 10579,
+          "stars": 102011,
+          "forks": 10617,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 7291
+          "stars_period": 5814
         },
         {
-          "name": "kividbio/kividb",
-          "url": "https://github.com/kividbio/kividb",
-          "description": "A fast, multi-threaded Redis® and Valkey alternative written in Rust: drop-in compatible, with full-text and vector search built in",
-          "summary_zh": "用 Rust 写的多线程 Redis/Valkey 平替，兼容现有客户端并内置全文与向量检索",
-          "stars": 1074,
-          "forks": 109,
-          "language": "Rust",
-          "topics": [
-            "cache",
-            "database",
-            "dragonfly-alternative",
-            "drop-in-replacement",
-            "full-text-search",
-            "high-performance"
-          ],
-          "created_at": "2026-10-16T01:07:52Z",
-          "source": "search",
-          "stars_period": 0
+          "name": "grafana/grafana",
+          "url": "https://github.com/grafana/grafana",
+          "description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki",
+          "summary_zh": "统一可视化指标日志与链路追踪的开源可观测性平台，灵活组合多数据源",
+          "stars": 77860,
+          "forks": 14967,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 199
+        },
+        {
+          "name": "vuejs/core",
+          "url": "https://github.com/vuejs/core",
+          "description": "🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+          "summary_zh": "渐进式可增量采用的 Web UI 框架，以响应式数据驱动和组件化开发解决界面构建难题",
+          "stars": 55011,
+          "forks": 9335,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 216
         },
         {
           "name": "Zleap-AI/SAG-Wiki",
           "url": "https://github.com/Zleap-AI/SAG-Wiki",
           "description": "A lightweight knowledge base for people and agents, with ultra fast indexing and most precise retrieval.",
           "summary_zh": "用 Rust 打造的超轻量知识库，索引极快、检索极准，专为人和 AI Agent 共享知识而生",
-          "stars": 1028,
-          "forks": 118,
+          "stars": 1105,
+          "forks": 130,
           "language": "Rust",
           "topics": [
             "knowledge-base",
@@ -119,26 +125,6 @@
           "created_at": "2026-10-18T14:51:30Z",
           "source": "search",
           "stars_period": 0
-        },
-        {
-          "name": "cdcailf/cjkfold",
-          "url": "https://github.com/cdcailf/cjkfold",
-          "description": "Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text extracted from PDFs matches again.",
-          "summary_zh": "专治PDF提取文本中康熙部首等CJK形近字不匹配问题，用NFKC折叠让检索重新对齐",
-          "stars": 201,
-          "forks": 9,
-          "language": "Python",
-          "topics": [
-            "chinese",
-            "cjk",
-            "nfkc",
-            "nlp",
-            "pdf-extraction",
-            "rag"
-          ],
-          "created_at": "2026-10-13T02:16:26Z",
-          "source": "search",
-          "stars_period": 0
         }
       ]
     },
@@ -148,38 +134,38 @@
       "desc": "压缩、转换、整理输入，降低 Token 成本，加速推理",
       "repos": [
         {
-          "name": "thedotmack/claude-mem",
-          "url": "https://github.com/thedotmack/claude-mem",
-          "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant ",
-          "summary_zh": "让 AI Agent 跨会话记住一切：自动捕获会话行为、AI 压缩后回注相关上下文，解决 Agent 失忆问题",
-          "stars": 116098,
-          "forks": 10073,
-          "language": "TypeScript",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 4473
-        },
-        {
           "name": "ranxianglei/billion-context",
           "url": "https://github.com/ranxianglei/billion-context",
-          "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (",
-          "summary_zh": "用上下文压缩插件把月级长会话塞进100K小窗口，Token消耗直降五倍",
-          "stars": 6750,
-          "forks": 550,
+          "description": "A context-compression plugin for month-long single sessions (billions of tokens) and small context windows (a 100K context is enough) .上下文压缩插件，月级长会话， ",
+          "summary_zh": "用上下文压缩插件把月级长会话塞进100K小窗口，让单次会话跑数十亿token成为可能",
+          "stars": 7028,
+          "forks": 576,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2290
+          "stars_period": 2795
+        },
+        {
+          "name": "shanselman/gputaskman",
+          "url": "https://github.com/shanselman/gputaskman",
+          "description": "A GPU task manager for Windows, Linux, and WSL: per-process VRAM, GPU activity, and LLM model/KV-cache insights (Windows AMD and NVIDIA).",
+          "summary_zh": "跨平台GPU任务管理器，按进程监控显存与GPU活动，还能洞察LLM模型与KV缓存占用，弥补Windows任务管理器盲区",
+          "stars": 2466,
+          "forks": 117,
+          "language": "Python",
+          "topics": [],
+          "created_at": "2026-11-03T00:49:34Z",
+          "source": "search",
+          "stars_period": 0
         },
         {
           "name": "RunanywhereAI/trnrt",
           "url": "https://github.com/RunanywhereAI/trnrt",
           "description": "The open LLM inference engine for AWS Trainium: NKI megakernels, 1M-token context, OpenAI-compatible API. By RunAnywhere.",
-          "summary_zh": "专为 AWS Trainium 打造的开源 LLM 推理引擎，用 NKI 大内核实现百万级上下文并兼容 OpenAI API",
-          "stars": 1260,
-          "forks": 12,
+          "summary_zh": "专为 AWS Trainium 打造的开源 LLM 推理引擎，用 NKI 大内核实现百万级上下文并兼容 OpenAI 接口",
+          "stars": 1535,
+          "forks": 15,
           "language": "Python",
           "topics": [
             "aws",
@@ -194,22 +180,22 @@
           "stars_period": 0
         },
         {
-          "name": "OmniJev/Flide",
-          "url": "https://github.com/OmniJev/Flide",
-          "description": "🔥🔥 The extremely fast inference engine for decision model",
-          "summary_zh": "面向决策模型的极速推理引擎，支持CUDA加速与确定性推理，让AI Agent决策更快更稳定",
-          "stars": 429,
-          "forks": 27,
-          "language": "Python",
+          "name": "wici-ai/inferssd",
+          "url": "https://github.com/wici-ai/inferssd",
+          "description": "Run models larger than your RAM or VRAM by streaming MoE experts from SSD. Built on llama.cpp.",
+          "summary_zh": "让超大 MoE 模型突破内存与显存限制，从 SSD 流式加载专家权重，在 llama.cpp 上实现低配也能跑大模型",
+          "stars": 621,
+          "forks": 73,
+          "language": "C++",
           "topics": [
-            "ai-agents",
+            "apple-silicon",
             "cuda",
-            "decision-making",
-            "deterministic-inference",
-            "gemma",
-            "inference-engine"
+            "gguf",
+            "inference",
+            "llama-cpp",
+            "llm"
           ],
-          "created_at": "2026-10-24T12:34:07Z",
+          "created_at": "2026-10-22T10:40:45Z",
           "source": "search",
           "stars_period": 0
         }
@@ -221,11 +207,31 @@
       "desc": "预训练、微调、对齐、评估等模型构建环节",
       "repos": [
         {
+          "name": "lucialuka/OpenAssembler",
+          "url": "https://github.com/lucialuka/OpenAssembler",
+          "description": "Open source compiler for your whole ML repo (support python, CUDA C/C++) into sass and cuda binary (which are closed sourced by Nvidia); 3-40% faster ",
+          "summary_zh": "将整个 ML 仓库的 Python 与 CUDA 代码直接编译为英伟达闭源 SASS 和 CUDA 二进制，神经网络推理比 OpenAI Triton 快 3-40%",
+          "stars": 222,
+          "forks": 20,
+          "language": "Sass",
+          "topics": [
+            "compiler",
+            "compiler-backend",
+            "compiler-optimization",
+            "gpu-acceleration",
+            "nvidia-cuda",
+            "ptx"
+          ],
+          "created_at": "2026-10-31T02:03:31Z",
+          "source": "search",
+          "stars_period": 0
+        },
+        {
           "name": "ninetyhe-90/training-explore",
           "url": "https://github.com/ninetyhe-90/training-explore",
           "description": "Interactive explorer for learning how large language models are trained",
-          "summary_zh": "交互式探索大语言模型训练全流程的教学工具，用可视化方式把抽象的训练原理变得直观易懂",
-          "stars": 150,
+          "summary_zh": "交互式探索大语言模型训练全流程的可视化学习工具，让抽象的训练原理变得直观可感",
+          "stars": 151,
           "forks": 16,
           "language": "TypeScript",
           "topics": [],
@@ -237,7 +243,7 @@
           "name": "FrontiersMindAI/decisionformer",
           "url": "https://github.com/FrontiersMindAI/decisionformer",
           "description": "Transformers for decision models: fine-tune, load and serve calibrated decsion-model on any Hugging Face model.",
-          "summary_zh": "让任意 Hugging Face 模型一键微调、加载并部署为校准决策模型，把 Transformer 直接变成可用的决策引擎",
+          "summary_zh": "让决策模型像大模型一样微调、加载与部署，支持任意 Hugging Face 模型并输出校准后的决策结果",
           "stars": 44,
           "forks": 4,
           "language": "Python",
@@ -261,56 +267,56 @@
       "desc": "面向终端用户的 AI 应用、UI 组件、聊天界面",
       "repos": [
         {
-          "name": "zeroclaw-labs/zeroclaw",
-          "url": "https://github.com/zeroclaw-labs/zeroclaw",
-          "description": "Fast, small, and fully autonomous AI personal assistant infrastructure, any OS, any platform — deploy anywhere, swap anything 🦀",
-          "summary_zh": "用 Rust 打造的轻量高速全自主 AI 助手基础设施，跨平台随处部署且组件可自由替换",
-          "stars": 33324,
-          "forks": 5007,
+          "name": "rustdesk/rustdesk",
+          "url": "https://github.com/rustdesk/rustdesk",
+          "description": "An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.",
+          "summary_zh": "开源远程桌面工具，可自托管替代 TeamViewer，用 Rust 编写兼顾性能与安全",
+          "stars": 129188,
+          "forks": 20609,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 232
+          "stars_period": 953
         },
         {
-          "name": "guillaumemeyer/watermarks-remover",
-          "url": "https://github.com/guillaumemeyer/watermarks-remover",
-          "description": "A privacy-first app that strips AI watermarks from content you own.",
-          "summary_zh": "隐私优先的AI水印去除工具，帮你清除自有内容中的AI水印痕迹",
-          "stars": 27101,
-          "forks": 3075,
-          "language": "Python",
+          "name": "tauri-apps/tauri",
+          "url": "https://github.com/tauri-apps/tauri",
+          "description": "Build smaller, faster, and more secure desktop and mobile applications with a web frontend.",
+          "summary_zh": "用 Rust 构建轻量高速且更安全的跨平台桌面与移动应用，前端仍可用任意 Web 技术栈",
+          "stars": 112834,
+          "forks": 4212,
+          "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 906
+          "stars_period": 368
+        },
+        {
+          "name": "RocketChat/Rocket.Chat",
+          "url": "https://github.com/RocketChat/Rocket.Chat",
+          "description": "The Secure CommsOS™ for mission-critical operations",
+          "summary_zh": "面向关键任务的安全通信操作系统，开源可自托管替代 Slack 并支持端到端加密与合规部署",
+          "stars": 46498,
+          "forks": 14146,
+          "language": "TypeScript",
+          "topics": [],
+          "created_at": "",
+          "source": "trending",
+          "stars_period": 151
         },
         {
           "name": "anthropics/claude-quickstarts",
           "url": "https://github.com/anthropics/claude-quickstarts",
           "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
-          "summary_zh": "官方 Claude API 快速上手指南合集，提供可直接部署的示例项目帮开发者跳过踩坑直接构建应用",
-          "stars": 20722,
-          "forks": 3482,
+          "summary_zh": "官方 Claude API 快速上手项目集，提供可直接部署的示例应用帮开发者跳过踩坑快速落地",
+          "stars": 20801,
+          "forks": 3490,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1253
-        },
-        {
-          "name": "longbridge/gpui-kit",
-          "url": "https://github.com/longbridge/gpui-kit",
-          "description": "Rust GUI components for building fantastic cross-platform desktop application by using GPUI.",
-          "summary_zh": "基于 GPUI 的 Rust 跨平台桌面 GUI 组件库，让开发者用高性能原生渲染快速搭建精美桌面应用",
-          "stars": 20359,
-          "forks": 1240,
-          "language": "Rust",
-          "topics": [],
-          "created_at": "",
-          "source": "trending",
-          "stars_period": 1300
+          "stars_period": 1637
         }
       ]
     },
@@ -323,53 +329,53 @@
           "name": "sherlock-project/sherlock",
           "url": "https://github.com/sherlock-project/sherlock",
           "description": "Hunt down social media accounts by username across social networks",
-          "summary_zh": "输入用户名即可跨社交网络批量追踪账号，十万星标的开源情报搜集利器",
-          "stars": 109875,
-          "forks": 12728,
+          "summary_zh": "输入用户名即可跨社交网络批量追踪账号，11万星标的情报搜集利器",
+          "stars": 110492,
+          "forks": 12798,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 13213
+          "stars_period": 14546
         },
         {
           "name": "ruvnet/RuView",
           "url": "https://github.com/ruvnet/RuView",
           "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel ",
           "summary_zh": "用普通WiFi信号实现实时空间感知、生命体征监测与存在检测，无需任何摄像头画面",
-          "stars": 104009,
-          "forks": 13533,
+          "stars": 104144,
+          "forks": 13558,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1763
+          "stars_period": 1760
         },
         {
           "name": "zed-industries/zed",
           "url": "https://github.com/zed-industries/zed",
           "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
-          "summary_zh": "Atom 与 Tree-sitter 作者打造的 Rust 高性能多人协作代码编辑器，让编码快如思考",
-          "stars": 94688,
-          "forks": 11628,
+          "summary_zh": "由 Atom 和 Tree-sitter 作者打造的高性能多人协作代码编辑器，用 Rust 实现，让编码快到思维速度",
+          "stars": 94802,
+          "forks": 11652,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2262
+          "stars_period": 2310
         },
         {
-          "name": "pingdotgg/t3code",
-          "url": "https://github.com/pingdotgg/t3code",
-          "description": "",
-          "summary_zh": "TypeScript 全栈开发脚手架，让前后端共享类型安全代码并快速搭建生产级 Web 应用",
-          "stars": 56572,
-          "forks": 10448,
-          "language": "TypeScript",
+          "name": "ZhuLinsen/daily_stock_analysis",
+          "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+          "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decisi",
+          "summary_zh": "LLM 驱动的多市场股票智能分析系统，整合多源行情与实时新闻生成决策看板并自动推送，支持零成本定时运行",
+          "stars": 71041,
+          "forks": 57113,
+          "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 11979
+          "stars_period": 3508
         }
       ]
     }
@@ -384,7 +390,7 @@
           "url": "http://arxiv.org/abs/2611.14516v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14516v1",
           "abstract": "We present TorchCurves, a PyTorch library that treats vector-valued parametric curves as learnable primitives. Its central operation maps batches of scalar inputs to points on curves represented in B-",
-          "summary_zh": "提出将矢量参数曲线作为可学习基元的PyTorch库，通过B样条与勒让德多项式基实现输入和系数的可微映射",
+          "summary_zh": "提出将矢量参数曲线作为可学习基元的PyTorch库，通过B样条与勒让德多项式基实现输入与系数均可微的批量映射",
           "authors": [
             "Alex Shtoff"
           ],
@@ -399,7 +405,7 @@
           "url": "http://arxiv.org/abs/2611.14492v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14492v1",
           "abstract": "Business process automation runs the same Standard Operating Procedure (SOP) again and again on new inputs. Large Language Model (LLM) agents can follow an SOP written in natural language, but they ca",
-          "summary_zh": "提出将工具型智能体蒸馏为无规划器工作流的方法，把重复SOP执行从逐步调用LLM转为固定流程，显著降低延迟与成本",
+          "summary_zh": "提出将工具型智能体蒸馏为无规划器工作流的方法，把重复SOP执行从逐步调用LLM转为固定流程，降低延迟与成本",
           "authors": [
             "Kaiyuan Hou",
             "Yang Ping Kuo",
@@ -417,7 +423,7 @@
           "url": "http://arxiv.org/abs/2611.14483v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14483v1",
           "abstract": "Neural networks are increasingly studied not merely as predictive systems, but as complex systems whose internal computations are themselves objects of scientific inquiry. Recent progress in mechanist",
-          "summary_zh": "提出机制可解释性需要推理逻辑的主张，为神经网络内部计算研究建立形式化推断框架以规范因果归因与证据推理",
+          "summary_zh": "提出机制可解释性需要推理逻辑框架，主张将内部计算研究建立在形式化推断规则上以规范神经元特征与电路识别",
           "authors": [
             "Zhimin Hu",
             "Chen Jiang",
@@ -440,7 +446,7 @@
           "url": "http://arxiv.org/abs/2611.14505v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14505v1",
           "abstract": "Agent harnesses have emerged as a promising mechanism for continual learning, alongside test-time parametric learning. However, the current benchmarks have several limitations: they generally focus on",
-          "summary_zh": "提出面向工作生命周期持续学习的多领域基准Continual-ARC，突破单领域单次评估局限，支持多类学习器长期技能获取度量",
+          "summary_zh": "提出Continual-ARC基准以衡量工作生命周期内的技能获取，突破单一领域、单次实例与单一学习器局限，支持多领域持续评估",
           "authors": [
             "Daniel Lenton"
           ],
@@ -454,7 +460,7 @@
           "url": "http://arxiv.org/abs/2611.14477v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14477v1",
           "abstract": "Text-to-SQL systems over large pooled catalogs must first retrieve the tables a question needs. We compare against the published table recall of RASL, which uses Claude 3.5 models to extract keywords ",
-          "summary_zh": "提出冻结检索器加学习排序的跨基准表格检索方法FERN，在BIRD、Spider和Fiben合并目录上超越RASL的表格召回表现",
+          "summary_zh": "提出冻结检索器加学习排序的跨基准表格检索方法FERN，在BIRD、Spider和Fiben合并目录上超越基于Claude 3.5的RASL表格召回",
           "authors": [
             "Arjun Rao",
             "Nishant Gopinath"
@@ -476,7 +482,7 @@
           "url": "http://arxiv.org/abs/2611.14514v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14514v1",
           "abstract": "LLM agents are increasingly used for open-ended, data-driven scientific discovery, yet most of them evaluate hypotheses pointwise, testing an empirical claim $h$ only against its complement $\\neg h$. ",
-          "summary_zh": "提出对比式假设发现框架，将假设评估从单点验证转为竞争解释间对比，使智能体能识别更可能的替代解释而非仅否定原假设",
+          "summary_zh": "提出对比式发现框架让LLM智能体在竞争性解释间比较而非逐点检验假设，实现开放式科学发现",
           "authors": [
             "Ziang Liu",
             "James J. Kim",
@@ -494,7 +500,7 @@
           "url": "http://arxiv.org/abs/2611.14511v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14511v1",
           "abstract": "Predicting how a ligand binds to its target is central to small-molecule drug discovery. Modern cofolding models can generate diverse candidate poses, but reliably ranking these candidates remains cha",
-          "summary_zh": "提出蛋白质-配体构象成对排序基准Pyrite（含1500对构象）并构建排序智能体，实现候选构象可靠优选",
+          "summary_zh": "提出Pyrite成对构象排序基准含1500对数据并构建蛋白配体姿态排序智能体提升候选构象筛选可靠性",
           "authors": [
             "Megha Srivastava",
             "Michael H. Lim",
@@ -511,7 +517,7 @@
           "url": "http://arxiv.org/abs/2611.14493v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14493v1",
           "abstract": "Deploying LLM-based analytics agents in enterprise settings requires evaluation frameworks that can reliably detect failures across complex, multi-tool workflows. We present a three-phase comparative ",
-          "summary_zh": "提出三阶段对比分析框架，系统评估三种企业分析智能体的评测范式在稳定性、故障检测与发现能力上的差异",
+          "summary_zh": "提出三阶段对比研究框架，系统评估三种企业分析智能体评测范式在稳定性、故障检测与发现能力上的差异表现",
           "authors": [
             "Howard Zhang",
             "Chuck Arvin",
@@ -535,7 +541,7 @@
           "url": "http://arxiv.org/abs/2611.14519v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14519v1",
           "abstract": "Foundation models pretrained on large natural-image collections are increasingly adapted for medical image segmentation, in the expectation that they will replace models trained for each task. Most co",
-          "summary_zh": "系统比较基础模型适配与任务专用训练在医学图像分割中的表现，发现分布外数据上专用模型仍具优势",
+          "summary_zh": "系统比较基础模型适配与任务专用训练在医学图像分割中的表现，揭示分布外场景下适配方法优势与关键性能差异",
           "authors": [
             "Emre Kutlusan",
             "Yongmin Li"
@@ -551,7 +557,7 @@
           "url": "http://arxiv.org/abs/2611.14504v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14504v1",
           "abstract": "Foundation models trained on large unlabeled corpora develop emergent capabilities, tasks that go beyond the training objective. We extend this paradigm to multimodal biology with Bonbon, a foundation",
-          "summary_zh": "提出基于约3.2万亿配对蛋白质配体token训练的多模态分子互作基础模型Bonbon，无需任务微调即涌现出超越训练目标的生物能力",
+          "summary_zh": "提出基于约3.2万亿配对蛋白质配体token训练的多模态分子相互作用基础模型Bonbon，展现出超越训练目标的涌现生物学能力",
           "authors": [
             "Adi Mashiach"
           ],
@@ -566,7 +572,7 @@
           "url": "http://arxiv.org/abs/2611.14432v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14432v1",
           "abstract": "We describe our solution for the 2026 BEHAVIOR Challenge: 100 long-horizon household tasks in the OmniGibson simulator. We placed 9th on the final leaderboard, the only independent team in the top 10.",
-          "summary_zh": "单一视觉语言动作模型统一完成百项长时家务任务，独立团队排名第九",
+          "summary_zh": "提出单一视觉语言动作模型统一解决100项长时家务任务，在2026 BEHAVIOR挑战赛获第九名且为前十唯一独立团队",
           "authors": [
             "Ilia Larchenko",
             "Gleb Zarin",
@@ -590,7 +596,7 @@
           "url": "http://arxiv.org/abs/2611.14518v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14518v1",
           "abstract": "DeepLearning (DL)-based Computer-Aided Diagnostic (CAD) systems have shown great promise in supporting clinicians, but their performance heavily depends on the availability of large, well-annotated da",
-          "summary_zh": "提出基于示例定位的EM-DETR基础检测模型，无需大量标注即可实现医学病灶检测",
+          "summary_zh": "提出基于示例引导的EM-DETR基础检测模型，无需大规模标注即可实现医学病灶检测",
           "authors": [
             "Sheethal Bhat",
             "Bogdan Georgescu",
@@ -607,7 +613,7 @@
           "url": "http://arxiv.org/abs/2611.14515v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14515v1",
           "abstract": "Reinforcement learning with verifiable rewards (RLVR) produces rich training experience, yet outcome rewards reduce each attempt to a single number and leave most of this information unused. Training-",
-          "summary_zh": "提出AI引导的脚手架自动生成方法，将训练提示中的策略与提示信息转化为可验证奖励信号，充分挖掘RLVR训练经验以提升语言模型强化学习效果",
+          "summary_zh": "提出AI引导的自动脚手架方法，将训练提示中的策略与提示信息转化为可验证奖励信号，充分挖掘RLVR训练经验，显著提升语言模型强化学习效果",
           "authors": [
             "Zijian Zhang",
             "Rizhen Hu",
@@ -624,7 +630,7 @@
           "url": "http://arxiv.org/abs/2611.14508v1",
           "pdf_url": "https://arxiv.org/pdf/2611.14508v1",
           "abstract": "Connectome-constrained models are often used to argue that a measured wiring diagram outperforms shuffled or rewired wiring, and hence that structure shapes function. Such comparisons can confound wir",
-          "summary_zh": "揭示连接组模型比较混淆布线结构与未测生理参数调校，提出区分二者贡献的检验方法以重审结构决定功能论断",
+          "summary_zh": "揭示连接组模型比较混淆布线结构与未测生理参数调校，提出区分二者贡献的检验方法以重审结构决定功能主张",
           "authors": [
             "Yeyuan Liu"
           ],
