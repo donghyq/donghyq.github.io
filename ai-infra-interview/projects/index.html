@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>AI Infra 核心项目架构与源码解析 · 董涵宇</title>
+<style>
+:root {
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --ink: #0f172a;
+  --ink-body: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #1e40af;
+  --primary-soft: #eff6ff;
+  --teal: #0f766e;
+  --teal-soft: #f0fdfa;
+  --amber: #92400e;
+  --amber-soft: #fffbeb;
+  --code-bg: #0f172a;
+  --code-ink: #e2e8f0;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.82;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.badge { background: var(--primary); color: #fff; font-size: 12px; padding: 2px 9px; border-radius: 999px; }
+.topnav { display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; }
+.topnav a {
+  text-decoration: none;
+  color: var(--ink-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.topnav a:hover { border-color: var(--primary); color: var(--primary); }
+.quiz-btn {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--teal);
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+.layout {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 24px 24px 88px;
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+.sidebar {
+  position: sticky;
+  top: 68px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+}
+.sidebar-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 10px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { margin: 3px 0; }
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink-body);
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 7px;
+  line-height: 1.45;
+}
+.sidebar a:hover { background: var(--primary-soft); color: var(--primary); }
+.sidebar .sub { padding-left: 16px; font-size: 12.5px; color: var(--muted); }
+.main { display: flex; flex-direction: column; gap: 30px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 42px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  scroll-margin-top: 72px;
+}
+.sec-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+h1 { font-size: 27px; line-height: 1.35; margin: 4px 0 14px; color: var(--ink); }
+h2 {
+  font-size: 20px;
+  margin: 34px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 72px;
+}
+h3 { font-size: 16.5px; margin: 22px 0 8px; color: var(--ink); }
+p { margin: 10px 0; color: var(--ink-body); }
+ul, ol { padding-left: 22px; margin: 10px 0; color: var(--ink-body); }
+li { margin: 6px 0; }
+strong { color: var(--ink); font-weight: 650; }
+code {
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+.code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 10px 10px 0 0;
+  margin-top: 16px;
+}
+pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 16px 18px;
+  border-radius: 0 0 10px 10px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.62;
+  margin: 0 0 18px;
+}
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+.star-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.star-item {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.star-item .st-head {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.star-item p { margin: 4px 0; font-size: 14.5px; }
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.metric-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.metric-box .num { font-size: 21px; font-weight: 750; color: var(--primary); line-height: 1.25; }
+.metric-box .lbl { font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 4px; }
+.metric-box .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.fig-box {
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 16px 18px 12px;
+  overflow-x: auto;
+}
+.fig-cap {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 8px;
+}
+.speech-box {
+  background: var(--teal-soft);
+  border-left: 4px solid var(--teal);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0;
+}
+.speech-title { font-weight: 700; color: var(--teal); font-size: 14px; margin-bottom: 8px; }
+.speech-box p { color: #134e4a; margin: 8px 0; font-size: 15px; }
+.callout {
+  background: var(--amber-soft);
+  border-left: 4px solid var(--amber);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14.5px;
+  color: #78350f;
+}
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.6; }
+th { background: #f1f5f9; font-weight: 650; color: var(--ink); }
+.qa-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+details.qa {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-alt);
+  padding: 14px 18px;
+}
+details.qa summary { cursor: pointer; font-weight: 650; color: var(--ink); font-size: 15px; }
+details.qa .ans { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); color: var(--ink-body); font-size: 14.5px; }
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; max-height: none; }
+  .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .star-grid { grid-template-columns: 1fr; }
+  .card { padding: 24px 18px; }
+}
+
+body.dark {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface-alt: #1e293b;
+  --ink: #f1f5f9;
+  --ink-body: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+  --primary: #60a5fa;
+  --primary-soft: rgba(59, 130, 246, 0.16);
+  --teal: #2dd4bf;
+  --teal-soft: rgba(20, 184, 166, 0.14);
+  --amber: #fbbf24;
+  --amber-soft: rgba(245, 158, 11, 0.14);
+}
+body.dark code { background: #1e293b; color: #e2e8f0; }
+body.dark th { background: #1e293b; }
+body.dark .topnav a { background: #1e293b; border-color: #334155; color: #cbd5e1; }
+body.dark .topbar { background: rgba(17, 24, 39, 0.94); }
+body.dark .fig-box { background: #f8fafc; }
+#read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #0d9488);
+  z-index: 100;
+  transition: width 0.08s ease-out;
+}
+.back-link {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 650;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--primary-soft);
+}
+.back-link:hover { opacity: 0.88; }
+.top-actions { display: flex; gap: 8px; align-items: center; }
+.theme-btn {
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-body);
+}
+.toc-filter {
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--ink);
+  font-size: 12.5px;
+  outline: none;
+}
+.toc-filter:focus { border-color: var(--primary); }
+
+</style>
+</head>
+<body>
+<div id="read-progress"></div>
+<header class="topbar">
+<div class="topbar-inner">
+<div class="brand"><a class="back-link" href="../" title="返回 AI Infra 面试突击手册">← 返回手册</a>
+<span class="badge">AI Infra 系统技术母版</span>
+<span>推理与 RL Infra · 分层存储 · 异构检索</span>
+</div>
+<nav class="topnav">
+<a href="#sec-global">00 全局技术栈</a>
+<a href="#sec-agent">01 搜索Agent业务架构</a>
+<a href="#sec-rl">02 128卡异步RL存储与恢复</a>
+<a href="#sec-kv">03 32卡分层KV Cache</a>
+<a href="#sec-ann">04 GPU向量检索与列存</a>
+<a href="#sec-opt">05 SuperOpt与LUGR</a>
+<a href="#sec-ledger">06 全局算账与广度知识</a>
+</nav>
+<div class="top-actions"><a class="back-link" href="../training-notes/" title="大模型训练学习笔记">训练笔记</a><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">深色</button><button class="quiz-btn" id="toggleQuizBtn" onclick="toggleQuiz()">自测模式（折叠问答）</button></div>
+</div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+<div class="sidebar-title">章节目录导航</div>
+<input class="toc-filter" id="tocFilter" oninput="filterToc(this.value)" placeholder="筛选章节或关键词..." type="search"/>
+<ul>
+<li><a href="#sec-global"><strong>00 · 全局四层架构与个人主线</strong></a></li>
+<li><a class="sub" href="#gl-arch">四层技术栈协同全景图</a></li>
+<li><a class="sub" href="#gl-intro">个人技术演进讲述稿</a></li>
+<li><a href="#sec-agent"><strong>01 · AI Search Agent 业务底座</strong></a></li>
+<li><a class="sub" href="#ag-flow">多路检索 / RAG / Memory 架构</a></li>
+<li><a class="sub" href="#ag-ctx">Context 五段排布与 KV 协同</a></li>
+<li><a class="sub" href="#ag-code">核心源码与追问</a></li>
+<li><a href="#sec-rl"><strong>02 · 128卡异步 RL 存储与恢复</strong></a></li>
+<li><a class="sub" href="#rl-star">STAR 速览与架构现状</a></li>
+<li><a class="sub" href="#rl-prof">Profiling 与技术选型对比</a></li>
+<li><a class="sub" href="#rl-arch">128卡拓扑与两阶段回收时序图</a></li>
+<li><a class="sub" href="#rl-code">跨组件交互与四大源码精讲</a></li>
+<li><a class="sub" href="#rl-bug">生产踩坑排障与全模块指标</a></li>
+<li><a class="sub" href="#rl-qa">STAR 讲稿与深水区追问</a></li>
+<li><a href="#sec-kv"><strong>03 · 32卡多轮分层 KV Cache</strong></a></li>
+<li><a class="sub" href="#kv-star">STAR 速览与显存/耗时剖析</a></li>
+<li><a class="sub" href="#kv-choice">方案调研与选型对比</a></li>
+<li><a class="sub" href="#kv-arch">P/D 三级缓存与恢复协议图</a></li>
+<li><a class="sub" href="#kv-code">四大核心模块源码精讲</a></li>
+<li><a class="sub" href="#kv-bug">线上故障复盘与全模块数据</a></li>
+<li><a class="sub" href="#kv-qa">STAR 讲稿与多轮追问</a></li>
+<li><a href="#sec-ann"><strong>04 · GPU 异构检索与实时索引</strong></a></li>
+<li><a class="sub" href="#ann-star">STAR、Profiling 与选型对比</a></li>
+<li><a class="sub" href="#ann-arch">异构检索流水与 Base+Delta 图</a></li>
+<li><a class="sub" href="#ann-code">CUDA / Lucene 源码与追问</a></li>
+<li><a href="#sec-opt"><strong>05 · SuperOpt 与 LUGR 加速</strong></a></li>
+<li><a class="sub" href="#opt-arch">隔离评测闭环与约束 Beam 图</a></li>
+<li><a class="sub" href="#opt-code">实现细节、数据与追问</a></li>
+<li><a href="#sec-ledger"><strong>06 · 全局数字账本与广度知识库</strong></a></li>
+</ul>
+</aside>
+<main class="main">
+<!-- SECTION 00: GLOBAL ARCHITECTURE -->
+<section class="card" id="sec-global">
+<span class="sec-tag">00 · 全局架构总览</span>
+<h1>从上层多轮 Agent 负载到底层存储、推理与百卡异步 RL 训练的全栈架构</h1>
+<p>以下四个工程项目围绕同一套业务体系展开：高并发主搜与多轮搜索智能体（AI Search Agent）。贯穿各项目的核心技术主线是<strong>分布式状态存储、GPU 显存生命周期调度与异构计算加速</strong>。</p>
+<p>上层 AI Search Agent 具有两个显著的运行特征。第一，单次会话需要融合长期记忆、近期对话、实体商品检索与知识库 RAG，上下文长度中位数达到 12.5K Token，且每轮工具调用存在约 2 秒的外部等待窗口。第二，不同复杂度的用户请求需要执行 1 至 6 轮不等的工具调用，轨迹生成长度跨度极大。这两个业务特征直接决定了底层基础设施的技术问题：在线推理侧需要解决工具等待期的 KV Cache 分层存储与跨节点恢复（32×H20 集群），后训练侧需要解决多轮长尾轨迹在训推混部切换时的状态持久化与跨副本接管（128×H20 集群），而检索与算子侧则需要解决底表高频更新与 GPU 扫描长尾（6400 节点检索集群与 SuperOpt 自动优化）。</p>
+<div class="fig-box" id="gl-arch">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 420" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"></path>
+</marker>
+</defs>
+<!-- Layer 1: Agent -->
+<rect fill="#f8fafc" height="82" rx="10" stroke="#94a3b8" stroke-width="1.5" width="1000" x="20" y="16"></rect>
+<text fill="#0f172a" font-size="14" font-weight="700" x="38" y="42">第一层：业务应用与上下文编排层（AI Search ReAct Agent / 章 01）</text>
+<rect fill="#ffffff" height="34" rx="6" stroke="#cbd5e1" width="220" x="38" y="52"></rect>
+<text fill="#334155" font-size="10.2" x="48" y="74">三路异步 Memory 加载 (偏好/指代/历史)</text>
+<rect fill="#ffffff" height="34" rx="6" stroke="#cbd5e1" width="230" x="272" y="52"></rect>
+<text fill="#334155" font-size="12.0" x="282" y="74">实体检索 (DQU+NL2SQL) + 内容 RRF</text>
+<rect fill="#ffffff" height="34" rx="6" stroke="#cbd5e1" width="220" x="516" y="52"></rect>
+<text fill="#334155" font-size="11.1" x="526" y="74">知识库 RAG (Child召回→Parent回读)</text>
+<rect fill="#eff6ff" height="34" rx="6" stroke="#3b82f6" width="252" x="750" y="52"></rect>
+<text fill="#1e40af" font-size="12.1" font-weight="600" x="760" y="74">五段式前缀稳定排布 (输入 Token -48%)</text>
+<line marker-end="url(#arrow)" stroke="#475569" stroke-width="1.8" x1="310" x2="310" y1="98" y2="124"></line>
+<line marker-end="url(#arrow)" stroke="#475569" stroke-width="1.8" x1="740" x2="740" y1="98" y2="124"></line>
+<text fill="#475569" font-size="11.5" x="320" y="116">在线流量：P50 12.5K Token，工具等待 ~2.0s</text>
+<text fill="#475569" font-size="11.5" x="750" y="116">后训练流量：1~6 轮工具调用，严重长尾分布</text>
+<!-- Layer 2 Left: Online Serving -->
+<rect fill="#eff6ff" height="160" rx="10" stroke="#3b82f6" stroke-width="1.8" width="485" x="20" y="128"></rect>
+<text fill="#1e40af" font-size="12.9" font-weight="700" x="36" y="154">第二层（左）：在线推理与分级 KV Cache 引擎（32×H20 8P+8D / 章 03）</text>
+<rect fill="#ffffff" height="50" rx="6" stroke="#93c5fd" width="216" x="36" y="166"></rect>
+<text fill="#1e3a8a" font-size="12.5" font-weight="600" x="46" y="186">等待期 HBM 换出与 DAG 淘汰</text>
+<text fill="#475569" font-size="9.5" x="46" y="205">session_ref 与 lock_ref 解耦，保公共主干</text>
+<rect fill="#ffffff" height="50" rx="6" stroke="#93c5fd" width="220" x="268" y="166"></rect>
+<text fill="#1e3a8a" font-size="12.5" font-weight="600" x="278" y="186">异步预取与 Runtime Cost Gate</text>
+<text fill="#475569" font-size="9.5" x="278" y="205">消除 77ms 跨 Rank 轮询，ready→首字 -53.2%</text>
+<rect fill="#dbeafe" height="46" rx="6" width="452" x="36" y="226"></rect>
+<text fill="#1e40af" font-size="10.8" font-weight="600" x="48" y="246">Mooncake 跨实例代际 Manifest + TP all_reduce(MIN) + K-head/V-layer FP8</text>
+<text fill="#1e3a8a" font-size="9.9" x="48" y="263">8K 续接重算 8216→34 Token ｜ 32 卡高峰 Resume TTFT P50 -25.7%，SLO 吞吐 +12.9%</text>
+<!-- Layer 2 Right: Async RL -->
+<rect fill="#f0fdfa" height="160" rx="10" stroke="#0f766e" stroke-width="1.8" width="495" x="525" y="128"></rect>
+<text fill="#0f766e" font-size="13.9" font-weight="700" x="541" y="154">第二层（右）：百卡异步 RL 状态存储与恢复（128×H20 混部 / 章 02）</text>
+<rect fill="#ffffff" height="50" rx="6" stroke="#5eead4" width="224" x="541" y="166"></rect>
+<text fill="#134e4a" font-size="12.5" font-weight="600" x="551" y="186">Mooncake 轨迹快照与组交付</text>
+<text fill="#475569" font-size="9.5" x="551" y="205">Ray Lease+generation，n=8 进 TransferQueue</text>
+<rect fill="#ffffff" height="50" rx="6" stroke="#5eead4" width="226" x="777" y="166"></rect>
+<text fill="#134e4a" font-size="12.5" font-weight="600" x="787" y="186">Qwen3.5 混合状态跨副本恢复</text>
+<text fill="#475569" font-size="10.1" x="787" y="205">导出 10 层 Attn KV + 30 层 Mamba 状态</text>
+<rect fill="#ccfbf1" height="46" rx="6" width="462" x="541" y="226"></rect>
+<text fill="#0f766e" font-size="12" font-weight="600" x="553" y="246">两阶段显存回收 (&lt;15s) + Conductor KV 路由 + 分段版本与 IS 校正</text>
+<text fill="#134e4a" font-size="10.8" x="553" y="263">切换重算 Token 减少 65% ｜ 128 卡集群有效吞吐 (完整 Group/GPU·h) 提升 15.2%</text>
+<line marker-end="url(#arrow)" stroke="#475569" stroke-width="1.8" x1="260" x2="260" y1="288" y2="314"></line>
+<line marker-end="url(#arrow)" stroke="#475569" stroke-width="1.8" x1="770" x2="770" y1="288" y2="314"></line>
+<!-- Layer 3: Storage & GPU Kernel & SuperOpt -->
+<rect fill="#fffbeb" height="86" rx="10" stroke="#d97706" stroke-width="1.5" width="1000" x="20" y="318"></rect>
+<text fill="#92400e" font-size="14" font-weight="700" x="38" y="344">第三层：共享存储底座、GPU 检索内核与算子自动优化（章 04 &amp; 章 05）</text>
+<rect fill="#ffffff" height="36" rx="6" stroke="#fcd34d" width="305" x="38" y="354"></rect>
+<text fill="#78350f" font-size="11.6" x="48" y="377">Mooncake Distributed Store + Conductor 目录</text>
+<rect fill="#ffffff" height="36" rx="6" stroke="#fcd34d" width="335" x="358" y="354"></rect>
+<text fill="#78350f" font-size="11.5" x="368" y="377">CUDA IVF 动态拆块 (30.8→4.5ms) + Lucene mmap 列存</text>
+<rect fill="#ffffff" height="36" rx="6" stroke="#fcd34d" width="294" x="708" y="354"></rect>
+<text fill="#78350f" font-size="11.4" x="718" y="377">SuperOpt 物理隔离验证 + LUGR 约束解码 (-25%)</text>
+</svg>
+<div class="fig-cap">图 0-1：从上层多轮搜索 Agent 到在线推理缓存、百卡异步 RL 训练与底层 GPU/存储内核的四层架构关系</div>
+</div>
+<div class="speech-box" id="gl-intro">
+<div class="speech-title">一分钟技术主线概览</div>
+<p>“面试官您好，我叫董涵宇，本科毕业于北航计算机系，23 年加入美团搜索推荐平台部从事 AI Infra 研发。过去三年我的工作主要围绕本地生活主搜和 AI Search 多轮智能体展开，核心技术主线是<strong>分布式存储、SGLang 推理引擎与 VeRL 百卡异步强化学习系统</strong>。</p>
+<p>早期我主要负责大规模检索引擎底层改造与 GPU 异构加速，在 6400 节点的检索平台上通过 Lucene 自定义 Codec 与 mmap 实现价格列原地更新，并编写 CUDA 内核解决亿级商品向量检索的 IVF 大桶扫描长尾与 Base+Delta 实时增量更新问题。</p>
+<p>随着业务演进到多轮 ReAct 搜索 Agent，单次会话上下文达到上万 Token，且每轮工具调用存在约 2 秒等待空窗。我先在 32 卡 H20 的 P/D 分离推理集群上，基于 SGLang HiCache 和 Mooncake 解决了工具等待期 HBM 换出、跨实例恢复一致性与异步预取准入问题；随后在团队建设 128 卡 H20 异步 GRPO 训练集群时，针对 Hybrid 混部副本切回训练导致的半截长尾轨迹中断丢弃与重复计算问题，我从存储与引擎状态恢复切入，实现了基于 Mooncake 的轨迹快照持久化、Qwen3.5-35B 混合架构 Attention KV 与 Mamba 状态跨副本恢复，以及两阶段显存回收与 Conductor 路由，使 128 卡集群有效训练吞吐提升 15.2%，并向 SGLang 和 VeRL 社区提交了核心 PR。”</p>
+</div>
+</section>
+<!-- SECTION 01: AI SEARCH AGENT ARCHITECTURE -->
+<section class="card" id="sec-agent">
+<span class="sec-tag">01 · 业务负载架构 · 多轮搜索 Agent</span>
+<h1>AI Search Agent 全链路架构与基础设施协同设计</h1>
+<p>底层推理缓存与强化学习系统的架构设计，直接取决于上层业务负载的数据访问特征。搜索智能体服务（<code>search-agent-server</code>）采用多轮 ReAct 架构，用于处理包含多维约束与跨轮次指代的复杂本地生活查询。当用户提出带有多维约束与跨轮指代的需求（例如：“周六带父母 6 人在国贸聚餐，预算 800 元以内，要上次收藏那家店类似的安静清淡菜，另外查一下黑珍珠套餐周末能否退改”）时，系统需要在一次多轮会话中协同调度<strong>长短期记忆（Memory）</strong>、<strong>结构化实体与内容检索（Entity &amp; Content Search）</strong>以及<strong>规则知识库检索（RAG）</strong>。</p>
+<h2 id="ag-flow">1. 端到端请求执行链路与三类检索分工</h2>
+<p>整个执行流程分为会话初始化加载与 ReAct 多轮工具循环两个阶段。在会话初始化阶段，<code>RecActSearchTool.loadAllMemory()</code> 通过三个异步线程池任务并发拉取用户长期画像、跨会话历史事实与当前会话历史消息。进入 ReAct 循环后，主模型根据每一轮的推理状态输出工具调用指令，由底层执行引擎完成检索并将结果追加回上下文。</p>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 310" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr1" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"></path>
+</marker>
+</defs>
+<!-- Step 1: Async Memory Load -->
+<rect fill="#f8fafc" height="270" rx="10" stroke="#64748b" stroke-width="1.5" width="230" x="16" y="20"></rect>
+<text fill="#0f172a" font-size="13.5" font-weight="700" x="30" y="46">① 并发加载长短期 Memory</text>
+<text fill="#475569" font-size="11.2" x="30" y="68">RecActSearchTool.loadAllMemory()</text>
+<rect fill="#ffffff" height="46" rx="6" stroke="#cbd5e1" width="202" x="30" y="82"></rect>
+<text fill="#1e293b" font-size="11.9" font-weight="600" x="40" y="102">长期偏好记忆 (MemoryManager)</text>
+<text fill="#64748b" font-size="11" x="40" y="120">常去商圈、口味偏好、价格区间</text>
+<rect fill="#ffffff" height="46" rx="6" stroke="#cbd5e1" width="202" x="30" y="138"></rect>
+<text fill="#1e293b" font-size="10.6" font-weight="600" x="40" y="158">跨会话事实 (AgentContextLoader)</text>
+<text fill="#64748b" font-size="11" x="40" y="176">解析历史指代（如“上次收藏的店”）</text>
+<rect fill="#ffffff" height="46" rx="6" stroke="#cbd5e1" width="202" x="30" y="194"></rect>
+<text fill="#1e293b" font-size="11.9" font-weight="600" x="40" y="214">近期会话历史 (MessageCenter)</text>
+<text fill="#64748b" font-size="11" x="40" y="232">拉取多轮原始对话，超限按需裁剪</text>
+<text fill="#1e40af" font-size="11.5" font-weight="600" x="30" y="266">三路 CompletableFuture 超时合流</text>
+<line marker-end="url(#arr1)" stroke="#475569" stroke-width="1.8" x1="246" x2="276" y1="155" y2="155"></line>
+<!-- Step 2: Context Assembly & LLM -->
+<rect fill="#eff6ff" height="270" rx="10" stroke="#3b82f6" stroke-width="1.6" width="236" x="280" y="20"></rect>
+<text fill="#1e40af" font-size="13.5" font-weight="700" x="294" y="46">② 前缀稳定组装与主模型推理</text>
+<text fill="#1e3a8a" font-size="11.5" x="294" y="68">MetaMessages + MessageClipping</text>
+<rect fill="#ffffff" height="114" rx="6" stroke="#93c5fd" width="208" x="294" y="82"></rect>
+<text fill="#1e3a8a" font-size="11.2" font-weight="600" x="304" y="102">五段式上下文顺序（前4段只追加）：</text>
+<text fill="#334155" font-size="10.4" x="304" y="122">1. SystemPrompt（工具Schema固定）</text>
+<text fill="#334155" font-size="11.5" x="304" y="140">2. 会话内冻结 Memory 快照</text>
+<text fill="#334155" font-size="11.5" x="304" y="158">3. HistoryMessage（历史轮次）</text>
+<text fill="#334155" font-size="10.6" x="304" y="176">4. CurrentQuery + 历次 Tool 轨迹</text>
+<text fill="#b45309" font-size="10.8" font-weight="600" x="304" y="192">5. AssistantRemind（动态段置底）</text>
+<rect fill="#dbeafe" height="64" rx="6" width="208" x="294" y="208"></rect>
+<text fill="#1e40af" font-size="11.6" font-weight="700" x="304" y="228">SGLang 主模型 (Qwen3-30B/35B)</text>
+<text fill="#1e3a8a" font-size="11.5" x="304" y="246">完整输入 P50 约 12.5K Token</text>
+<text fill="#1e3a8a" font-size="9.9" x="304" y="263">输出 Tool Call 进入 ~2.02s 等待窗口</text>
+<line marker-end="url(#arr1)" stroke="#475569" stroke-width="1.8" x1="516" x2="546" y1="155" y2="155"></line>
+<!-- Step 3: Three Retrieval Channels -->
+<rect fill="#f0fdfa" height="270" rx="10" stroke="#0f766e" stroke-width="1.6" width="256" x="550" y="20"></rect>
+<text fill="#0f766e" font-size="13.5" font-weight="700" x="564" y="46">③ 三类异构检索工具并行执行</text>
+<rect fill="#ffffff" height="66" rx="6" stroke="#5eead4" width="228" x="564" y="62"></rect>
+<text fill="#134e4a" font-size="10.8" font-weight="600" x="574" y="82">A. 实体商品检索 (SqlTransBsRequest)</text>
+<text fill="#334155" font-size="11" x="574" y="100">DQU 解析 + 受限 NL2SQL 转底层查询</text>
+<text fill="#334155" font-size="10.9" x="574" y="116">CPU 地理/营业硬过滤 + GPU 向量算距离</text>
+<rect fill="#ffffff" height="64" rx="6" stroke="#5eead4" width="228" x="564" y="136"></rect>
+<text fill="#134e4a" font-size="10.9" font-weight="600" x="574" y="156">B. 评价与内容检索 (MergeRecallData)</text>
+<text fill="#334155" font-size="11" x="574" y="174">BM25 关键词路 + 向量路遵守同范围过滤</text>
+<text fill="#334155" font-size="11" x="574" y="190">RRF 倒数名次融合 + 有限候选 Rerank</text>
+<rect fill="#ffffff" height="66" rx="6" stroke="#5eead4" width="228" x="564" y="208"></rect>
+<text fill="#134e4a" font-size="12" font-weight="600" x="574" y="228">C. 规则知识库 RAG (RagPipeline)</text>
+<text fill="#334155" font-size="10.4" x="574" y="246">按生效 docVersion 检索细粒度 Child 块</text>
+<text fill="#334155" font-size="10.2" x="574" y="262">沿 parentId/splitId 回读完整规则上下文</text>
+<line marker-end="url(#arr1)" stroke="#475569" stroke-width="1.8" x1="806" x2="836" y1="155" y2="155"></line>
+<!-- Step 4: Loopback & Infra Impact -->
+<rect fill="#fffbeb" height="270" rx="10" stroke="#d97706" stroke-width="1.5" width="184" x="840" y="20"></rect>
+<text fill="#92400e" font-size="13.5" font-weight="700" x="854" y="46">④ 结果回填与基建传导</text>
+<text fill="#78350f" font-size="12" font-weight="600" x="854" y="74">工具结果追加至第4段：</text>
+<text fill="#78350f" font-size="11.5" x="854" y="94">• 前 8K+ Token 完全不变</text>
+<text fill="#78350f" font-size="11.5" x="854" y="114">• 触发下一轮 Resume 推理</text>
+<line stroke="#fcd34d" x1="854" x2="1010" y1="132" y2="132"></line>
+<text fill="#92400e" font-size="12" font-weight="600" x="854" y="154">直接催生三大底层课题：</text>
+<text fill="#78350f" font-size="9.5" x="854" y="176">1. 2s 空窗 HBM 换出与预取 (章03)</text>
+<text fill="#78350f" font-size="9.5" x="854" y="208">2. 多轮长尾 RL 状态恢复 (章02)</text>
+<text fill="#78350f" font-size="9.5" x="854" y="252">3. 原地改价与 GPU 向量加速 (章04)</text>
+</svg>
+<div class="fig-cap">图 1-1：AI Search Agent 端到端请求执行流程及三类检索（Entity Search / 内容 RRF / 知识库 RAG）职责切分</div>
+</div>
+<h2 id="ag-ctx">2. 上层设计细节：RAG、Memory 与底层 KV Cache 的协同约束</h2>
+<p>在多轮 Agent 系统中，上层检索与上下文组织方式直接决定了底层推理引擎的 KV Cache 命中率。我们在工程实现中明确了以下三项设计准则：</p>
+<ul>
+<li><strong>第一，区分三类检索的语义边界与冲突优先级：</strong>实体检索（<code>SqlTransBsRequestTool</code>）负责筛选满足地理位置、营业时间、实时价格等硬约束的商户与商品，文本召回路与 GPU 向量召回路必须执行相同的业务范围过滤；内容检索通过倒数名次融合（RRF，<code>score = Σ 1/(k + rank_i)</code>）合并不同分数量纲的候选；知识库 RAG（<code>RagPipeline</code> + <code>KnowledgeRequestBuilder</code>）用于检索团购退改规则等文档，采用细粒度 Child Chunk 保证向量召回率，命中后根据文档生效版本号（<code>docVersion</code>）和切分标识（<code>splitId / parentId</code>）回读完整 Parent 段落，防止漏掉规则前提或例外条款。对于用户记忆，当本轮显式条件（如“今天吃清淡”）与长期偏好属性（如“平时嗜辣”）发生冲突时，本轮硬约束立即优先生效，长期偏好仅通过后台异步累积证据更新。</li>
+<li><strong>第二，采用前缀稳定（Prefix-Stable）的五段式 Context 布局保护 RadixCache 命中：</strong>SGLang 的 <code>RadixCache</code> 基于块级 Token 序列前缀哈希进行匹配。如果在 SystemPrompt 或消息头部插入动态时间戳、每轮重新生成的全文摘要或实时变化的检索结果，会导致从变动位置往后的所有 KV 页哈希全部失效，8K 历史上下文被迫全量重算 Prefill。因此，我们在 <code>RecActSearchTool</code> 中将模型可见输入严格固定为五段：<code>SystemPrompt</code>（静态工具定义）→ <code>会话内冻结的 Memory 快照</code> → <code>HistoryMessage</code>（历史轮次）→ <code>CurrentMessage</code>（本轮 Query 与历次追加的 Tool Call / Observation）→ <code>AssistantRemindPrompt</code>（动态轮次提示置底）。在同一个多轮会话生命周期内，前四段严格遵循只追加（Append-Only）原则，动态提示永远放在最末尾，从而保证前序 8K～12K Token 的 KV 页在多轮工具调用之间 100% 保持前缀哈希一致。</li>
+<li><strong>第三，原始对话持久化与读取侧按需裁剪（MessageClipping）分离：</strong>完整原始消息写入消息中心用于离线评测与回溯；送入模型的上下文仅在超过 Token 预算阈值时触发 <code>MessageClipping.clippingMessageList()</code>，优先裁剪早期轮次中冗长的工具原始 JSON 字段并保留结构化结论。该机制在保持前序主干稳定的前提下，将多轮会话平均输入 Token 消耗降低了 <strong>48%</strong>。</li>
+</ul>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 215" width="100%" xmlns="http://www.w3.org/2000/svg">
+<!-- Bad Layout -->
+<text fill="#991b1b" font-size="13" font-weight="700" x="20" y="28">错误排布（反模式）：将每轮变化的动态摘要/时间戳/Remind 放在头部 → 后续 10K Token 前缀哈希链全部失效</text>
+<rect fill="#dbeafe" height="36" rx="5" stroke="#3b82f6" width="140" x="20" y="40"></rect>
+<text fill="#1e3a8a" font-size="11.5" x="32" y="63">SystemPrompt</text>
+<rect fill="#fca5a5" height="36" rx="5" stroke="#dc2626" stroke-width="1.8" width="170" x="166" y="40"></rect>
+<text fill="#991b1b" font-size="11.5" font-weight="700" x="176" y="63">动态摘要/时间戳 (每轮变!)</text>
+<rect fill="#fee2e2" height="36" rx="5" stroke="#f87171" stroke-dasharray="4 3" width="220" x="342" y="40"></rect>
+<text fill="#991b1b" font-size="11.5" x="354" y="63">HistoryMessage (哈希失配重算)</text>
+<rect fill="#fee2e2" height="36" rx="5" stroke="#f87171" stroke-dasharray="4 3" width="260" x="568" y="40"></rect>
+<text fill="#991b1b" font-size="11.5" x="580" y="63">Tool 轨迹 1..k (哈希失配重算)</text>
+<text fill="#991b1b" font-size="12" font-weight="700" x="842" y="63">→ 8K KV 命中率 = 0%</text>
+<line stroke="#cbd5e1" stroke-dasharray="4 4" x1="20" x2="1020" y1="98" y2="98"></line>
+<!-- Good Layout -->
+<text fill="#0f766e" font-size="13" font-weight="700" x="20" y="126">前缀稳定五段式排布（本项目实现）：前 4 段 Append-Only 固定，动态 Remind 置底 → 8K+ 历史页 100% 命中 RadixCache</text>
+<rect fill="#ccfbf1" height="42" rx="5" stroke="#0f766e" width="130" x="20" y="140"></rect>
+<text fill="#134e4a" font-size="11.5" font-weight="600" x="30" y="166">1. SystemPrompt</text>
+<rect fill="#ccfbf1" height="42" rx="5" stroke="#0f766e" width="160" x="156" y="140"></rect>
+<text fill="#134e4a" font-size="11.5" font-weight="600" x="166" y="166">2. 会话内冻结 Memory</text>
+<rect fill="#ccfbf1" height="42" rx="5" stroke="#0f766e" width="170" x="322" y="140"></rect>
+<text fill="#134e4a" font-size="11.5" font-weight="600" x="332" y="166">3. HistoryMessage</text>
+<rect fill="#ccfbf1" height="42" rx="5" stroke="#0f766e" width="200" x="498" y="140"></rect>
+<text fill="#134e4a" font-size="11.3" font-weight="600" x="508" y="166">4. Current + 已完成 Tool 轮次</text>
+<rect fill="#fef3c7" height="42" rx="5" stroke="#d97706" stroke-width="1.6" width="150" x="704" y="140"></rect>
+<text fill="#92400e" font-size="11.5" font-weight="700" x="714" y="166">5. 新 Tool + Remind</text>
+<text fill="#0f766e" font-size="12" font-weight="700" x="866" y="166">→ 仅算末尾 34 Token!</text>
+</svg>
+<div class="fig-cap">图 1-2：Context 五段式前缀稳定排布与底层 SGLang RadixCache 块哈希复用关系对比</div>
+</div>
+<h2 id="ag-code">3. 核心源码实现与面试问答</h2>
+<div class="code-head"><span>search-agent-server/.../RecActSearchTool.java:249 &amp; 715</span><span>三路并发记忆加载 + 五段式前缀稳定组装</span></div>
+<pre><code>private void loadAllMemory(AgentContext agentContext, RecActRequest req, RecActParams params, RecActResult res) {
+    List&lt;CompletableFuture&lt;Void&gt;&gt; futures = Lists.newArrayList();
+    // 1. 异步加载长期偏好记忆、跨会话上下文指代、近期历史对话，统一受 asyncDataLoaderTimeLimit 超时控制
+    futures.add(CompletableFuture.runAsync(
+        () -&gt; memoryManager.loadMemoryCore(agentContext, params.getMemoryLoaders()), executor));
+    futures.add(CompletableFuture.runAsync(
+        () -&gt; agentContextLoaderExecutor.loadAgentContextCore(agentContext, params.getContextLoaderNameList(), limit), executor));
+    futures.add(CompletableFuture.runAsync(
+        () -&gt; messageCenterService.setupHistoryMessageCore(agentContext, buildHistoryMessageRequest(agentContext, params)), executor));
+    CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).get(params.getAsyncDataLoaderTimeLimit(), MILLISECONDS);
+    processMessage(agentContext, params);
+}
+
+// 2. 组装模型输入：固定前序 System 与 History，将每轮新增 Tool 结果追加在 Current，动态 Remind 置于最末尾
+MetaMessages metaMessages = new MetaMessages();
+metaMessages.setSystemPrompt(agentContext.getSystemPromptMessage());
+metaMessages.setHistoryMessage(historyMessage);
+List&lt;Message&gt; combineMessage = new ArrayList&lt;&gt;(queryMessages);
+combineMessage.addAll(agentContext.getCurrentMessage());
+metaMessages.setCurrentMessage(combineMessage);
+metaMessages.setRemindPrompt(agentContext.getRemindPromptMessage());
+metaMessages.setAssistantRemindPrompt(agentContext.getAssistantRemindPromptMessage());
+return messageClipping.clippingMessageList(agentContext, metaMessages, searchSource2MessageClipperMap);</code></pre>
+<div class="qa-list">
+<details class="qa" open="">
+<summary>Q1：Q1：为什么不在每轮工具返回后用轻量模型重写一段全局摘要放在输入头部，而采用末尾追加与超限按块裁剪？</summary>
+<div class="ans">每轮重写开头摘要在单轮视角下看似减少了 Token 数，但在多轮高频工具调用场景下是典型的负优化。原因有两点：第一，一旦开头摘要的几个 Token 发生变化，后面几千 Token 的历史对话与工具结果在 SGLang <code>RadixCache</code> 中的前缀哈希链条全部断裂，每一轮 Resume 都必须对整段上下文重新做 Prefill，失去缓存复用；第二，多加一次小模型摘要本身会引入数百毫秒的串行延迟并可能丢失商品 ID、价格等精确数字。因此正确做法是保持前序块 Append-Only 不变以复用 KV Cache，仅在总长度跨越预算窗口上限时按整块淘汰或折叠最老的工具原始输出。</div>
+</details>
+</div>
+</section>
+<!-- SECTION 02: 128-GPU ASYNC RL ROLLOUT STORAGE & KV RECOVERY -->
+<section class="card" id="sec-rl">
+<span class="sec-tag">02 · 百卡异步 RL 训练 · VeRL / SGLang / Mooncake / FSDP2</span>
+<h1>异步 RL Rollout 存储与跨副本 KV 状态恢复</h1>
+<h2 id="rl-star">1. STAR 结构化速览与职责边界</h2>
+<div class="star-grid">
+<div class="star-item">
+<div class="st-head">Situation（背景与规模）</div>
+<p>面向 AI Search 多轮工具调用 Agent 的后训练需求，模型为 <code>Qwen3.5-35B-A3B</code>（30 层 GDN 线性注意力 + 10 层 Full Attention 的混合 MoE 架构，BF16 权重 71.9GB）。生产集群规模为 <strong>128 张 H20（16 台 8 卡节点）</strong>，采用 VeRL 的 <code>Hybrid + Standalone</code> 动态资源调度架构：64 张常驻 Standalone 推理卡（32 个 TP2 SGLang 副本）持续生成样本；另外 64 张 Trainer/Hybrid 混部卡在样本不足时拉起 32 个 TP2 SGLang 副本参与 Rollout，样本水位达到阈值后切回 FSDP2 执行 GRPO 参数更新。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Task（核心技术问题）</div>
+<p>多轮搜索 Agent 单条轨迹需执行 1～6 轮外部工具调用，生成长度达 8K～16K Token，长尾效应显著。每当 Hybrid 副本切回 Trainer 模式时面临三个问题：① SGLang 停用副本时未拒绝在途迟到请求，导致客户端协程阻塞阻塞超时；② Hybrid 副本上约 25%～30% 尚未跑完的多轮轨迹若等待自然排空需耗时 50s 以上，若直接 <code>abort</code> 丢弃则浪费已执行的工具调用与数千 Token 的历史状态；③ <code>Qwen3.5-35B</code> 的 30 层 GDN/Mamba 状态为原地递推覆盖，无法按标准 KV 前缀切片补算。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Action（方案选型与核心实现）</div>
+<p>从分布式存储与推理引擎状态管理切入，完成四项改造：① 设计 Ray 单写者元数据（<code>Lease + generation</code>）与 Mooncake 大载荷分离存储，持久化 <code>TrajectorySnapshot</code> 并通过 <code>HandoffManifest</code> 保证 <code>n=8</code> 的 GRPO 组完整性后交付 <code>TransferQueue</code>；② 扩展 SGLang 支持活跃请求原地中断与跨 TP Rank 同步导出 <code>Attention KV + Mamba Conv/SSM State</code>（<code>SGLang #45572</code>）；③ 修复 SGLang 停用副本准入阻塞（<code>VeRL #8387</code>），实现源卡落盘后立即 <code>sleep</code> 归还显存、Standalone 经 Conductor 缓存目录路由并行续跑的两阶段回收机制；④ 在训练端补齐跨权重更新轨迹的分段 <code>weight_version</code> 记录、Staleness 过滤、Decoupled PPO 重要性采样及 FSDP2/NCCL 稳定性修复。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Result（全链路量化指标）</div>
+<p>① <strong>存储与引擎恢复指标：</strong>Mooncake 组快照（约 <code>3.68 MB/group</code>）写/读中位延迟为 <strong>21.0ms / 20.2ms</strong>；单请求状态捕获耗时 <strong>0.1s～1.1s</strong>；35B TP2 跨实例恢复实现 <strong>0 历史重算 Token</strong>，续写 128 Token 与连续生成完全一致（<code>max |Δlogprob| &lt; 0.004</code>）。<br/>② <strong>集群端到端训练收益：</strong>Hybrid 切换显存回收等待由 <code>50s+</code> 压降至 <strong>15s 以内</strong>，切换边界重复计算 Token 减少 <strong>65%</strong>，单步训练周期均值由 <code>205s</code> 缩短至 <strong>178s</strong>，128×H20 集群有效训练吞吐（完整 GRPO Group / GPU·h）提升 <strong>15.2%</strong>。</p>
+</div>
+</div>
+<h2 id="rl-prof">2. 架构现状、Profiling 方法与瓶颈定位</h2>
+<p>在优化前，我们对 128×H20 集群上的单步 GRPO 训练（单步 Global Batch 为 <code>64 Prompts × 8 = 512</code> 条多轮轨迹）进行了全阶段埋点剖析。通过在 VeRL 主循环与 Rollout 管理器中采集 <code>timing_s/gen</code>、<code>timing_s/trajectory_reclaim</code>、<code>timing_s/old_log_prob</code>、<code>timing_s/update_actor</code> 和 <code>timing_s/weight_sync</code>，结合 Prometheus 副本活跃请求监控，定位出以下三处核心瓶颈：</p>
+<ul>
+<li><strong>瓶颈一（长尾分布与模式切换冲突）：</strong>在多轮搜索场景下，简单查询 1 轮工具调用（约 15～20s）即可结束，而复杂对比查询需要连续调用 5～6 轮工具并生成上万 Token（耗时 60～90s）。监控显示，Rollout 阶段超过 50% 的时间花在等待最后 15%～20% 的长尾样本上。当样本池达到 <code>deactivate_ratio</code> 触发 Hybrid 副本下线时，32 个 Hybrid 副本上仍有大量处于第 3～4 轮工具交互的半截轨迹。</li>
+<li><strong>瓶颈二（源卡回收等待与丢弃重跑的两难）：</strong>原生 <code>DynamicResourceController</code> 在停用 Hybrid 副本时，如果等待在途长尾请求自然跑完，64 张 Trainer 卡会被迫空等 <code>50s+</code> 才能拿到显存；如果直接调用 <code>abort_replicas</code> 强制中止（Abort）在途请求并交由 Standalone 重试，前几轮已经完成的外部搜索 RPC 和数千 Token 的 Prefill 全部作废，Standalone 瞬间涌入大量从第 0 轮重跑的请求，造成单步收尾时间进一步拉长。</li>
+<li><strong>瓶颈三（副本停用时的迟到请求集合通信阻塞）：</strong>在 <code>remove_replicas</code> 到负载均衡器生效的微小时间窗内，或者异步客户端并发派发子轮次请求时，仍有少量请求落到正在下线的 Hybrid 副本上。原生 <code>SGLangHttpServer.abort_all_requests</code> 忽略了 <code>reject_request=True</code> 参数，仅将内部状态置为暂停等待，导致这些迟到请求永久卡在 <code>_resume_event.wait()</code> 上，进而拖住整个 GRPO Group 无法凑齐 <code>n=8</code> 提交训练。</li>
+</ul>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 270" width="100%" xmlns="http://www.w3.org/2000/svg">
+<!-- Baseline Timeline -->
+<text fill="#991b1b" font-size="13.5" font-weight="700" x="20" y="30">优化前基线（原生切换：平均 205s / Step）—— 源卡释放与长尾收尾串行阻塞，或粗暴 Abort 从第 0 轮重跑</text>
+<text fill="#334155" font-size="12" font-weight="600" x="20" y="62">64卡 Hybrid 池</text>
+<rect fill="#93c5fd" height="28" rx="4" width="280" x="130" y="44"></rect>
+<text fill="#1e3a8a" font-size="11.5" x="200" y="63">参与 Rollout 生成 (75s)</text>
+<rect fill="#fca5a5" height="28" rx="4" stroke="#dc2626" width="180" x="410" y="44"></rect>
+<text fill="#991b1b" font-size="11.5" font-weight="600" x="420" y="63">切换排空/迟到卡顿 (33s)</text>
+<rect fill="#fde68a" height="28" rx="4" stroke="#d97706" width="330" x="590" y="44"></rect>
+<text fill="#92400e" font-size="11.5" font-weight="600" x="660" y="63">FSDP2 old/ref + Actor 更新 (85s)</text>
+<rect fill="#cbd5e1" height="28" rx="4" width="50" x="920" y="44"></rect>
+<text fill="#334155" font-size="9.5" x="925" y="63">Sync12s</text>
+<text fill="#334155" font-size="12" font-weight="600" x="20" y="102">64卡 Standalone</text>
+<rect fill="#bfdbfe" height="28" rx="4" width="460" x="130" y="84"></rect>
+<text fill="#1e3a8a" font-size="11.5" x="230" y="103">持续采样 + 被 Abort 半截轨迹从第 0 轮重调工具重算 Prefill</text>
+<rect fill="#e2e8f0" height="28" rx="4" width="380" x="590" y="84"></rect>
+<text fill="#475569" font-size="11.3" x="680" y="103">继续为下一 Step 缓冲样本（受限于上一步重跑积压）</text>
+<line stroke="#cbd5e1" stroke-dasharray="4 4" x1="20" x2="1020" y1="134" y2="134"></line>
+<!-- Optimized Timeline -->
+<text fill="#0f766e" font-size="13.5" font-weight="700" x="20" y="164">优化后方案（两阶段显存回收 + Mooncake 状态接管：平均 178s / Step，吞吐 +15.2%）</text>
+<text fill="#334155" font-size="12" font-weight="600" x="20" y="196">64卡 Hybrid 池</text>
+<rect fill="#93c5fd" height="28" rx="4" width="280" x="130" y="178"></rect>
+<text fill="#1e3a8a" font-size="11.5" x="200" y="197">参与 Rollout 生成 (75s)</text>
+<rect fill="#5eead4" height="28" rx="4" stroke="#0f766e" width="60" x="410" y="178"></rect>
+<text fill="#134e4a" font-size="10.8" font-weight="700" x="415" y="197">快照&lt;15s</text>
+<rect fill="#fde68a" height="28" rx="4" stroke="#d97706" width="330" x="470" y="178"></rect>
+<text fill="#92400e" font-size="10.8" font-weight="600" x="530" y="197">FSDP2 提前拿卡开训 (85s，与下方续跑完全重叠！)</text>
+<rect fill="#cbd5e1" height="28" rx="4" width="46" x="800" y="178"></rect>
+<text fill="#334155" font-size="11" x="805" y="197">Sync</text>
+<rect fill="#dcfce7" height="28" rx="4" stroke="#16a34a" width="124" x="846" y="178"></rect>
+<text fill="#15803d" font-size="10.6" font-weight="700" x="856" y="197">提前 27s 进下一轮！</text>
+<text fill="#334155" font-size="12" font-weight="600" x="20" y="236">64卡 Standalone</text>
+<rect fill="#bfdbfe" height="28" rx="4" width="280" x="130" y="218"></rect>
+<text fill="#1e3a8a" font-size="11.5" x="200" y="237">持续采样生成</text>
+<rect fill="#ccfbf1" height="28" rx="4" stroke="#0f766e" width="210" x="410" y="218"></rect>
+<text fill="#0f766e" font-size="9.5" font-weight="600" x="420" y="237">从 Mooncake 导 KV/Mamba 零重算补齐尾组</text>
+<rect fill="#bfdbfe" height="28" rx="4" width="350" x="620" y="218"></rect>
+<text fill="#1e3a8a" font-size="11.2" x="670" y="237">全速生产下一 Step 样本（切换重算 Token 减少 65%）</text>
+</svg>
+<div class="fig-cap">图 2-1：128×H20 集群单步训练时间线对比（原生切换阻塞 205s vs 两阶段显存回收与 Mooncake 跨副本续跑重叠 178s）</div>
+</div>
+<h2 id="rl-choice">3. 业界与社区方案调研对比及技术选型考量</h2>
+<p>在方案设计阶段，我们结合训练团队学城文档（Fully Async 方案 <code>2733349254</code>、动态资源调度 <code>2774983061</code>、Staleness 控制 <code>2771059299</code>）与开源社区演进（VeRL 26Q4 Roadmap <code>#8186</code>、Mooncake RL 拆分 RFC），在三个技术维度上进行了系统对比与取舍：</p>
+<table>
+<thead>
+<tr><th>选型维度</th><th>候选方案对比</th><th>最终选型与技术考量依据</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>维度一：训推资源调度模式</strong></td>
+<td>• <strong>方案 A（同步 Colocate）：</strong>全卡同时做 Rollout，全部跑完再切 Trainer。长尾阶段 80% 显卡空等最后几条轨迹。<br/>• <strong>方案 B（固定分离 One-Step-Off / 纯异步）：</strong>训练池与推理池物理隔离。虽能用流水线掩盖部分延迟，但当多轮采样速度波动时，常驻池或训练池仍会出现单侧饥饿空闲。<br/>• <strong>方案 C（Hybrid + Standalone 动态混部）：</strong>保留 64 卡常驻 Standalone，让 64 卡 Trainer 在空闲期变形为 Hybrid 推理副本助推采样。</td>
+<td><strong>选定方案 C，并重点攻克模式切换损耗。</strong><br/>动态混部能够双向复用训练与推理空闲算力，主要难点在于 Hybrid 副本切回训练模式时的在途长尾请求处理。只有解决切换时的状态保存与源卡显存提前释放，动态混部才能在多轮长轨迹场景发挥最大收益。</td>
+</tr>
+<tr>
+<td><strong>维度二：在途长尾请求接管机制</strong></td>
+<td>• <strong>方案 A（Rebalance 多版本并行，如 StreamRL/AsyncFlow）：</strong>允许不同副本持有不同版本权重继续跑完，不中断请求。缺点是需在集群内同时维护多套历史权重显存副本，35B 模型单份权重达 72GB，显存开销不可接受。<br/>• <strong>方案 B（仅保存 Token 的 Partial Rollout）：</strong>中断时只存已生成 Token 和 Logprob，转交目标副本后重新 Prefill。缺点是长上下文重算开销大，且无法保留 Qwen3.5 的 GDN 线性注意力状态。<br/>• <strong>方案 C（分层状态持久化：Token 轨迹快照 + 按需导出 Attention KV &amp; Mamba 状态）：</strong>控制面根据权重版本与恢复成本动态选择恢复粒度。</td>
+<td><strong>选定方案 C（分层按需恢复）。</strong><br/>1. <strong>同权重版本下（Hybrid 切回训练、Standalone 同版本接管）：</strong>直接导入 SGLang 导出的 <code>Attention KV + Mamba Conv/SSM State</code>，实现 0 重算 Token 续写；<br/>2. <strong>跨权重更新后或短序列场景（低于恢复与重算交叉点 L*）：</strong>不搬运旧 KV（防止跨策略 KV 污染且省去短序列无效传输），直接复用 Mooncake 中的 <code>TrajectorySnapshot</code>（Token、工具结果、Behavior Logprob）在新权重下续写。</td>
+</tr>
+<tr>
+<td><strong>维度三：状态存储与元数据架构</strong></td>
+<td>• <strong>方案 A（全放 Ray Object Store / Actor 内存）：</strong>元数据与数 MB 的轨迹/状态混存，大载荷高频序列化极易超出单 Actor 内存与 Ray GCS 承载上限。<br/>• <strong>方案 B（纯共享文件系统）：</strong>依赖底层 POSIX 文件锁与磁盘 I/O，高并发下尾延迟波动大且无法与在线推理的 Mooncake KV 池统一。<br/>• <strong>方案 C（Ray 单写者轻量元数据 + Mooncake Distributed Store 不可变载荷）：</strong>控制权与数据面彻底解耦。</td>
+<td><strong>选定方案 C（保留文件系统作为本地单测兜底协议）。</strong><br/>Ray Actor 仅维护百字节级的租约（<code>Lease</code>）、单调递增代际号（<code>generation</code>）和 <code>HandoffManifest</code> 状态机；<code>3.68 MB/group</code> 的轨迹快照与 KV 块作为不可变对象写入 Mooncake，读写中位延迟稳定在 <strong>21.0ms / 20.2ms</strong>，且天然与 SGLang HiCache 共享存储底座。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rl-arch">4. 系统全局架构、混合状态池布局与跨组件交互流程</h2>
+<p>下图展示了 128×H20 集群中控制面（<code>Trainer / DynamicResourceController / Ray Coordinator / Conductor</code>）与数据面（<code>Hybrid SGLang / Standalone SGLang / Mooncake Store / TransferQueue</code>）的完整交互关系，以及 <code>Qwen3.5-35B-A3B</code> 混合架构在跨实例恢复时的显存池重映射机制：</p>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 360" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr2" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<!-- Left: Control & Hybrid Pool -->
+<rect fill="#eff6ff" height="328" rx="10" stroke="#3b82f6" stroke-width="1.6" width="310" x="16" y="16"></rect>
+<text fill="#1e40af" font-size="13.5" font-weight="700" x="30" y="42">A. 64×H20 Trainer / Hybrid 混部池</text>
+<rect fill="#ffffff" height="62" rx="6" stroke="#93c5fd" width="282" x="30" y="54"></rect>
+<text fill="#1e3a8a" font-size="12" font-weight="600" x="40" y="74">1. switch_to_trainer() 触发两阶段回收</text>
+<text fill="#334155" font-size="11" x="40" y="92">• 网关摘除 Hybrid 路由 (remove_replicas)</text>
+<text fill="#334155" font-size="9.5" x="40" y="108">• abort_replicas(reject_request=True) 拒绝迟到请求</text>
+<rect fill="#ffffff" height="78" rx="6" stroke="#93c5fd" width="282" x="30" y="126"></rect>
+<text fill="#1e3a8a" font-size="12" font-weight="600" x="40" y="146">2. Qwen3.5-35B TP2 混合显存池导出</text>
+<text fill="#334155" font-size="11" x="40" y="164">• 10层 Full Attention：Paged KV 页导出</text>
+<text fill="#334155" font-size="10.3" x="40" y="180">• 30层 GDN 线性注意力：conv + temporal 状态张量</text>
+<text fill="#334155" font-size="9.5" x="40" y="196">• 附带 pending_input_token 与 cache_layout_sha256</text>
+<rect fill="#dbeafe" height="114" rx="6" width="282" x="30" y="214"></rect>
+<text fill="#1e40af" font-size="12" font-weight="700" x="40" y="234">3. 源卡立即 Sleep 并切入 FSDP2 训练</text>
+<text fill="#1e3a8a" font-size="10.3" x="40" y="252">• 确认 status=="quiesced" 后 sleep_replicas()</text>
+<text fill="#1e3a8a" font-size="11" x="40" y="268">• 释放 ~72GB+ 显存，15s 内启动 Actor 更新</text>
+<text fill="#1e3a8a" font-size="11" x="40" y="284">• _compute_advantage 执行 IS 权重校正</text>
+<text fill="#1e3a8a" font-size="11" x="40" y="300">• NCCL 分桶双缓冲 + 流同步广播 weight v+1</text>
+<!-- Middle: Storage & Coordination -->
+<rect fill="#f0fdfa" height="328" rx="10" stroke="#0f766e" stroke-width="1.8" width="312" x="364" y="16"></rect>
+<text fill="#0f766e" font-size="13.5" font-weight="700" x="378" y="42">B. 存储数据面与单写者协调层</text>
+<rect fill="#ffffff" height="86" rx="6" stroke="#5eead4" width="284" x="378" y="54"></rect>
+<text fill="#134e4a" font-size="12" font-weight="600" x="388" y="74">Mooncake Distributed Store (不可变载荷)</text>
+<text fill="#334155" font-size="10.2" x="388" y="92">• 键格式：{ns}/{artifact_id}/{identity.digest}</text>
+<text fill="#334155" font-size="11" x="388" y="108">• 三步发布：reserve → put → 读回校验 commit</text>
+<text fill="#0f766e" font-size="11" font-weight="600" x="388" y="126">• 组载荷 ~3.68MB，写 21.0ms / 读 20.2ms</text>
+<rect fill="#ffffff" height="90" rx="6" stroke="#5eead4" width="284" x="378" y="150"></rect>
+<text fill="#134e4a" font-size="11.6" font-weight="600" x="388" y="170">Ray Trajectory Coordinator (单写者元数据)</text>
+<text fill="#334155" font-size="10.5" x="388" y="188">• 维护 TrajectoryOwnerLease 与递增 generation</text>
+<text fill="#334155" font-size="10.3" x="388" y="204">• HandoffManifest 划分三类成员 (n=8 不丢不重)：</text>
+<text fill="#0f766e" font-size="10.1" font-weight="600" x="396" y="222">completed ∪ checkpointed ∪ pending == {0..7}</text>
+<rect fill="#ccfbf1" height="78" rx="6" width="284" x="378" y="250"></rect>
+<text fill="#0f766e" font-size="12" font-weight="700" x="388" y="270">Mooncake Conductor 缓存目录路由</text>
+<text fill="#134e4a" font-size="11" x="388" y="288">• HTTP/msgpack 查询各副本本地前缀命中分数</text>
+<text fill="#134e4a" font-size="10.0" x="388" y="304">• 核验 cache_salt (含 weight_version) 与恢复成本</text>
+<!-- Right: Standalone Pool & TransferQueue -->
+<rect fill="#f8fafc" height="328" rx="10" stroke="#64748b" stroke-width="1.6" width="310" x="714" y="16"></rect>
+<text fill="#0f172a" font-size="13.5" font-weight="700" x="728" y="42">C. 64×H20 Standalone 常驻池 &amp; TQ</text>
+<rect fill="#ffffff" height="106" rx="6" stroke="#cbd5e1" width="282" x="728" y="54"></rect>
+<text fill="#1e293b" font-size="12" font-weight="600" x="738" y="74">1. runtime.py::run_target() 并行接管</text>
+<text fill="#334155" font-size="11" x="738" y="92">• completed 成员：直接读取已有输出记录</text>
+<text fill="#334155" font-size="10.3" x="738" y="108">• checkpointed 成员：导入 KV+Mamba 槽位重映射，</text>
+<text fill="#0f766e" font-size="11" font-weight="600" x="748" y="124">0 历史重算 Token 直接从断点续写剩余工具轮次</text>
+<text fill="#334155" font-size="11" x="738" y="142">• pending 成员：在常驻副本补跑</text>
+<rect fill="#ffffff" height="76" rx="6" stroke="#cbd5e1" width="282" x="728" y="172"></rect>
+<text fill="#1e293b" font-size="12" font-weight="600" x="738" y="192">2. TransferQueue 完整组对账交付</text>
+<text fill="#334155" font-size="10.8" x="738" y="210">• 凑齐 8 条合法成员并读回校验后才标记 finished</text>
+<text fill="#334155" font-size="9.6" x="738" y="226">• 附带分段 weight_version、response_mask、logprob</text>
+<rect fill="#fffbeb" height="68" rx="6" stroke="#d97706" width="282" x="728" y="260"></rect>
+<text fill="#92400e" font-size="12" font-weight="700" x="738" y="280">3. 消费确认与延迟清理 (-706 保护)</text>
+<text fill="#78350f" font-size="11" x="738" y="298">• Trainer 更新后 acknowledge 释放元数据</text>
+<text fill="#78350f" font-size="10.2" x="738" y="314">• 遇 Mooncake 短租约 -706 入 _pending_removals</text>
+<line marker-end="url(#arr2)" stroke="#334155" stroke-width="1.8" x1="326" x2="364" y1="100" y2="100"></line>
+<line marker-end="url(#arr2)" stroke="#334155" stroke-width="1.8" x1="676" x2="714" y1="100" y2="100"></line>
+<line marker-end="url(#arr2)" stroke="#0f766e" stroke-dasharray="5 4" stroke-width="1.6" x1="714" x2="326" y1="220" y2="260"></line>
+</svg>
+<div class="fig-cap">图 2-2：128×H20 异步 RL 训推混部集群中 Hybrid 池、Mooncake+Ray 存储协调层、Standalone 常驻池与 TransferQueue 交互架构</div>
+</div>
+<h2 id="rl-code">5. 核心方案实现与跨组件源码详解</h2>
+<h3>模块一：两阶段显存回收协议与停用副本准入修复（trainer_separate_async.py &amp; async_sglang_server.py）</h3>
+<p><strong>组件交互流程：</strong>当 <code>Trainer</code> 准备进入参数更新时，调用 <code>switch_to_trainer()</code>。早期实现必须等待目标端将接管的整组样本全部生成完毕并写入 <code>TransferQueue</code> 后才允许源卡执行 <code>sleep_replicas()</code>，导致源卡回收被目标端长尾拖住。我们将流程拆解为两个独立阶段：</p>
+<ul>
+<li><strong>第一阶段（源端静默与状态持久化）：</strong>首先调用 <code>remove_replicas_from_balancer()</code> 和 <code>stop_generation_routing()</code> 从外部网关摘除 Hybrid 副本地址；随后调用 <code>agent_loop_manager.prepare_trajectory_resource_reclaim()</code>，通知所有源 Worker 在当前工具轮次或 Token 安全点暂停、将未完成状态写入 Mooncake 并向 <code>RayTrajectoryCoordinator</code> 提交 <code>HandoffManifest</code>（同时递增 <code>source_generation</code> 封禁旧 Worker 的写权限）。一旦确认源端状态为 <code>quiesced</code>，立即执行 <code>abort_replicas(reject_request=True)</code> 与 <code>sleep_replicas()</code>，将 64 张 Hybrid 卡的 HBM 显存归还给 FSDP2 启动训练。</li>
+<li><strong>第二阶段（目标端并发续跑与重入屏障）：</strong>被接管的半截轨迹在 64 张 Standalone 常驻卡上与 FSDP2 训练并发执行；直到下一轮调用 <code>switch_to_rollout()</code> 且完成新权重安装与校验后，才通过 <code>finish_trajectory_resource_reclaim()</code> 重新开放 Hybrid 池路由。</li>
+</ul>
+<div class="code-head"><span>verl/trainer/ppo/v1/trainer_separate_async.py:495 &amp; async_sglang_server.py:731</span><span>两阶段回收 + 迟到请求拒绝</span></div>
+<pre><code>def switch_to_trainer(self):
+    if self._overlap_handoff_with_training():
+        # Step 1: 先摘除网关路由，防止新的工具轮次请求继续打向即将休眠的 Hybrid 副本
+        self.remove_replicas_from_balancer()
+        self.checkpoint_manager.stop_generation_routing()
+        reclaim_kwargs = {"hybrid_engine_urls": self.llm_server_manager.server_addresses,
+                          "standalone_engine_urls": self.standalone_server_manager.server_addresses,
+                          "hybrid_routing_isolated": True}
+    # Step 2: 仅等待源端完成快照持久化与旧 owner fencing (status == "quiesced")，不等待目标端跑完剩余轮次
+    receipt = self.agent_loop_manager.prepare_trajectory_resource_reclaim(**reclaim_kwargs)
+    if receipt.get("status") != "quiesced":
+        raise RuntimeError("GPU reclamation requires confirmed source quiescence")
+    self._pending_trajectory_reclaim_receipt = receipt
+    # Step 3: 传入 reject_request=True 立即唤醒并打回在途迟到请求，随后 sleep 释放 HBM 给 FSDP2
+    self.checkpoint_manager.abort_replicas(reject_request=True)
+    self.checkpoint_manager.sleep_replicas()
+    self.current_mode = HybridEngineMode.TRAINER</code></pre>
+<h3>模块二：Qwen3.5-35B 混合架构活跃请求状态导出与跨副本恢复（token_kv_snapshot.py）</h3>
+<p><strong>为什么混合架构不能只靠前缀重算：</strong><code>Qwen3.5-35B-A3B</code> 包含 10 层标准 Full Attention 和 30 层 GDN（Gated DeltaNet / Mamba 线性注意力）。Full Attention 的 KV Cache 按 Token 位置分页存储，缺失尾部若干 Token 时只需从断点位置补充 Prefill；但 30 层 GDN 维护的是固定形状的卷积窗口状态（<code>mamba_cache.conv</code>）与递归状态矩阵（<code>mamba_cache.temporal</code>），每生成一个 Token 都会在原内存槽位上做递推覆盖。一旦进程中断或迁往另一台机器，如果不保存这组递归张量，哪怕只差 1 个 Token 也必须从第 0 个 Token 全量重算整条 8K～16K 序列。</p>
+<p><strong>跨组件实现细节：</strong>我们在 SGLang <code>Scheduler</code> 内新增 <code>TokenKVSnapshotManager</code>（<code>SGLang #45572</code>）。当收到原地中断指令时，TP2 的两个 Rank 同步暂停目标请求，导出三部分数据：① 10 层 Full Attention 已提交的 KV 页张量；② 30 层 GDN 在 <code>mamba_pool</code> 中对应请求槽位的 <code>conv</code> 与 <code>temporal</code> 张量；③ 当前解码进度与尚未送入下一轮前向的游标 <code>pending_input_token</code>。导出包同时附带由模型配置、<code>weight_version</code>、<code>tp_size</code>、各层形状与源文件哈希计算出的 <code>cache_layout_sha256</code>。目标 Standalone 副本在导入时，先校验全部 TP Rank 分片齐全且 <code>cache_layout_sha256</code> 一致，再将 Mamba 状态拷入目标实例 <code>mamba_pool</code> 新分配的物理槽位中，直接从 <code>pending_input_token</code> 恢复 Decode 步，实现 <strong>0 历史重算 Token</strong>。</p>
+<div class="code-head"><span>qwen35-token-kv-sglang/python/sglang/srt/managers/token_kv_snapshot.py:211</span><span>Attention KV + Mamba 状态快照契约</span></div>
+<pre><code>class TokenKVSnapshotManager:
+    def _identity(self):
+        scheduler = self.scheduler
+        pool = scheduler.req_to_token_pool.mamba_pool
+        full_pool = getattr(scheduler.token_to_kv_pool_allocator, "_kvcache", None)
+        layout = {
+            "page_size": scheduler.token_to_kv_pool_allocator.page_size,
+            "full_attention_layer_ids": sorted(getattr(full_pool, "full_attention_layer_id_mapping", {})),
+            "mamba_layer_ids": list(getattr(pool, "mamba_layer_ids", [])),
+            "conv": [{"shape": list(t.shape), "dtype": str(t.dtype)} for t in pool.mamba_cache.conv],
+            "temporal": {"shape": list(pool.mamba_cache.temporal.shape), "dtype": str(pool.mamba_cache.temporal.dtype)},
+        }
+        return {
+            "weight_version": get_serving().weight_version,
+            "tp_size": scheduler.ps.tp_size,
+            "cache_layout_sha256": _json_digest(layout),
+            "cache_layout": layout,
+        }</code></pre>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 230" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrM" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#0f766e"></path>
+</marker>
+</defs>
+<rect fill="#eff6ff" height="194" rx="10" stroke="#3b82f6" stroke-width="1.5" width="330" x="16" y="18"></rect>
+<text fill="#1e40af" font-size="13" font-weight="700" x="30" y="44">源端 Hybrid 副本 (TP Rank 0 &amp; Rank 1)</text>
+<rect fill="#ffffff" height="62" rx="6" stroke="#93c5fd" width="302" x="30" y="56"></rect>
+<text fill="#1e3a8a" font-size="10.9" font-weight="600" x="40" y="76">10 层 Full Attention (Paged Token-to-KV Pool)</text>
+<text fill="#334155" font-size="9.8" x="40" y="96">按 Token 位置分页存储：[Page_0, Page_1, ..., Page_k]</text>
+<rect fill="#ffffff" height="68" rx="6" stroke="#93c5fd" width="302" x="30" y="128"></rect>
+<text fill="#1e3a8a" font-size="10.9" font-weight="600" x="40" y="148">30 层 GDN 线性注意力 (Mamba Pool 槽位 slot_src)</text>
+<text fill="#334155" font-size="11" x="40" y="166">• conv[30]：定长滑动窗口卷积状态（每步原地覆盖）</text>
+<text fill="#334155" font-size="9.5" x="40" y="182">• temporal[30]：递归状态矩阵 SSM State（无法靠前缀补算）</text>
+<line marker-end="url(#arrM)" stroke="#0f766e" stroke-width="2" x1="346" x2="386" y1="115" y2="115"></line>
+<rect fill="#f0fdfa" height="162" rx="10" stroke="#0f766e" stroke-width="1.8" width="260" x="390" y="34"></rect>
+<text fill="#0f766e" font-size="13" font-weight="700" x="406" y="60">跨 Rank 快照包 (SGLang #45572)</text>
+<text fill="#134e4a" font-size="11.5" x="406" y="84">• 全 Rank Attention KV Pages</text>
+<text fill="#134e4a" font-size="11.5" x="406" y="104">• 全 Rank Mamba conv + temporal</text>
+<text fill="#134e4a" font-size="11.5" x="406" y="124">• 解码游标 pending_input_token</text>
+<text fill="#134e4a" font-size="11.5" x="406" y="144">• weight_version + tp_size</text>
+<text fill="#0f766e" font-size="11.5" font-weight="700" x="406" y="166">• cache_layout_sha256 完整性指纹</text>
+<line marker-end="url(#arrM)" stroke="#0f766e" stroke-width="2" x1="650" x2="690" y1="115" y2="115"></line>
+<rect fill="#f8fafc" height="194" rx="10" stroke="#64748b" stroke-width="1.5" width="330" x="694" y="18"></rect>
+<text fill="#0f172a" font-size="13" font-weight="700" x="708" y="44">目标 Standalone 副本 (异构池槽位重映射)</text>
+<rect fill="#ffffff" height="62" rx="6" stroke="#cbd5e1" width="302" x="708" y="56"></rect>
+<text fill="#1e293b" font-size="11.1" font-weight="600" x="718" y="76">1. 校验双 Rank 齐全 &amp; cache_layout_sha256 一致</text>
+<text fill="#334155" font-size="10.5" x="718" y="96">2. 分配目标 KV 页表并装入 10 层 Full Attention KV</text>
+<rect fill="#dcfce7" height="68" rx="6" stroke="#16a34a" width="302" x="708" y="128"></rect>
+<text fill="#15803d" font-size="11.5" font-weight="700" x="718" y="148">3. 申请目标 mamba_pool 空闲槽位 slot_dst</text>
+<text fill="#166534" font-size="9.5" x="718" y="166">• 将 conv/temporal 拷入 slot_dst 并绑定 req_to_token_pool</text>
+<text fill="#15803d" font-size="9.5" font-weight="700" x="718" y="182">• 0 历史重算 Token，从 pending_input_token 直接 Decode</text>
+</svg>
+<div class="fig-cap">图 2-3：Qwen3.5-35B-A3B 混合架构（10 层 Full Attention + 30 层 GDN Mamba）跨实例快照导出与池槽位重映射机制</div>
+</div>
+<h3>模块三：Mooncake 三阶段持久化、HandoffManifest 组切分与 Conductor 路由</h3>
+<p><strong>存储数据面协议（<code>rollout_artifact.py</code> &amp; <code>handoff.py</code>）：</strong>为了保证故障或切换期间 GRPO 样本组（<code>n=8</code>）不丢、不重、不被旧 Worker 脏写覆盖，我们在存储层执行以下协议：</p>
+<ol>
+<li><strong>三阶段发布（Reserve → Put → Commit）：</strong>写入 <code>MooncakeRolloutArtifactStore</code> 时，键名构造为 <code>verl/rollout-artifacts/v1/{artifact_id}/{identity.digest}</code>。第一步在 Ray 元数据 Actor 中预留状态并比对 <code>payload_digest</code>（若键已存在且摘要一致则幂等返回，摘要不同则拒绝覆盖）；第二步调用 <code>store.put(key, payload)</code> 写入不可变字节块（非 0 返回码立即转为异常，防止将写失败误判为对象不存在）；第三步重新执行 <code>is_exist + get + sha256</code> 校验通过后，才将元数据状态提升为 <code>READY</code>。</li>
+<li><strong>GRPO 样本组状态划分与完整性校验：</strong>切换发生时，一个 <code>n=8</code> 的组内各样本进度不一。<code>HandoffManifest.validate()</code> 强制校验：<code>completed_members</code>（已生成完）∪ <code>checkpointed_trajectories</code>（已保存快照待续跑）∪ <code>pending_samples</code>（尚未开始）必须严格等于下标集合 <code>{0, 1, ..., 7}</code> 且两两互斥。目标端 <code>run_target()</code> 直接复用 <code>completed</code> 记录，仅对后两类发起生成，全部完成后经 <code>TransferQueue</code> 读回对账才确认发布。</li>
+<li><strong>Conductor 缓存感知路由（<code>conductor_router.py</code>）：</strong>通过非阻塞 <code>ConductorHTTPClient</code>（<code>application/msgpack</code>，超时上限 50ms）查询各 Standalone 副本的本地前缀命中层级与队列负载。路由层先过滤掉 <code>cache_salt</code>（内含 <code>weight_version</code>）不匹配或过载的副本，再对比预估恢复耗时与重算耗时，仅在长前缀有净收益时派发至命中副本。</li>
+</ol>
+<h3>模块四：基于 Mooncake Conductor 的 KV 感知路由架构与源码实现（conductor_router.py）</h3>
+<p>在 128×H20 异步 RL 训练中，无论是在多轮工具返回后的下一轮生成，还是 Hybrid 副本下线后将半截轨迹转交 Standalone 副本续跑，负载均衡器（<code>GlobalRequestLoadBalancer</code>）都需要决定将请求派发给哪一个活跃的 SGLang 副本。如果仅采用轮询（Round-Robin）或最小连接数（Least-Loaded）路由，请求大概率落到没有对应历史前缀的副本上，触发重复 Prefill 或跨节点拉取；反之，如果只按最长前缀匹配路由，又会把同一个 GRPO 组（<code>n=8</code>，共享完全相同的长 Prompt）或热门前缀全部集中分发至同一副本，造成严重的排队倾斜。</p>
+<p>为此，我们在 <code>conductor_event_registration.py</code> 与 <code>conductor_router.py</code> 中实现了完整的<strong>事件上报 + 负载受限本地缓存亲和路由（<code>ConductorLoadBalancer</code>）</strong>：</p>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 250" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrR" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<rect fill="#f8fafc" height="214" rx="10" stroke="#64748b" stroke-width="1.5" width="286" x="16" y="18"></rect>
+<text fill="#0f172a" font-size="13" font-weight="700" x="30" y="44">① SGLang 副本 KV 事件实时上报</text>
+<text fill="#334155" font-size="11" x="30" y="68">• 启动预留双 TCP 端口 (SGLangEventPorts)：</text>
+<text fill="#475569" font-size="11" x="40" y="86">1. ZMQ 实时事件流 endpoint (块分配/驱逐)</text>
+<text fill="#475569" font-size="11" x="40" y="104">2. ZMQ 断线重放流 replay_endpoint</text>
+<text fill="#334155" font-size="11" x="30" y="126">• 块哈希对齐：sha256_raw → first64_be</text>
+<text fill="#334155" font-size="11" x="30" y="146">• 仅 Rank 0 注册实例目录键 directory_id</text>
+<text fill="#1e40af" font-size="11" font-weight="600" x="30" y="168">• 携带真实生效的 cache_salt (绑定权重版本)</text>
+<text fill="#475569" font-size="11" x="30" y="190">• 权重更新期间清空旧代际索引防跨版本误命中</text>
+<line marker-end="url(#arrR)" stroke="#334155" stroke-width="1.8" x1="302" x2="340" y1="125" y2="125"></line>
+<rect fill="#f0fdfa" height="214" rx="10" stroke="#0f766e" stroke-width="1.7" width="352" x="344" y="18"></rect>
+<text fill="#0f766e" font-size="13" font-weight="700" x="358" y="44">② ConductorLoadBalancer 五步路由决策漏斗</text>
+<rect fill="#ffffff" height="32" rx="5" stroke="#5eead4" width="324" x="358" y="56"></rect>
+<text fill="#134e4a" font-size="11" x="368" y="77">Step 1: 权重同步屏障 (_updating=True 时阻断分配)</text>
+<rect fill="#ffffff" height="32" rx="5" stroke="#5eead4" width="324" x="358" y="94"></rect>
+<text fill="#134e4a" font-size="9.5" x="368" y="115">Step 2: Sticky 会话保持 &amp; 短序列过滤 (&lt; min_cached_tokens)</text>
+<rect fill="#ffffff" height="32" rx="5" stroke="#5eead4" width="324" x="358" y="132"></rect>
+<text fill="#0f766e" font-size="9.5" font-weight="600" x="368" y="153">Step 3: 负载均衡窗口 count &lt;= min_inflight + max_inflight_gap</text>
+<rect fill="#ccfbf1" height="46" rx="5" width="324" x="358" y="170"></rect>
+<text fill="#0f766e" font-size="9.5" font-weight="700" x="368" y="190">Step 4~5: msgpack 查询 (50ms 超时) → 按 (device, cpu_local) 排序</text>
+<text fill="#134e4a" font-size="10.3" x="368" y="207">忽略共享远端层无差别命中；无本地优势或超时立即回退最小负载</text>
+<line marker-end="url(#arrR)" stroke="#334155" stroke-width="1.8" x1="696" x2="734" y1="125" y2="125"></line>
+<rect fill="#eff6ff" height="214" rx="10" stroke="#3b82f6" stroke-width="1.6" width="286" x="738" y="18"></rect>
+<text fill="#1e40af" font-size="13" font-weight="700" x="752" y="44">③ 在线 Serving 侧：Dynamo Agent 路由</text>
+<text fill="#1e3a8a" font-size="10.2" x="752" y="68">• Rust kv-router (agent_cache.rs 二阶段选择)：</text>
+<text fill="#334155" font-size="10.7" x="762" y="86">- 区分层级：Device &gt; HostPinned &gt; External</text>
+<text fill="#334155" font-size="11" x="762" y="104">- 结合会话状态：Active / ToolWaiting</text>
+<text fill="#334155" font-size="11" x="762" y="122">- 计入 lookup_cost 与 restore_cost 块开销</text>
+<text fill="#1e3a8a" font-size="9.7" x="752" y="146">• SGLang P/D 会话桥接 (prefill/decode_handler)：</text>
+<text fill="#334155" font-size="11" x="762" y="164">- 透传顶层被动 session_id 关联软引用槽位</text>
+<text fill="#334155" font-size="10.9" x="762" y="182">- Decode Bootstrap 前校验 FP8 cache_scope</text>
+<text fill="#1e40af" font-size="11" font-weight="700" x="752" y="204">• 路由提示与引擎物理块安全校验严格解耦</text>
+</svg>
+<div class="fig-cap">图 2-4：训练侧（VeRL + Mooncake Conductor）与在线推理侧（Dynamo Rust kv-router + SGLang）的 KV 感知路由架构</div>
+</div>
+<ul>
+<li><strong>第一，ZMQ 双通道 KV 事件注册（<code>conductor_event_registration.py</code>）：</strong>SGLang 副本启动前由 <code>SGLangEventPorts</code> 预留两个独立的 TCP 端口，分别配置为 ZMQ 实时事件推送流（<code>endpoint</code>）和断线重放流（<code>replay_endpoint</code>）。Rank 0 将 <code>block_size</code> 与块哈希配置（<code>sha256_raw</code> 投影前 64 位大端整数 <code>first64_be</code>）注册到 C++ <code>Mooncake Conductor</code> 服务，使中心目录能够毫秒级跟踪每个副本上 KV 块的驻留层级变化。</li>
+<li><strong>第二，为什么路由打分只看本地层 <code>(device, cpu_local)</code> 而不看远端共享层？</strong>Conductor 返回每个实例各存储层级的累积前缀命中长度 <code>(device, cpu_local, cpu_share, disk)</code>。我们在 <code>_local_score()</code> 中首先校验四层命中数的单调非减性，随后<strong>仅提取 <code>(device, cpu_local)</code> 二元组参与副本优选</strong>。原因在于共享 Mooncake 存储池（L3）对所有 Standalone 副本均可同等访问，远端命中并不能区分哪台副本更优；只有目标副本本机 GPU HBM（<code>device</code>）或本机内存（<code>cpu_local</code>）已驻留该前缀，派发过去才能真正免除跨机网络传输。</li>
+<li><strong>第三，<code>max_inflight_gap</code> 负载防倾斜与有界超时回退：</strong><code>acquire_server()</code> 先计算全池最小并发数 <code>minimum = min(_inflight_requests.values())</code>，仅在满足 <code>count &lt;= minimum + _load_gap</code> 的轻载副本集合内比较本地缓存命中分数。这避免了同组 8 条 GRPO 样本或热门前缀集中路由至同一副本导致排队延迟抵消缓存收益。同时 <code>ConductorHTTPClient</code> 使用单线程 <code>msgpack</code> 请求并设置严格的 50ms 套接字超时（超时立即调用 <code>socket.shutdown(SHUT_RDWR)</code> 中断底层连接），一旦查询超时或无本地命中优势（<code>best[1] &lt; min_cached_tokens</code>），立即无感回退至基线最小负载路由，不阻塞主调度循环。</li>
+</ul>
+<div class="code-head"><span>verl/experimental/fully_async_policy/conductor_router.py:168</span><span>负载约束下的本地缓存分层打分路由</span></div>
+<pre><code>class ConductorLoadBalancer(GlobalRequestLoadBalancer):
+    @staticmethod
+    def _local_score(hit: dict, prompt_length: int) -&gt; tuple[int, int]:
+        # 显式读取 Rank 0 的累积前缀命中数，校验单调性，仅取 (device, cpu_local) 本地两层作为优选依据
+        rank = hit.get("rank_matches", {}).get("0", {})
+        values = tuple(rank.get(key, 0) for key in ("device", "cpu_local", "cpu_share", "disk"))
+        if values != tuple(sorted(values)):
+            raise ValueError("non-cumulative prefix counts")
+        return values[:2]
+
+    def acquire_server(self, request_id: str, prompt_ids: list[int] | None = None, **extra):
+        if self._updating:
+            raise RuntimeError("No available servers in load balancer: weight publication pending")
+        if not prompt_ids or len(prompt_ids) &lt; self._min_tokens:
+            return self._fallback(request_id, "short_prompt")
+        # 负载均衡硬约束：仅在并发差距不超过 _load_gap 的副本集合内优选缓存命中，防止单副本热点排队
+        minimum = min(self._inflight_requests.values())
+        candidates = {sid for sid, count in self._inflight_requests.items()
+                      if count &lt;= minimum + self._load_gap and sid in self._instances}
+        hits = self._client.query({**self._context, "token_ids": prompt_ids})
+        scores = {sid: self._local_score(hits[self._instances[sid]], len(prompt_ids))
+                  for sid in candidates if self._instances[sid] in hits}
+        best = max(scores.values(), default=(0, 0))
+        if best[1] &lt; self._min_tokens:
+            return self._fallback(request_id, "no_local_advantage")
+        preferred = min(sid for sid, score in scores.items() if score == best)
+        return preferred, self._servers[preferred]</code></pre>
+<h3>模块五：跨权重更新轨迹的训练数值对齐（trainer_base.py &amp; replay_buffer.py）</h3>
+<p>在异步训练中，一条长轨迹的前半段可能由参数版本 <i>π</i><sub><i>θ</i><sub>k−1</sub></sub> 生成，经历一次参数同步后，后半段由 <i>π</i><sub><i>θ</i><sub>k</sub></sub> 续写完成；同时推理引擎（SGLang）与训练引擎（FSDP2）底层的 Attention / MoE 算子实现存在数值精度差异（即训推 mismatch）。我们在训练侧通过三层机制保证梯度更新稳定：</p>
+<ul>
+<li><strong>第一，分段权重版本号记录（Segment Weight Version）与 Staleness 淘汰：</strong>在 <code>TrajectorySnapshot</code> 中按生成片段记录对应的 <code>weight_version</code> 和采样时直接由 SGLang 输出的 <code>rollout_log_probs</code>；进入 <code>ReplayBuffer</code> 时检查样本组的最大版本滞后步数，超过 <code>staleness_threshold</code> 的过期样本组直接驱逐。</li>
+<li><strong>第二，工具返回掩码严格对齐（<code>response_mask</code>）：</strong>多轮轨迹中包含大量由搜索/RAG 工具返回的 Observation Token，这部分 Token 并非模型采样生成，必须在 <code>response_mask</code> 中严格置 0，仅对模型实际生成的 Action/Reasoning Token 计算策略梯度与 KL 惩罚。</li>
+<li><strong>第三，Decoupled PPO 重要性采样校正（<code>compute_rollout_correction_and_add_to_batch</code>）：</strong>在 <code>trainer_base.py::_compute_advantage</code> 中结合训练引擎重算的 <code>old_log_probs</code> 与采样时记录的 <code>rollout_log_probs</code> 计算重要性采样权重与截断（IS Clipping / Rejection Sampling），补偿跨步 off-policy 与训推算子差异带来的分布偏移。</li>
+</ul>
+<h2 id="rl-bug">6. 生产落地难点、线上故障排查与全模块数据账本</h2>
+<table>
+<thead>
+<tr><th>故障 / 难点名称</th><th>线上现象与监控线索</th><th>根因定位过程</th><th>修复方案与验证结果</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>难点一：FSDP2 首次 Adam Step 显存峰值 OOM</strong></td>
+<td>128×H20 启动 35B MoE 训练，第 1 个 Step 的前向与反向传播显存约 78GB 正常通过，但一进入 <code>optimizer.step()</code> 瞬间触发 CUDA OOM 崩溃。</td>
+<td>1. 排查模型文件发现 HuggingFace 索引头 <code>total_size</code> 残留旧值 37.5GB，而真实 BF16 参数载荷达 <strong>71.9GB</strong>，导致初始分片静态水位估算偏低；<br/>2. PyTorch Memory Snapshot 显示 AdamW 默认惰性（Lazy）初始化 FP32 <code>exp_avg</code> 与 <code>exp_avg_sq</code>，在首次更新瞬间同时持有完整未释放的梯度 Buffer 与新申请的优化器状态临时峰值。</td>
+<td>修正 35B MoE 真实分片显存账本，在训练初始化阶段显式预分配优化器状态并调整 FSDP2 分片通信 Buffer 上限，消除 Step 1 分配尖峰，64 卡训练池峰值显存稳定控制在安全水位内。</td>
+</tr>
+<tr>
+<td><strong>难点二：NCCL 跨通信组权重广播后推理输出乱码</strong></td>
+<td>Trainer 完成参数更新后通过 <code>nccl_checkpoint_engine.py</code> 向 64 个推理副本广播权重，偶发出现部分副本在更新后首轮生成解码输出异常乱码字符。</td>
+<td>审查 <code>nccl_checkpoint_engine.py:459</code> 的分桶双缓冲发送逻辑：代码调用了异步集合通信句柄的 <code>wait()</code> 后立即在下一轮循环复用同一块发送 Buffer 填充下一个 Bucket 参数。但 NCCL 的 <code>wait()</code> 仅保证通信 Kernel 已排入 CUDA Stream，并不代表 GPU DMA 搬运已在物理链路上结束，导致发送端提前覆写了尚未传完的权重分片。</td>
+<td>在双缓冲槽位复用前补齐基于 CUDA Event / <code>torch.cuda.synchronize()</code> 的设备流同步，并加入策略发布屏障（<code>PolicyPublicationDriver</code> 核验引擎端实际生效的 <code>weight_version</code> 后才开放网关路由），乱码率归零。</td>
+</tr>
+<tr>
+<td><strong>难点三：16K 长序列冷续写第 79 Token 分叉与 DCP 慢盘阻塞</strong></td>
+<td>① 16K 序列从断点冷续写时，在剩余第 79 个 Token 处与不中断连续解码出现 Token 分叉；<br/>② 多机保存分布式检查点（DCP）时偶发卡住数分钟甚至超时。</td>
+<td>① 零缓存对照确认分叉并非缓存污染，而是“冷续写 Prefill+Decode”与“纯 Decode”走了不同 Batch Shape 的 CUDA Kernel，浮点归约顺序不同（Batch-Invariance 差异）叠加 Mamba 状态累积所致；<br/>② DCP 卡顿并非磁盘带宽打满，而是部分慢节点阻塞在 <code>all_gather_object</code> 元数据同步阶段及远端文件系统同步 flush。</td>
+<td>① 恢复路径优先导入已导出的精确 KV+Mamba 状态免去重新 Prefill（实测 <code>max |Δlogprob| &lt; 0.004</code>），并在训练侧用采样期真实 <code>rollout_log_probs</code> 兜底；<br/>② DCP 改为先写本地内存文件系统（tmpfs）立即放行训练步，后台线程异步刷入远端存储。</td>
+</tr>
+</tbody>
+</table>
+<h3>全链路各模块关键指标汇总</h3>
+<table>
+<thead>
+<tr><th>模块 / 阶段</th><th>核心指标项</th><th>基线数值</th><th>优化后数值</th><th>备注与测量口径</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>集群与模型规模</strong></td><td>物理拓扑 / 权重体积</td><td colspan="2"><strong>128×H20</strong>（64 Hybrid + 64 Standalone，共 64 个 TP2 副本）；<code>Qwen3.5-35B-A3B</code> BF16 权重 <strong>71.9 GB</strong></td><td>单张 H20 (96GB)：TP2 权重 ~36GB，运行时 ~12GB，KV+Mamba 池 ~48GB</td></tr>
+<tr><td><strong>Mooncake 轨迹存储</strong></td><td>组快照体积 / 读写中位延迟</td><td>无持久化（直接丢弃）</td><td>约 <strong>3.68 MB/group</strong>；写 <strong>21.0ms</strong> / 读 <strong>20.2ms</strong></td><td>含 8 条样本的 Token、<code>response_mask</code>、Logprob 与工具结果</td></tr>
+<tr><td><strong>SGLang 状态快照</strong></td><td>单请求中断捕获 / 恢复重算 Token</td><td>重算整条 8K~16K 前缀</td><td>捕获 <strong>0.1s～1.1s</strong>；同版本恢复 <strong>0 重算 Token</strong></td><td>35B TP2 续写 128 Token 与连续生成一致，<code>max |Δlogprob| &lt; 0.004</code></td></tr>
+<tr><td><strong>Conductor 目录查询</strong></td><td>缓存目录 RPC 延迟</td><td>无全局缓存感知</td><td>空闲中位 <strong>12.6ms</strong>（P99 &lt; 16.6ms，超时上限 50ms）</td><td>HTTP + msgpack 协议，双 Rank 缓存清除后 100% 拒绝旧代际</td></tr>
+<tr><td><strong>Hybrid→Trainer 切换</strong></td><td>源卡显存回收等待耗时</td><td><code>50s+</code>（偶发迟到阻塞超时）</td><td><strong>&lt; 15s</strong>（平均节省约 18s / Step）</td><td>源端确认 <code>quiesced</code> 即 <code>sleep</code>，与 Standalone 续跑并行重叠</td></tr>
+<tr><td><strong>端到端训练收益</strong></td><td>切换边界重算 / 单步耗时 / 集群吞吐</td><td>平均 <code>205s / Step</code><br/>（8.98 Groups/GPU·h）</td><td>切换重算 Token <strong>−65%</strong>；单步 <strong>178s / Step</strong><br/>（<strong>10.35 Groups/GPU·h，提升 +15.2%</strong>）</td><td>单步 <code>64 Prompts × 8 = 512</code> 条多轮搜索轨迹（平均 4~5 轮工具调用）</td></tr>
+</tbody>
+</table>
+<h3>五大核心优化项逐级消融闭环与实机/生产对账（Ablation Study）</h3>
+<p>在面试答辩中，面试官常追问<strong>“205s 降到 178s（+15.2% 吞吐）到底由哪一项优化贡献？为什么不能只开物理 KV 恢复？KV 路由在其中起了什么作用？”</strong>下表给出了从 8×H20 / 16×H20 实机受控双臂对账到 128×H20 生产集群的五级消融闭环：</p>
+<table>
+<thead>
+<tr><th>消融递进阶段 (Ablation Ladder)</th><th>叠加的核心机制</th><th>切换需迁移轨迹比例</th><th>实机受控双臂对账 (8卡重长尾 / 16卡多机)</th><th>128×H20 生产单步耗时与吞吐</th><th>核心归因说明</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0. Baseline（原生 Partial Rollout）</strong></td>
+<td>原生 <code>separate_async</code>（无跨副本物理状态恢复，串行排空或粗暴 Abort 重跑）</td>
+<td><code>100%</code> 阻塞等待或丢弃重算</td>
+<td>切换 <code>1801.4s</code> (8卡) / <code>683.4s</code> (16卡)<br/>单步 <code>5456.8s</code> (8卡) / <code>2061.6s</code> (16卡)</td>
+<td><strong>205s / Step</strong><br/>（8.98 Groups/GPU·h，基准 <code>0.0%</code>）</td>
+<td>Hybrid 切回训练时被最后 20% 多轮长尾轨迹阻塞 <code>50s+</code>，或 Abort 丢失已完成工具轮次与 GDN 状态</td>
+</tr>
+<tr>
+<td><strong>1. + 物理 KV &amp; Mamba 状态恢复</strong></td>
+<td>开启 <code>SGLang #45572</code> 导出恢复 10 层 Attn KV + 30 层 GDN 状态，但<strong>无路由落点筛选、无 Overlap</strong></td>
+<td><code>100%</code> 全量盲目中断导出 (<code>128/128</code>)</td>
+<td>切换拉长至 <code>2332.0s</code> (8卡)<br/>单步 <code>5987.4s</code>（<strong><code>-8.1%</code> 负优化</strong>）</td>
+<td><strong>214s / Step</strong><br/>（全量导出反超收益，<code>-4.2%</code>）</td>
+<td><strong>暴露关键问题：</strong>不区分物理落点把已在 Standalone 上的轨迹也一刀切中断导出，且源卡串行死等目标端跑完，I/O 开销大于省下的 Prefill</td>
+</tr>
+<tr>
+<td><strong>2. + KV 路由落点追踪与选择性交接</strong></td>
+<td><code>routed_token_kv_stream</code> 追踪落点（<strong>豁免 78.9% Standalone 在途轨迹原位续跑</strong>）+ <code>stop_generation_routing</code> 准入隔离</td>
+<td><strong>仅 <code>21.1%</code></strong><br/>（<code>27/128</code> 迁移，<code>101</code> 条原位续写）</td>
+<td>单组交接压至 <code>9.09s/group</code><br/>单步追平转正（<strong><code>+0.9%</code></strong>，重算 Token <strong>−65%</strong>）</td>
+<td><strong>198s / Step</strong><br/>（9.30 Groups/GPU·h，<strong><code>+3.5%</code></strong>）</td>
+<td><strong>KV 路由第一层核心收益：</strong>精准砍掉 <strong>78.9%</strong> 无效中断与跨机 KV 传输，实现 0 历史 Token 重算、0 工具重调，将状态恢复从负收益扭转为正收益</td>
+</tr>
+<tr>
+<td><strong>3. + 两阶段显存回收（Quiesce-and-Overlap）</strong></td>
+<td>源端确认 <code>quiesced</code> 后 <strong>15s 内立即 <code>sleep</code> 释放 HBM</strong>，慢尾续写与 FSDP2 训练完全并行重叠</td>
+<td><strong>仅 <code>21.1%</code></strong></td>
+<td>切换 <strong><code>644.2s</code> (8卡, −64.2%)</strong> / <strong><code>535.4s</code> (16卡, −21.7%)</strong><br/>16卡单步 <strong><code>1746.4s</code> (提速 +15.3% / 吞吐 +18.0%)</strong></td>
+<td><strong>183s / Step</strong><br/>（10.07 Groups/GPU·h，<strong><code>+12.1%</code></strong>）</td>
+<td><strong>端到端吞吐主力：</strong>彻底消除串行排空等待（8卡 <code>settle_s</code> 从 <code>1634.7s</code> 归零，16卡 <code>target_wait</code> 仅 <code>45ms</code>），每步净省 <code>18~22s</code> 空转等待</td>
+</tr>
+<tr>
+<td><strong>4. + Conductor 本地前缀亲和 + 跨步血统对齐与快恢</strong></td>
+<td><code>ConductorLoadBalancer</code> 本地 <code>(device, cpu_local)</code> 亲和路由 + 分段 <code>weight_version</code> IS 校正 + 同版本免重传与异步 DCP</td>
+<td><strong>稳态仅 <code>~10.5%</code></strong></td>
+<td>16卡末步收敛至 <strong><code>1533.0s</code></strong>；8卡稳态吞吐 <strong><code>+50.6%</code></strong><br/>非零优势有效组 <code>39→54</code>（<strong>有效梯度信号 <code>+35.4%</code></strong>）</td>
+<td><strong>178s / Step（净省 27s）</strong><br/>（<strong>10.35 Groups/GPU·h，总吞吐 <code>+15.2%</code></strong>）</td>
+<td><strong>KV 路由第二层收益 + 质量闭环：</strong>32~64 副本下避免多轮工具回源跨机拉取（再省 <code>~5s/Step</code>），训推概率 Pearson 达 <code>0.992</code>，保住复杂长尾轨迹提升有效学习信号</td>
+</tr>
+</tbody>
+</table>
+<div class="speech-box" id="rl-qa">
+<div class="speech-title">项目口述复盘（5 分钟完整推演）</div>
+<p><strong>【Situation &amp; Task】</strong>“这个项目是在 128 张 H20 集群上落地 <code>Qwen3.5-35B-A3B</code> 多轮搜索 Agent 的异步 GRPO 训练。我们采用的是 64 卡常驻 Standalone 推理池加 64 卡 Trainer/Hybrid 动态混部池的架构——当样本队列还没攒够时，64 张 Trainer 卡会拉起 32 个 TP2 的 SGLang 副本协同参与 Rollout 采样；一旦样本水位达到 <code>deactivate_ratio</code>，这 64 张卡就要切回 FSDP2 做参数更新。但在多轮搜索场景下，一条轨迹要调 1 到 6 轮外部工具，生成长度上万 Token，最后 20% 的长尾样本占了单步一半以上的时间。每次 Hybrid 卡要切回训练时都面临两难：若阻塞等待长尾轨迹自然排空，64 张训练卡需闲置等待超过 50 秒，甚至因为原生 SGLang 停用时没拒绝迟到请求发生阻塞挂起；如果直接 <code>abort</code> 把半截轨迹扔回 Standalone 从第 0 轮重跑，前面调过的搜索工具和算好的几千 Token 全部作废并重新执行，而且 <code>Qwen3.5-35B</code> 里有 30 层 GDN 线性注意力，它的 Mamba 状态是原地递推覆盖的，没法像普通 KV 一样靠前缀切片补算。”</p>
+<p><strong>【Action - 选型与实现】</strong>“针对这个问题，我们调研对比了多版本权重并存（显存开销太大，35B 单份权重就要 72GB）和纯 Token 重算方案，最终选择从<strong>分层状态存储与两阶段显存回收</strong>切入，做了四块核心改造：<br/>第一，设计了控制面与数据面分离的 Rollout 存储：用单写者 Ray Actor 管 <code>Lease</code> 和单调递增的 <code>generation</code> 号防止脑裂双写，用 Mooncake Store 存不可变的 <code>TrajectorySnapshot</code>（包含 Token、<code>response_mask</code>、Behavior Logprob 和工具结果，每组约 3.68MB，读写中位 21ms/20ms），并通过 <code>HandoffManifest</code> 把 <code>n=8</code> 的组严格切成已完成、半截快照和未开始三类，确保不丢不重地交付给 <code>TransferQueue</code>。<br/>第二，我在 SGLang 实现了活跃请求原地中断和跨 TP Rank 状态导出（<code>SGLang #45572</code>），把 10 层 Full Attention KV、30 层 GDN 的卷积与递归状态以及解码游标一起导出，支持目标 Standalone 副本分配新 Mamba 槽位后零重算直接续写。<br/>第三，我修复了 SGLang 副本下线忽略 <code>reject_request</code> 导致迟到请求阻塞超时的 Bug（<code>VeRL #8387</code>），并把切换改成两阶段协议：网关先摘流，Hybrid 卡把快照刷进 Mooncake 确认 <code>quiesced</code> 后，不等长尾跑完，15 秒内直接 <code>sleep</code> 把显存还给 FSDP2 开训；剩余轮次由 Conductor 缓存目录结合 <code>cache_salt</code> 和恢复成本选最优的 Standalone 副本在后台并行补齐，与 Actor 更新完全重叠。<br/>第四，在训练端我们按分段记录跨步轨迹的 <code>weight_version</code>，配合 Staleness 过滤和 Decoupled PPO 重要性采样控制 off-policy 偏差，并同时定位并修复了 FSDP2 首次 Adam Step 惰性分配 OOM 和 NCCL 权重广播缺少流同步导致双缓冲踩踏的问题。”</p>
+<p><strong>【Result】</strong>“上线到 128 卡集群后，35B TP2 同版本跨副本恢复实现了 0 历史重算 Token（续写 <code>max |Δlogprob| &lt; 0.004</code>），Hybrid 切换回收等待从 50 多秒压到 15 秒以内，切换边界重算 Token 减少 65%，单步训练周期从 205 秒降到 178 秒，集群有效训练吞吐（完整 GRPO Group / GPU·h）提升了 <strong>15.2%</strong>。”</p>
+</div>
+<div class="qa-list">
+<details class="qa" open="">
+<summary>追问 1（原理深挖）：追问 1（负载对比）：为什么单轮长思维链（如 235B 数学推理）通常只做 Token 级 Partial Rollout，而 35B 多轮工具 Agent 场景需要引入混合状态跨副本恢复与成本门控？</summary>
+<div class="ans">这正是基于工作负载特征（Workload Characterization）做的定量取舍。在 235B 纯单轮长推理（如数学 CoT，Prompt 仅几百 Token、Decode 长达 20K Token 耗时 400s）中，Prefill 仅占 10s，且单条 KV 高达 3.6GB，跨步权重变化后旧 KV 又不能给新权重用，因此单轮跨步场景只需复用已生成 Token/Logprob。但在我们的 <strong>35B 多轮搜索 Agent</strong> 场景中：① 发生中断的主要时刻是<strong>同一权重版本内</strong> Hybrid 切回训练、将半截请求转交给同版本 Standalone 副本（此时权重并未改变，KV 完全合法可用）；② 多轮工具交互把前序上下文拉长到了 8K～16K Token，且 <code>Qwen3.5-35B</code> 含 30 层 GDN 线性注意力，不存 Mamba 状态就只能从第 0 个 Token 全量重算；③ 即便如此，我们也实测发现当上下文较短（低于平衡点 <i>L</i><sup>*</sup>）或跨了权重版本时搬运 KV 不划算，所以专门设计了<strong>成本门控 + 分层恢复</strong>：同版本长上下文走 KV+Mamba 零重算恢复，短上下文或跨权重版本自动退化为仅恢复 Token 快照重算 Prefill。因此通过成本门控按序列长度和权重版本自适应分流，能够兼顾两类负载的最优效率。</div>
+</details>
+<details class="qa" open="">
+<summary>追问 2（算法与系统交叉）：详细讲讲训推 mismatch 和异步 off-policy 偏差是怎么产生的？代码里怎么修的？</summary>
+<div class="ans">异步 RL 中存在两层分布偏差：<br/>第一层是<strong>训推引擎算子数值偏差（Engine Mismatch）</strong>：Rollout 用 SGLang（FlashInfer / Triton 定制融合核、特定 TP 归约顺序），Trainer 用 FSDP2（FlashAttention / PyTorch 原生算子）。即便传入完全相同的权重 <i>θ</i> 和 Token 序列，两边算出的 Logits 和 Logprob 也会有微小差异（<i>π</i><sub>rollout</sub> ≠ <i>π</i><sub>train</sub>）。如果训练时只用训练引擎重算的 <code>old_log_probs</code> 当分母，就会忽略当时真正决定采样动作的其实是推理引擎的概率分布。<br/>第二层是<strong>参数版本滞后（Policy Staleness）</strong>：异步模式下轨迹由旧版本 <i>θ</i><sub>t−k</sub> 采样（甚至 Partial Rollout 前后半段跨越了两个版本），却用来更新当前策略 <i>θ</i><sub>t</sub>。<br/>我们的代码治理分三步：① 采样阶段强制保存 SGLang 采样阶段直接输出的行为策略概率 <code>rollout_log_probs</code> 及每段对应的 <code>weight_version</code>；② 在 <code>ReplayBuffer</code> 入口限制最大版本差（动态扣减已积压陈旧样本配额 <code>num_staleness_sample</code>，超限组直接淘汰）；③ 在 <code>trainer_base.py::_compute_advantage</code> 中启用 <code>compute_rollout_correction_and_add_to_batch</code>（Decoupled PPO 模式），利用保存的 <code>rollout_log_probs</code> 与稳定参考策略计算重要性采样修正系数与双边截断（Dual-Clip / Token-level TIS），防止极端重要性采样比率引发梯度发散。</div>
+</details>
+<details class="qa" open="">
+<summary>追问 3（分布式容错细节）：如果 Standalone Worker 拉取了 HandoffManifest 正在续跑第 5 条样本时自己也宕机了，或者旧 Hybrid Worker 网络分区恢复后又发来一份结果，系统怎么处理？</summary>
+<div class="ans">靠 <strong>单调代际锁（Generation Fencing）+ 租约超时回收（Lease Expiration）+ 不可变载荷摘要校验</strong> 三个机制兜底：<br/>1. <strong>防旧 Worker 脑裂迟到写：</strong>源端发起交接时，<code>RayTrajectoryCoordinator</code> 原子递增该任务的 <code>generation</code>。旧 Hybrid Worker 持有的旧 <code>lease_id / generation</code> 立即失效，哪怕它因网络卡顿晚发来 <code>commit_snapshot</code> 请求，Coordinator 核对 <code>expected_generation</code> 不匹配会直接拒绝。<br/>2. <strong>防目标端接管后二次宕机：</strong>Standalone Worker 认领交接任务时会获取带 TTL 的新 <code>TrajectoryOwnerLease</code> 并定期心跳续租；若该 Worker 中途崩溃导致租约过期，且 Mooncake 上的原始快照对象是只读不可变的，其他存活的 Standalone Worker 会在下一轮扫描中重新认领该 Manifest，直接跳过已标记为 <code>completed</code> 的成员，仅重跑未完成的成员。<br/>3. <strong>防 TransferQueue 重复投递：</strong>在 <code>agent_loop_tq.py</code> 中，只有凑齐 8 条成员并通过 <code>TransferQueue</code> 读回校验确认数据落盘后才将任务状态置为 <code>FINISHED</code>；若发布中途出现网络未知错误，系统停止盲目自动重发，保持 <code>RUNNING</code> 待协调器幂等对账，杜绝同一组样本进两次优化器。</div>
+</details>
+<details class="qa" open="">
+<summary>追问 4（收益归因与 KV 路由拷打）：你们一共做了好几项优化（状态恢复、两阶段 Overlap、KV 感知路由等），端到端 15.2% 的吞吐收益是怎么拆解归因的？KV 路由到底贡献了什么收益？</summary>
+<div class="ans">我们通过严格的逐级消融实验（Ablation Study）将单步 <code>205s → 178s</code>（节省 <code>27s/Step</code>，吞吐 <code>+15.2%</code>；16卡实机受控对账单步 <code>2061.6s → 1746.4s</code> 提速 <code>+15.3%</code>、吞吐 <code>+18.0%</code>）拆解到了每一项机制：<br/>1. <strong>KV 路由与落点追踪是把状态迁移从“负优化（−8.1%）”扭转为“正收益”的前提（贡献约 7s/Step + 扫清迁移开销）：</strong>如果只开物理 KV+Mamba 状态导出而不做路由落点感知，切换时会把整组 128 条在途轨迹一刀切全部中断导出，导致快照体积与恢复耗时暴增 4.7 倍，实测反而比原生基线慢 8.1%。我们通过网关路由追踪每条轨迹的真实物理落点（<code>x-smg-routed-worker-id</code>），精准豁免已落在 Standalone 常驻池上的 <strong>78.9%（101/128）</strong> 轨迹原位无感续跑（<code>continued_on_source</code>），仅迁移 Hybrid 池上的 <strong>21.1%（27/128）</strong> 轨迹，把单组交接耗时压到 <code>9.09s</code>；同时在 32～64 个副本规模下，<code>ConductorLoadBalancer</code> 按本地 <code>(device, cpu_local)</code> 命中与 <code>max_inflight_gap</code> 负载窗口路由多轮工具续接请求，避免跨机重复拉取与热点排队。<br/>2. <strong>两阶段显存回收与训练重叠（Quiesce-and-Overlap）是端到端吞吐提升的最大主力（贡献约 18s/Step）：</strong>源端 Hybrid 卡用 <code>&lt;15s</code> 完成那 21.1% 轨迹的快照落盘并确认 <code>quiesced</code> 后，立即执行 <code>sleep_replicas()</code> 归还显存启动 FSDP2 训练，将剩余多轮慢尾续写完全隐藏在 <code>85s</code> 的 Actor 参数更新窗口之下（16卡实测训练后等待 <code>trajectory_target_wait</code> 仅 <strong>45ms</strong>）。<br/>3. <strong>物理 KV+Mamba 零重算恢复与策略血统对齐保障了切换重算减少 65% 与样本质量提升（有效梯度信号 +35.4%）：</strong>避免了多轮复杂推理轨迹因超时被强杀丢弃导致组内退化为零方差同分样本，12 步实测非零优势组（<code>reward_std &gt; 0</code>）从 39 组提升至 54 组，训推概率相关性稳定在 <code>0.992</code>。</div>
+</details>
+</div>
+</section>
+<!-- SECTION 03: 32-GPU AGENTIC KV CACHE -->
+<section class="card" id="sec-kv">
+<span class="sec-tag">03 · 在线推理分层缓存 · SGLang / HiCache / Mooncake / Dynamo</span>
+<h1>Agentic KV Cache｜多轮 Agent 分层缓存与 P/D 恢复优化</h1>
+<h2 id="kv-star">1. STAR 结构化速览与显存/耗时剖析</h2>
+<div class="star-grid">
+<div class="star-item">
+<div class="st-head">Situation（背景与集群拓扑）</div>
+<p>服务于 AI Search 在线多轮 ReAct Agent 推理，主模型为 <code>Qwen3-30B-A3B</code>（48 层 GQA，KV Head 数为 4，Head Dim 为 128）。生产集群采用 <strong>32 张 H20（8 组 Prefill 实例 + 8 组 Decode 实例，每实例 TP2）</strong> 的 P/D 分离架构，并挂载 GPU HBM（L1）、Host DRAM（L2）与 Mooncake 共享存储（L3）三级缓存。线上会话上下文 P50 约 12.5K Token，超过 54% 的深度搜索请求包含多轮工具调用，其中搜索工具 <code>search_pro_tool</code> 占比 87%，每次调用外部等待窗口 P50 为 <strong>2.02s</strong>（P90/P99 约 2.18s）。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Task（核心瓶颈与挑战）</div>
+<p>在 TP2 BF16 下，单 Token 的 KV 体积为 <code>48 × 2 × 4 × 128 × 2B = 96 KiB</code>（单 Rank 48 KiB），一条 8K 上下文占 <strong>768 MiB</strong>（16K 占 1.5 GiB）。在 2 秒工具等待窗口内面临三个核心问题：① 若将历史 KV 锁在 HBM 中，几十个并发挂起会话即可占满显存池；若直接释放走全局 LRU，2 秒后工具返回时历史页已被冲掉，被迫重算 8K Prefill 并跨网重传 800MB 数据；② 跨实例从 Mooncake 恢复时存在并发写半截数据、<code>batch_get_into</code> 短读脏页及单 Rank 失败引发的集合通信阻塞与 0 Token 截断；③ 恢复控制路径存在 <strong>77ms</strong> 跨 Rank 事件轮询等待，且无准入控制的盲目预取会挤占前台活跃请求。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Action（技术选型与优化方案）</div>
+<p>① <strong>分布式可靠恢复与 FP8 扩容：</strong>在 <code>mooncake_store.py</code> 实现按 Rank 隔离的 基于 generation 的两阶段 Manifest 索引 与字节长度强校验，TP 组内执行 <code>all_reduce(MIN)</code> 对齐连续命中前缀；打通 <code>K-per-head / V-per-layer</code> 静态 FP8 KV Scale 加载与 FlashInfer 消费链路，使单 Token KV 体积减半。<br/>② <strong>等待期软硬引用解耦与 DAG 淘汰：</strong>拆分 <code>RadixCache</code> 会话软引用（<code>session_ref</code>）与活跃请求硬锁（<code>lock_ref</code>），等待期保留 Host 完整副本并释放独占 GPU 页；按多分支工作流未来消费距离与共享分支数构建淘汰最小堆，支持页对齐叶子节点惰性切分。<br/>③ <strong>异步控制链与恢复成本门控：</strong>移除 77ms 跨 Rank 同步轮询，将生命周期提示放入每会话保序异步队列；结合工具预计返回时间、前台预留水位（<code>foreground_reserve_tokens</code>）与 Restore-vs-Recompute 成本门控执行预取准入。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Result（全链路量化收益）</div>
+<p>① <strong>单请求与控制链实测（4×H20 1P+1D 实机受控基准）：</strong>8K 会话续接 Prefill 侧重算输入由 <strong>8216 降至 34 Token</strong>（单对 HTTP TTFT <strong>785.8 → 425.2ms，−45.9%</strong>）；25 次 Resume 的 <code>ready→首 Token</code> P50 延迟由 <strong>460.8ms 降至 215.8ms（−53.2%）</strong>，有效 GPU KV 驻留积分下降 <strong>3.7%</strong>；512 Token 短前缀由成本门控自动切重算，TTFT <strong>131.6 → 96.6ms（−26.6%）</strong>；FP8 异构粒度将 30B 模型 Attention MSE 降低 <strong>13.9%</strong>。<br/>② <strong>32×H20（8P+8D）高峰并发表现：</strong>集群整体 Resume 请求 TTFT P50 降低 <strong>25.7%</strong>、均值降低 <strong>13.2%</strong>，高峰 SLO 达标吞吐提升 <strong>12.9%</strong>。</p>
+</div>
+</div>
+<h2 id="kv-choice">2. Profiling 耗时拆解与技术选型对比</h2>
+<p>优化前我们使用 PyTorch Profiler、Nsight Systems（NSYS）以及 SGLang 内置的分阶段指标（<code>sglang:storage_prefetch_phase_duration_seconds</code>，细分为 <code>lookup / queue / transfer / host_stage / h2d / install / scheduler_ready / sync</code> 八个阶段）对 8K/16K 请求进行了逐阶段剖析：</p>
+<ul>
+<li><strong>算力与搬运耗时锚点：</strong>在 TP2 H20 上，16K 冷 Prefill 的 Attention Kernel 累计耗时约 <strong>574ms / Rank</strong>（占 Kernel 总时间约 59%）；而通过 PCIe 执行 Host→GPU H2D 搬运的实测带宽为 <strong>38.4～49.5 GiB/s</strong>（单层 H2D 约 20ms，8K 前缀双卡共 768 MiB 的纯 H2D 传输耗时约 10～15ms）。这意味着长前缀从 Host/L3 恢复的理论硬件耗时远小于重新计算 Attention。</li>
+<li><strong>为什么理论很快，早期实测恢复却不快？</strong>分阶段打点暴露了两个软件层开销：一是恢复路径在等待跨 TP Rank 状态确认时使用了带固定轮询间隔的非阻塞事件检查，额外引入了约 <strong>77ms</strong>；二是当上下文很短（如 512 Token，仅 48 MiB）时，原本重算 Prefill 只需 <strong>96.6ms</strong>，而走远端查找、队列调度、缓冲分配和写回却要花 <strong>131.6ms</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr><th>技术决策点</th><th>备选方案对比</th><th>选型结论与工程依据</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>决策一：工具等待期的显存驻留策略</strong></td>
+<td>• <strong>策略 A（Pin 死 HBM）：</strong>工具执行期间保持 <code>lock_ref &gt; 0</code> 不释放 GPU 页。高并发下 40 个挂起会话即耗尽 30GB+ 显存，新到达的前台首轮请求直接排队超时。<br/>• <strong>策略 B（纯原生 LRU 释放）：</strong>轮次一结束立即归零引用，与普通单轮请求混排淘汰。2 秒等待期内极易在等待期内被并发请求驱逐，且淘汰子任务后缀时会把父节点公共前缀一并回收。<br/>• <strong>策略 C（软硬引用分离 + Host 保底 + 工作流 DAG 最小堆 + 提前预取）：</strong>等待期降级为软引用优先让出 HBM，但强制保留 Host 副本，在工具返回前 200～300ms 择机预取回 HBM。</td>
+<td><strong>选定策略 C。</strong><br/>兼顾了等待期 HBM 复用率（有效 GPU 驻留积分降低 3.7%）与 Resume 命中率（8K 重算从 8216 降至 34 Token），并通过页对齐叶子切分避免误删多分支共享主干。</td>
+</tr>
+<tr>
+<td><strong>决策二：恢复 vs 重算的触发机制</strong></td>
+<td>• <strong>策略 A（凡命中必恢复）：</strong>只要 L2/L3 查到前缀就无条件发起拉取。缺点是短前缀（&lt;1K Token）拉取开销大于重算，且高峰期密集 H2D 会挤占前台请求带宽与空闲页。<br/>• <strong>策略 B（Runtime Cost Gate + 前台水位保护）：</strong>在线对比预估恢复耗时与重算耗时，并检查扣减预取页后是否仍高于 <code>foreground_reserve_tokens</code>。</td>
+<td><strong>选定策略 B。</strong><br/>512 Token 短前缀自动绕开无效拉取（TTFT 降低 26.6%），长前缀在保障前台活跃请求不退化的前提下执行预取。</td>
+</tr>
+<tr>
+<td><strong>决策三：KV Cache FP8 量化粒度</strong></td>
+<td>• <strong>方案 A（Per-Layer 静态 FP8）：</strong>K 和 V 均按整层共用一个缩放因子（Scale）。实现最简单，但 Key 矩阵存在显著的 Head 间通道离群值（Outlier），按层量化精度损失大。<br/>• <strong>方案 B（Per-Token 动态 FP8）：</strong>每次在线计算每个 Token 的最大绝对值。跨节点传输需附带大量动态元数据，且增加在线归约开销。<br/>• <strong>方案 C（K-per-head / V-per-layer K-per-head / V-per-layer 静态 FP8）：</strong>针对 K 按注意力头校准静态 Scale，V 保持按层静态 Scale。</td>
+<td><strong>选定方案 C。</strong><br/>逐层误差分解证实收益几乎全部来自 K 的细粒度缩放：<code>K-per-head / V-per-layer</code> 将 30B 模型 Attention 输出 MSE 降低 <strong>13.9%</strong>，而把 V 进一步细化到 per-head 无额外收益。静态 Scale 天然兼容 Mooncake 跨节点零拷贝复用与 FlashInfer FA3 内核。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kv-arch">3. 32×H20 P/D 三级缓存架构与代际恢复协议图</h2>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 320" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr3" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<!-- Left: Orchestrator & Async Hints -->
+<rect fill="#f8fafc" height="280" rx="10" stroke="#64748b" stroke-width="1.5" width="220" x="16" y="20"></rect>
+<text fill="#0f172a" font-size="13.5" font-weight="700" x="28" y="46">① 业务编排与 Dynamo 路由</text>
+<rect fill="#ffffff" height="62" rx="6" stroke="#cbd5e1" width="196" x="28" y="60"></rect>
+<text fill="#1e293b" font-size="12" font-weight="600" x="38" y="80">轮次结束 → TOOL_WAITING</text>
+<text fill="#475569" font-size="11" x="38" y="98">发异步 Hint，不阻塞主调度线程</text>
+<text fill="#475569" font-size="11" x="38" y="114">会话进入 ~2.02s 外部搜索等待</text>
+<rect fill="#ffffff" height="68" rx="6" stroke="#cbd5e1" width="196" x="28" y="134"></rect>
+<text fill="#1e293b" font-size="12" font-weight="600" x="38" y="154">工具快返回 → READY_SOON</text>
+<text fill="#475569" font-size="11" x="38" y="172">携带 expected_resume_at 窗口</text>
+<text fill="#475569" font-size="11" x="38" y="188">进入按会话保序的后台 FIFO 队列</text>
+<rect fill="#eff6ff" height="70" rx="6" stroke="#3b82f6" width="196" x="28" y="214"></rect>
+<text fill="#1e40af" font-size="12" font-weight="700" x="38" y="234">Resume 请求到达</text>
+<text fill="#1e3a8a" font-size="9.5" x="38" y="252">前 8K Token 哈希不变 + 新增 34 Token</text>
+<text fill="#1e3a8a" font-size="11" x="38" y="268">亲和路由至已预热 P/D 副本</text>
+<line marker-end="url(#arr3)" stroke="#334155" stroke-width="1.8" x1="236" x2="268" y1="160" y2="160"></line>
+<!-- Middle: Prefill Pool & 3-Tier Cache -->
+<rect fill="#eff6ff" height="280" rx="10" stroke="#3b82f6" stroke-width="1.7" width="460" x="272" y="20"></rect>
+<text fill="#1e40af" font-size="13.5" font-weight="700" x="288" y="46">② 8 组 Prefill 实例 (16×H20, TP2) 与三级存储协同</text>
+<rect fill="#ffffff" height="104" rx="6" stroke="#93c5fd" width="212" x="288" y="60"></rect>
+<text fill="#1e3a8a" font-size="11.1" font-weight="600" x="298" y="80">L1 GPU HBM (UnifiedRadixCache)</text>
+<text fill="#334155" font-size="9.5" x="298" y="98">• 拆分 lock_ref(硬) 与 session_ref(软)</text>
+<text fill="#334155" font-size="10.1" x="298" y="114">• DAG 最小堆：优先淘汰 TOOL_WAITING</text>
+<text fill="#334155" font-size="10.5" x="298" y="130">• 页对齐惰性切分：回收子分支保留主干</text>
+<text fill="#1e40af" font-size="10.6" font-weight="600" x="298" y="148">• 预留 foreground_reserve_tokens</text>
+<rect fill="#ffffff" height="104" rx="6" stroke="#93c5fd" width="206" x="510" y="60"></rect>
+<text fill="#1e3a8a" font-size="12" font-weight="600" x="520" y="80">L2 Host DRAM &amp; Cost Gate</text>
+<text fill="#334155" font-size="10.9" x="520" y="98">• 等待期强制 Pin 住完整历史页副本</text>
+<text fill="#334155" font-size="11" x="520" y="114">• H2D 实测带宽 38.4~49.5 GiB/s</text>
+<text fill="#334155" font-size="9.5" x="520" y="130">• 512 短前缀：T_restore &gt; T_prefill</text>
+<text fill="#0f766e" font-size="11" font-weight="600" x="520" y="148">→ 自动选重算 (131.6→96.6ms)</text>
+<rect fill="#f0fdfa" height="108" rx="6" stroke="#0f766e" stroke-width="1.5" width="428" x="288" y="176"></rect>
+<text fill="#0f766e" font-size="11.7" font-weight="700" x="300" y="198">L3 Mooncake Distributed Store（两阶段 Manifest 写入与校验协议）</text>
+<text fill="#134e4a" font-size="9.5" x="300" y="218">1. 写入：先写带 generation 物理页，全部成功后最后写 Rank 独立 Manifest</text>
+<text fill="#134e4a" font-size="9.5" x="300" y="236">2. 读取：先验 Manifest 成员，再强校验 batch_get_into 返回字节数防短读</text>
+<text fill="#134e4a" font-size="9.5" x="300" y="254">3. 对齐：TP 双 Rank 执行 all_reduce(MIN) 对齐连续命中页，消除 77ms 事件轮询空等</text>
+<text fill="#0f766e" font-size="9.8" font-weight="700" x="300" y="272">8K 续接：P 侧重算 8216 → 34 Token，ready→首字 P50 460.8 → 215.8ms (−53.2%)</text>
+<line marker-end="url(#arr3)" stroke="#334155" stroke-width="1.8" x1="732" x2="764" y1="160" y2="160"></line>
+<!-- Right: Decode Pool -->
+<rect fill="#fffbeb" height="280" rx="10" stroke="#d97706" stroke-width="1.6" width="256" x="768" y="20"></rect>
+<text fill="#92400e" font-size="13.5" font-weight="700" x="782" y="46">③ 8 组 Decode 实例 (16×H20)</text>
+<rect fill="#ffffff" height="104" rx="6" stroke="#fcd34d" width="228" x="782" y="60"></rect>
+<text fill="#78350f" font-size="12" font-weight="600" x="792" y="80">P→D 增量交接与伪命中拦截</text>
+<text fill="#334155" font-size="11" x="792" y="98">• D 侧同步预热 8K 历史前缀</text>
+<text fill="#334155" font-size="10.7" x="792" y="114">• 握手跳过已就绪页，仅传新增 34 Token</text>
+<text fill="#334155" font-size="11" x="792" y="130">• 拦截低于预取门槛的短 L3 伪命中承诺</text>
+<text fill="#92400e" font-size="11" font-weight="600" x="792" y="148">• 修复 0 Token 截断恢复正常生成</text>
+<rect fill="#fef3c7" height="108" rx="6" width="228" x="782" y="176"></rect>
+<text fill="#92400e" font-size="9.5" font-weight="700" x="792" y="198">K-per-head / V-per-layer 静态 FP8 KV + FlashInfer</text>
+<text fill="#78350f" font-size="9.5" x="792" y="218">• Key：per-head 静态 Scale (抗 Outlier)</text>
+<text fill="#78350f" font-size="11.5" x="792" y="236">• Value：per-layer 静态 Scale</text>
+<text fill="#78350f" font-size="9.5" x="792" y="254">• 单 Token KV：96 KiB → 48 KiB (2x容量)</text>
+<text fill="#92400e" font-size="11.5" font-weight="700" x="792" y="272">• 30B Attention MSE 降低 13.9%</text>
+</svg>
+<div class="fig-cap">图 3-1：32×H20（8P+8D，TP2）集群下多轮 Agent 工具等待期换出、异步预取、Mooncake 代际恢复与 P/D 增量传输全链路架构</div>
+</div>
+<h2 id="kv-code">4. 四大核心模块源码实现与跨组件交互</h2>
+<h3>模块一：Mooncake Commit-Last 代际写入与短读/多 Rank 对齐（mooncake_store.py）</h3>
+<p><strong>交互细节：</strong>当 SGLang <code>HiCacheController</code> 将 Host 缓存页异步刷入 Mooncake 或从 Mooncake 恢复到 Host Staging Buffer 时，直接操作裸物理页会面临并发写撕裂与单 Rank 部分缺失问题。我们在 <code>MooncakeStore</code> 中实现了基于递增 generation 的两阶段 Manifest 发布与字节校验：</p>
+<div class="code-head"><span>python/sglang/srt/mem_cache/storage/mooncake_store/mooncake_store.py:760</span><span>按 Rank 隔离 Manifest + 字节级短读拦截</span></div>
+<pre><code>class MooncakeStore(HiCacheStorage, MooncakeBaseStore):
+    def _manifest_key(self, logical_key: str) -&gt; str:
+        # 每个 TP/PP/CP Rank 拥有各自独立的 KV 分片，Manifest 必须按 Rank 坐标隔离，避免并发互覆
+        rank_key = f"{self.local_rank}:{self.pp_rank}:{self.attn_cp_rank}"
+        return self._tag_keys([f"__sglang_generation_manifest__:{rank_key}:{logical_key}"])[0]
+
+    def _generation_key(self, logical_key: str, generation: str) -&gt; str:
+        return f"{logical_key}__sglang_generation__{generation}"
+
+    def _write_manifest(self, logical_key: str, generation: str, members: List[str]) -&gt; None:
+        manifest = {"schema_version": 1, "logical_key": logical_key,
+                    "generation": generation, "members": members}
+        # 仅当该页全部成员物理键 put 返回 0 后，最后一步写入 Manifest 发布可见性；中途失败不发布 Manifest
+        ret_code = self.store.put(self._manifest_key(logical_key),
+                                  json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
+        if ret_code != 0:
+            raise RuntimeError(f"Failed to publish Mooncake manifest for {logical_key}")</code></pre>
+<p><strong>读取与跨 Rank 同步边界：</strong>读取时先校验 <code>_read_manifest()</code> 合法性，随后调用 <code>batch_get_into</code>。针对上游 <code>_batch_postprocess</code> 将任何正返回值视为成功（导致 256B 目标缓冲区仅读回 128B 时残留尾部脏数据）的问题，我们强制校验返回字节数严格等于目标页切片总长度，任何不完整页直接转为 Cache Miss。最后在 TP 组内对连续命中的页数执行 <code>all_reduce(MIN)</code>（若 <code>_page_transfer_kv_batch</code> 抛异常则记 0 页并继续发送 <code>PrefetchAck</code>），确保两个 Rank 在完全相同的连续前缀边界处进入 Prefill，杜绝单卡失败引发的 NCCL 集合通信阻塞。</p>
+<h3>模块二：会话生命周期状态机与 DAG 最小堆淘汰（streaming_session.py &amp; unified_radix_cache.py）</h3>
+<p><strong>交互细节：</strong>我们在 <code>session_ref_tracker.py</code> 与 <code>unified_radix_cache.py</code> 中引入了四态会话生命周期 <code>SessionLifecycleState</code>（<code>ACTIVE</code>、<code>TOOL_WAITING</code>、<code>READY_SOON</code>、<code>COMPLETED</code>）：</p>
+<ul>
+<li><strong>软硬引用分离：</strong>请求在 GPU 上执行前向时持有硬锁 <code>lock_ref &gt; 0</code>（不可淘汰）；当本轮解码结束进入 2 秒工具调用时，状态转为 <code>TOOL_WAITING</code>，释放 <code>lock_ref</code> 但保留会话软引用 <code>session_ref</code>，同时在 Host DRAM 池中 Pin 住完整历史页副本。</li>
+<li><strong>DAG 感知淘汰与惰性切分：</strong>当 HBM 不足触发 <code>evict()</code> 时，淘汰最小堆优先回收仅被 <code>TOOL_WAITING</code> 持有的节点，保护 <code>ACTIVE</code> 与 <code>READY_SOON</code> 节点。对于多子任务分支共享同一 8K 主干前缀的 DAG 工作流，结合分支共享数与未来消费距离排序；当某个子分支的尾部页需要被淘汰时，在页对齐边界处对 Radix 树叶子节点执行惰性切分（Split），仅释放子分支独占后缀页，保留公共父节点。</li>
+</ul>
+<h3>模块三：异步控制链改造与 Runtime Cost Gate</h3>
+<p>为了消除恢复路径上的控制面阻塞，我们将原本在主线程同步执行的生命周期信号（<code>TOOL_WAITING / READY_SOON</code>）改造为每工作流独立的后台保序 FIFO 队列，并移除恢复完成等待中的跨 Rank 轮询（省去 **77ms**）。在 <code>mark_ready_soon()</code> 触发 <code>prefetch_from_storage()</code> 前，执行两步准入检查：</p>
+<ol>
+<li><strong>显存安全水位准入：</strong>检查当前 GPU 空闲页扣除本次预取页后是否仍大于 <code>foreground_reserve_tokens</code>，防止后台预取把正在运行的前台请求或邻居会话的父节点挤出 HBM。</li>
+<li><strong>恢复 vs 重算成本门控（Cost Gate）：</strong>根据分阶段耗时模型对比预估恢复时间 <i>T</i><sub>restore</sub>(<i>L</i>) = <i>T</i><sub>lookup</sub> + <i>T</i><sub>queue</sub> + <i>L</i> · <i>B</i><sub>token</sub> / <i>BW</i><sub>H2D</sub> 与重算时间 <i>T</i><sub>recompute</sub>(<i>L</i>)。对于 512 Token 短前缀（校准恢复约 119.9ms &gt; 重算 99.8ms），门控直接拒绝远端恢复并走本地重算，实测单请求 TTFT 由 **131.6ms 降至 96.6ms（−26.6%）**；对于 8K/16K 长前缀则放行预取。</li>
+</ol>
+<h3>模块四：Dynamo Agent 感知 KV 路由与 SGLang P/D 会话桥接（agent_cache.rs &amp; prefill_handler.py）</h3>
+<p>在 32×H20（8P+8D）在线推理集群中，网关路由层（NVIDIA Dynamo）不仅需要将多轮 Resume 请求路由到存有历史前缀的实例，还需要解决三个在线特有问题：① 命中同样长度的 8K 前缀时，驻留在 GPU HBM（<code>Device</code>）与驻留在主机内存（<code>HostPinned</code>）或远端存储（<code>External</code>）的恢复耗时相差数倍；② P/D 分离下 Prefill 与 Decode 两个 Worker 都需要感知同一个 Agent 会话标识以关联各自的软引用槽位；③ 开启 FP8 KV 后必须防止格式作用域（<code>cache_scope</code>）不兼容的 P/D 实例建立传输握手。</p>
+<ul>
+<li><strong>Rust 路由层二阶段有界决策（<code>lib/kv-router/src/scheduling/agent_cache.rs</code>）：</strong>我们在 Dynamo 的 KV Router 中扩展了 <code>AgentCacheStatus</code> 结构，Worker 按固定周期导出脱敏命名空间摘要、可复用 Token 数、当前所处存储层级（<code>AgentCacheTier::Device / HostPinned / Disk / External</code>）、会话状态（<code>Active / ToolWaiting</code>）、代际号 <code>epoch</code> 以及恢复开销参数（<code>lookup_cost_blocks / restore_cost_blocks</code>）。路由器在第一阶段前缀树匹配与队列负载筛选后，综合缓存层级恢复延迟与排队等待时间选出预计首字完成最早的 Worker，并严格保持“路由提示仅用于选实例，物理缓存安全仍由 SGLang 引擎独立校验”的边界。</li>
+<li><strong>P/D 双端被动 <code>session_id</code> 透传与 FP8 作用域门控（<code>prefill_handler.py</code> &amp; <code>decode_handler.py</code>）：</strong>SGLang 支持两种会话参数：<code>session_params.id</code> 属于显式有状态会话，若未事先调用 <code>open_session</code> 会直接报错拒绝；而顶层请求字段 <code>session_id</code> 用于被动关联 RadixCache 会话归属与等待期生命周期。我们在 Dynamo 的 Prefill 和 Decode 处理器中从 <code>agent_context.session_id</code> 提取标识并透传至顶层 <code>session_id</code> 参数，并在发起 Decode Bootstrap 握手前前置校验双端 FP8 <code>cache_scope</code> 兼容性，不兼容时在建连前快速失败回退，避免传输阶段挂起。</li>
+</ul>
+<h2 id="kv-bug">5. 线上真实故障复盘与全流程模块数据总表</h2>
+<table>
+<thead>
+<tr><th>故障案例</th><th>线上症状与复现条件</th><th>根因分析</th><th>修复措施与验收结果</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>故障一：Decode 端短 L3 命中错误承诺导致 0 Token 截断</strong></td>
+<td>P/D 分离模式下，部分多轮请求在 Decode 端直接返回空响应（生成 0 Token 即结束）。</td>
+<td>Decode 端查询 L3 发现存在低于预取最小门槛的短前缀命中，向 Prefill 端错误承诺该前缀已就绪免传，但自身实际并未发起 L3 回载，导致 KV 槽位为空直接异常终止。</td>
+<td>规范 Decode 端预取门槛与就绪承诺一致性：未实际完成回载的短命中禁止纳入免传协商，故障请求 100% 恢复正常生成。</td>
+</tr>
+<tr>
+<td><strong>故障二：无保护预取引发邻居工作流（e0012）重算暴增</strong></td>
+<td>并发回放中，目标工作流触发 8K 提前预取后，同卡并行的 <code>e0012</code> 工作流 Resume 延迟反而劣化 <code>+253.8ms</code>。</td>
+<td>追踪 Victim 日志发现：P 端两个 Rank 为给目标预取腾空间，淘汰了 <code>e0012</code> 的两个 128 Token 子节点及 8192 Token 公共父节点，导致 <code>e0012</code> 命中从 12K 跌至 8K，重算 Token 从 64 暴增至 4160。</td>
+<td>引入 <code>foreground_reserve_tokens</code> 前台安全水位与 <code>READY_SOON</code> 剩余时间窗准入，禁止通过驱逐近期即将恢复的活跃父节点来做投机预取，消除负向挤占。</td>
+</tr>
+</tbody>
+</table>
+<h3>全流程各模块具体数据账本</h3>
+<table>
+<thead>
+<tr><th>评估层级</th><th>指标名称</th><th>优化前基线</th><th>优化后结果</th><th>硬件与负载口径</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>KV 内存与量化层</strong></td><td>单 Token KV 字节 / Attention MSE</td><td>BF16：<code>96 KiB/Token</code>（8K=768MiB）</td><td>FP8：<strong>48 KiB/Token</strong>（容量 2.0x）；对比全按层 FP8 <strong>MSE −13.9%</strong></td><td><code>Qwen3-30B-A3B</code> TP2，<code>K-per-head / V-per-layer</code> 静态 Scale + FlashInfer</td></tr>
+<tr><td><strong>Profiler 硬件分解</strong></td><td>16K Attention / H2D 带宽 / 轮询等待</td><td>Attention <code>574ms</code>；H2D <code>38.4~49.5 GiB/s</code>；跨 Rank 轮询 <code>77ms</code></td><td>跨 Rank 轮询等待降至 <strong>0ms</strong>；<code>ready→首字</code> P50 <strong>460.8 → 215.8ms (−53.2%)</strong></td><td>4×H20（1P+1D，TP2），25 次多轮 Resume 配对实测</td></tr>
+<tr><td><strong>单请求 8K 续接</strong></td><td>Prefill 重算 Token / HTTP TTFT</td><td>重算 <code>8216 Token</code>；HTTP TTFT <code>785.8ms</code></td><td>重算 <strong>34 Token</strong>；HTTP TTFT <strong>425.2ms (−45.9%)</strong>；GPU 驻留积分 <strong>−3.7%</strong></td><td>4×H20 实机 8K 工具等待续接（双 Rank 消费约 804MB KV）</td></tr>
+<tr><td><strong>短前缀成本门控</strong></td><td>512 Token 首字延迟 (TTFT)</td><td>无条件恢复：<code>131.6ms</code></td><td>Cost Gate 切重算：<strong>96.6ms (−26.6%)</strong></td><td>避免 48MB 短前缀无效远端拉取</td></tr>
+<tr><td><strong>生产集群高峰并发</strong></td><td>Resume TTFT (均值/P50) / 达标吞吐</td><td>高峰到达下排队与重算叠加</td><td>Resume TTFT 均值 <strong>−13.2%</strong>、P50 <strong>−25.7%</strong>，高峰 SLO 达标吞吐 <strong>+12.9%</strong></td><td><strong>32×H20（8P+8D，TP2）</strong> 多轮混合工作流并发评估</td></tr>
+</tbody>
+</table>
+<div class="speech-box" id="kv-qa">
+<div class="speech-title">项目口述复盘（5 分钟完整推演）</div>
+<p><strong>【Situation &amp; Task】</strong>“这个项目面向 AI Search 在线多轮 Agent 推理，部署在 32 张 H20（8P+8D，每实例 TP2）的 P/D 分离集群上，主模型是 <code>Qwen3-30B-A3B</code>。线上深度搜索上下文 P50 是 12.5K Token，每轮调外部搜索工具平均要等 2.02 秒。按 GQA 公式算下来，TP2 BF16 下单 Token KV 占 96 KiB，一条 8K 会话就要占 768 MiB。在 2 秒工具等待窗口里，如果把 KV 一直锁在 HBM 里，数十个并发挂起会话即可耗尽 KV 显存池配额；如果直接释放进普通 LRU，2 秒后工具返回时历史页已被并发请求触发 LRU 驱逐，Prefill 节点得重算 8216 个 Token，还要往 Decode 节点跨网重传 800MB。而且当时从远端 Mooncake 恢复还存在并发写半截页、短读脏数据导致输出乱码和 0 Token 截断的问题。”</p>
+<p><strong>【Action】</strong>“我用 NSYS 和 PyTorch Profiler 拆解了完整恢复链路，发现 16K Attention 要算 574ms，而 Host 到 GPU 的 H2D 带宽有 40 多 GiB/s，恢复本身很快，但软件路径上有 77ms 卡在跨 Rank 事件轮询上，并且短序列远端拉取反而比重算慢。基于这个分析，我做了三部分工作：<br/>第一，在 <code>mooncake_store.py</code> 实现了按 Rank 隔离的 基于 generation 的两阶段 Manifest 索引 和 <code>batch_get_into</code> 返回字节长度强校验，配合 TP 双 Rank <code>all_reduce(MIN)</code> 对齐有效恢复前缀，彻底修复了短读脏页和单卡失败集合通信阻塞；同时根据误差分解把 Key 做成 per-head 静态 FP8 Scale、Value 做成 per-layer Scale 接进 FlashInfer，单 Token 显存减半且 Attention MSE 比全按层量化降了 13.9%。<br/>第二，在 <code>RadixCache</code> 拆开了活跃请求硬锁 <code>lock_ref</code> 和会话软引用 <code>session_ref</code>，工具等待期优先锁定 Host DRAM 副本并让出独占 GPU 页；针对多分支工作流，按未来访问距离和分支共享数构建淘汰最小堆，支持页对齐切分叶子节点保住公共主干。<br/>第三，去掉了 77ms 跨 Rank 同步轮询，把生命周期提示改成每会话保序的异步队列，并在预取入口加上前台安全水位（<code>foreground_reserve_tokens</code>）和恢复成本门控——只有长前缀且空闲显存充足时才在工具返回前预取回 HBM，512 Token 这种短前缀直接走重算。”</p>
+<p><strong>【Result】</strong>“上线优化后，8K 会话续接在 Prefill 侧的重算从 8216 降到了 34 个 Token，单对 HTTP TTFT 从 785.8ms 降到 425.2ms，25 次 Resume 的 <code>ready→首 Token</code> P50 从 460.8ms 降到 215.8ms（下降 53.2%）；在 32×H20（8P+8D）高峰并发下，集群整体 Resume TTFT P50 降低 25.7%、均值降低 13.2%，高峰 SLO 达标吞吐提升了 <strong>12.9%</strong>。”</p>
+</div>
+</section>
+<!-- SECTION 04: GPU VECTOR SEARCH & LUCENE IN-PLACE UPDATE -->
+<section class="card" id="sec-ann">
+<span class="sec-tag">04 · 异构向量检索与实时列存 · CUDA / C++ / Lucene / Spark</span>
+<h1>分布式搜索索引与 GPU 异构检索基础设施</h1>
+<h2 id="ann-star">1. STAR 结构化速览与技术选型对比</h2>
+<div class="star-grid">
+<div class="star-item">
+<div class="st-head">Situation（平台规模与业务特点）</div>
+<p>平台管理 50+ 集群组、约 6400 节点，支撑主搜近 2 亿商品向量的实时检索、AI Search 多路召回以及高频商品价格/库存变更。本地生活检索具有两个鲜明特点：一是每次向量召回都伴随严格的城市、地理多边形配送范围、门店营业状态等标量过滤；二是商品改价与向量增删改极其频繁。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Task（三大性能与存储瓶颈）</div>
+<p>① <strong>IVF 聚类桶倾斜导致 GPU 扫描长尾：</strong>真实商品分布极不均匀，热门类目单个 IVF 大桶包含 16.5 万条向量（约为中位桶的 10 倍），旧内核采用“一桶绑一个 CUDA Block”导致单个 SM 扫描耗时高达 <strong>30.87ms</strong>，其余 SM 空闲，且单 Query 下 8 个类目串行启动内核开销大（1.24ms）；<br/>② <strong>向量实时更新触发全量重建：</strong>静态 GPU 索引无法原地处理高频向量新增与删除；<br/>③ <strong>Lucene 高频改价写放大：</strong>原生 Lucene Segment 不可变，修改 8 字节价格需执行整文档 <code>Delete+Add</code>，触发频繁 <code>Segment Merge</code> 与 JVM GC 抖动。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Action（架构选型与核心实现）</div>
+<p>① <strong>CPU 前置过滤 + CUDA IVF 动态拆块与多类目合批：</strong>采用 CPU 倒排（<code>IndexSort + RLE</code> 与 <code>dvTerms</code>）前置严格过滤，仅跨 PCIe 上传 Query 与合法候选下标 <code>idx_t</code>；按命中桶候选规模动态拆分为多个 CUDA Block 并发扫描 FP16 向量，在 Shared Memory 内维护局部 TopK 后二级归并；将同 Query 下 8 个类目合并单次发射，配合 Pinned Memory 双缓冲与多 Stream 异步流水。<br/>② <strong>Base + Delta 无锁实时向量索引：</strong>按 IVF 桶组织增量主槽位与溢出区，通过 <code>Reserve → Write → Publish</code> 快照协议、<code>Revision</code> 版本号与 <code>Tombstone</code> 位图实现读写无锁并发。<br/>③ <strong>Lucene Codec/SPI <code>mmap</code> 原地改价：</strong>定制可写 DocValues 列存，通过堆外 <code>LongIntHashMMap</code> 主键字典与 <code>mmap LongBuffer</code> 按 <code>DocID</code> <i>O</i>(1) 覆写 8B 价格列，并适配 <code>Segment Merge</code> 重映射。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Result（实测性能与线上效果）</div>
+<p>① H20 百万级 128 维向量基准下，IVF 大桶扫描内核耗时由 <strong>30.87ms 压降至 4.50ms（降低 85.4%）</strong>，8 Query 批次自适应拆块核 P50 达 <strong>3.55ms</strong>；<br/>② 单 Query 8 类目合批设备端执行耗时由 <strong>1.24ms 降至 0.82ms（加速 1.51x）</strong>；<br/>③ Base + Delta 在同卡持续读写并发下，查询内核 P50/P99 为 <strong>2.61ms / 4.31ms</strong>，单批写入从提交至可见 P50 仅 <strong>0.71ms</strong>；<br/>④ Lucene 价格变更摆脱整文档重写放大，实现<strong>秒级查询可见</strong>。</p>
+</div>
+</div>
+<h3>技术选型决策矩阵（为什么这样设计？）</h3>
+<table>
+<thead>
+<tr><th>选型问题</th><th>备选方案对比</th><th>最终选型与技术依据</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>问题一：标量过滤与 GPU 向量计算如何分工？</strong></td>
+<td>• <strong>方案 A（GPU 后过滤 Post-Filter）：</strong>先在 GPU 搜全局 TopK，再回 CPU 过滤营业状态与配送范围。缺点是当过滤率极高（如仅 1% 门店可配送）时，TopK 被全部滤空导致召回为 0。<br/>• <strong>方案 B（全量标量上 GPU）：</strong>把几十个动态业务字段全拷进 GPU。缺点是显存占用大且字符串/多边形判断在 GPU Warp 内造成严重分支发散（Warp Divergence）。<br/>• <strong>方案 C（CPU 倒排前置严格过滤 + 仅传候选下标上 GPU 算 FP16 距离）：</strong>CPU 跑 <code>get_index_ids</code>，GPU 常驻紧凑 FP16 向量矩阵。</td>
+<td><strong>选定方案 C。</strong><br/>CPU 最擅长跳表与位图布尔求交，过滤后仅剩数千至数万个 4/8 字节整数下标，跨 PCIe 异步拷贝耗时不足 0.1ms；GPU 只做最擅长的规整 FP16 向量距离计算与规约，消除零召回与 Warp 发散。</td>
+</tr>
+<tr>
+<td><strong>问题二：为什么线上用 IVF-Flat (FP16) / IVF-PQ，而不是全放 HNSW 图索引？</strong></td>
+<td>• <strong>HNSW 图索引：</strong>无过滤时查询极快，但：① 图邻接表内存开销极大；② 结合高选择率前置过滤时，图游走路径上的中间节点大量被标量条件剪断，极易断路掉召回；③ GPU 上随机图遍历属于非合并访存（Uncoalesced Memory Access），带宽利用率低。<br/>• <strong>IVF 分桶 + 桶内连续内存扫描：</strong>命中桶内候选连续排布，天然契合前置过滤与 GPU 高带宽合并访存。</td>
+<td><strong>选定 IVF 架构 + 动态拆 Block（超大规模冷库辅以 M=16 IVF-PQ 14.5x 压缩粗筛）。</strong><br/>既保证了严格业务过滤下的 100% 桶内精确召回，同时充分释放 H20 的 HBM 顺序访存带宽。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ann-arch">2. CPU/GPU 七阶段异构检索流水与 Base+Delta / mmap 架构图</h2>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 290" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr4" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<!-- Left: CPU & Lucene -->
+<rect fill="#f8fafc" height="254" rx="10" stroke="#64748b" stroke-width="1.5" width="320" x="16" y="18"></rect>
+<text fill="#0f172a" font-size="13.5" font-weight="700" x="30" y="44">① Host CPU 侧：前置过滤与 mmap 列存</text>
+<rect fill="#ffffff" height="92" rx="6" stroke="#cbd5e1" width="292" x="30" y="58"></rect>
+<text fill="#1e293b" font-size="11.8" font-weight="600" x="40" y="78">ann.cu::SearchEngine::search (Stage 1~4)</text>
+<text fill="#334155" font-size="10.6" x="40" y="96">1. 从池栈 stack_ 借出绑定独立 Stream 的 Handler</text>
+<text fill="#334155" font-size="11" x="40" y="112">2. ivf_quantizer-&gt;search 粗选 nprobe 个分桶</text>
+<text fill="#334155" font-size="10.1" x="40" y="128">3. get_index_ids 跑业务倒排过滤，写 Pinned Buffer</text>
+<text fill="#1e40af" font-size="10.9" font-weight="600" x="40" y="144">→ 仅跨 PCIe 异步上传 Query + 过滤后 idx_t 下标</text>
+<rect fill="#fffbeb" height="96" rx="6" stroke="#d97706" width="292" x="30" y="162"></rect>
+<text fill="#92400e" font-size="12" font-weight="700" x="40" y="182">Lucene 自定义可写 DocValues (秒级改价)</text>
+<text fill="#78350f" font-size="11" x="40" y="200">• 堆外 LongIntHashMMap：spuId → 内部 DocID</text>
+<text fill="#78350f" font-size="10.3" x="40" y="216">• mmap LongBuffer：按 offset = docId * 8 原地写</text>
+<text fill="#78350f" font-size="11" x="40" y="232">• Merge 适配：跳过删除位重排 + 增量日志回放追平</text>
+<line marker-end="url(#arr4)" stroke="#334155" stroke-width="1.8" x1="336" x2="372" y1="104" y2="104"></line>
+<!-- Middle: GPU Kernels -->
+<rect fill="#eff6ff" height="254" rx="10" stroke="#3b82f6" stroke-width="1.7" width="336" x="376" y="18"></rect>
+<text fill="#1e40af" font-size="13.5" font-weight="700" x="390" y="44">② GPU 计算核：动态拆块与多类目合批</text>
+<rect fill="#ffffff" height="102" rx="6" stroke="#93c5fd" width="308" x="390" y="58"></rect>
+<text fill="#1e3a8a" font-size="11.3" font-weight="600" x="400" y="78">IVF 大桶自适应拆分 (30.87ms → 4.50ms / 3.55ms)</text>
+<text fill="#334155" font-size="10.7" x="400" y="96">• 识别桶长倾斜（大桶 16.5 万条 vs 中位桶 1.6 万条）</text>
+<text fill="#334155" font-size="11" x="400" y="112">• 按实际候选数拆分为多个 WorkItem CUDA Block</text>
+<text fill="#334155" font-size="11" x="400" y="128">• Shared Memory 维护局部 Top10 阈值剪枝</text>
+<text fill="#1e40af" font-size="11" font-weight="600" x="400" y="144">• 二级归并 Kernel 按 Query 汇总全局最终 TopK</text>
+<rect fill="#dbeafe" height="88" rx="6" width="308" x="390" y="170"></rect>
+<text fill="#1e40af" font-size="12" font-weight="700" x="400" y="190">多类目合批与双缓冲流水 (1.24ms → 0.82ms)</text>
+<text fill="#1e3a8a" font-size="11" x="400" y="208">• 单 Query 下 8 个类目合并单次 Kernel Launch</text>
+<text fill="#1e3a8a" font-size="11" x="400" y="224">• Pinned Memory 双缓冲 + 多 Stream/Event 重叠</text>
+<text fill="#1e3a8a" font-size="11" x="400" y="240">• 消除小算子启动间隙并打满 SM 占用率</text>
+<line marker-end="url(#arr4)" stroke="#334155" stroke-width="1.8" x1="712" x2="744" y1="145" y2="145"></line>
+<!-- Right: Base + Delta -->
+<rect fill="#f0fdfa" height="254" rx="10" stroke="#0f766e" stroke-width="1.6" width="276" x="748" y="18"></rect>
+<text fill="#0f766e" font-size="13.5" font-weight="700" x="762" y="44">③ Base + Delta 实时向量索引</text>
+<rect fill="#ffffff" height="96" rx="6" stroke="#5eead4" width="248" x="762" y="58"></rect>
+<text fill="#134e4a" font-size="12" font-weight="600" x="772" y="78">分层存储结构 (HBM 常驻)</text>
+<text fill="#334155" font-size="11" x="772" y="96">• Base 层：紧凑只读 FP16 向量矩阵</text>
+<text fill="#334155" font-size="10.7" x="772" y="112">• Delta 层：按 IVF 桶定长主槽位 + 溢出区</text>
+<text fill="#334155" font-size="10.0" x="772" y="128">• 元数据：Revision 版本号 + Tombstone 位图</text>
+<rect fill="#ccfbf1" height="94" rx="6" width="248" x="762" y="164"></rect>
+<text fill="#0f766e" font-size="11.5" font-weight="700" x="772" y="184">无锁并发协议 (Reserve→Write→Publish)</text>
+<text fill="#134e4a" font-size="10.2" x="772" y="202">• 写：先原子预留槽位写向量，整批推进发布水位</text>
+<text fill="#134e4a" font-size="9.5" x="772" y="218">• 读：按快照水位统一扫 Base+Delta 并按最高版本去重</text>
+<text fill="#0f766e" font-size="10.4" font-weight="700" x="772" y="236">• 并发读 P50 2.61ms ｜ 写可见 P50 0.71ms</text>
+</svg>
+<div class="fig-cap">图 4-1：CPU/GPU 异构检索流水、CUDA IVF 大桶动态拆块、Base+Delta 实时向量索引与 Lucene mmap 列存架构</div>
+</div>
+<h2 id="ann-code">3. 核心源码详解与深水区追问</h2>
+<div class="code-head"><span>ann_engine/src/ann/ann.cu:512 &amp; incremental_ingest_benchmark.cu</span><span>七阶段异构检索与大桶分块归并</span></div>
+<pre><code>bool SearchEngine::search(Query* query, std::vector&lt;float&gt;* scores, std::vector&lt;idx_t&gt;* positions) {
+  // 1. 从线程安全池栈 stack_ 获取绑定独立 cudaStream_t 与预分配设备缓冲的 Handler
+  // 2. CPU 执行 IVF 粗聚类中心检索，得到 n_probe_ 个目标桶号 handler_-&gt;I_IVF_h
+  handler_-&gt;ivf_quantizer-&gt;search(1, handler_-&gt;vec_query_h, query-&gt;query_config_ptr_-&gt;n_probe_,
+                                  handler_-&gt;D_IVF_h, handler_-&gt;I_IVF_h);
+  // 3. CPU 在命中桶内执行标量/哈希过滤，将通过过滤的连续向量下标写入锁页内存 buffer_
+  size_t record_size = get_index_ids(query, begin_pos_, buffer_, filter_id_ptr, filter_id_size, index_maps_, index, true);
+  // 4. 异步 H2D 仅传输过滤后的候选下标 idx_t，随后启动 FP16 距离计算与分块 TopK 归并
+  CUCO_CUDA_TRY(cudaMemcpyAsync(handler_-&gt;id_query_d-&gt;ptr(), buffer_-&gt;ptr(),
+                                sizeof(idx_t) * record_size, cudaMemcpyHostToDevice, stream_));
+  gpu_searcher_-&gt;search_half(handler_-&gt;vec_query_h, handler_-&gt;vec_query_d,
+                             handler_-&gt;id_query_d-&gt;ptr(), record_size, handler_-&gt;result_d-&gt;ptr(), stream_);
+  gpu_searcher_-&gt;top_k_find(handler_-&gt;result_d-&gt;ptr(), record_size, handler_-&gt;I_d, handler_-&gt;D_d, top_k, stream_);
+}</code></pre>
+<div class="qa-list">
+<details class="qa" open="">
+<summary>追问 1：Base + Delta 实时向量索引在后台全量重建（Compaction）切换的一瞬间，如果有新的增量写入和删除进来，怎么保证不丢更新且不读到旧版本？</summary>
+<div class="ans">通过<strong>单调递增的全局 <code>Revision</code>（修订版本号）+ 双写过渡窗口 + 代际校验</strong>保证。每条写入或删除都携带严格递增的 <code>Revision</code>。当后台线程在时间点 <i>T</i><sub>0</sub>（对应水位 <code>Rev_0</code>）拉起快照构建新一代 <code>Base_{new}</code> 时，在线新到达的增量（<code>Rev &gt; Rev_0</code>）继续写入活跃 Delta 区。当 <code>Base_{new}</code> 物化进 GPU 准备切换时，保留所有 <code>Rev &gt; Rev_0</code> 的 Delta 记录与 Tombstone 位图；查询时若同一个向量 ID 同时出现在 <code>Base_{new}</code> 和保留的 Delta 区中，内核按最高 <code>Revision</code> 胜出（若最高版本为 Tombstone 则直接过滤），从而彻底防止后台旧快照覆盖切换期间的新写入。</div>
+</details>
+</div>
+</section>
+<!-- SECTION 05: SUPEROPT & LUGR -->
+<section class="card" id="sec-opt">
+<span class="sec-tag">05 · 算子自动优化与约束解码 · SuperOpt / SGLang</span>
+<h1>AutoResearch 算子自动优化与生成式召回（LUGR）推理加速</h1>
+<h2 id="opt-arch">1. STAR 结构化速览与隔离验证架构</h2>
+<div class="star-grid">
+<div class="star-item">
+<div class="st-head">Situation &amp; Task（背景与问题）</div>
+<p>面向推理内核（如生成式召回 LUGR 约束解码）与搜推策略的高频迭代需求。传统手工算子调优周期长，而直接使用 Coding Agent 自动改写推理代码存在两个核心问题：① 缺乏历史实验谱系检索，容易在不同轮次重复尝试已失败的负向方案；② Agent 自测极易因 JIT 编译缓存、输入张量原地修改或 CUDA Graph 静态缓冲区复用而产生“假阳性提速（Reward Hacking）”。</p>
+</div>
+<div class="star-item">
+<div class="st-head">Action &amp; Result（方案与收益）</div>
+<p>① 构建实验记录库与多维特征网格精英池（SQLite <code>solutions / elite_map</code>），支持相似假设查重与跨格父代融合（<code>UCB + MAP-Elites</code>）；<br/>② 将 Agent 代码生成沙箱（<code>codes/{uuid}/</code>）与框架只读验证器（<code>correctness_skill.py</code> + <code>benchmark_skill.py</code>）物理隔离，拦截静态 Buffer 复用假加速；<br/>③ 在酒旅生成式召回（LUGR）中完成前缀树（Trie）约束 Beam Search 的批级向量化 Gather 改造，并在 SGLang 调度层补齐 Beam KV 显存预算准入，<strong>TP50 延迟降低约 25%</strong> 并推广至多个召回场景。</p>
+</div>
+</div>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 240" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr5" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<rect fill="#f8fafc" height="200" rx="10" stroke="#64748b" stroke-width="1.5" width="230" x="16" y="20"></rect>
+<text fill="#0f172a" font-size="13.5" font-weight="700" x="30" y="46">① 实验检索与 UCB/MAP-Elites</text>
+<text fill="#334155" font-size="11.5" x="30" y="72">• 检索历史假设、Diff 与淘汰原因</text>
+<text fill="#334155" font-size="10.5" x="30" y="94">• UCB 采样目标特征格 (feature_cells)</text>
+<text fill="#334155" font-size="11.5" x="30" y="116">• 抽取格内精英 + 跨格异形精英融合</text>
+<text fill="#1e40af" font-size="11.5" font-weight="600" x="30" y="140">• 冻结格保护防止优化资产退化</text>
+<line marker-end="url(#arr5)" stroke="#334155" stroke-width="1.8" x1="246" x2="278" y1="120" y2="120"></line>
+<rect fill="#eff6ff" height="200" rx="10" stroke="#3b82f6" stroke-width="1.6" width="224" x="282" y="20"></rect>
+<text fill="#1e40af" font-size="13.5" font-weight="700" x="296" y="46">② 隔离沙箱生成与只读验证</text>
+<text fill="#1e3a8a" font-size="10.9" x="296" y="72">• 改码隔离：codes/{uuid}/ 独立目录</text>
+<text fill="#1e3a8a" font-size="11.5" x="296" y="94">• 只读验证器（Agent 不可篡改）：</text>
+<text fill="#334155" font-size="9.5" x="306" y="114">1. correctness_skill.py (多Shape数值门禁)</text>
+<text fill="#334155" font-size="9.5" x="306" y="132">2. benchmark_skill.py (新分配随机地址输入校验)</text>
+<text fill="#334155" font-size="10.2" x="306" y="150">3. profile_skill.py (硬件计时采集)</text>
+<line marker-end="url(#arr5)" stroke="#334155" stroke-width="1.8" x1="506" x2="538" y1="120" y2="120"></line>
+<rect fill="#f0fdfa" height="200" rx="10" stroke="#0f766e" stroke-width="1.6" width="482" x="542" y="20"></rect>
+<text fill="#0f766e" font-size="13.5" font-weight="700" x="558" y="46">③ 落地案例：SGLang 生成式召回（LUGR）约束 Beam Search 优化</text>
+<rect fill="#ffffff" height="142" rx="6" stroke="#5eead4" width="222" x="558" y="60"></rect>
+<text fill="#134e4a" font-size="12" font-weight="600" x="568" y="82">算子侧：批级向量化 Gather</text>
+<text fill="#334155" font-size="9.6" x="568" y="102">• 痛点：Trie 合法商品 SID 路径掩码与候选</text>
+<text fill="#334155" font-size="9.9" x="568" y="118">  重排原本按请求逐行切片 Gather，访存碎</text>
+<text fill="#334155" font-size="9.5" x="568" y="138">• 改造：扁平化全批索引一次性向量化 Gather</text>
+<text fill="#0f766e" font-size="11.5" font-weight="700" x="568" y="160">• TopK 严格等价，TP50 延迟 −25%</text>
+<rect fill="#ffffff" height="142" rx="6" stroke="#5eead4" width="218" x="790" y="60"></rect>
+<text fill="#134e4a" font-size="12" font-weight="600" x="800" y="82">调度侧：Beam KV 预算准入</text>
+<text fill="#334155" font-size="10.3" x="800" y="102">• 痛点：Beam 分叉时共享前缀但每步分裂</text>
+<text fill="#334155" font-size="9.5" x="800" y="118">  膨胀 KV，高并发易耗尽 KV 池触发重算退化</text>
+<text fill="#334155" font-size="9.8" x="800" y="138">• 改造：在 scheduler.py 按峰值分裂上界</text>
+<text fill="#334155" font-size="10.2" x="800" y="156">  做 KV Budget Gate 并暴露共享率指标</text>
+</svg>
+<div class="fig-cap">图 5-1：SuperOpt 物理隔离验证循环与 SGLang 生成式召回（LUGR）约束前缀树 Beam Search 优化架构</div>
+</div>
+<h2 id="opt-code">2. 核心实现细节与面试问答</h2>
+<div class="code-head"><span>sglang-lugr/python/sglang/srt/managers/scheduler.py &amp; superopt/evolution.py</span><span>Beam KV 预算准入与独立进程验证</span></div>
+<pre><code># 1. SGLang LUGR 调度层：在接收前缀树约束 Beam Search 请求前，按 Beam 宽度与最大生成步数核算最坏分裂 KV 预算
+#    (Commit deb5e45fb18: feat(lugr): gate trie beams by KV budget &amp; 850b036662b: expose peak beam KV sharing metrics)
+# 2. SuperOpt 独立验证准则：
+#    - 验证权独立于生成权：Agent 仅写 codes/{uuid}/，主框架在独立子进程执行只读 correctness_skill.py 与 benchmark_skill.py
+#    - 拦截 CUDA Graph 假阳性：每次评测重新分配不同虚拟地址的输入 Tensor 并覆盖多种动态 Batch Shape，
+#      任何直接返回静态录制 Buffer 引用或漏拷新输入的改写都会在数值对齐门禁中被立即拦截丢弃。</code></pre>
+</section>
+<!-- SECTION 06: GLOBAL LEDGER & BROAD AI INFRA KNOWLEDGE -->
+<section class="card" id="sec-ledger">
+<span class="sec-tag">06 · 容量耗时速查与分布式系统原理</span>
+<h1>全链路核心数据速查表与百卡 AI Infra 广度知识体系</h1>
+<p>本章汇总各项目的硬件配置、容量算式与端到端延迟指标，并梳理<strong>分布式训练显存与通信核算、RDMA/NCCL 故障定位、推理引擎缓存结构差异及强化学习算法代价</strong>四类底层共性问题。</p>
+<h2>1. 四个项目核心硬件、显存与耗时闭环总账表</h2>
+<table>
+<thead>
+<tr><th>项目名称</th><th>集群与模型配置</th><th>内存 / 显存容量推导算式</th><th>全链路延迟与吞吐指标</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>01 · AI Search Agent</strong><br/>多路检索 / RAG / Memory</td>
+<td>Java 编排引擎 + SGLang 推理后端 + 向量/标量混合检索</td>
+<td>• 五段式输入：<code>System → 冻结Memory → History → Current+Tools → Remind</code><br/>• 完整输入 P50：<strong>12.5K Token</strong><br/>• 按需裁剪 <code>MessageClipping</code>：输入 Token 消耗 <strong>−48%</strong></td>
+<td>• 三路异步加载 Memory：超时上界受控<br/>• 超过 54% 深度搜索含多轮工具调用<br/>• 搜索工具 <code>search_pro_tool</code> 占 87%，单次外部等待 P50 <strong>2.02s</strong>（P90/P99 2.18s）</td>
+</tr>
+<tr>
+<td><strong>02 · 异步 RL 存储与恢复</strong><br/><code>Qwen3.5-35B-A3B</code><br/>(30 GDN + 10 Full Attn)</td>
+<td><strong>128 × H20 (96GB)</strong><br/>64 Hybrid (32 TP2)<br/>+ 64 Standalone (32 TP2)</td>
+<td>• BF16 权重载荷：<strong>71.9 GB</strong>（TP2 单卡 ~36GB）<br/>• 单卡运行时 ~12GB，余 ~48GB 给 KV + Mamba 池<br/>• Mooncake 轨迹快照：<code>n=8</code> 每组约 <strong>3.68 MB</strong></td>
+<td>• Mooncake 组写/读中位：<strong>21.0ms / 20.2ms</strong><br/>• 单请求状态捕获：<strong>0.1s～1.1s</strong>；同版本恢复 <strong>0 重算 Token</strong>（<code>max |Δlogprob| &lt; 0.004</code>）<br/>• Hybrid 回收等待：<code>50s+ → &lt;15s</code>；切换重算 <strong>−65%</strong><br/>• 单步周期：<code>205s → 178s</code>，有效吞吐 <strong>+15.2%</strong></td>
+</tr>
+<tr>
+<td><strong>03 · Agentic KV Cache</strong><br/><code>Qwen3-30B-A3B</code><br/>(48层 GQA, KV头=4)</td>
+<td><strong>32 × H20 (96GB)</strong><br/>8P (16卡, TP2)<br/>+ 8D (16卡, TP2)</td>
+<td>• BF16 单 Token KV = <code>48×2×4×128×2B</code> = <strong>96 KiB</strong>（每 Rank 48 KiB）；8K = <strong>768 MiB</strong>，16K = <strong>1.5 GiB</strong><br/>• <code>K-head / V-layer</code> FP8 后砍半至 <strong>48 KiB/Token</strong>，30B Attention MSE <strong>−13.9%</strong></td>
+<td>• 16K 冷 Attention <code>574ms</code>，H2D 带宽 <code>38.4~49.5 GiB/s</code>，砍掉跨 Rank 轮询 <strong>77ms</strong><br/>• 8K 重算：<strong>8216 → 34 Token</strong>（单对 TTFT <code>785.8→425.2ms</code>）<br/>• 25 次 Resume <code>ready→首字</code> P50：<strong>460.8 → 215.8ms (−53.2%)</strong><br/>• 512 短前缀切重算：<code>131.6 → 96.6ms (−26.6%)</code><br/>• 32 卡高峰：Resume P50 <strong>−25.7%</strong>、均值 <strong>−13.2%</strong>，达标吞吐 <strong>+12.9%</strong></td>
+</tr>
+<tr>
+<td><strong>04 · GPU 检索与列存</strong><br/>128 维商品向量</td>
+<td><strong>6400 节点平台</strong><br/>H20 异构检索集群</td>
+<td>• 2 亿 × 128 维 × 2B (FP16) = <strong>51.2 GB</strong> 原始向量（按 Shard 切分常驻 HBM）<br/>• IVF-PQ (<code>M=16</code>, 8bit) 压缩比 <strong>14.50x</strong><br/>• Lucene 改价：<code>offset = docId × 8B</code> 原地 <code>mmap</code> 写</td>
+<td>• IVF 16.5万大桶动态拆块：<strong>30.87ms → 4.50ms</strong>（8 Query 批自适应 <strong>3.55ms</strong>）<br/>• 单 Query 8 类目合批 + 双缓冲：<strong>1.24ms → 0.82ms</strong><br/>• Base+Delta 读写并发：读 P50/P99 <code>2.61 / 4.31ms</code>，写可见 P50 <code>0.71ms</code></td>
+</tr>
+<tr>
+<td><strong>05 · SuperOpt &amp; LUGR</strong><br/>前缀树约束 Beam</td>
+<td>隔离沙箱 + 只读评测<br/>SGLang 调度与算子</td>
+<td>• SQLite <code>solutions + elite_map + feature_cells</code><br/>• SGLang Beam 峰值分裂 KV 预算准入</td>
+<td>• 批级向量化 Gather 替代逐行切片：TopK 等价，<strong>TP50 延迟 −25%</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>2. 分布式训练、通信与推理系统原理追问库</h2>
+<div class="qa-list">
+<details class="qa" open="">
+<summary>广度题 1（训练显存与通信账本）：FSDP2（ZeRO-3）下训练一个参数量为 Ψ 的混合精度（BF16 参数 + FP32 AdamW 状态）模型，静态显存怎么算？每步通信量是多少？为什么你们在 Step 1 会遇到 OOM？</summary>
+<div class="ans"><strong>1. 静态显存公式（总量为 16<i>Ψ</i> 字节，按 <i>N</i> 张卡分片）：</strong><br/>• BF16 参数（2B）+ BF16 梯度（2B）+ FP32 主权重 Master Weights（4B）+ FP32 AdamW 一阶动量 <code>exp_avg</code>（4B）+ 二阶动量 <code>exp_avg_sq</code>（4B）= 16<i>Ψ</i> Bytes。对于 35B（<i>Ψ</i> ≈ 35 × 10<sup>9</sup>）模型，总静态状态约 560 GB，在 64 张卡 FSDP 全分片下每张卡静态分片仅占约 8.75 GB。<br/><strong>2. 为什么实际单卡会飙到 70~80GB 甚至在 Step 1 OOM？</strong><br/>因为除了静态分片外，显存大头在于：① <strong>AllGather 临时完整层参数与梯度缓冲区</strong>（FSDP 在前向/反向计算某一层或某个模块组时，需把该层分片 AllGather 成完整参数，特别是 MoE 大专家层）；② <strong>长序列（8K~16K）激活值（Activations）</strong>，即便开了 Activation Checkpointing（重计算），仍需保存层间边界激活；③ <strong>首次 <code>optimizer.step()</code> 瞬态峰值</strong>：PyTorch AdamW 默认在第一次 <code>step()</code> 时才遍历参数分配 8<i>Ψ</i> / <i>N</i> 的动量张量，此时反向传播刚结束，预留的梯度通信 Bucket 尚未释放，叠加 Python/CUDA 缓存分配器块对齐碎片，极易冲破 96GB HBM 红线。通过启动时预初始化优化器状态（Pre-allocate States）、限制 FSDP Prefetch Bucket 数量并配合 <code>expandable_segments:True</code> 可稳定解决。<br/><strong>3. 通信量公式：</strong>前向每层一次 AllGather（通信量 <i>Ψ</i>），反向每层一次 AllGather（<i>Ψ</i>，若开启重计算）加一次 ReduceScatter 聚合梯度（<i>Ψ</i>），单步总通信量约为 3<i>Ψ</i>。</div>
+</details>
+<details class="qa" open="">
+<summary>广度题 2（网络与集群排障）：百卡训练或 Mooncake RDMA 传输中遇到 NCCL Timeout 或 IB 报错，你们的标准排查 SOP 是什么？</summary>
+<div class="ans">严格遵循“先区分计算卡死还是网络故障，再定位具体物理节点”的四步法：<br/>1. <strong>查日志错误码定位故障类型：</strong>在训练或传输日志中搜索 <code>ibv_modify_qp</code> 或 completion error。如果看到 RDMA <code>error 12</code>（<code>IBV_WC_RETRY_EXC_ERR</code>，重传次数耗尽），说明本机网卡发包后对端无响应。<br/>2. <strong>从 Peer IP 反查对端物理节点：</strong>从报错连接信息中提取对端 Peer IP，映射到具体物理机与 Rank 号，而不是盲目重启报错的当前节点。<br/>3. <strong>检查对端节点状态：</strong>登录对端物理机检查 <code>dmesg</code>（是否有 Xid 硬件错误如 Xid 79 掉卡、Xid 31/43 非法访存）、检查进程是否僵死在 CPU I/O（如慢盘读写、分布式检查点 <code>all_gather_object</code> 阻塞）或单 Rank 缓存分支不一致（如一卡走恢复、一卡走重算导致集合通信顺序错位）。<br/>4. <strong>带宽降级排查：</strong>若连接正常但 RDMA 吞吐远低于线速（如 IB 理论 50GB/s 实测掉到十几 GB/s），核查 GDR（GPUDirect RDMA / <code>nvidia_peermem</code>）是否加载生效、PCIe ACS 是否关闭、以及 Mooncake 分片传输粒度（如调整 <code>MC_SLICE_SIZE</code> 与队列深度）是否过小导致小包门铃（Doorbell）开销主导。</div>
+</details>
+<details class="qa" open="">
+<summary>广度题 3（推理引擎对比）：SGLang 和 vLLM 在 KV Cache 管理与调度上的核心区别是什么？为什么你们选 SGLang + HiCache + Mooncake？</summary>
+<div class="ans">1. <strong>前缀缓存数据结构不同：</strong>vLLM 的 Automatic Prefix Caching（APC）基于固定大小 Block 的扁平哈希表管理；SGLang 核心采用 <strong>RadixAttention（基数树 <code>RadixCache</code>）</strong>，将共享前缀组织成树形节点，天然契合多轮 Agent 对话、多分支工具调用（DAG）和 GRPO 同 Prompt 多采样（<code>n=8</code>）的树状前缀共享与按子树裁剪。<br/>2. <strong>多级存储与异步预取扩展性（HiCache）：</strong>SGLang 的 <code>HiCache</code> 架构将 L1 GPU Pool、L2 Host Tensor Pool 与 L3 外部存储后端（<code>HiCacheStorage</code> 接口，原生对接 Mooncake Store）做成统一分层控制器，并支持 Overlap Scheduler（将 CPU 调度与 GPU Kernel 异步重叠），非常适合我们在工具等待间隙插入 <code>TOOL_WAITING / READY_SOON</code> 生命周期钩子与跨节点零拷贝恢复。</div>
+</details>
+<details class="qa" open="">
+<summary>广度题 4（RL 算法基础）：GRPO 相较于标准 PPO 省掉了什么？在百卡训推中这带来了什么系统架构优势？</summary>
+<div class="ans">标准 PPO 需要同时维护四个模型：Actor（策略模型）、Critic（价值模型 Value Network，通常与 Actor 同规模）、Reference Model（参考模型）和 Reward Model。其中 Critic 需要独立做前向和反向参数更新，显存和算力开销几乎翻倍。<br/><strong>GRPO（Group Relative Policy Optimization）</strong> 对同一个 Prompt 采样一组输出 {<i>o</i><sub>1</sub>, <i>o</i><sub>2</sub>, …, <i>o</i><sub>G</sub>}（我们线上设 <i>G</i> = 8），直接用组内奖励的均值和标准差归一化计算相对优势：<i>A<sub>i</sub></i> = (<i>r<sub>i</sub></i> − mean(<b>r</b>)) / std(<b>r</b>)，从而<strong>彻底省掉了庞大 Critic 模型的显存占用、前反向计算与优化器状态</strong>。反映到系统架构上，省下一整套 35B Critic 的训练显存后，64 张训练卡才能在不开启极重度 Offload 的情况下高效跑通 FSDP2 更新，但代价是训练端消费单位变成了“必须凑齐同 Prompt 的全部 <i>G</i> = 8 条轨迹才能算 Advantage”——这也正是为什么单个慢工具长尾样本会卡住整组交付，以及我们必须做 <code>HandoffManifest</code> 组完整性接管的根本原因。</div>
+</details>
+</div>
+</section>
+</main>
+</div>
+<script>
+let quizMode = false;
+function toggleQuiz() {
+  quizMode = !quizMode;
+  document.querySelectorAll('details.qa').forEach(d => { d.open = !quizMode; });
+  const btn = document.getElementById('toggleQuizBtn');
+  if (btn) btn.textContent = quizMode ? '退出自测（展开答案）' : '自测模式（折叠问答）';
+}
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark');
+  try { localStorage.setItem('ai-infra-projects-theme', isDark ? 'dark' : 'light'); } catch (e) {}
+  const btn = document.getElementById('themeBtn');
+  if (btn) btn.textContent = isDark ? '浅色' : '深色';
+}
+function filterToc(q) {
+  const kw = (q || '').trim().toLowerCase();
+  document.querySelectorAll('.sidebar ul li').forEach(li => {
+    const txt = li.textContent.toLowerCase();
+    li.style.display = (!kw || txt.includes(kw)) ? '' : 'none';
+  });
+}
+(function init() {
+  try {
+    if (localStorage.getItem('ai-infra-projects-theme') === 'dark') {
+      document.body.classList.add('dark');
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = '浅色';
+    }
+  } catch (e) {}
+  window.addEventListener('scroll', () => {
+    const bar = document.getElementById('read-progress');
+    if (!bar) return;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + '%';
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
