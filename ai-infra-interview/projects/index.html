@@ -937,6 +937,86 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 <li><strong>第二，工具返回掩码严格对齐（<code>response_mask</code>）：</strong>多轮轨迹中包含大量由搜索/RAG 工具返回的 Observation Token，这部分 Token 并非模型采样生成，必须在 <code>response_mask</code> 中严格置 0，仅对模型实际生成的 Action/Reasoning Token 计算策略梯度与 KL 惩罚。</li>
 <li><strong>第三，Decoupled PPO 重要性采样校正（<code>compute_rollout_correction_and_add_to_batch</code>）：</strong>在 <code>trainer_base.py::_compute_advantage</code> 中结合训练引擎重算的 <code>old_log_probs</code> 与采样时记录的 <code>rollout_log_probs</code> 计算重要性采样权重与截断（IS Clipping / Rejection Sampling），补偿跨步 off-policy 与训推算子差异带来的分布偏移。</li>
 </ul>
+<h3>模块六：基于强基线的分布式异步 Checkpoint 优化与全状态崩溃续训（async_checkpoint_batch.py &amp; stage_and_publish.py）</h3>
+<p>在大规模 RL 训练中，容错 Checkpoint 属于与在线 Rollout 存储互补的冷/温持久化数据面。我们的优化起点并非单点聚合或未开启分片的原始配置，而是<strong>已开启分布式分片保存（<code>use_dist_checkpointing=True</code>）与异步保存（<code>async_save=True</code>）的社区最新强基线</strong>（团队此前已通过开启分片保存将早期单点导出耗时从 2000s+ 降至约 360s 级）。但在推进高频容错保存与断点续训时，分阶段打点暴露了三个跨框架耦合与共享存储层面的深层问题：</p>
+<ul>
+<li><strong>问题一（跨层调用触发“伪异步”主线程阻塞）：</strong>VeRL v2（<code>megatron_checkpoint_manager.py</code>）为解耦产物目录，将同一步保存拆分为 <code>model/dist_ckpt</code>、<code>optimizer/dist_ckpt</code>、<code>extra/dist_ckpt</code> 三个独立的 <code>AsyncRequest</code> 依次调用 <code>async_calls.schedule_async_request(req)</code>。而在 Megatron-Core 持久化异步写入队列底层，调度下一个请求执行 <code>preload_tensors</code> 暂存前，会强制等待前一个请求在后台落盘完毕以限制主机内存。这导致前两项（占 99% 体积的模型与优化器分片）实际上同步阻塞在训练主线程中，使 <code>async_save=True</code> 失去重叠效果。</li>
+<li><strong>问题二（容器 FUSE 共享存储单流瓶颈与 MDS 元数据风险）：</strong>Megatron 0.19.2 默认单 Rank 仅用 1 个写线程（且先同步写完最后一个分片再拉起其余线程），经容器 FUSE 挂载写入 DolphinFS / BeeGFS 时受网络 RTT 与 <code>fsync</code> 限制，单流吞吐仅 <code>20～35 MB/s</code>，导致数十 GB 主机暂存缓冲区长时间无法释放；但若在 MoE 专家并行（EP）下盲目按分片开满线程，百卡并发创建上千文件流又会直接冲击文件系统元数据服务（MDS）。</li>
+<li><strong>问题三（异步崩溃半成品与 RL 多状态恢复错位）：</strong>异步后台写入中途若遇进程崩溃，目标目录会残留半截分片；同时 Megatron <code>dp_reshardable</code> 加载器在恢复原生 Adam 时存在覆盖参数组权威 <code>step</code> 计数及向 <code>requires_grad=True</code> 视图原地拷贝报错的缺陷，且 RL 续训必须同时对齐模型、优化器、LR Scheduler、RNG 与 <code>TransferQueue</code> 数据游标。</li>
+</ul>
+<div class="fig-box">
+<svg font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif" viewbox="0 0 1040 265" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrC" markerheight="6" markerwidth="6" orient="auto" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+</marker>
+</defs>
+<!-- Top: Upstream Strong Baseline Bottleneck -->
+<text fill="#991b1b" font-size="13" font-weight="700" x="20" y="26">社区 async_save=True 强基线退化路径：三次独立入队触发 MCore 队列背压，主线程原地阻塞等待前序大块落盘</text>
+<rect fill="#fee2e2" height="44" rx="6" stroke="#dc2626" width="190" x="20" y="38"></rect>
+<text fill="#991b1b" font-size="11" font-weight="600" x="30" y="58">1. 提交 model 请求</text>
+<text fill="#7f1d1d" font-size="10.5" x="30" y="74">D2H Preload 后入后台队列</text>
+<line marker-end="url(#arrC)" stroke="#334155" stroke-width="1.6" x1="210" x2="242" y1="60" y2="60"></line>
+<rect fill="#fca5a5" height="44" rx="6" stroke="#dc2626" stroke-width="1.6" width="290" x="246" y="38"></rect>
+<text fill="#991b1b" font-size="9.7" font-weight="700" x="256" y="58">2. 提交 optimizer 请求（主线程阻塞等待 model 写完!）</text>
+<text fill="#7f1d1d" font-size="10.5" x="256" y="74">get_sync_results() 强等慢速 FUSE 单流写完前一项</text>
+<line marker-end="url(#arrC)" stroke="#334155" stroke-width="1.6" x1="536" x2="568" y1="60" y2="60"></line>
+<rect fill="#fca5a5" height="44" rx="6" stroke="#dc2626" stroke-width="1.6" width="290" x="572" y="38"></rect>
+<text fill="#991b1b" font-size="9.7" font-weight="700" x="582" y="58">3. 提交 extra 请求（主线程阻塞等待 optimizer 写完!）</text>
+<text fill="#7f1d1d" font-size="10.3" x="582" y="74">受控基准实测：完整写盘 1018s，主线程停顿高达 1018s</text>
+<text fill="#991b1b" font-size="11.5" font-weight="700" x="874" y="64">→ 异步重叠失效</text>
+<line stroke="#cbd5e1" stroke-dasharray="4 4" x1="20" x2="1020" y1="100" y2="100"></line>
+<!-- Bottom: Optimized Coalesced & Stage-Publish Architecture -->
+<text fill="#0f766e" font-size="13" font-weight="700" x="20" y="124">优化后架构：同一步请求合并暂存 (&lt;2s 释放训练主线程) + 自适应多线程写 + 本地暂存校验与原子发布</text>
+<rect fill="#eff6ff" height="106" rx="8" stroke="#3b82f6" stroke-width="1.6" width="242" x="20" y="138"></rect>
+<text fill="#1e40af" font-size="12" font-weight="700" x="32" y="160">① 合并预加载与写前保护</text>
+<text fill="#1e3a8a" font-size="10.8" x="32" y="178">• async_checkpoint_batch.py</text>
+<text fill="#334155" font-size="10.8" x="32" y="195">• 预算内一次性联合 Preload 三类状态</text>
+<text fill="#334155" font-size="10.5" x="32" y="212">• 仅对 CPU Offload 张量做 clone() 快照</text>
+<text fill="#1e40af" font-size="10.8" font-weight="700" x="32" y="230">• 主线程停顿：1018s → 1.17s (立即续训)</text>
+<line marker-end="url(#arrC)" stroke="#334155" stroke-width="1.8" x1="262" x2="294" y1="190" y2="190"></line>
+<rect fill="#f0fdfa" height="106" rx="8" stroke="#0f766e" stroke-width="1.7" width="356" x="298" y="138"></rect>
+<text fill="#0f766e" font-size="12" font-weight="700" x="310" y="160">② Rank 内自适应并发写与本地暂存发布</text>
+<text fill="#134e4a" font-size="10.4" x="310" y="178">• writer_sizing.py：threads = min(8, shards // 2) 保 MDS</text>
+<text fill="#334155" font-size="10.8" x="310" y="195">• stage_and_publish.py：先落本地高速盘，后台并发拷入 .tmp</text>
+<text fill="#334155" font-size="10.8" x="310" y="212">• 核对文件列表与总字节一致后 os.replace() 原子切换目录</text>
+<text fill="#0f766e" font-size="11" font-weight="700" x="310" y="230">• 共享盘落盘提速 3.36x (35B 单步 ~178s 内静默完成)</text>
+<line marker-end="url(#arrC)" stroke="#334155" stroke-width="1.8" x1="654" x2="686" y1="190" y2="190"></line>
+<rect fill="#fffbeb" height="106" rx="8" stroke="#d97706" stroke-width="1.6" width="330" x="690" y="138"></rect>
+<text fill="#92400e" font-size="12" font-weight="700" x="702" y="160">③ 全局发布栅栏与崩溃自愈恢复</text>
+<text fill="#78350f" font-size="10.8" x="702" y="178">• started / completed 双标记 + 全 Rank 分片齐全校验</text>
+<text fill="#334155" font-size="10.6" x="702" y="195">• 崩溃残留重命名为 incomplete-&lt;step&gt;-&lt;ts&gt; 避开扫描正则</text>
+<text fill="#334155" font-size="10.8" x="702" y="212">• 修复 dp_reshardable no_grad 与 Adam step 计数覆盖</text>
+<text fill="#92400e" font-size="11" font-weight="700" x="702" y="230">• 模型/Adam/Scheduler/RNG/TQ 游标逐位无损续训</text>
+</svg>
+<div class="fig-cap">图 2-5：VeRL × Megatron 强基线下的跨层异步队列退化根因与合并预加载 + 受控并发原子发布架构</div>
+</div>
+<div class="code-head"><span>verl/utils/megatron/async_checkpoint_batch.py &amp; checkpoint/stage_and_publish.py</span><span>联合预加载快照隔离 + 校验后原子改名发布</span></div>
+<pre><code>def _preload_batch(preloaders, cpu_masks=None):
+    # 在内存预算内一次性执行 model / optimizer / extra 的预加载，消除三次入队引发的前序落盘阻塞
+    staged = [preload() if preload is not None else None for preload in preloaders]
+    if cpu_masks is None:
+        return staged
+    frozen = []
+    for buckets, masks in zip(staged, cpu_masks, strict=True):
+        frozen_buckets = []
+        for (name, key, (byte_items, tensor_items)), tensor_mask in zip(buckets, masks, strict=True):
+            # 仅对原本常驻 CPU 的张量（如 CPU Offload 优化器状态）执行写前 clone()，GPU 张量已由 D2H 生成独立副本无需二次拷贝
+            frozen_tensors = [(item, tensor.detach().clone() if copy else tensor)
+                              for (item, tensor), copy in zip(tensor_items, tensor_mask, strict=True)]
+            frozen_buckets.append((name, key, (byte_items, frozen_tensors)))
+        frozen.append(frozen_buckets)
+    return frozen
+
+def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -&gt; dict:
+    # 本地暂存目录通过线程池并发复制至共享盘临时兄弟目录 .tmp-&lt;uuid&gt;，校验文件数、路径与总字节完全一致后原子 os.replace
+    temporary = final_root.with_name(f"{final_root.name}.tmp-{uuid.uuid4().hex[:8]}")
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        list(pool.map(copy_one, relatives))
+    if not verify_published(stage_root, temporary)["matches"]:
+        raise RuntimeError("published tree does not match the staged tree")
+    os.replace(temporary, final_root)</code></pre>
+<p><strong>百卡 35B 时间尺度匹配与受控消融验证：</strong>在受控 BeeGFS 消融基准中，原生 <code>async_save</code> 基线的完整保存与主线程停顿均为 <strong>1018.10s</strong>；仅开启请求合并后，主线程提交停顿立即降至 <strong>1.36s</strong>（落盘仍为 1053.66s）；叠加每 Rank 多线程并发写后，主线程停顿为 <strong>1.17s</strong>，完整落盘缩短至 <strong>266.36s</strong>（43.2GB 真实 RL 状态四臂交替 ABBA 中位数由 <strong>2086.93s 降至 620.34s，提速 3.36x</strong>；双节点 8 卡跨机实测 <strong>1217.6s → 380.7s，提速 3.20x</strong>）。映射到 <strong>128×H20（64 卡训练池）运行 <code>Qwen3.5-35B-A3B</code></strong> 的生产尺度下：全套训练状态约 <code>496 GB</code>，64 卡分片后每卡仅需写出约 <code>7.8 GB</code>（落在实测 5.4～10.8 GB/卡区间内）；由于大模型多轮 RL 单步周期约 <code>178s</code>、每 10～20 Step 保存一次（间隔 30～60 分钟），主线程在 <strong>1.2s</strong> 级停顿后立即进入下一训练步，后台共享存储落盘在 1～2 个训练 Step 内即静默完成并释放主机暂存内存，不会发生跨步追尾阻塞。同时在多机验证中实测定位了容器 FUSE 下 BeeGFS <strong>读写带宽不对称（并发写 35.5+ MB/s vs 单流冷读 12.9 MB/s）</strong> 的恢复读放大现象，通过优先读取节点本地暂存分片规避冷读瓶颈。</p>
 <h2 id="rl-bug">6. 生产落地难点、线上故障排查与全模块数据账本</h2>
 <table>
 <thead>
@@ -974,6 +1054,7 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 <tr><td><strong>SGLang 状态快照</strong></td><td>单请求中断捕获 / 恢复重算 Token</td><td>重算整条 8K~16K 前缀</td><td>捕获 <strong>0.1s～1.1s</strong>；同版本恢复 <strong>0 重算 Token</strong></td><td>35B TP2 续写 128 Token 与连续生成一致，<code>max |Δlogprob| &lt; 0.004</code></td></tr>
 <tr><td><strong>Conductor 目录查询</strong></td><td>缓存目录 RPC 延迟</td><td>无全局缓存感知</td><td>空闲中位 <strong>12.6ms</strong>（P99 &lt; 16.6ms，超时上限 50ms）</td><td>HTTP + msgpack 协议，双 Rank 缓存清除后 100% 拒绝旧代际</td></tr>
 <tr><td><strong>Hybrid→Trainer 切换</strong></td><td>源卡显存回收等待耗时</td><td><code>50s+</code>（偶发迟到阻塞超时）</td><td><strong>&lt; 15s</strong>（平均节省约 18s / Step）</td><td>源端确认 <code>quiesced</code> 即 <code>sleep</code>，与 Standalone 续跑并行重叠</td></tr>
+<tr><td><strong>异步 Checkpoint 保存</strong></td><td>主线程提交停顿 / 共享盘落盘提速</td><td><code>async_save</code> 三次入队串行阻塞</td><td>主线程停顿 <strong>~1.2s</strong>；共享盘落盘 <strong>提速 3.36x</strong></td><td>64 卡分片 ~7.8GB/卡；崩溃残留自动归档无损续训</td></tr>
 <tr><td><strong>端到端训练收益</strong></td><td>切换边界重算 / 单步耗时 / 集群吞吐</td><td>平均 <code>205s / Step</code><br/>（8.98 Groups/GPU·h）</td><td>切换重算 Token <strong>−65%</strong>；单步 <strong>178s / Step</strong><br/>（<strong>10.35 Groups/GPU·h，提升 +15.2%</strong>）</td><td>单步 <code>64 Prompts × 8 = 512</code> 条多轮搜索轨迹（平均 4~5 轮工具调用）</td></tr>
 </tbody>
 </table>
