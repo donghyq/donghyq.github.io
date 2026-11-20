@@ -610,11 +610,11 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 </div>
 <div class="star-item">
 <div class="st-head">Task（核心技术问题）</div>
-<p>多轮搜索 Agent 单条轨迹需执行 1～6 轮外部工具调用，生成长度达 8K～16K Token，长尾效应显著。每当 Hybrid 副本切回 Trainer 模式时面临三个问题：① SGLang 停用副本时未拒绝在途迟到请求，导致客户端协程阻塞阻塞超时；② Hybrid 副本上约 25%～30% 尚未跑完的多轮轨迹若等待自然排空需耗时 50s 以上，若直接 <code>abort</code> 丢弃则浪费已执行的工具调用与数千 Token 的历史状态；③ <code>Qwen3.5-35B</code> 的 30 层 GDN/Mamba 状态为原地递推覆盖，无法按标准 KV 前缀切片补算。</p>
+<p>多轮搜索 Agent 单条轨迹需执行 1～6 轮外部工具调用，生成长度达 8K～16K Token，长尾效应显著。每当 Hybrid 副本切回 Trainer 模式时面临三个问题：① SGLang 停用副本时未拒绝在途迟到请求，导致客户端协程阻塞超时；② Hybrid 副本上约 25%～30% 尚未跑完的多轮轨迹若等待自然排空需耗时 50s 以上，若直接 <code>abort</code> 丢弃则浪费已执行的工具调用与数千 Token 的历史状态；③ <code>Qwen3.5-35B</code> 的 30 层 GDN/Mamba 状态为原地递推覆盖，无法按标准 KV 前缀切片补算。</p>
 </div>
 <div class="star-item">
 <div class="st-head">Action（方案选型与核心实现）</div>
-<p>从分布式存储与推理引擎状态管理切入，完成四项改造：① 设计 Ray 单写者元数据（<code>Lease + generation</code>）与 Mooncake 大载荷分离存储，持久化 <code>TrajectorySnapshot</code> 并通过 <code>HandoffManifest</code> 保证 <code>n=8</code> 的 GRPO 组完整性后交付 <code>TransferQueue</code>；② 扩展 SGLang 支持活跃请求原地中断与跨 TP Rank 同步导出 <code>Attention KV + Mamba Conv/SSM State</code>（<code>SGLang #45572</code>）；③ 修复 SGLang 停用副本准入阻塞（<code>VeRL #8387</code>），实现源卡落盘后立即 <code>sleep</code> 归还显存、Standalone 经 Conductor 缓存目录路由并行续跑的两阶段回收机制；④ 在训练端补齐跨权重更新轨迹的分段 <code>weight_version</code> 记录、Staleness 过滤、Decoupled PPO 重要性采样及 FSDP2/NCCL 稳定性修复。</p>
+<p>从分布式存储与推理引擎状态管理切入，完成四项改造：① 设计 Ray 单写者元数据（<code>Lease + generation</code>）与 Mooncake 大载荷分离存储，持久化 <code>TrajectorySnapshot</code> 并通过 <code>HandoffManifest</code> 保证 <code>n=8</code> 的 GRPO 组完整性后交付 <code>TransferQueue</code>；② 扩展 SGLang 支持活跃请求原地中断与跨 TP Rank 同步导出 <code>Attention KV + Mamba Conv/SSM State</code>；③ 修复 SGLang 停用副本准入阻塞（<code>VeRL #8387</code>），实现源卡落盘后立即 <code>sleep</code> 归还显存、Standalone 经 Conductor 缓存目录路由并行续跑的两阶段回收机制；④ 在训练端补齐跨权重更新轨迹的分段 <code>weight_version</code> 记录、Staleness 过滤、Decoupled PPO 重要性采样及 FSDP2/NCCL 稳定性修复。</p>
 </div>
 <div class="star-item">
 <div class="st-head">Result（全链路量化指标）</div>
@@ -788,7 +788,7 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
     self.current_mode = HybridEngineMode.TRAINER</code></pre>
 <h3>模块二：Qwen3.5-35B 混合架构活跃请求状态导出与跨副本恢复（token_kv_snapshot.py）</h3>
 <p><strong>为什么混合架构不能只靠前缀重算：</strong><code>Qwen3.5-35B-A3B</code> 包含 10 层标准 Full Attention 和 30 层 GDN（Gated DeltaNet / Mamba 线性注意力）。Full Attention 的 KV Cache 按 Token 位置分页存储，缺失尾部若干 Token 时只需从断点位置补充 Prefill；但 30 层 GDN 维护的是固定形状的卷积窗口状态（<code>mamba_cache.conv</code>）与递归状态矩阵（<code>mamba_cache.temporal</code>），每生成一个 Token 都会在原内存槽位上做递推覆盖。一旦进程中断或迁往另一台机器，如果不保存这组递归张量，哪怕只差 1 个 Token 也必须从第 0 个 Token 全量重算整条 8K～16K 序列。</p>
-<p><strong>跨组件实现细节：</strong>我们在 SGLang <code>Scheduler</code> 内新增 <code>TokenKVSnapshotManager</code>（<code>SGLang #45572</code>）。当收到原地中断指令时，TP2 的两个 Rank 同步暂停目标请求，导出三部分数据：① 10 层 Full Attention 已提交的 KV 页张量；② 30 层 GDN 在 <code>mamba_pool</code> 中对应请求槽位的 <code>conv</code> 与 <code>temporal</code> 张量；③ 当前解码进度与尚未送入下一轮前向的游标 <code>pending_input_token</code>。导出包同时附带由模型配置、<code>weight_version</code>、<code>tp_size</code>、各层形状与源文件哈希计算出的 <code>cache_layout_sha256</code>。目标 Standalone 副本在导入时，先校验全部 TP Rank 分片齐全且 <code>cache_layout_sha256</code> 一致，再将 Mamba 状态拷入目标实例 <code>mamba_pool</code> 新分配的物理槽位中，直接从 <code>pending_input_token</code> 恢复 Decode 步，实现 <strong>0 历史重算 Token</strong>。</p>
+<p><strong>跨组件实现细节：</strong>我们在 SGLang <code>Scheduler</code> 内新增 <code>TokenKVSnapshotManager</code>。当收到原地中断指令时，TP2 的两个 Rank 同步暂停目标请求，导出三部分数据：① 10 层 Full Attention 已提交的 KV 页张量；② 30 层 GDN 在 <code>mamba_pool</code> 中对应请求槽位的 <code>conv</code> 与 <code>temporal</code> 张量；③ 当前解码进度与尚未送入下一轮前向的游标 <code>pending_input_token</code>。导出包同时附带由模型配置、<code>weight_version</code>、<code>tp_size</code>、各层形状与源文件哈希计算出的 <code>cache_layout_sha256</code>。目标 Standalone 副本在导入时，先校验全部 TP Rank 分片齐全且 <code>cache_layout_sha256</code> 一致，再将 Mamba 状态拷入目标实例 <code>mamba_pool</code> 新分配的物理槽位中，直接从 <code>pending_input_token</code> 恢复 Decode 步，实现 <strong>0 历史重算 Token</strong>。</p>
 <div class="code-head"><span>qwen35-token-kv-sglang/python/sglang/srt/managers/token_kv_snapshot.py:211</span><span>Attention KV + Mamba 状态快照契约</span></div>
 <pre><code>class TokenKVSnapshotManager:
     def _identity(self):
@@ -826,7 +826,7 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 <text fill="#334155" font-size="9.5" x="40" y="182">• temporal[30]：递归状态矩阵 SSM State（无法靠前缀补算）</text>
 <line marker-end="url(#arrM)" stroke="#0f766e" stroke-width="2" x1="346" x2="386" y1="115" y2="115"></line>
 <rect fill="#f0fdfa" height="162" rx="10" stroke="#0f766e" stroke-width="1.8" width="260" x="390" y="34"></rect>
-<text fill="#0f766e" font-size="13" font-weight="700" x="406" y="60">跨 Rank 快照包 (SGLang #45572)</text>
+<text fill="#0f766e" font-size="13" font-weight="700" x="406" y="60">跨 TP Rank 混合状态快照包</text>
 <text fill="#134e4a" font-size="11.5" x="406" y="84">• 全 Rank Attention KV Pages</text>
 <text fill="#134e4a" font-size="11.5" x="406" y="104">• 全 Rank Mamba conv + temporal</text>
 <text fill="#134e4a" font-size="11.5" x="406" y="124">• 解码游标 pending_input_token</text>
@@ -1075,7 +1075,7 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
 </tr>
 <tr>
 <td><strong>1. + 物理 KV &amp; Mamba 状态恢复</strong></td>
-<td>开启 <code>SGLang #45572</code> 导出恢复 10 层 Attn KV + 30 层 GDN 状态，但<strong>无路由落点筛选、无 Overlap</strong></td>
+<td>开启 <code>TokenKVSnapshotManager</code> 导出恢复 10 层 Attn KV + 30 层 GDN 状态，但<strong>无路由落点筛选、无 Overlap</strong></td>
 <td><code>100%</code> 全量盲目中断导出 (<code>128/128</code>)</td>
 <td>切换拉长至 <code>2332.0s</code> (8卡)<br/>单步 <code>5987.4s</code>（<strong><code>-8.1%</code> 负优化</strong>）</td>
 <td><strong>214s / Step</strong><br/>（全量导出反超收益，<code>-4.2%</code>）</td>
@@ -1110,7 +1110,7 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
 <div class="speech-box" id="rl-qa">
 <div class="speech-title">项目口述复盘（5 分钟完整推演）</div>
 <p><strong>【Situation &amp; Task】</strong>“这个项目是在 128 张 H20 集群上落地 <code>Qwen3.5-35B-A3B</code> 多轮搜索 Agent 的异步 GRPO 训练。我们采用的是 64 卡常驻 Standalone 推理池加 64 卡 Trainer/Hybrid 动态混部池的架构——当样本队列还没攒够时，64 张 Trainer 卡会拉起 32 个 TP2 的 SGLang 副本协同参与 Rollout 采样；一旦样本水位达到 <code>deactivate_ratio</code>，这 64 张卡就要切回 FSDP2 做参数更新。但在多轮搜索场景下，一条轨迹要调 1 到 6 轮外部工具，生成长度上万 Token，最后 20% 的长尾样本占了单步一半以上的时间。每次 Hybrid 卡要切回训练时都面临两难：若阻塞等待长尾轨迹自然排空，64 张训练卡需闲置等待超过 50 秒，甚至因为原生 SGLang 停用时没拒绝迟到请求发生阻塞挂起；如果直接 <code>abort</code> 把半截轨迹扔回 Standalone 从第 0 轮重跑，前面调过的搜索工具和算好的几千 Token 全部作废并重新执行，而且 <code>Qwen3.5-35B</code> 里有 30 层 GDN 线性注意力，它的 Mamba 状态是原地递推覆盖的，没法像普通 KV 一样靠前缀切片补算。”</p>
-<p><strong>【Action - 选型与实现】</strong>“针对这个问题，我们调研对比了多版本权重并存（显存开销太大，35B 单份权重就要 72GB）和纯 Token 重算方案，最终选择从<strong>分层状态存储与两阶段显存回收</strong>切入，做了四块核心改造：<br/>第一，设计了控制面与数据面分离的 Rollout 存储：用单写者 Ray Actor 管 <code>Lease</code> 和单调递增的 <code>generation</code> 号防止脑裂双写，用 Mooncake Store 存不可变的 <code>TrajectorySnapshot</code>（包含 Token、<code>response_mask</code>、Behavior Logprob 和工具结果，每组约 3.68MB，读写中位 21ms/20ms），并通过 <code>HandoffManifest</code> 把 <code>n=8</code> 的组严格切成已完成、半截快照和未开始三类，确保不丢不重地交付给 <code>TransferQueue</code>。<br/>第二，我在 SGLang 实现了活跃请求原地中断和跨 TP Rank 状态导出（<code>SGLang #45572</code>），把 10 层 Full Attention KV、30 层 GDN 的卷积与递归状态以及解码游标一起导出，支持目标 Standalone 副本分配新 Mamba 槽位后零重算直接续写。<br/>第三，我修复了 SGLang 副本下线忽略 <code>reject_request</code> 导致迟到请求阻塞超时的 Bug（<code>VeRL #8387</code>），并把切换改成两阶段协议：网关先摘流，Hybrid 卡把快照刷进 Mooncake 确认 <code>quiesced</code> 后，不等长尾跑完，15 秒内直接 <code>sleep</code> 把显存还给 FSDP2 开训；剩余轮次由 Conductor 缓存目录结合 <code>cache_salt</code> 和恢复成本选最优的 Standalone 副本在后台并行补齐，与 Actor 更新完全重叠。<br/>第四，在训练端我们按分段记录跨步轨迹的 <code>weight_version</code>，配合 Staleness 过滤和 Decoupled PPO 重要性采样控制 off-policy 偏差，并同时定位并修复了 FSDP2 首次 Adam Step 惰性分配 OOM 和 NCCL 权重广播缺少流同步导致双缓冲踩踏的问题。”</p>
+<p><strong>【Action - 选型与实现】</strong>“针对这个问题，我们调研对比了多版本权重并存（显存开销太大，35B 单份权重就要 72GB）和纯 Token 重算方案，最终选择从<strong>分层状态存储与两阶段显存回收</strong>切入，做了四块核心改造：<br/>第一，设计了控制面与数据面分离的 Rollout 存储：用单写者 Ray Actor 管 <code>Lease</code> 和单调递增的 <code>generation</code> 号防止脑裂双写，用 Mooncake Store 存不可变的 <code>TrajectorySnapshot</code>（包含 Token、<code>response_mask</code>、Behavior Logprob 和工具结果，每组约 3.68MB，读写中位 21ms/20ms），并通过 <code>HandoffManifest</code> 把 <code>n=8</code> 的组严格切成已完成、半截快照和未开始三类，确保不丢不重地交付给 <code>TransferQueue</code>。<br/>第二，我在 SGLang 实现了活跃请求原地中断和跨 TP Rank 状态导出，把 10 层 Full Attention KV、30 层 GDN 的卷积与递归状态以及解码游标一起导出，支持目标 Standalone 副本分配新 Mamba 槽位后零重算直接续写。<br/>第三，我修复了 SGLang 副本下线忽略 <code>reject_request</code> 导致迟到请求阻塞超时的 Bug（<code>VeRL #8387</code>），并把切换改成两阶段协议：网关先摘流，Hybrid 卡把快照刷进 Mooncake 确认 <code>quiesced</code> 后，不等长尾跑完，15 秒内直接 <code>sleep</code> 把显存还给 FSDP2 开训；剩余轮次由 Conductor 缓存目录结合 <code>cache_salt</code> 和恢复成本选最优的 Standalone 副本在后台并行补齐，与 Actor 更新完全重叠。<br/>第四，在训练端我们按分段记录跨步轨迹的 <code>weight_version</code>，配合 Staleness 过滤和 Decoupled PPO 重要性采样控制 off-policy 偏差，并同时定位并修复了 FSDP2 首次 Adam Step 惰性分配 OOM 和 NCCL 权重广播缺少流同步导致双缓冲踩踏的问题。”</p>
 <p><strong>【Result】</strong>“上线到 128 卡集群后，35B TP2 同版本跨副本恢复实现了 0 历史重算 Token（续写 <code>max |Δlogprob| &lt; 0.004</code>），Hybrid 切换回收等待从 50 多秒压到 15 秒以内，切换边界重算 Token 减少 65%，单步训练周期从 205 秒降到 178 秒，集群有效训练吞吐（完整 GRPO Group / GPU·h）提升了 <strong>15.2%</strong>。”</p>
 </div>
 <div class="qa-list">
@@ -1268,7 +1268,7 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
                                   json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
         if ret_code != 0:
             raise RuntimeError(f"Failed to publish Mooncake manifest for {logical_key}")</code></pre>
-<p><strong>读取与跨 Rank 同步边界：</strong>读取时先校验 <code>_read_manifest()</code> 合法性，随后调用 <code>batch_get_into</code>。针对上游 <code>_batch_postprocess</code> 将任何正返回值视为成功（导致 256B 目标缓冲区仅读回 128B 时残留尾部脏数据）的问题，我们强制校验返回字节数严格等于目标页切片总长度，任何不完整页直接转为 Cache Miss。最后在 TP 组内对连续命中的页数执行 <code>all_reduce(MIN)</code>（若 <code>_page_transfer_kv_batch</code> 抛异常则记 0 页并继续发送 <code>PrefetchAck</code>），确保两个 Rank 在完全相同的连续前缀边界处进入 Prefill，杜绝单卡失败引发的 NCCL 集合通信阻塞。</p>
+<p><strong>读取与跨 Rank 同步边界：</strong>读取时先校验 <code>_read_manifest()</code> 合法性，随后调用 <code>batch_get_into</code>。针对上游 <code>_batch_postprocess</code> 将任何正返回值视为成功（导致 256B 目标缓冲区仅读回 128B 时残留尾部脏数据）的问题，我们强制校验返回字节数严格等于目标页切片总长度（<code>SGLang #46427</code>），任何不完整页直接转为 Cache Miss。最后在 TP 组内对连续命中的页数执行 <code>all_reduce(MIN)</code>（若 <code>_page_transfer_kv_batch</code> 抛异常则记 0 页并继续发送 <code>PrefetchAck</code>），确保两个 Rank 在完全相同的连续前缀边界处进入 Prefill，杜绝单卡失败引发的 NCCL 集合通信阻塞。</p>
 <h3>模块二：会话生命周期状态机与 DAG 最小堆淘汰（streaming_session.py &amp; unified_radix_cache.py）</h3>
 <p><strong>交互细节：</strong>我们在 <code>session_ref_tracker.py</code> 与 <code>unified_radix_cache.py</code> 中引入了四态会话生命周期 <code>SessionLifecycleState</code>（<code>ACTIVE</code>、<code>TOOL_WAITING</code>、<code>READY_SOON</code>、<code>COMPLETED</code>）：</p>
 <ul>
@@ -1276,10 +1276,10 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
 <li><strong>DAG 感知淘汰与惰性切分：</strong>当 HBM 不足触发 <code>evict()</code> 时，淘汰最小堆优先回收仅被 <code>TOOL_WAITING</code> 持有的节点，保护 <code>ACTIVE</code> 与 <code>READY_SOON</code> 节点。对于多子任务分支共享同一 8K 主干前缀的 DAG 工作流，结合分支共享数与未来消费距离排序；当某个子分支的尾部页需要被淘汰时，在页对齐边界处对 Radix 树叶子节点执行惰性切分（Split），仅释放子分支独占后缀页，保留公共父节点。</li>
 </ul>
 <h3>模块三：异步控制链改造与 Runtime Cost Gate</h3>
-<p>为了消除恢复路径上的控制面阻塞，我们将原本在主线程同步执行的生命周期信号（<code>TOOL_WAITING / READY_SOON</code>）改造为每工作流独立的后台保序 FIFO 队列，并移除恢复完成等待中的跨 Rank 轮询（省去 **77ms**）。在 <code>mark_ready_soon()</code> 触发 <code>prefetch_from_storage()</code> 前，执行两步准入检查：</p>
+<p>为了消除恢复路径上的控制面阻塞，我们将原本在主线程同步执行的生命周期信号（<code>TOOL_WAITING / READY_SOON</code>）改造为每工作流独立的后台保序 FIFO 队列，并移除恢复完成等待中的跨 Rank 轮询（省去 <strong>77ms</strong>）。在 <code>mark_ready_soon()</code> 触发 <code>prefetch_from_storage()</code> 前，执行两步准入检查：</p>
 <ol>
 <li><strong>显存安全水位准入：</strong>检查当前 GPU 空闲页扣除本次预取页后是否仍大于 <code>foreground_reserve_tokens</code>，防止后台预取把正在运行的前台请求或邻居会话的父节点挤出 HBM。</li>
-<li><strong>恢复 vs 重算成本门控（Cost Gate）：</strong>根据分阶段耗时模型对比预估恢复时间 <i>T</i><sub>restore</sub>(<i>L</i>) = <i>T</i><sub>lookup</sub> + <i>T</i><sub>queue</sub> + <i>L</i> · <i>B</i><sub>token</sub> / <i>BW</i><sub>H2D</sub> 与重算时间 <i>T</i><sub>recompute</sub>(<i>L</i>)。对于 512 Token 短前缀（校准恢复约 119.9ms &gt; 重算 99.8ms），门控直接拒绝远端恢复并走本地重算，实测单请求 TTFT 由 **131.6ms 降至 96.6ms（−26.6%）**；对于 8K/16K 长前缀则放行预取。</li>
+<li><strong>恢复 vs 重算成本门控（Cost Gate）：</strong>根据分阶段耗时模型对比预估恢复时间 <i>T</i><sub>restore</sub>(<i>L</i>) = <i>T</i><sub>lookup</sub> + <i>T</i><sub>queue</sub> + <i>L</i> · <i>B</i><sub>token</sub> / <i>BW</i><sub>H2D</sub> 与重算时间 <i>T</i><sub>recompute</sub>(<i>L</i>)。对于 512 Token 短前缀（校准恢复约 119.9ms &gt; 重算 99.8ms），门控直接拒绝远端恢复并走本地重算，实测单请求 TTFT 由 <strong>131.6ms 降至 96.6ms（−26.6%）</strong>；对于 8K/16K 长前缀则放行预取。</li>
 </ol>
 <h3>模块四：Dynamo Agent 感知 KV 路由与 SGLang P/D 会话桥接（agent_cache.rs &amp; prefill_handler.py）</h3>
 <p>在 32×H20（8P+8D）在线推理集群中，网关路由层（NVIDIA Dynamo）不仅需要将多轮 Resume 请求路由到存有历史前缀的实例，还需要解决三个在线特有问题：① 命中同样长度的 8K 前缀时，驻留在 GPU HBM（<code>Device</code>）与驻留在主机内存（<code>HostPinned</code>）或远端存储（<code>External</code>）的恢复耗时相差数倍；② P/D 分离下 Prefill 与 Decode 两个 Worker 都需要感知同一个 Agent 会话标识以关联各自的软引用槽位；③ 开启 FP8 KV 后必须防止格式作用域（<code>cache_scope</code>）不兼容的 P/D 实例建立传输握手。</p>
