@@ -1,29 +1,29 @@
 ---
 layout: post
-title: "主流大模型架构解析：Linear 与 Sparse 两条主线下的 Attention、MoE 与推理缓存"
+title: "前沿大模型架构解析：Linear 与 Sparse Attention"
 date: 2026-10-23 12:00:00 +0800
 categories: [LLM Infra, Architecture]
 tags: [llm, attention, gdn, mla, moe, kv-cache, qwen, glm, deepseek]
-description: "从 128K 长上下文请求出发，拆解 Qwen3.8、GLM-5.3-Flash、DeepSeek-V4.1 在 Linear 状态压缩与 Sparse 稀疏注意力两条主线上的结构取舍，以及对推理缓存管理的影响。"
+description: "对比 Qwen3.8、GLM-5.3-Flash 与 DeepSeek-V4.1 的模型结构，拆解 Linear Attention、Sparse Attention、MoE 与推理缓存设计。"
 math: true
 toc: true
 ---
 
 ## 太长不看（TL;DR）
 
-近两年大模型论文提出了大量新的模块缩写（GQA、MLA、GDN、KDA、DSA、QSA、CSA2、CED），但如果从推理系统（Serving Infra）的视角看，**围绕 Attention 的结构演进其实只有两条主线——Linear Attention（线性循环状态）和 Sparse Attention（稀疏注意力），或是两者的按层混合**：
+近两年大模型论文提出了很多新模块缩写（GQA、MLA、GDN、KDA、DSA、QSA、CSA2、CED），但如果从推理系统的视角看，**Attention 的演进其实只有两条主线——Linear Attention 和 Sparse Attention，或者把两者按层混用**：
 
-1. **主线一：Linear / Recurrent 路线（GDN、KDA）——将变长历史压缩为固定维度的状态矩阵**。不再为每个历史 Token 保存独立的 K/V，而是维护一个固定形状的状态矩阵 $S_t \in \mathbb{R}^{d_k \times d_v}$ 和短卷积窗口。无论上下文是 4K 还是 1M，单层单请求的状态体积恒定。**工程上有三个直接后果**：第一，固定维度的有损压缩在长距离精确检索（Exact Retrieval）上弱于全注意力，因此 Qwen3.8 和 GLM-5.3-Flash 均保留了约 1/4 的全局或稀疏 Attention 层（3:1 混合）；第二，**在短上下文、高并发场景下，固定状态反而更占显存**——哪怕输入只有 200 个 Token，Qwen3.8 的 69 层 GDN 也要固定分配 284 MiB 状态空间，线上往往是 `Recurrent State Pool` 先于 `KV Pool` 耗尽；第三，循环状态是全前缀耦合的，无法像 PagedAttention 那样按 16-Token 页任意切分复用，未命中 Checkpoint 边界时必须重放（Replay）增量 Token。
-2. **主线二：Sparse + KV 压缩路线（MLA + DSA / QSA / CSA2 / CED）——保留逐 Token 缓存，但压缩单条维度、裁剪读取位置并跨层共享**。以 DeepSeek 和 GLM 基座为代表：先用 MLA + FP8/FP4 将单 Token 的 KV 字节数压缩一个数量级；再用轻量 Indexer 在主 Attention 前筛选 Top-$K$ 历史位置，减少 HBM 带宽读取；DeepSeek-V4.1 进一步引入 **CED（前 20 层 Encoder 统一产出后 20 层 Decoder 的 Global KV）+ CSA2（跨层复用 KV 与 Top-K 索引）**，同时削减生产 KV 的层数和持久化的状态体积。**这条路线的瓶颈在于算子与访存连续性**：主 Attention 的计算量下降后，Indexer 打分、Top-K 排序和非连续内存 Gather 成为新的开销来源，必须配合块级粒度（Micro-block）或定制融合算子（如 FlashMLA）。
-3. **MoE 与 Engram/N-gram 位于另一条正交维度——参数激活与静态知识查表**。Attention 决定如何访问请求的历史状态，MoE 决定每个 Token 激活哪些 FFN 权重，而 DeepSeek 的 Engram 与 Qwen-Next 的 N-gram Embedding 则将高频静态模式剥离为可驻留 Host 内存的查找表，减少主干网络的无效参数访问。
-4. **推理缓存从单一的 `Paged KV Pool` 演进为多类型状态管理**。混合架构的单个请求同时包含 `Full/Latent KV Pages`、`GDN/KDA Recurrent State`、`Conv State`、`Sparse Indexer Cache` 和 `SWA 局部窗口`。不同状态的体积、生命周期和重算代价差异很大，缓存管理器需要分别制定驻留与按需重放（Bounded Replay）策略。
+1. **主线一：Linear Attention（GDN、KDA）——把变长历史压进固定大小的状态矩阵**。不再为每个历史 Token 保存独立的 K/V，而是维护一个固定形状的状态矩阵 $S_t \in \mathbb{R}^{d_k \times d_v}$ 和短卷积窗口。不管上下文是 4K 还是 1M，单层单请求的状态体积不变。**落地时有三个直接影响**：第一，固定大小的有损压缩在跨长文精确复制上弱于全注意力，所以 Qwen3.8 和 GLM-5.3-Flash 都保留了约 1/4 的全局或稀疏 Attention 层（3:1 混合）；第二，**短请求高并发下反而更占显存**——哪怕输入只有 200 个 Token，Qwen3.8 的 69 层 GDN 也要固定分配 284 MiB 状态空间，线上往往是 `State Pool` 比 `KV Pool` 先满；第三，状态矩阵由整段前缀递推得出，不能像 PagedAttention 那样按 16-Token 页任意切分，没对上 Checkpoint 位置就得重放（Replay）增量 Token。
+2. **主线二：Sparse Attention + KV 压缩（MLA + DSA / QSA / CSA2 / CED）——保留逐 Token 缓存，但压小单条体积、只读 Top-K 位置并跨层复用**。以 DeepSeek 和 GLM 基座为代表：先用 MLA + FP8/FP4 把单 Token 的 KV 字节数缩小一个数量级；再用轻量 Indexer 在主 Attention 前挑出 Top-$K$ 位置，减少 HBM 读取量；DeepSeek-V4.1 进一步引入 **CED（前 20 层 Encoder 统一生成后 20 层 Decoder 的 Global KV）+ CSA2（跨层复用 KV 与 Top-K 索引）**，把生产 KV 的层数也省掉了一半。**这条路线的难点在算子效率**：主 Attention 算得少了，但多出了 Indexer 打分、Top-K 排序和非连续内存 Gather，需要配合块级粒度（Micro-block）或定制融合算子（如 FlashMLA）。
+3. **MoE 与 Engram/N-gram 解决的是另一类问题——参数激活与外部词组查表**。Attention 管的是怎么读请求历史，MoE 管的是每个 Token 激活哪几个专家权重；而 DeepSeek 的 Engram 和 Qwen-Next 的 N-gram Embedding 则是把高频固定搭配抽成放在 Host 内存里的大查找表，省掉不必要的矩阵乘法。
+4. **推理引擎不能只管一种 `Paged KV Pool` 了**。混合架构下，一条请求同时带着 `KV Pages`、`GDN/KDA 状态矩阵`、`短卷积窗口`、`稀疏索引` 和 `SWA 滑动窗口`。它们的体积和重算成本完全不同，缓存管理器必须按类型决定哪些长驻显存、哪些落盘、哪些直接丢弃后按需重算（Bounded Replay）。
 
-### Linear 与 Sparse 两条技术主线对比
+### Linear 与 Sparse 两条路线对比
 
 | 对比维度 | 主线一：Linear / Recurrent（GDN / KDA） | 主线二：Sparse + 压缩 KV（MLA + DSA / QSA / CSA2） | 混合架构折中（Qwen3.8 / GLM-5.3-Flash） |
 |---|---|---|---|
 | **核心机制** | 用 Delta Rule 动态更新固定维度的状态矩阵 $S_t$，不保留逐 Token K/V | 保留逐 Token（或块）的压缩 Latent KV，查询时先由 Indexer 筛选 Top-$K$ | 3 层 Linear 吸收局部与中程上下文 + 1 层全局/稀疏 Attention 负责精确检索 |
-| **单请求状态随长度 $L$ 的增长** | **$O(1)$ 恒定**（仅取决于层数与 Head 维度，与 $L$ 无关） | **$O(L)$ 线性增长**（通过 MLA 低秩投影 + FP4/FP8 + 跨层共享压低系数） | 固定状态底座（State Pool）+ 低斜率线性增长（少量 Attention 层 KV） |
+| **单请求状态随长度 $L$ 的增长** | **$O(1)$ 恒定**（仅取决于层数与 Head 维度，与 $L$ 无关） | **$O(L)$ 线性增长**（通过 MLA 低秩投影 + FP4/FP8 + 跨层共享压低系数） | 固定大小的状态（State Pool）+ 少量 Attention 层 KV 的线性增长 |
 | **Decode 每步访存复杂度** | **$O(1)$**，仅读写当前层的固定矩阵 $S_t$ | **$O(K)$**（主注意力仅读取选中的 $K$ 个位置，Indexer 扫描轻量索引） | 75% 的层执行 $O(1)$ 矩阵更新，25% 的层执行 $O(L)$ 或 $O(K)$ 检索 |
 | **短请求高并发 vs 超长上下文** | 长序列节省显存；短序列高并发下固定状态开销占比高 | 短序列开销极小；超长序列受限于总 KV 容量与 Indexer 扫描耗时 | 需拆分为 `KV Pool` + `State Pool` 独立管理，防止短请求占满 State Pool |
 | **Prefix Cache 与 PD 分离迁移** | 状态依赖完整前缀，只能在固定 Checkpoint 边界恢复，差值部分需 Replay | 按 Token Page 哈希寻址，任意页边界可拼接、可按层流水线搬运 | 跨节点迁移需同时对齐 KV 页表、最近一次 State Checkpoint 与尾部增量重放 |
@@ -43,7 +43,7 @@ toc: true
 
 ---
 
-## 1. 128K 长上下文请求的四个系统瓶颈
+## 1. 128K 长上下文请求的四个瓶颈
 
 假设一个 Research Agent 已经执行了多轮工具调用，历史上下文累计到 128K Token；本轮工具返回 2K Token 的检索结果，模型需要继续生成 800 Token。在分离式推理集群中，该请求依次经历四个阶段：**恢复可复用的历史状态 → Prefill 新增的 2K Token → Decode 800 个输出 Token → 提交本轮新增状态**。
 
@@ -66,15 +66,15 @@ toc: true
 
 ---
 
-## 2. Transformer Block 的三个正交改造维度
+## 2. Transformer 层的三类改动
 
-单个 Transformer Block 的结构改进分布在三个相互正交的维度上：
+把一层 Transformer 拆开看，近两年的架构改动分别落在三个互不冲突的位置：
 
 ![图 2｜一层 Transformer 的三个架构扩展点](/assets/img/posts/llm-architecture-2026/fig02-transformer.png)
 
-1. **Token Mixer（序列维如何访问历史）**：GQA、MLA、GDN/KDA、Sparse Attention 均位于这一层，直接决定**请求级状态（Request State）**的张量形态及其随序列长度的增长关系。
+1. **Token Mixer（序列维如何读取历史）**：GQA、MLA、GDN/KDA、Sparse Attention 都在这一层，直接决定了请求缓存长什么样、是否随上下文长度线性膨胀。
 2. **Channel Mixer（特征维如何激活参数）**：Dense FFN 或 MoE。它不产生跨 Token 的历史状态，但决定 Decode 阶段需要从 HBM 读取多少专家权重，以及是否需要跨 GPU 执行 All-to-All 通信。
-3. **Residual 与条件静态记忆（层间连接与参数化查表）**：例如 GLM 和 DeepSeek 使用的 **mHC（Manifold-Constrained Hyper-Connections）**、Qwen-Next 的 **Gated Residual**，用于稳定深层混合网络的训练；而 **Engram / N-gram Embedding** 则将高频词组特征剥离为大容量外部查找表。这类查找表属于所有请求共享的只读模型参数，与请求私有的 KV/State 生命周期完全分离。
+3. **残差连接与外部词组查表**：例如 GLM 和 DeepSeek 使用的 **mHC（Manifold-Constrained Hyper-Connections）**、Qwen-Next 的 **Gated Residual**，用于稳定深层混合网络的训练；而 **Engram / N-gram Embedding** 则把高频词组特征拆成大容量查找表。这张表是所有请求共享的只读模型参数，和每条请求私有的 KV/State 完全分开管理。
 
 ---
 
@@ -106,7 +106,7 @@ $$q_t^\top (W_{UK}c_j^{KV})=(W_{UK}^\top q_t)^\top c_j^{KV}.$$
 
 ---
 
-## 4. 主线一：Linear / Recurrent（GDN 与 KDA）——固定维度的历史状态矩阵
+## 4. 主线一：Linear Attention（GDN 与 KDA）
 
 即便采用 MLA，只要保留逐 Token KV，缓存容量仍随序列长度 $L$ 线性增长。面向百万 Token 级上下文，另一条主线是**不再保留逐 Token KV 表，改用固定维度的循环状态矩阵 $S_t$**。
 
@@ -144,7 +144,7 @@ def gdn_step(q, k, v, S, alpha, beta):
 
 Prefill 与 Decode 在算子实现上存在明显差异：Decode 阶段按单 Token 串行更新 $S_t$；Prefill 阶段若按 Token 逐个启动 CUDA Kernel 会被启动延迟拖慢，因此必须使用 **Chunkwise Parallel（分块并行融合算子，如 FLA / FlashQLA）**——在 64 或 128 Token 的块内做矩阵并行计算，仅在块间串行传递状态 $S$。
 
-### 4.2 显存开销定量对比：为什么短请求高并发下 GDN 反而更占显存？
+### 4.2 算一笔显存：为什么短请求高并发下 GDN 反而更占显存？
 
 在实际模型中，每层 GDN 需要保存两部分请求状态：循环矩阵 `SSM State`（即 $S_t$）和短因果卷积滑动窗口 `Conv State`（保存最近 `kernel_size - 1` 个 Token 的输入）。
 
@@ -173,7 +173,7 @@ $$B_{\text{Qwen3.8}}(L) = \underbrace{284\,\text{MiB}}_{\text{69 层 GDN 固定�
 
 ---
 
-## 5. 主线二：Sparse Attention（DSA、QSA、CSA2）——Indexer 筛选与跨层复用
+## 5. 主线二：Sparse Attention（DSA、QSA、CSA2）
 
 另一条主线保留了逐 Token（或块级）的 KV 存储，但在每次注意力计算前通过稀疏索引裁剪读取范围：
 
@@ -185,7 +185,7 @@ o_t=\operatorname{Attention}\!\left(q_t,K[\mathcal I_t],V[\mathcal I_t]\right).$
 评估 Sparse Attention 的实际收益，不能只看主 Attention 节省的 FLOPs，必须同时计入 **`Indexer 打分 + TopK 排序 + 非连续内存 Gather`** 的附加开销。主流模型通过三种方式降低这部分索引成本：
 
 1. **低精度轻量 Indexer 与跨层索引共享（DeepSeek DSA / GLM IndexShare）**：主 Attention 读取 512 维的 MLA Latent，而 Indexer 使用低维、低精度的索引向量计算相关性；GLM-5.3 的 **IndexShare** 让相邻多层直接共享同一组 Top-$K$ 选中下标，仅在特定层执行 Indexer 计算 [4]。
-2. **微块池化缩减检索项数（Qwen QSA / GLM IndexPool）**：在 1M 上下文下，逐 Token 扫描索引依然昂贵。Qwen3.8-Flash-Next 的 **QSA** 将相邻 $r$ 个 Token 划分为一个 Micro-block，先通过 AvgPool 与 RMSNorm 聚合成单个块级 Key（在池化后再施加位置编码，避免不同旋转相位的向量相互抵消）[2]；GLM-5.3-Flash 的 **IndexPool** 同样将 4 个历史 Indexer Key 聚合成 1 个汇总项，将索引扫描长度缩减至 1/4 [5]：
+2. **按块池化减少索引长度（Qwen QSA / GLM IndexPool）**：在 1M 上下文下，逐 Token 扫描索引依然很慢。Qwen3.8-Flash-Next 的 **QSA** 把相邻 $r$ 个 Token 划成一个 Micro-block，先通过 AvgPool 和 RMSNorm 聚合成一个块级 Key（池化后再加位置编码，避免不同旋转相位的向量互相抵消）[2]；GLM-5.3-Flash 的 **IndexPool** 同样把 4 个历史 Indexer Key 压成 1 个，把索引扫描长度降到 1/4 [5]：
 
 $$\hat k_b=\mathrm{RMSNorm}\!\left(\operatorname{AvgPool}(k_{br:\,(b+1)r})\right).$$
 
@@ -195,7 +195,7 @@ $$B_{\mathrm{global}}\approx N_{\mathrm{stored\_tokens}}\cdot N_{\mathrm{KV\_pro
 
 ---
 
-## 6. 正交维度：MoE 路由与跨 GPU 通信
+## 6. MoE 路由与跨 GPU 通信
 
 在 Channel Mixer 维度，**MoE（Mixture of Experts）** 通过稀疏激活扩大总参数规模：
 
@@ -288,7 +288,7 @@ GPT-6 与 Claude 5.5 未公开内部层数与注意力变种，但 OpenAI 开放
 
 ---
 
-## 10. 推理缓存演进：从单一 Paged KV 到多类型状态调度
+## 10. 推理引擎如何管理多类型缓存
 
 对比 Qwen3.8、GLM-5.3-Flash 和 DeepSeek-V4.1 可以看到，**Attention 的存储优化已经从单一的 Head 维度，扩展到序列维、层维、精度维与状态生命周期**。
 
@@ -320,7 +320,7 @@ $$T_{\mathrm{recompute}}\approx T_{\mathrm{schedule}}+T_{\mathrm{prefill/replay}
 1. **全局压缩 KV（MLA Latent / FP4 Global KV）**：单 Token 字节数极小、重算成本高，且支持按页哈希去重，适合放入 L2 Host 与 L3 RDMA 持久池长期缓存。
 2. **循环状态（GDN / KDA Recurrent State + Conv State）**：单次快照体积较大（如 Qwen3.8 的 284 MiB/请求），且不支持任意 Token 切片，适合在工具调用边界等关键节点做稀疏 Checkpoint，恢复时通过 Checkpoint + 尾部 Chunkwise 增量重放对齐最新位置。
 3. **局部滑动窗口（SWA State）与派生索引（Reuse Top-K）**：重放窗口有界且计算开销极低，适合仅在 GPU/Host 短驻，淘汰后直接通过 Bounded Replay 按需重建，不占用远端持久化存储与 RDMA 带宽。
-4. **静态条件记忆表（Engram / N-gram Embedding）**：属于跨请求共享的只读参数，常驻 Host DRAM 并按需异步预取至 GPU。
+4. **外部词组查找表（Engram / N-gram Embedding）**：属于跨请求共享的只读参数，常驻 Host DRAM 并按需异步预取至 GPU。
 
 ---
 

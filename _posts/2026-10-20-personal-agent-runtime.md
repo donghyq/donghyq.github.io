@@ -1,9 +1,9 @@
 ---
-title: "Personal Agent Runtime 架构解析：从 Muse 与 OpenAI Dots 看状态、隔离与恢复"
+title: "Muse 与 OpenAI Dots 架构解析"
 date: 2026-10-20 12:00:00 +0800
 categories: [LLM Infra, Agent]
 tags: [personal-agent, agent-runtime, cloud-computer, durable-execution, memory, security, kv-cache, agentic-rl]
-description: "合并拆解 Meta Muse 与 OpenAI Dots 的底层设计：用户级云电脑、进程级安全隔离、任务租约状态机、外部副作用幂等恢复，以及长程 Agent 对 KV Cache 与 RL 数据面的改造要求。"
+description: "对比 Meta Muse 与 OpenAI Dots 的云电脑设计：容器与凭据隔离、后台任务调度、第三方接口防重发，以及长周期任务的 KV Cache 与 RL 训练数据问题。"
 redirect_from:
   - /posts/muse-architecture/
 ---
@@ -12,26 +12,26 @@ redirect_from:
 
 2026 年 9 月，Meta 发布 Muse，OpenAI 推出 Dots（基于 GPT-6 Astra）。这两款产品将 C 端 Agent 从单次会话窗口扩展为具备独立云端环境、可跨天运行的后台系统。
 
-设计一个长期运行的 Personal Agent Runtime，核心在于解决三个系统问题：**权限边界放在哪里、进程中断后如何恢复外部动作、长等待期间如何管理 GPU 状态**。核心结论如下：
+要让这类后台 Agent 稳定运行，系统层面主要解决三个问题：**怎么隔离工具权限、进程挂了怎么防重复执行、等待期间怎么省显存**。核心结论如下：
 
-1. **安全边界必须下沉到 OS 进程与内核凭据，不能依赖 Prompt 约束**。模型在执行任务时会读取不可信网页和外部文件，执行工具的进程不能直接持有 OAuth 密钥，也不能拥有修改安全策略的权限。Muse 使用 `systemd-nspawn` 和 User Namespace 将模型执行环境隔离在 `runtime cell` 内，凭据注入与动作审批均由 cell 外的独立服务完成，并通过内核 `SO_PEERCRED` 校验调用进程身份。
-2. **持久化的工作空间需要搭配可随时销毁重建的执行进程**。任务持续数天，不代表 Worker 进程和 GPU 上下文需要常驻数天。工作目录、数据库事件和授权记录持久化保存；沙箱进程、浏览器会话和模型推理请求则按需分配、用完释放。
-3. **故障恢复的核心难点是"外部服务已生效、本地状态未落盘"的提交窗口**。本地数据库事务无法覆盖第三方发信或支付 API。当外部接口不支持服务端幂等键或可靠结果查询时，盲目重试会导致重复执行外部副作用。状态机必须显式保留 `UNKNOWN` 状态，在无法对账时停止自动重放并交由人工确认。
+1. **权限控制必须落到操作系统进程上，不能靠 Prompt 约束**。模型在执行任务时会读取不可信网页和外部文件，运行工具的进程不能直接拿到 OAuth 密钥，也不能拥有修改安全规则的权限。Muse 用 `systemd-nspawn` 和 User Namespace 把模型执行环境关在 `runtime cell` 容器里，密钥代填和动作审批都放在容器外的独立服务中，通过内核 `SO_PEERCRED` 校验调用进程身份。
+2. **工作目录长期保留，但执行进程用完即放**。一个任务跑几天，不代表 Worker 进程和 GPU 显存要占几天。工作目录、数据库记录和审批状态落盘保存；沙箱进程、浏览器和推理请求只在真正干活时按需分配。
+3. **进程崩溃恢复最难处理的是"外部接口已执行成功、本地还没来得及落库"的窗口**。本地数据库事务管不到第三方发邮件或扣款接口。如果下游接口既不支持幂等键、也没法按单号查结果，直接重试就会导致重复发信或重复扣款。此时任务必须停在 `UNKNOWN` 状态，等人工确认后再继续。
 4. **长周期任务改变了 KV Cache 管理与 RL 训练数据构造方式**：工具执行与人工审批等待会拉长请求跨度，推理侧需结合等待时长将 KV Cache 分层下沉（如 SGLang HiCache）或按需重算；训练侧则需用 `response_mask` 屏蔽工具返回与系统注入的 Token，并避免在隐私脱敏改写上下文后直接复用原有的采样 `logprob`。
 
-| 核心维度 | 会话型助手（临时沙箱） | Muse（Meta，2026.09） | OpenAI Dots（GPT-6 Astra，2026.09） | 工程设计要求 |
+| 对比项 | 会话型助手（临时沙箱） | Muse（Meta，2026.09） | OpenAI Dots（GPT-6 Astra，2026.09） | 关键设计点 |
 |---|---|---|---|---|
-| **计算与存储载体** | 按会话分配临时容器，结束后销毁 | 每用户独立 Linux VM，状态存本地 PostgreSQL 与工作卷 | 每个 dot 配独立云电脑，支持桌面端授权连接用户本地电脑 | 存储卷跟随用户持久化，执行进程无状态化 |
-| **执行隔离边界** | 容器级隔离，通常无长期凭据 | VM 内划分双安全域：`Hatch` 位于 `runtime cell` 内，安全服务位于 cell 外 | 云电脑、本地电脑、云浏览器、密码管理器分别独立授权 | 执行框架与真实凭据隔离，禁止模型进程直接读取密钥 |
-| **操作审批与防线** | 依赖模型对齐或前端简单确认 | Sentinel 独立审批 + `hatch-authd` 替身令牌 + eBPF 数据流追踪 | 插件权限 + Custom Rules + 关键动作 Auto-review + 主动研究强制只读 | 审批记录必须绑定动作参数与附件内容哈希，防御 TOCTOU 竞态 |
-| **中断恢复语义** | 连接断开即终止，需重新发起 | 任务状态与文件系统落盘，支持后台 cron 与多子 Agent 续跑 | 区分 `Scheduled / In progress / Completed`，支持跨端指令与人工接管（Take over） | 用租约 + `generation` 拦截过期 Worker 写回；外部写操作按幂等能力分级恢复 |
-| **KV 与 RL 数据面** | 单轮或短多轮，前缀基本固定 | 跨天等待 + 动态记忆更新，清理 PII 后回流训练 | 长周期任务 + 跨应用 Memory 积累，主动研究笔记默认不用于训练 | 推理侧按等待时长做 KV 分层下沉；训练侧保证采样 Token 与 `response_mask` 对齐 |
+| **运行环境** | 按会话分配临时容器，结束后销毁 | 每用户独立 Linux VM，状态存本地 PostgreSQL 与磁盘 | 每个 dot 配独立云电脑，支持桌面端授权连接用户本地电脑 | 存储磁盘长期保留，执行进程可随时销毁重建 |
+| **权限隔离** | 容器级隔离，通常不保存长期凭据 | 同一 VM 内拆分容器内外：`Hatch` 在 `runtime cell` 内，安全服务在 cell 外 | 云电脑、本地电脑、云浏览器、密码管理器分别独立授权 | 工具执行进程与真实密钥隔离，禁止模型进程直接读密钥 |
+| **操作审批** | 依赖模型对齐或前端简单确认 | Sentinel 独立审批 + `hatch-authd` 替身令牌 + eBPF 数据流追踪 | 插件权限 + Custom Rules + 关键动作 Auto-review + 主动研究强制只读 | 审批记录绑定具体参数与附件哈希，防止审批后文件被改写 |
+| **中断恢复** | 连接断开即终止，需重新发起 | 任务状态与文件系统落盘，支持后台 cron 与多子 Agent 续跑 | 区分 `Scheduled / In progress / Completed`，支持跨端指令与人工接管（Take over） | 用租约 + `generation` 拦截超时旧 Worker；按外部接口是否幂等决定能否重试 |
+| **推理缓存与 RL** | 单轮或短多轮，前缀基本固定 | 跨天等待 + 动态记忆更新，清理 PII 后用于训练 | 长周期任务 + 跨应用 Memory 积累，主动研究笔记默认不用于训练 | 推理侧按等待时长下沉 KV；训练侧对齐采样 Token 与 `response_mask` |
 
-> **资料边界说明**：文中关于 Muse 和 Dots 的组件名称与能力边界来自官方公开技术博客与文档 [1–6]；数据库表结构、`AgentRun` 租约 SQL、`recovery_lab.py` 故障注入实验、KV 容量推算及 RL 样本结构，则是基于 Linux、分布式系统与开源推理/训练框架（SGLang / vLLM / veRL）的工程推导与实验验证，不对应两家闭源产品的内部源码。
+> **资料说明**：文中关于 Muse 和 Dots 的架构组件与功能边界来自官方技术博客和帮助文档 [1–6]；数据库表结构、租约 SQL、`recovery_lab.py` 故障注入实验、KV 容量计算及 RL 样本分析，则是结合 Linux、分布式系统与开源框架（SGLang / vLLM / veRL）做的技术推导与实验，不代表两款闭源产品的内部代码实现。
 
 ---
 
-## 1. 从单次会话到持续任务：系统矛盾的变化
+## 1. 从单次会话到后台长任务：多了哪几个问题？
 
 典型的 C 端对话助手即使接入了搜索和代码沙箱，生命周期也绑定在单次请求内：请求进入网关 → 组装 Context → 模型调用工具 → 流式输出 → 写回存储。用户关闭页面后，执行环境即可回收。
 
@@ -47,9 +47,9 @@ redirect_from:
 
 ---
 
-## 2. 两种云端 Runtime 架构：Muse Secure VM 与 OpenAI Dots
+## 2. Muse 与 OpenAI Dots 的云电脑架构
 
-### 2.1 Muse：单用户专属 VM 内的双安全域隔离
+### 2.1 Muse：单用户 VM 内的容器与权限拆分
 
 Meta 为每位 Muse 用户分配一台独立的 Linux VM，内置 Chromium 浏览器、编译工具链、文件系统和 PostgreSQL，支持运行 cron 定时任务、派生子 Agent 以及编写自定义 CLI 工具 [1, 2]。模型推理与遥测通过受控代理（Proxy）访问远端 GPU 集群。
 
@@ -79,7 +79,7 @@ readlink /proc/self/ns/user
 
 这里存在三层不同的隔离边界：**租户间 VM 隔离**限制跨用户数据访问；**VM 内 cell 与宿主服务隔离**限制 Agent 篡改自身权限边界；**云服务商能否读取 VM 内存**则取决于硬件级 Confidential VM（机密虚拟机）。Meta 在 2026 年 9 月的架构说明中也将 Confidential VM 列为后续演进方向，与当前的 Secure VM 做了明确区分 [2]。
 
-### 2.2 OpenAI Dots：云电脑、跨渠道任务流与本地设备协同
+### 2.2 OpenAI Dots：云电脑与本地电脑协同
 
 OpenAI 发布的 Dots（搭载 GPT-6 Astra）为每个 dot 提供独立的持续工作身份和专属 **Cloud Computer（云电脑）**，同时支持用户在桌面端显式授权后，让云端任务连接并操作用户的**本地电脑** [3, 4]。
 
@@ -87,15 +87,15 @@ OpenAI 发布的 Dots（搭载 GPT-6 Astra）为每个 dot 提供独立的持续
 
 Dots 在工程设计上有三个重点机制：
 
-1. **云端与本地双环境授权分离**：云电脑负责运行后台任务、云浏览器和插件；需要访问本地代码库或调用本机 Skills 时，dot 可在桌面端授权后向本地电脑派发任务。云电脑、本地电脑、云浏览器、网络访问和密码管理器分别受独立权限控制，云端网站的登录状态与用户本机浏览器隔离 [4, 5]。
+1. **云端与本地电脑分开授权**：云电脑负责运行后台任务、云浏览器和插件；需要访问本地代码库或调用本机 Skills 时，dot 可在桌面端授权后向本地电脑派发任务。云电脑、本地电脑、云浏览器、网络访问和密码管理器分别受独立权限控制，云端网站的登录状态与用户本机浏览器隔离 [4, 5]。
 2. **可随时接管（Take over）的任务视图**：用户从 ChatGPT 或 Slack 向同一个 dot 交付的目标，统一汇聚到 `In progress`、`Scheduled`、`Completed` 视图。当云浏览器遇到登录验证或敏感操作时，用户可以实时查看并接管画面，完成后再将控制权交还给 dot。
-3. **主动研究（Proactive Research）强制只读**：dot 在后台执行定时检查或主动研究时，**仅可使用只读连接器信息**，不能发送消息、修改插件数据或操控浏览器与电脑；只有用户明确下达的任务，才能在通过 Custom Rules 与 Auto-review 检查后执行外部写操作 [3, 6]。这一约束直接避免了后台任务在无人值守时产生非预期的外部副作用。
+3. **主动研究（Proactive Research）强制只读**：dot 在后台执行定时检查或主动研究时，**仅可使用只读连接器信息**，不能发送消息、修改插件数据或操控浏览器与电脑；只有用户明确下达的任务，才能在通过 Custom Rules 与 Auto-review 检查后执行外部写操作 [3, 6]。这一限制避免了后台定时任务在无人值守时误发消息或修改外部数据。
 
 ---
 
-## 3. 后台任务调度：租约、执行代次与子 Agent 配额
+## 3. 后台任务调度与子 Agent 限流
 
-### 3.1 将长期任务拆分为持久状态与无状态 Worker
+### 3.1 用数据库租约管理后台任务
 
 为了支持跨天等待而不常驻占用计算进程，调度系统需要将 `Task`（长期计划）与 `Run`（单次执行实例）分离，通过数据库租约（Lease）管理执行权 [10]：
 
@@ -136,7 +136,7 @@ RETURNING generation, state_ref;
 
 后续所有状态与产物提交均需携带 `WHERE run_id = :run_id AND generation = :my_gen`，代次不匹配时直接拒绝写入。
 
-### 3.2 子 Agent 扇出与任务树配额控制
+### 3.2 子 Agent 的并发限流
 
 Muse 支持并发运行多个子 Agent，Dots 支持将任务委派给 Codex 或本地电脑。若仅对单个 Agent 进程限制 `max_concurrent_tools = 4`，当父任务派生 4 个子 Worker、每个子 Worker 各自发起 4 路请求时，底层接口和浏览器实例就会承受 **16 路并发扇出**。
 
@@ -146,9 +146,9 @@ Muse 支持并发运行多个子 Agent，Dots 支持将任务委派给 Codex 或
 
 ---
 
-## 4. 存储语义：文件发布、Memory 分层与跨层删除失效
+## 4. 文件与记忆存储
 
-### 4.1 文件系统与数据库的跨介质发布顺序
+### 4.1 先写文件，再提交数据库记录
 
 当任务生成报告文件写入工作卷，并在 PostgreSQL 中记录完成状态时，文件系统与数据库之间通常没有分布式事务。若先写数据库完成标记、后写磁盘文件，一旦写文件失败，下游任务读取引用时就会遇到文件缺失。
 
@@ -177,11 +177,11 @@ CREATE TABLE derived_views (
 
 <picture class="architecture-figure"><source media="(max-width: 680px)" srcset="/assets/img/posts/personal-agent-runtime/fig-05-state-memory.mobile.svg"><img loading="lazy" alt="持久状态、记忆与模型上下文的关系" src="/assets/img/posts/personal-agent-runtime/fig-05-state-memory.svg"></picture>
 
-### 4.2 删除记忆与撤销权限的跨层失效传播
+### 4.2 删除记忆后如何清理派生缓存
 
 Muse 允许用户查看、编辑和删除工作空间中的 Memory 文件；Dots 也支持管理记忆与断开插件 [2, 4]。当用户删除一封敏感邮件或某条记忆时，该数据可能已经派生出全文索引、向量条目、会话摘要、已组装的 Prompt 以及对应的 KV Cache。仅删除向量索引中的单条记录，旧摘要和缓存仍可能在后续生成中泄露已删除内容。
 
-工程上可通过 **`visibility_epoch`（可见性代次）** 管理跨层失效：
+工程上可以通过递增 **`visibility_epoch`（可见性版本号）** 来屏蔽旧数据：
 - 用户执行删除或撤销权限时，先同步递增权威存储中的 `visibility_epoch`；读取派生摘要或恢复 KV Cache 时校验 `input_visibility_epoch`，使旧代次的派生对象立即在逻辑上不可见；
 - 后台异步清理向量索引、文件副本和远端缓存块；
 - **备份恢复后的权限对账**：使用 PostgreSQL PITR（时间点恢复）从基础备份和 WAL 恢复数据库时 [11]，不能将备份时间点之后发生的权限撤销和删除操作一并回滚。数据库恢复完成后，必须先与独立的权限及删除记录对账，再重新开放读取。
@@ -190,9 +190,9 @@ Muse 允许用户查看、编辑和删除工作空间中的 Memory 文件；Dots
 
 ---
 
-## 5. 权限与网络出口：从内核身份到 TOCTOU 防御
+## 5. 凭据隔离与网络出口控制
 
-### 5.1 基于 Unix Domain Socket 的凭据隔离
+### 5.1 用 Unix Domain Socket 隔离 OAuth 密钥
 
 若让 cell 内的工具脚本直接持有 OAuth 密钥，一旦模型遭受提示词注入并执行任意命令，密钥就会直接泄露。
 
@@ -211,7 +211,7 @@ pid, uid, gid = struct.unpack("3i", raw)
 
 <picture class="architecture-figure"><source media="(max-width: 680px)" srcset="/assets/img/posts/personal-agent-runtime/fig-06-authorization.mobile.svg"><img loading="lazy" alt="Muse 与 Dots 的操作控制路径" src="/assets/img/posts/personal-agent-runtime/fig-06-authorization.svg"></picture>
 
-### 5.2 审批绑定与 TOCTOU 竞态防御
+### 5.2 审批记录绑定文件哈希（防 TOCTOU）
 
 仅传递文件描述符仍不足以保证附件内容不被篡改。FD 锁定的是已打开的文件对象（inode），若 cell 内另一个进程在用户批准发送 `report.pdf` 之后、实际上传之前修改了该文件内容，最终发送出去的就会是篡改后的版本——即 **TOCTOU（Time-of-Check to Time-of-Use）竞态**。
 
@@ -241,16 +241,16 @@ def validate_before_dispatch(action, grant, authority, now):
 
 单纯依赖域名白名单无法拦截同一域名下的越权写操作。Anthropic 在 2026 年 5 月的公开复盘中记录过一起案例：白名单内的合法域名因同时提供上传 API，曾被用于将容器内文件提交到外部账户 [14]。域名白名单授予的是该域名下所有接口的可达性，出口控制必须进一步检查具体请求方法、目标账户与数据来源：
 
-- **Tainted Egress（污染出口追踪）**：Muse 使用 Linux eBPF 与 LSM（Linux Security Modules）钩子追踪进程数据流 [2, 15]。一旦进程读取了用户私有数据，内核钩子即将其标记为"受污染（Tainted）"（并沿子进程派生、管道和共享内存传播）。带污染标记的进程发起外发请求时，不再适用自动放行策略，强制转入 `Sentinel` 审批。
+- **Tainted Egress**：Muse 使用 Linux eBPF 与 LSM（Linux Security Modules）钩子追踪进程是否读过用户私有数据 [2, 15]。一旦进程读取了私有文件，内核钩子就给它打上 `Tainted` 标记（并沿子进程派生、管道和共享内存传递）。带标记的进程向外发请求时，自动放行规则失效，强制转交 `Sentinel` 审批。
 - **CDP 代理隔离浏览器**：Muse 将 Chrome DevTools Protocol（CDP）置于 cell 外管理，浏览器子 Agent 只能读取无障碍树（Accessibility Tree）快照并调用受限操作接口，**不能执行任意页面 JavaScript**。Dots 则在登录和敏感操作时切换为用户接管模式，密码管理器凭据由宿主侧安全填充，不暴露给模型上下文 [2, 4]。
 
 ---
 
-## 6. 外部操作的故障恢复：提交窗口与幂等对账
+## 6. 调用外部接口时的崩溃恢复
 
 ### 6.1 远端已提交、本地未落盘的故障窗口
 
-在 LangGraph 的 `interrupt()` 或 Temporal 的 Workflow Replay 机制中，恢复任务时会从检查点重新执行节点逻辑 [10, 16]。若节点包含调用第三方 API 发送邮件、创建日程或发起扣款等外部副作用，最关键的故障窗口出现在**外部服务已执行成功，但 Worker 在将 `COMPLETED` 状态写回本地数据库前崩溃**：
+在 LangGraph 的 `interrupt()` 或 Temporal 的 Workflow Replay 机制中，恢复任务时会从检查点重新执行节点代码 [10, 16]。如果节点里调用了发邮件、建日程或扣款等第三方写接口，最容易出问题的窗口是**外部服务已经执行成功，但 Worker 在把 `COMPLETED` 写回本地数据库之前崩溃了**：
 
 <picture class="architecture-figure"><source media="(max-width: 680px)" srcset="/assets/img/posts/personal-agent-runtime/fig-07-action-recovery.mobile.svg"><img loading="lazy" alt="远端副作用提交与本地状态的恢复路径" src="/assets/img/posts/personal-agent-runtime/fig-07-action-recovery.svg"></picture>
 
@@ -296,21 +296,21 @@ mark_completed(result)
 | 1. 朴素重试：远端提交后进程 `os._exit()` | `COMPLETED` | **2（重复执行）** | 本地状态看似正常，外部服务实际重复执行了两次 |
 | 2. 服务端幂等：远端提交后崩溃，带固定 `action_id` 重试 | `COMPLETED` | **1** | 服务端命中幂等键去重，直接返回首次执行结果 |
 | 3. 查询对账：远端提交后崩溃，恢复时先查业务单号 | `COMPLETED` | **1** | 查到远端已完成记录，本地补记完成，不重发请求 |
-| 4. 无幂等无查询：远端提交后崩溃 | `UNKNOWN` | **1** | 停止自动重试，避免造成二次外部副作用 |
+| 4. 无幂等无查询：远端提交后崩溃 | `UNKNOWN` | **1** | 停止自动重试，避免重复发信或重复扣款 |
 | 5. 无幂等无查询：派发网络请求前崩溃 | `UNKNOWN` | **0** | 同样停在 `UNKNOWN` 等待确认，以牺牲自动完成率换取不重发保证 |
 | 6. 等待期间用户撤销授权（`permission_epoch` 递增） | `DENIED` | **0** | 派发前拦截，旧检查点中的批准记录失效 |
 | 7. 审批通过后附件或收件人被修改（TOCTOU） | `DENIED` | **0** | `canonical_digest != approved_digest`，拒绝派发 |
 | 8. 租约过期后旧 Worker 尝试派发 | `DENIED` | **0** | `task_generation` 落后于当前权威代次，栅栏拦截生效 |
 
-场景 1 与场景 4、5 的对比表明：**在缺乏跨系统事务与远端幂等支持时，无法同时实现"100% 自动恢复"与"绝不重复产生外部副作用"**。将无法对账的悬决操作显式收敛为 `UNKNOWN`，是保证外部安全边界的必要条件。
+对比场景 1 和场景 4、5 可以看出：**如果下游接口既不支持幂等、也没法查询执行结果，系统就不可能同时做到"崩溃后 100% 自动恢复"和"绝不重复执行外部操作"**。遇到无法确认结果的请求时，停在 `UNKNOWN` 等待人工介入是最稳妥的处理方式。
 
 ---
 
-## 7. 对推理与训练基础设施的要求：KV Cache 分层与 Agentic RL 数据面
+## 7. 长周期任务下的 KV Cache 与 RL 训练
 
 当 Agent 任务从数秒的单次问答延长为包含工具等待与人工审批的多日流程时，推理缓存与强化学习数据管道也需要相应调整。
 
-### 7.1 长等待下的 KV Cache：分层下沉与三级复用校验
+### 7.1 按等待时长分级管理 KV Cache
 
 以 32 层、8 KV Head、Head Dim 128、BF16 精度的模型为例，单 Token 的逻辑 KV Cache 占用为：
 
@@ -322,9 +322,9 @@ mark_completed(result)
 
 面向持续任务的推理系统需要按等待时长管理 KV 生命周期：
 - **按等待窗口分级存储**：数秒内的短工具调用保留在本地 HBM 或下沉至 Host Pinned Memory（L2）；分钟至小时级的审批等待，通过 [SGLang HiCache](/posts/sglang-hicache/) 异步写入 L3（NVMe 或 Mooncake RDMA 内存池）并释放 GPU 显存；若恢复时发现前缀已因动态 Memory 更新而大幅改变，直接重算 Prefill 往往比跨节点搬运更快。
-- **缓存复用的三层校验**：vLLM 等引擎通过块级 Hash 链实现 Prefix Caching，并用 `cache_salt` 隔离不同共享域 [18]。在持久 Agent 场景下，安全复用一份缓存需同时满足**计算等价**（Token 前缀与模型权重一致）、**表示兼容**（张量布局、量化 scale 与 TP 切分一致）以及**访问权限**（当前请求的 `visibility_epoch` 仍有权访问该前缀数据）。
+- **跨任务复用时的权限与格式检查**：vLLM 等引擎通过块级 Hash 链实现 Prefix Caching，并用 `cache_salt` 隔离不同租户的缓存 [18]。在持久 Agent 场景下，复用缓存除了要求 Token 前缀和模型权重一致，还要检查量化格式/TP 切分是否匹配，以及当前请求的 `visibility_epoch` 是否仍有权读取该前缀包含的数据。
 
-### 7.2 从运行日志到 Agentic RL：采样保真与脱敏约束
+### 7.2 为什么线上活动日志不能直接拿来训 RL？
 
 Muse 和 Dots 均说明在满足用户隐私设置并清理 PII（个人身份信息）后，交互轨迹可用于模型训练 [2, 6]。但在工程实现上，**面向用户展示的活动日志（Activity Log）不能直接作为强化学习的训练样本**。
 
