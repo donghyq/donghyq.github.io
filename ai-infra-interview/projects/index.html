@@ -377,7 +377,8 @@ body.dark .fig-box { background: #f8fafc; }
 <li><a href="#sec-opt"><strong>05 · SuperOpt 与 LUGR 加速</strong></a></li>
 <li><a class="sub" href="#opt-arch">隔离评测闭环与约束 Beam 图</a></li>
 <li><a class="sub" href="#opt-code">实现细节、数据与追问</a></li>
-<li><a href="#sec-ledger"><strong>06 · 全局数字账本与广度知识库</strong></a></li>
+<li><a href="#sec-ledger"><strong>06 · 全局账本、开源矩阵与广度库</strong></a></li>
+<li><a class="sub" href="#lg-oss">7 个开源 PR 源码速查矩阵</a></li>
 </ul>
 </aside>
 <main class="main">
@@ -451,7 +452,7 @@ body.dark .fig-box { background: #f8fafc; }
 <div class="speech-title">一分钟技术主线概览</div>
 <p>“面试官您好，我叫董涵宇，本科毕业于北航计算机系，23 年加入美团搜索推荐平台部从事 AI Infra 研发。过去三年我的工作主要围绕本地生活主搜和 AI Search 多轮智能体展开，核心技术主线是<strong>分布式存储、SGLang 推理引擎与 VeRL 百卡异步强化学习系统</strong>。</p>
 <p>早期我主要负责大规模检索引擎底层改造与 GPU 异构加速，在 6400 节点的检索平台上通过 Lucene 自定义 Codec 与 mmap 实现价格列原地更新，并编写 CUDA 内核解决亿级商品向量检索的 IVF 大桶扫描长尾与 Base+Delta 实时增量更新问题。</p>
-<p>随着业务演进到多轮 ReAct 搜索 Agent，单次会话上下文达到上万 Token，且每轮工具调用存在约 2 秒等待空窗。我先在 32 卡 H20 的 P/D 分离推理集群上，基于 SGLang HiCache 和 Mooncake 解决了工具等待期 HBM 换出、跨实例恢复一致性与异步预取准入问题；随后在团队建设 128 卡 H20 异步 GRPO 训练集群时，针对 Hybrid 混部副本切回训练导致的半截长尾轨迹中断丢弃与重复计算问题，我从存储与引擎状态恢复切入，实现了基于 Mooncake 的轨迹快照持久化、Qwen3.5-35B 混合架构 Attention KV 与 Mamba 状态跨副本恢复，以及两阶段显存回收与 Conductor 路由，使 128 卡集群有效训练吞吐提升 15.2%，并向 SGLang 和 VeRL 社区提交了核心 PR。”</p>
+<p>随着业务演进到多轮 ReAct 搜索 Agent，单次会话上下文达到上万 Token，且每轮工具调用存在约 2 秒等待空窗。我先在 32 卡 H20 的 P/D 分离推理集群上，基于 SGLang HiCache 和 Mooncake 解决了工具等待期 HBM 换出、跨实例恢复一致性与异步预取准入问题；随后在团队建设 128 卡 H20 异步 GRPO 训练集群时，针对 Hybrid 混部副本切回训练导致的半截长尾轨迹中断丢弃与重复计算问题，我从存储与引擎状态恢复切入，实现了基于 Mooncake 的轨迹快照持久化、Qwen3.5-35B 混合架构 Attention KV 与 Mamba 状态跨副本恢复，以及两阶段显存回收与 Conductor 路由，使 128 卡集群有效训练吞吐提升 15.2%，并围绕上述底层问题向 SGLang、Mooncake 和 VeRL 社区提交了 7 个核心 PR。”</p>
 </div>
 </section>
 <!-- SECTION 01: AI SEARCH AGENT ARCHITECTURE -->
@@ -898,7 +899,7 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 <div class="fig-cap">图 2-4：训练侧（VeRL + Mooncake Conductor）与在线推理侧（Dynamo Rust kv-router + SGLang）的 KV 感知路由架构</div>
 </div>
 <ul>
-<li><strong>第一，ZMQ 双通道 KV 事件注册（<code>conductor_event_registration.py</code>）：</strong>SGLang 副本启动前由 <code>SGLangEventPorts</code> 预留两个独立的 TCP 端口，分别配置为 ZMQ 实时事件推送流（<code>endpoint</code>）和断线重放流（<code>replay_endpoint</code>）。Rank 0 将 <code>block_size</code> 与块哈希配置（<code>sha256_raw</code> 投影前 64 位大端整数 <code>first64_be</code>）注册到 C++ <code>Mooncake Conductor</code> 服务，使中心目录能够毫秒级跟踪每个副本上 KV 块的驻留层级变化。</li>
+<li><strong>第一，ZMQ 双通道事件注册与 Conductor 批量候选查询加速（<code>Mooncake #5693</code>）：</strong>SGLang 副本启动前由 <code>SGLangEventPorts</code> 预留实时推送流（<code>endpoint</code>）与断线重放流（<code>replay_endpoint</code>），Rank 0 将 <code>block_size</code> 与 <code>sha256_raw / first64_be</code> 哈希配置注册到 C++ <code>Mooncake Conductor</code>。针对原生 <code>PrefixCacheTable::Query()</code> 对每个候选实例重复扫描块 Owner 集合导致 64 候选下 8K/16K 查询高达 <code>126.9ms / 262.3ms</code> 的瓶颈，我们将查询重构为按块单次投影候选四层掩码并在失配后立即剔除，将延迟压降至 <strong>9.35ms / 19.71ms（提速 13.5x）</strong>。</li>
 <li><strong>第二，为什么路由打分只看本地层 <code>(device, cpu_local)</code> 而不看远端共享层？</strong>Conductor 返回每个实例各存储层级的累积前缀命中长度 <code>(device, cpu_local, cpu_share, disk)</code>。我们在 <code>_local_score()</code> 中首先校验四层命中数的单调非减性，随后<strong>仅提取 <code>(device, cpu_local)</code> 二元组参与副本优选</strong>。原因在于共享 Mooncake 存储池（L3）对所有 Standalone 副本均可同等访问，远端命中并不能区分哪台副本更优；只有目标副本本机 GPU HBM（<code>device</code>）或本机内存（<code>cpu_local</code>）已驻留该前缀，派发过去才能真正免除跨机网络传输。</li>
 <li><strong>第三，<code>max_inflight_gap</code> 负载防倾斜与有界超时回退：</strong><code>acquire_server()</code> 先计算全池最小并发数 <code>minimum = min(_inflight_requests.values())</code>，仅在满足 <code>count &lt;= minimum + _load_gap</code> 的轻载副本集合内比较本地缓存命中分数。这避免了同组 8 条 GRPO 样本或热门前缀集中路由至同一副本导致排队延迟抵消缓存收益。同时 <code>ConductorHTTPClient</code> 使用单线程 <code>msgpack</code> 请求并设置严格的 50ms 套接字超时（超时立即调用 <code>socket.shutdown(SHUT_RDWR)</code> 中断底层连接），一旦查询超时或无本地命中优势（<code>best[1] &lt; min_cached_tokens</code>），立即无感回退至基线最小负载路由，不阻塞主调度循环。</li>
 </ul>
@@ -935,12 +936,12 @@ return messageClipping.clippingMessageList(agentContext, metaMessages, searchSou
 <ul>
 <li><strong>第一，分段权重版本号记录（Segment Weight Version）与 Staleness 淘汰：</strong>在 <code>TrajectorySnapshot</code> 中按生成片段记录对应的 <code>weight_version</code> 和采样时直接由 SGLang 输出的 <code>rollout_log_probs</code>；进入 <code>ReplayBuffer</code> 时检查样本组的最大版本滞后步数，超过 <code>staleness_threshold</code> 的过期样本组直接驱逐。</li>
 <li><strong>第二，工具返回掩码严格对齐（<code>response_mask</code>）：</strong>多轮轨迹中包含大量由搜索/RAG 工具返回的 Observation Token，这部分 Token 并非模型采样生成，必须在 <code>response_mask</code> 中严格置 0，仅对模型实际生成的 Action/Reasoning Token 计算策略梯度与 KL 惩罚。</li>
-<li><strong>第三，Decoupled PPO 重要性采样校正（<code>compute_rollout_correction_and_add_to_batch</code>）：</strong>在 <code>trainer_base.py::_compute_advantage</code> 中结合训练引擎重算的 <code>old_log_probs</code> 与采样时记录的 <code>rollout_log_probs</code> 计算重要性采样权重与截断（IS Clipping / Rejection Sampling），补偿跨步 off-policy 与训推算子差异带来的分布偏移。</li>
+<li><strong>第三，Decoupled PPO 重要性采样校正与长序列静态 CP 梯度对齐（<code>VeRL #8785</code>）：</strong>在 <code>trainer_base.py::_compute_advantage</code> 中结合训练引擎重算的 <code>old_log_probs</code> 与采样时记录的 <code>rollout_log_probs</code> 计算重要性采样权重与截断，补偿跨步 off-policy 与训推算子差异；同时修复了 Megatron 静态 Context Parallelism 下 <code>postprocess_micro_batch_func</code> 整除丢弃余数 Token（<code>real_tokens // cp_size</code>）导致 per-token loss 梯度分母偏小的问题。</li>
 </ul>
 <h3>模块六：基于强基线的分布式异步 Checkpoint 优化与全状态崩溃续训（async_checkpoint_batch.py &amp; stage_and_publish.py）</h3>
 <p>在大规模 RL 训练中，容错 Checkpoint 属于与在线 Rollout 存储互补的冷/温持久化数据面。我们的优化起点并非单点聚合或未开启分片的原始配置，而是<strong>已开启分布式分片保存（<code>use_dist_checkpointing=True</code>）与异步保存（<code>async_save=True</code>）的社区最新强基线</strong>（团队此前已通过开启分片保存将早期单点导出耗时从 2000s+ 降至约 360s 级）。但在推进高频容错保存与断点续训时，分阶段打点暴露了三个跨框架耦合与共享存储层面的深层问题：</p>
 <ul>
-<li><strong>问题一（跨层调用触发“伪异步”主线程阻塞）：</strong>VeRL v2（<code>megatron_checkpoint_manager.py</code>）为解耦产物目录，将同一步保存拆分为 <code>model/dist_ckpt</code>、<code>optimizer/dist_ckpt</code>、<code>extra/dist_ckpt</code> 三个独立的 <code>AsyncRequest</code> 依次调用 <code>async_calls.schedule_async_request(req)</code>。而在 Megatron-Core 持久化异步写入队列底层，调度下一个请求执行 <code>preload_tensors</code> 暂存前，会强制等待前一个请求在后台落盘完毕以限制主机内存。这导致前两项（占 99% 体积的模型与优化器分片）实际上同步阻塞在训练主线程中，使 <code>async_save=True</code> 失去重叠效果。</li>
+<li><strong>问题一（跨层调用触发“伪异步”主线程阻塞，已提 <code>VeRL #8784</code>）：</strong>VeRL v2（<code>megatron_checkpoint_manager.py</code>）为解耦产物目录，将同一步保存拆分为 <code>model/dist_ckpt</code>、<code>optimizer/dist_ckpt</code>、<code>extra/dist_ckpt</code> 三个独立的 <code>AsyncRequest</code> 依次调用 <code>async_calls.schedule_async_request(req)</code>。而在 Megatron-Core 持久化异步写入队列底层，调度下一个请求执行 <code>preload_tensors</code> 暂存前，会强制等待前一个请求在后台落盘完毕以限制主机内存。这导致前两项（占 99% 体积的模型与优化器分片）实际上同步阻塞在训练主线程中，使 <code>async_save=True</code> 失去重叠效果；且开启优化器 CPU Offload 时直接引用主存张量还会被下一步原地更新踩踏。</li>
 <li><strong>问题二（容器 FUSE 共享存储单流瓶颈与 MDS 元数据风险）：</strong>Megatron 0.19.2 默认单 Rank 仅用 1 个写线程（且先同步写完最后一个分片再拉起其余线程），经容器 FUSE 挂载写入 DolphinFS / BeeGFS 时受网络 RTT 与 <code>fsync</code> 限制，单流吞吐仅 <code>20～35 MB/s</code>，导致数十 GB 主机暂存缓冲区长时间无法释放；但若在 MoE 专家并行（EP）下盲目按分片开满线程，百卡并发创建上千文件流又会直接冲击文件系统元数据服务（MDS）。</li>
 <li><strong>问题三（异步崩溃半成品与 RL 多状态恢复错位）：</strong>异步后台写入中途若遇进程崩溃，目标目录会残留半截分片；同时 Megatron <code>dp_reshardable</code> 加载器在恢复原生 Adam 时存在覆盖参数组权威 <code>step</code> 计数及向 <code>requires_grad=True</code> 视图原地拷贝报错的缺陷，且 RL 续训必须同时对齐模型、优化器、LR Scheduler、RNG 与 <code>TransferQueue</code> 数据游标。</li>
 </ul>
@@ -1268,7 +1269,7 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
                                   json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
         if ret_code != 0:
             raise RuntimeError(f"Failed to publish Mooncake manifest for {logical_key}")</code></pre>
-<p><strong>读取与跨 Rank 同步边界：</strong>读取时先校验 <code>_read_manifest()</code> 合法性，随后调用 <code>batch_get_into</code>。针对上游 <code>_batch_postprocess</code> 将任何正返回值视为成功（导致 256B 目标缓冲区仅读回 128B 时残留尾部脏数据）的问题，我们强制校验返回字节数严格等于目标页切片总长度（<code>SGLang #46427</code>），任何不完整页直接转为 Cache Miss。最后在 TP 组内对连续命中的页数执行 <code>all_reduce(MIN)</code>（若 <code>_page_transfer_kv_batch</code> 抛异常则记 0 页并继续发送 <code>PrefetchAck</code>），确保两个 Rank 在完全相同的连续前缀边界处进入 Prefill，杜绝单卡失败引发的 NCCL 集合通信阻塞。</p>
+<p><strong>读取、强清理与跨 Rank 同步边界：</strong>读取时先校验 <code>_read_manifest()</code> 合法性，随后调用 <code>batch_get_into</code>。针对上游 <code>_batch_postprocess</code> 将任何正返回值视为成功（导致 256B 目标缓冲区仅读回 128B 时残留尾部脏数据）的问题，我们强制校验返回字节数严格等于目标页切片总长度（<code>SGLang #46427</code>），任何不完整页直接转为 Cache Miss；同时在管理端清理路径改为强制无视活跃租约的 <code>remove_all(True)</code> 并透传多副本非 2xx 错误状态（<code>SGLang #40409</code>）。最后在 TP 组内对连续命中的页数执行 <code>all_reduce(MIN)</code>（若 <code>_page_transfer_kv_batch</code> 抛异常则记 0 页并继续发送 <code>PrefetchAck</code>），确保两个 Rank 在完全相同的连续前缀边界处进入 Prefill，杜绝单卡失败引发的 NCCL 集合通信阻塞。</p>
 <h3>模块二：会话生命周期状态机与 DAG 最小堆淘汰（streaming_session.py &amp; unified_radix_cache.py）</h3>
 <p><strong>交互细节：</strong>我们在 <code>session_ref_tracker.py</code> 与 <code>unified_radix_cache.py</code> 中引入了四态会话生命周期 <code>SessionLifecycleState</code>（<code>ACTIVE</code>、<code>TOOL_WAITING</code>、<code>READY_SOON</code>、<code>COMPLETED</code>）：</p>
 <ul>
@@ -1278,7 +1279,7 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
 <h3>模块三：异步控制链改造与 Runtime Cost Gate</h3>
 <p>为了消除恢复路径上的控制面阻塞，我们将原本在主线程同步执行的生命周期信号（<code>TOOL_WAITING / READY_SOON</code>）改造为每工作流独立的后台保序 FIFO 队列，并移除恢复完成等待中的跨 Rank 轮询（省去 <strong>77ms</strong>）。在 <code>mark_ready_soon()</code> 触发 <code>prefetch_from_storage()</code> 前，执行两步准入检查：</p>
 <ol>
-<li><strong>显存安全水位准入：</strong>检查当前 GPU 空闲页扣除本次预取页后是否仍大于 <code>foreground_reserve_tokens</code>，防止后台预取把正在运行的前台请求或邻居会话的父节点挤出 HBM。</li>
+<li><strong>显存安全水位准入与有界 Host 暂存等待（<code>SGLang #46451</code>）：</strong>检查当前 GPU 空闲页扣除本次预取页后是否仍大于 <code>foreground_reserve_tokens</code>，防止后台预取挤占前台活跃节点；同时针对 L3 完整命中但 Host 暂存池瞬时容量不足的场景，引入有界等待队列 <code>pending_storage_hits</code>（瞬时压力下 35B 16K 恢复 TTFT 降低 <strong>78.9%</strong>），避免将完整长前缀过早截断。</li>
 <li><strong>恢复 vs 重算成本门控（Cost Gate）：</strong>根据分阶段耗时模型对比预估恢复时间 <i>T</i><sub>restore</sub>(<i>L</i>) = <i>T</i><sub>lookup</sub> + <i>T</i><sub>queue</sub> + <i>L</i> · <i>B</i><sub>token</sub> / <i>BW</i><sub>H2D</sub> 与重算时间 <i>T</i><sub>recompute</sub>(<i>L</i>)。对于 512 Token 短前缀（校准恢复约 119.9ms &gt; 重算 99.8ms），门控直接拒绝远端恢复并走本地重算，实测单请求 TTFT 由 <strong>131.6ms 降至 96.6ms（−26.6%）</strong>；对于 8K/16K 长前缀则放行预取。</li>
 </ol>
 <h3>模块四：Dynamo Agent 感知 KV 路由与 SGLang P/D 会话桥接（agent_cache.rs &amp; prefill_handler.py）</h3>
@@ -1551,7 +1552,60 @@ def publish_directory(stage_root: Path, final_root: Path, *, workers: int = 4) -
 </tr>
 </tbody>
 </table>
-<h2>2. 分布式训练、通信与推理系统原理追问库</h2>
+<div id="lg-oss"></div>
+<h2>2. 核心开源社区贡献速查矩阵（7 个在途公开 PR · 源码逻辑与面试对应点）</h2>
+<p>以下 7 个公开 PR 均提炼自上述百卡异步 RL 与 32 卡多轮分层 KV Cache 生产实践中的真实边界问题，覆盖 <strong>SGLang（推理与分层缓存）</strong>、<strong>Mooncake（分布式 KV 目录）</strong> 与 <strong>VeRL（异步 Rollout 与 Megatron 训练引擎）</strong> 三大社区：</p>
+<table>
+<thead>
+<tr><th>社区与 PR</th><th>所属项目模块</th><th>触发痛点与原生缺陷</th><th>核心代码实现与验证结果</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="https://github.com/sgl-project/sglang/pull/46427" target="_blank">SGLang #46427</a></strong><br/><code>mooncake_store.py</code></td>
+<td>章 03 · 远端 L3 KV 读取一致性</td>
+<td><code>batch_get_into</code> 返回实际读取字节数，而原生 <code>_batch_postprocess</code> 将任意正返回值视为命中；当远端对象短于目标页（如 8KiB 缓冲仅读回 4KiB）时，尾部残留未初始化脏数据直接污染 KV Cache。</td>
+<td>在 v1/v2/legacy 零拷贝读取收口处统一校验返回字节严格等于目标切片总长（散列多段取 <code>sum(size)</code>），任何短读、零字节或长度失配均转为 Cache Miss（<code>-1</code>）；获 Maintainer Review 认可，25 项单测通过。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/sgl-project/sglang/pull/40409" target="_blank">SGLang #40409</a></strong><br/><code>mooncake_store.py</code><br/><code>scheduler.py</code></td>
+<td>章 03 · 远端 L3 管理与状态同步</td>
+<td>① <code>MooncakeStore.clear()</code> 默认调用非强制 <code>remove_all(False)</code>，导致持有活跃租约的热 KV 页在清理后仍残留；② 调度器与多 Worker 控制面忽略后端清理报错，失败时仍返回 HTTP 200 并清空本地存在性缓存。</td>
+<td>改为 <code>remove_all(True)</code> 强制无视租约清理并对负返回码抛错；打通 <code>Scheduler → TokenizerControlMixin → HTTP</code> 全链路 <code>all(r.success)</code> 聚合，失败返回 HTTP 400 且保留存在性缓存；29 项单测与双机 RDMA 回放验证通过。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/sgl-project/sglang/pull/46451" target="_blank">SGLang #46451</a></strong><br/><code>unified_radix_cache.py</code></td>
+<td>章 03 · L3→L2 预取暂存调度</td>
+<td>远端 L3 明明完整命中 16K 长前缀，但因前序 H2D 尚未释放导致 Host DRAM 瞬时不足时，默认逻辑立即截断或放弃预取（混合模型下截断后无法复用）。</td>
+<td>新增可选有界等待窗口 <code>--hicache-storage-prefetch-host-capacity-wait-ms</code> 与 <code>pending_storage_hits</code> 队列（大请求等待不阻塞后续小请求，严谨处理取消与 ID 复用）；H20 实测瞬时压力下 35B 16K 长请求 TTFT 降低 <strong>78.9%</strong>（<code>1445.6ms → 304.9ms</code>）。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/kvcache-ai/Mooncake/pull/5693" target="_blank">Mooncake #5693</a></strong><br/><code>prefix_indexer.cpp</code></td>
+<td>章 02 &amp; 03 · Conductor 缓存目录路由</td>
+<td><code>PrefixCacheTable::Query()</code> 原生按每个候选 <code>(instance_id, dp_rank)</code> 独立遍历每块的 Owner 集合，公共长前缀在多实例下呈近似二次方重复扫描（64 候选 8K/16K 耗时达 <code>126.9ms / 262.3ms</code>）。</td>
+<td>改为按块单次投影候选状态，用 4 位掩码跟踪 <code>device / cpu_local / cpu_share / disk</code> 累积前缀并在首次失配时 <code>swap-and-pop</code> 淘汰候选，首块全局未命中 <code>16µs</code> 短路返回；64 候选 8K/16K 查询降至 <strong>9.35ms / 19.71ms（提速 13.5x）</strong>，78 项 C++/ASan 测试通过。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/verl-project/verl/pull/8387" target="_blank">VeRL #8387</a></strong><br/><code>async_sglang_server.py</code></td>
+<td>章 02 · Hybrid 副本两阶段摘流回收</td>
+<td><code>PPOTrainerSeparateAsync.switch_to_trainer</code> 摘流后调用 <code>abort_replicas(reject_request=True)</code>，但 SGLang 侧忽略该标志（留有 <code>TODO</code>），导致刚拿到句柄的迟到请求在已停用副本上死等下次恢复（PD 分离下还会拖住 Decode 端超时）。</td>
+<td>扩展 <code>SGLangHttpServer._generation_allowed</code> 门控与 <code>_rejecting</code> 状态：停用时唤醒等待协程立即返回 <code>stop_reason="aborted"</code> 触发客户端重路由至常驻副本，并在暂停异常时回滚原生 <code>is_pause</code>、在 PD 预填充拒绝时同步取消配对 Decode；32 项单测通过。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/verl-project/verl/pull/8784" target="_blank">VeRL #8784</a></strong><br/><code>async_checkpoint_batch.py</code></td>
+<td>章 02 · Megatron 异步 Checkpoint</td>
+<td>VeRL v2 单步拆发 <code>model / optimizer / extra</code> 三次异步写，因 MCore 后台进程在下一请求 <code>preload_fn</code> 前阻塞等待前序落盘，退化为主线程串行卡顿；且开启优化器 CPU Offload 时存在主存张量原地更新踩踏风险。</td>
+<td>新增 <code>coalesce_async_requests</code>：经全 Rank <code>all_reduce(MIN)</code> 预算协商后将单步三次预加载合并为单个组合请求（磁盘 v2 结构不变），并支持对 CPU Offload 张量做写前 <code>clone</code> 快照，将主线程停顿压至 <strong>1.2s</strong> 级；17 项单测与多进程测试通过。</td>
+</tr>
+<tr>
+<td><strong><a href="https://github.com/verl-project/verl/pull/8785" target="_blank">VeRL #8785</a></strong><br/><code>transformer_impl.py</code></td>
+<td>章 02 · Megatron 长序列训练精度</td>
+<td>开启 <code>calculate_per_token_loss=True</code> 与静态 Context Parallelism（CP）时，<code>postprocess_micro_batch_func</code> 用整除 <code>real_tokens // cp_size</code> 上报本卡 Token 数，丢弃余数导致跨卡求和分母偏小、梯度被放大。</td>
+<td>按 <code>real_tokens // cp_size + (cp_rank &lt; real_tokens % cp_size)</code> 将余数精确分配给低序号 CP Rank，保证跨卡 AllReduce 归一化分母与真实有效 Token 数严格一致；10 项参数化单测通过。</td>
+</tr>
+</tbody>
+</table>
+
+<h2>3. 分布式训练、通信与推理系统原理追问库</h2>
 <div class="qa-list">
 <details class="qa" open="">
 <summary>广度题 1（训练显存与通信账本）：FSDP2（ZeRO-3）下训练一个参数量为 Ψ 的混合精度（BF16 参数 + FP32 AdamW 状态）模型，静态显存怎么算？每步通信量是多少？为什么你们在 Step 1 会遇到 OOM？</summary>
