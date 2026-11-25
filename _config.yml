@@ -4,8 +4,8 @@ lang: zh-CN
 timezone: Asia/Shanghai
 
 title: Hanyu Dong
-tagline: AI Infra / Search Engineer
-description: 搜索系统工程师，专注 AI Search 与 LLM Infra
+tagline: AI Infra Engineer · 推理与 RL Infra / AI 存储
+description: AI Infra 工程师，专注大模型推理与异步 RL 系统、KV Cache 分层存储与异构检索
 
 url: "https://donghyq.github.io"
 

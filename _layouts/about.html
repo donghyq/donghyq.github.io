@@ -58,15 +58,15 @@
         <section id="about" class="section reveal">
             <div class="section-label">About</div>
             <p>
-                我是一名 AI Infra 工程师，2023 年加入<a href="https://about.meituan.com" target="_blank" rel="noopener">美团</a>搜索推荐技术部，
-                主要从事大模型推理、AI 存储与智能检索。
+                我是一名 AI Infra 工程师，2023 年加入<a href="https://about.meituan.com" target="_blank" rel="noopener">美团</a>搜索推荐平台部，
+                主要从事大模型推理引擎、KV Cache 分层存储、百卡异步 RL 训练系统与异构检索基础设施研发。
             </p>
             <p>
-                围绕多轮 Agent 强化学习，研究 Rollout 数据管理、版本一致性与故障恢复，
-                关注训练效率与评测体系。
+                围绕多轮搜索 Agent 的在线推理与异步后训练，关注 Rollout 状态存储、混合架构跨副本状态恢复、
+                P/D 分离三级缓存调度与分布式异步 Checkpoint 优化。
             </p>
             <p>
-                持续参与 SGLang 与 verl 开源项目。这个<a href="{{ site.url }}">博客</a>记录 AI Infra、搜索系统与性能工程方面的实践和思考。
+                持续向 SGLang、VeRL 与 Mooncake 开源社区贡献代码。这个<a href="{{ site.url }}">博客</a>记录 AI Infra、分层存储与高性能检索方面的工程实践。
             </p>
         </section>
 
@@ -78,35 +78,36 @@
                 <div class="timeline-date">2023 — 至今</div>
                 <div class="timeline-body">
                     <h3>AI Infra 工程师 · 美团</h3>
-                    <div class="subtitle">搜索推荐技术部</div>
+                    <div class="subtitle">搜索推荐平台部</div>
                     <p>
-                        从事大模型推理基础设施与搜索系统研发，关注多轮 Agent 异步 RL 的数据交付与恢复；
-                        参与 KV Cache 路由、分层存储及 PD 分离优化；
-                        负责 GPU 向量检索的离线构建、在线加载与发布校验；建设 AI Search Agent 的多路召回、
-                        LLM Rerank 和分层记忆链路；同时推进精排图编排与 Elasticsearch/Lucene 性能优化。
+                        围绕本地生活主搜与 AI Search 多轮 Agent 的在线推理及后训练需求，主导百卡集群 35B MoE 异步 RL Rollout 状态存储与跨副本恢复、
+                        分布式异步 Checkpoint 优化，以及 P/D 分离架构下多轮 Agent 三级 KV Cache 调度与感知路由；
+                        负责亿级商品向量 GPU 异构检索内核、实时增量索引与 Lucene 堆外列存原地更新研发。
                     </p>
                     <div class="tags">
-                        <span class="tag">Agent RL</span>
-                        <span class="tag">KV Cache</span>
+                        <span class="tag">Async RL / VeRL</span>
                         <span class="tag">SGLang</span>
+                        <span class="tag">Mooncake / KV Cache</span>
+                        <span class="tag">P/D 分离</span>
+                        <span class="tag">Megatron / FSDP2</span>
+                        <span class="tag">CUDA</span>
                         <span class="tag">RDMA</span>
                         <span class="tag">GPU 向量检索</span>
-                        <span class="tag">LLM Agent</span>
-                        <span class="tag">Elasticsearch</span>
-                        <span class="tag">Java</span>
-                        <span class="tag">C++</span>
+                        <span class="tag">Lucene</span>
                         <span class="tag">Python</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Java</span>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item reveal">
-                <div class="timeline-date">2017 — 2021</div>
+                <div class="timeline-date">2019 — 2023</div>
                 <div class="timeline-body">
                     <h3>计算机科学与技术 · 北京航空航天大学</h3>
                     <div class="subtitle">本科</div>
                     <p>
-                        计算机科学与技术专业
+                        计算机科学与技术专业 · 学科竞赛奖学金、成绩优秀奖学金、校级三好学生
                     </p>
                     <div class="tags">
                         <span class="tag">CS</span>
@@ -124,32 +125,32 @@
             <div class="project-card reveal">
                 <div class="project-thumb">🧪</div>
                 <div class="project-body">
-                    <h3>后训练基础设施</h3>
-                    <p>面向多轮 Agent 强化学习的训练数据与运行基础设施。关注 Rollout 数据管理、版本一致性与故障恢复。</p>
+                    <h3>异步 RL Rollout 存储与跨副本状态恢复</h3>
+                    <p>面向百卡 35B 混合 MoE 多轮 Agent 异步 GRPO 训练，实现 Mooncake 轨迹快照组交付、Attention KV + Mamba 状态跨副本零重算恢复、两阶段显存回收与 Megatron 异步 Checkpoint 合并预取。</p>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-thumb">🔬</div>
                 <div class="project-body">
-                    <h3>推理与 KV Cache</h3>
-                    <p>面向大模型推理的 KV Cache 与存储优化。参与分层缓存、跨实例复用和 Prefill/Decode 分离，并探索细粒度 KV Cache 量化及其精度与存储开销评估。</p>
+                    <h3>多轮 Agent 分层 KV Cache 与 P/D 恢复优化</h3>
+                    <p>面向 P/D 分离在线推理集群，构建 HBM / Host DRAM / Mooncake 三级缓存体系，实现等待期软引用换出、异步预取成本门控、KV 感知路由与细粒度静态 FP8 KV 量化。</p>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-thumb">🔍</div>
                 <div class="project-body">
-                    <h3>GPU 检索与搜索引擎</h3>
-                    <p>面向大规模数据的检索系统与搜索引擎优化。涵盖 GPU 向量检索、索引构建与查询性能优化。</p>
+                    <h3>GPU 异构向量检索与分布式实时索引</h3>
+                    <p>支撑亿级商品向量检索与 Agent 混合召回，研发 CUDA IVF 大桶动态拆块归并、多类目双缓冲流水、Base + Delta 实时向量索引及 Lucene mmap 原地列更新。</p>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <div class="project-thumb">🧠</div>
                 <div class="project-body">
-                    <h3>AI Search 与评测</h3>
-                    <p>面向智能搜索的检索与评测体系。关注检索、记忆、评测及 AutoResearch 的协同。</p>
+                    <h3>算子自动优化（SuperOpt）与生成式召回加速</h3>
+                    <p>构建代码修改与只读验证物理隔离的算子自动迭代评测框架，完成前缀树约束 Beam Search 访存向量化与 SGLang 显存预算准入改造。</p>
                 </div>
             </div>
         </section>
@@ -159,41 +160,41 @@
             <div class="section-label">Skills</div>
             <div class="skills-grid">
                 <div class="skill-group reveal">
-                    <h4>AI Infra</h4>
+                    <h4>推理与 RL 系统</h4>
                     <ul>
-                        <li>KV Cache / PagedAttention</li>
-                        <li>SGLang / Dynamo / VeRL</li>
-                        <li>PD 分离 / RDMA / NIXL</li>
-                        <li>LLM Serving / Agent / RAG</li>
-                        <li>GPU 向量检索 / Faiss</li>
+                        <li>SGLang (RadixCache / HiCache)</li>
+                        <li>VeRL (Fully Async / Hybrid Rollout)</li>
+                        <li>Megatron-Core / FSDP2 / Checkpoint</li>
+                        <li>P/D 分离 / Dynamo / Conductor</li>
+                        <li>GRPO / Decoupled PPO</li>
                     </ul>
                 </div>
                 <div class="skill-group reveal">
-                    <h4>搜索引擎</h4>
+                    <h4>AI 存储与性能剖析</h4>
                     <ul>
-                        <li>Elasticsearch / Lucene</li>
-                        <li>倒排索引 / DocValues / MMAP</li>
-                        <li>图编排 (WorldTree)</li>
-                        <li>Hybrid Recall / LLM Rerank</li>
-                        <li>LBS 检索与性能优化</li>
+                        <li>HBM / DRAM / Mooncake 分层存储</li>
+                        <li>RDMA / 零拷贝传输 / NCCL 排障</li>
+                        <li>细粒度静态 FP8 KV / FlashInfer</li>
+                        <li>CUDA 核函数优化 / Shared Memory</li>
+                        <li>Nsight Systems / PyTorch Profiler</li>
                     </ul>
                 </div>
                 <div class="skill-group reveal">
                     <h4>编程语言</h4>
                     <ul>
-                        <li>Java（主力）</li>
                         <li>Python</li>
-                        <li>C++ / CUDA 基础</li>
+                        <li>C++ / CUDA</li>
+                        <li>Java</li>
                         <li>SQL / Shell</li>
                     </ul>
                 </div>
                 <div class="skill-group reveal">
-                    <h4>基础设施</h4>
+                    <h4>检索与数据底座</h4>
                     <ul>
-                        <li>分布式系统</li>
-                        <li>Spark / Hadoop / HDFS</li>
-                        <li>Redis / Tair / Kafka</li>
-                        <li>gRPC / Thrift / ZooKeeper</li>
+                        <li>GPU 向量检索 / IVF-PQ</li>
+                        <li>Lucene 内核 / Codec / mmap 列存</li>
+                        <li>Agent RAG / 长短期 Memory 架构</li>
+                        <li>Ray / Spark / 分布式存储</li>
                     </ul>
                 </div>
             </div>
@@ -222,22 +223,34 @@
                 </div>
                 <div class="gh-prs">
                     <h4>精选 Pull Requests</h4>
-                    <p class="gh-pr-note">状态核验于 2026-10-28，详情以 GitHub 为准。</p>
+                    <p class="gh-pr-note">状态核验于 2026-11-25，详情以 GitHub 实时状态为准。</p>
                     <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/46427" target="_blank" rel="noopener">
                         <div class="gh-pr-heading"><span>SGLang #46427 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
-                        <p>拒绝不完整的 Mooncake KV 读取，避免将部分数据误判为缓存命中。</p>
+                        <p>校验零拷贝批量读取字节长度，拦截不完整的 Mooncake KV 短读防止缓存污染。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/kvcache-ai/Mooncake/pull/5693" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>Mooncake #5693 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>重构 Conductor 多候选前缀查询为按块单次投影，64 候选 8K/16K 查询提速 13.5x。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/verl-project/verl/pull/8387" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>VeRL #8387 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>补齐 SGLang 停用副本准入门控，快速拒绝迟到在途请求并取消配对 PD 解码。</p>
+                    </a>
+                    <a class="gh-pr" href="https://github.com/verl-project/verl/pull/8784" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>VeRL #8784 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>合并 Megatron 单步多次异步 Checkpoint 预加载并支持 CPU Offload 写前快照。</p>
                     </a>
                     <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/46451" target="_blank" rel="noopener">
                         <div class="gh-pr-heading"><span>SGLang #46451 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
-                        <p>优化 KV 预取的内存准入与等待机制，减少瞬时容量不足造成的缓存失效。</p>
+                        <p>为远端 L3 全命中预取引入有界 Host 容量等待窗口，消除瞬时内存压力下的截断失效。</p>
                     </a>
-                    <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/45572" target="_blank" rel="noopener">
-                        <div class="gh-pr-heading"><span>SGLang #45572 <span class="arrow">↗</span></span><span class="gh-pr-status draft">Draft</span></div>
-                        <p>探索持久化混合模型的活动请求状态，支持新进程恢复生成。</p>
+                    <a class="gh-pr" href="https://github.com/sgl-project/sglang/pull/40409" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>SGLang #40409 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>强制清理带活跃租约的 Mooncake KV 对象，并打通多副本错误状态至 HTTP 响应。</p>
                     </a>
-                    <a class="gh-pr" href="https://github.com/verl-project/verl/pull/8387" target="_blank" rel="noopener">
-                        <div class="gh-pr-heading"><span>verl #8387 <span class="arrow">↗</span></span><span class="gh-pr-status draft">Draft</span></div>
-                        <p>处理 Rollout 副本停用时的请求竞态，使请求能够重试可用副本。</p>
+                    <a class="gh-pr" href="https://github.com/verl-project/verl/pull/8785" target="_blank" rel="noopener">
+                        <div class="gh-pr-heading"><span>VeRL #8785 <span class="arrow">↗</span></span><span class="gh-pr-status">Open</span></div>
+                        <p>修复 Megatron 静态 Context Parallelism 整除丢弃 Token 余数导致的梯度缩放偏差。</p>
                     </a>
                 </div>
             </div>
