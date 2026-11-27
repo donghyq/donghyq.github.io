@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T17:57:42.678107+00:00Z",
+  "generated_at": "2026-11-27T17:42:49.727485+00:00Z",
   "lookback_days": 30,
   "digest": "过去 30 天，共追踪到 22 个热门 AI 开源项目（主力语言：Python, TypeScript, Rust）和 14 篇最新 ArXiv 论文。GitHub 最热方向是「Agent 技能与工具」。",
   "categories": [
@@ -13,52 +13,52 @@
           "url": "https://github.com/anthropics/skills",
           "description": "Public repository for Agent Skills",
           "summary_zh": "Anthropic 官方开源的 Agent 技能库，为 AI 智能体提供可复用的模块化能力扩展",
-          "stars": 200934,
-          "forks": 23504,
+          "stars": 201377,
+          "forks": 23569,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 3431
+          "stars_period": 3454
         },
         {
           "name": "lobehub/lobehub",
           "url": "https://github.com/lobehub/lobehub",
           "description": "🤯 LobeHub - Super-Agents on Your Team. Add super-agents to the chats your team already uses.They take on work by themselves and get better every week.",
-          "summary_zh": "把超级智能体直接加进团队现有聊天工具，让它们自主接手工作并每周自我进化",
-          "stars": 86182,
-          "forks": 16370,
+          "summary_zh": "可把超级智能体直接加入团队现有聊天工具自主接活并每周自我进化",
+          "stars": 86210,
+          "forks": 16366,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 427
+          "stars_period": 397
         },
         {
           "name": "ComposioHQ/awesome-claude-skills",
           "url": "https://github.com/ComposioHQ/awesome-claude-skills",
           "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
-          "summary_zh": "精选 Claude Skills 资源与工具合集，帮你快速定制和扩展 Claude AI 工作流",
-          "stars": 80381,
-          "forks": 9906,
+          "summary_zh": "精选 Claude 技能与工具资源库，帮你快速定制和扩展 Claude 的 AI 工作流",
+          "stars": 80452,
+          "forks": 9925,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 540
+          "stars_period": 541
         },
         {
           "name": "mvanhorn/last30days-skill",
           "url": "https://github.com/mvanhorn/last30days-skill",
           "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
-          "summary_zh": "跨 Reddit、X、YouTube、HN、Polymarket 与全网调研任意话题并合成有据可依摘要的 AI Agent 技能",
-          "stars": 75604,
-          "forks": 6660,
+          "summary_zh": "跨 Reddit、X、YouTube、HN、Polymarket 等平台自动调研任意话题并合成有据可依摘要的 AI Agent 技能",
+          "stars": 76244,
+          "forks": 6769,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 5302
+          "stars_period": 5090
         }
       ]
     },
@@ -71,53 +71,53 @@
           "name": "soxoj/maigret",
           "url": "https://github.com/soxoj/maigret",
           "description": "🕵️‍♂️ Collect a dossier on a person by username from 6K websites",
-          "summary_zh": "仅凭用户名即可在6000多个网站搜集个人数字档案的开源情报调查工具",
-          "stars": 41312,
-          "forks": 3351,
+          "summary_zh": "仅凭用户名即可跨6000多个网站搜集个人数字档案，开源情报调查与反欺诈追踪的利器",
+          "stars": 41338,
+          "forks": 3358,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 405
+          "stars_period": 323
         },
         {
           "name": "rustfs/rustfs",
           "url": "https://github.com/rustfs/rustfs",
           "description": "RustFS is an open-source, S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms",
-          "summary_zh": "兼容 S3 的高性能 Rust 对象存储系统，可无缝迁移并与 MinIO、Ceph 共存",
-          "stars": 36548,
-          "forks": 1691,
+          "summary_zh": "兼容 S3 的高性能 Rust 对象存储系统，支持与 MinIO、Ceph 平滑迁移共存",
+          "stars": 36585,
+          "forks": 1694,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 275
+          "stars_period": 265
         },
         {
           "name": "ModernRelay/omnigraph",
           "url": "https://github.com/ModernRelay/omnigraph",
           "description": "Object-storage native graph database with branching and typed ontology",
-          "summary_zh": "用 Rust 打造的对象存储原生图数据库，支持分支与类型化本体，让图数据像代码一样版本化管理",
-          "stars": 3297,
+          "summary_zh": "基于对象存储的原生图数据库，支持分支与类型化本体，用 Rust 打造兼顾灵活演进与强约束建模",
+          "stars": 3316,
           "forks": 345,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 259
+          "stars_period": 216
         },
         {
           "name": "ardia-browser/ardia",
           "url": "https://github.com/ardia-browser/ardia",
           "description": "A free Chromium browser for the Mac: Arc's sidebar, Dia's polish. Chat on Discord: discord.gg/TdhuXrbcA6",
-          "summary_zh": "免费开源的 Mac 版 Chromium 浏览器，融合 Arc 侧边栏与 Dia 的精致设计",
-          "stars": 3101,
-          "forks": 407,
+          "summary_zh": "为 Mac 打造的免费 Chromium 浏览器，融合 Arc 侧边栏与 Dia 的精致体验",
+          "stars": 3229,
+          "forks": 421,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 471
+          "stars_period": 476
         }
       ]
     },
@@ -130,8 +130,8 @@
           "name": "shanselman/gputaskman",
           "url": "https://github.com/shanselman/gputaskman",
           "description": "A GPU task manager for Windows, Linux, and WSL: per-process VRAM, GPU activity, and LLM model/KV-cache insights for NVIDIA, AMD, and Intel GPUs (plus ",
-          "summary_zh": "跨平台GPU任务管理器，按进程监控显存与GPU活动，还能洞察LLM模型与KV缓存占用，兼容NVIDIA、AMD、Intel及昇腾",
-          "stars": 3861,
+          "summary_zh": "跨平台GPU任务管理器，实时监控每进程显存与GPU活动，并洞察LLM模型及KV缓存占用，兼容NVIDIA、AMD、Intel及昇腾",
+          "stars": 3884,
           "forks": 196,
           "language": "Python",
           "topics": [],
@@ -140,33 +140,13 @@
           "stars_period": 0
         },
         {
-          "name": "RunanywhereAI/trnrt",
-          "url": "https://github.com/RunanywhereAI/trnrt",
-          "description": "The open LLM inference engine for AWS Trainium: NKI megakernels, 1M-token context, OpenAI-compatible API. By RunAnywhere.",
-          "summary_zh": "专为 AWS Trainium 打造的开源 LLM 推理引擎，用 NKI 大内核实现百万级上下文并兼容 OpenAI API",
-          "stars": 1662,
-          "forks": 29,
-          "language": "Python",
-          "topics": [
-            "aws",
-            "glm",
-            "inference",
-            "llm",
-            "llm-serving",
-            "megakernels"
-          ],
-          "created_at": "2026-10-30T18:30:04Z",
-          "source": "search",
-          "stars_period": 0
-        },
-        {
           "name": "opensetlabs/openset-llm",
           "url": "https://github.com/opensetlabs/openset-llm",
           "description": "Fast local LLM inference on plain CPUs. No GPU, 8 GB of RAM. OpenAI-compatible server.",
           "summary_zh": "纯 CPU 上跑本地大模型推理，8GB 内存无需 GPU，还兼容 OpenAI 接口，边缘设备部署利器",
-          "stars": 1529,
-          "forks": 141,
-          "language": "C++",
+          "stars": 2125,
+          "forks": 205,
+          "language": "Python",
           "topics": [
             "ai",
             "avx512",
@@ -184,8 +164,8 @@
           "url": "https://github.com/alesha-pro/llm.asm",
           "description": "Qwen3-0.6B inference (12 KB), bare-metal bootable OS (22 KB), and from-scratch Mini-GPT trainer with live Braille TUI (32 KB) in 100% pure x86-64 NASM",
           "summary_zh": "纯汇编实现Qwen3推理、裸机启动OS和Mini-GPT训练器，零C零依赖，把大模型塞进12KB",
-          "stars": 1272,
-          "forks": 183,
+          "stars": 1983,
+          "forks": 311,
           "language": "Assembly",
           "topics": [
             "assembly",
@@ -196,6 +176,26 @@
             "nasm"
           ],
           "created_at": "2026-11-25T07:28:51Z",
+          "source": "search",
+          "stars_period": 0
+        },
+        {
+          "name": "RunanywhereAI/trnrt",
+          "url": "https://github.com/RunanywhereAI/trnrt",
+          "description": "The open LLM inference engine for AWS Trainium: NKI megakernels, 1M-token context, OpenAI-compatible API. By RunAnywhere.",
+          "summary_zh": "专为 AWS Trainium 打造的开源 LLM 推理引擎，用 NKI 大内核实现百万级上下文并兼容 OpenAI API",
+          "stars": 1663,
+          "forks": 29,
+          "language": "Python",
+          "topics": [
+            "aws",
+            "glm",
+            "inference",
+            "llm",
+            "llm-serving",
+            "megakernels"
+          ],
+          "created_at": "2026-10-30T18:30:04Z",
           "source": "search",
           "stars_period": 0
         }
@@ -211,19 +211,19 @@
           "url": "https://github.com/jingyaogong/minimind",
           "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
           "summary_zh": "两小时从零训练64M大模型的开源教程，让个人开发者低成本亲手跑通LLM全流程",
-          "stars": 71539,
-          "forks": 9281,
+          "stars": 72146,
+          "forks": 9406,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 4499
+          "stars_period": 4900
         },
         {
           "name": "ninetyhe-90/training-explore",
           "url": "https://github.com/ninetyhe-90/training-explore",
           "description": "Interactive explorer for learning how large language models are trained",
-          "summary_zh": "交互式探索大语言模型训练全流程的可视化学习工具，让抽象的训练原理变得直观可感",
+          "summary_zh": "交互式探索大语言模型训练全流程的可视化教学工具，让抽象训练机制变得直观可操作",
           "stars": 155,
           "forks": 17,
           "language": "TypeScript",
@@ -244,52 +244,52 @@
           "url": "https://github.com/ag-ui-protocol/ag-ui",
           "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
           "summary_zh": "让 AI Agent 无缝接入前端应用的交互协议，统一 Agent 与用户界面的通信标准",
-          "stars": 21823,
-          "forks": 2190,
+          "stars": 21927,
+          "forks": 2192,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1421
+          "stars_period": 1269
         },
         {
           "name": "a2ui-project/a2ui",
           "url": "https://github.com/a2ui-project/a2ui",
           "description": "Open-source generative UI framework: agents stream layout data, and apps render it with native components in React, Angular, Lit, Flutter, SwiftUI and",
-          "summary_zh": "让 AI Agent 以流式布局数据驱动界面渲染，一套数据即可在 React、Flutter、SwiftUI 等多端用原生组件呈现",
-          "stars": 18760,
-          "forks": 1501,
+          "summary_zh": "让 AI Agent 以流式布局数据驱动界面，一套数据在 React、Flutter、SwiftUI 等六大框架原生渲染",
+          "stars": 18887,
+          "forks": 1505,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1044
+          "stars_period": 1101
         },
         {
           "name": "we-promise/sure",
           "url": "https://github.com/we-promise/sure",
           "description": "The personal finance app for everyone (by everyone)",
-          "summary_zh": "人人可用的个人财务应用，用 Ruby 打造并支持社区共建，让记账理财不再有门槛",
-          "stars": 18054,
-          "forks": 1570,
+          "summary_zh": "人人可用的个人财务应用，由社区共建，帮你轻松管理收支与预算",
+          "stars": 18190,
+          "forks": 1581,
           "language": "Ruby",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1509
+          "stars_period": 1430
         },
         {
           "name": "GoogleChrome/modern-web-guidance-src",
           "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
           "description": "Keep your coding agent up to date with the latest web best practices",
-          "summary_zh": "让 AI 编码助手实时掌握最新 Web 最佳实践的 TypeScript 知识库，解决 Agent 知识滞后问题",
-          "stars": 11218,
-          "forks": 840,
+          "summary_zh": "让 AI 编码助手实时掌握最新 Web 最佳实践的官方指南库，避免生成过时代码",
+          "stars": 11413,
+          "forks": 846,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2309
+          "stars_period": 2209
         }
       ]
     },
@@ -303,52 +303,52 @@
           "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
           "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decisi",
           "summary_zh": "LLM 驱动的多市场股票智能分析系统，整合多源行情与实时新闻生成决策看板并自动推送，支持零成本定时运行",
-          "stars": 74785,
-          "forks": 58732,
+          "stars": 74992,
+          "forks": 58860,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 1317
+          "stars_period": 1371
         },
         {
           "name": "block/buzz",
           "url": "https://github.com/block/buzz",
           "description": "A hive mind communication platform",
-          "summary_zh": "用 Rust 构建的蜂群思维通信平台，让多个 AI 智能体像蜂群一样共享信息协同决策",
-          "stars": 37782,
+          "summary_zh": "用 Rust 打造的蜂群思维通信平台，让多个 AI 智能体像蜂群一样共享信息协同决策",
+          "stars": 37800,
           "forks": 4969,
           "language": "Rust",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 200
+          "stars_period": 197
         },
         {
           "name": "milind-soni/OpenMausBot",
           "url": "https://github.com/milind-soni/OpenMausBot",
           "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
           "summary_zh": "开源版Grok机器人替代方案，为AI机器人提供可操作的虚拟机环境，让Bot能真正执行任务而非仅对话",
-          "stars": 28091,
-          "forks": 4002,
+          "stars": 28490,
+          "forks": 4051,
           "language": "TypeScript",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 2595
+          "stars_period": 2461
         },
         {
           "name": "andrewyng/openworker",
           "url": "https://github.com/andrewyng/openworker",
           "description": "",
-          "summary_zh": "吴恩达团队开源的多智能体协作框架，让多个AI Agent分工完成复杂工作任务",
-          "stars": 19613,
-          "forks": 2810,
+          "summary_zh": "吴恩达开源的多智能体协作框架，让多个AI Agent分工完成复杂工作任务",
+          "stars": 19633,
+          "forks": 2814,
           "language": "Python",
           "topics": [],
           "created_at": "",
           "source": "trending",
-          "stars_period": 163
+          "stars_period": 160
         }
       ]
     }
@@ -363,7 +363,7 @@
           "url": "http://arxiv.org/abs/2611.34928v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34928v1",
           "abstract": "Post-training large language models (LLMs) for mathematical reasoning often relies on accepted traces whose final answers pass a verifier. For hard math problems, however, such traces can be rare unde",
-          "summary_zh": "提出多样化替代推理轨迹方法解决难题采样稀疏问题显著提升大模型数学推理性能",
+          "summary_zh": "提出多样化替代推理轨迹方法，解决难题独立采样接受轨迹稀缺问题，提升大模型数学推理能力",
           "authors": [
             "Lukas Aichberger",
             "Adam Golinski",
@@ -381,7 +381,7 @@
           "url": "http://arxiv.org/abs/2611.34864v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34864v1",
           "abstract": "Since vision-language-action (VLA) policies can inherit the slow pace of human demonstrations, accelerating these demonstrations before fine-tuning can lead to faster VLA policies without an additiona",
-          "summary_zh": "提出对演示轨迹进行推理式加速预处理的RePace方法，使VLA策略在部署时无需额外速度选择模块即可实现更快执行",
+          "summary_zh": "提出对演示轨迹进行离线加速以微调VLA策略的RePace方法，无需部署时额外速度选择模块即可获得更快的机器人策略",
           "authors": [
             "Insup Lee",
             "Hojin Jeon",
@@ -398,7 +398,7 @@
           "url": "http://arxiv.org/abs/2611.34832v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34832v1",
           "abstract": "Proverbs, as repositories of traditional wisdom, have informed human reasoning for millennia. Yet the collective prescriptions they encode have remained largely unquantified. We introduce a computatio",
-          "summary_zh": "提出基于大语言模型的计算框架分析近五万条英语谚语，首次系统量化其编码的集体行为规约",
+          "summary_zh": "提出基于大语言模型的计算框架分析近5万条英语谚语，首次大规模量化其编码的集体行为规范",
           "authors": [
             "Tomás Lejarraga",
             "Dirk U. Wulff",
@@ -437,7 +437,7 @@
           "url": "http://arxiv.org/abs/2611.34920v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34920v1",
           "abstract": "Voice agents in shared spaces must satisfy interdependent multi-user requests while upholding per-user authority, privacy, and task constraints. Existing evaluations offer limited coverage when partic",
-          "summary_zh": "提出面向共享空间语音代理的多用户联合任务基准μ-Bench，覆盖参与者全程动态响应场景，弥补现有评估覆盖不足",
+          "summary_zh": "提出面向共享空间语音智能体的多用户联合任务基准μ-Bench，覆盖参与者全程动态交互并兼顾权限隐私约束",
           "authors": [
             "Qihao Lin",
             "Guanxu Chen",
@@ -454,7 +454,7 @@
           "url": "http://arxiv.org/abs/2611.34899v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34899v1",
           "abstract": "This work presents a novel application of Earth Observation (EO) embeddings for Maritime Domain Awareness (MDA) from the perspective of the geospatial foundation model TerraMind. By operating directly",
-          "summary_zh": "提出基于TerraMind地理空间基础模型的潜空间表征方法直接处理Sentinel-1压缩特征替代原始影像实现海事态势感知并提升分析效率",
+          "summary_zh": "提出基于TerraMind地理空间基础模型的潜空间表征方法，直接在压缩潜空间处理Sentinel-1影像以增强海域态势感知，无需原始图像即可高效完成检测任务",
           "authors": [
             "Rikard Vinge",
             "Miguel A. Belenguer-Plomer",
@@ -478,7 +478,7 @@
           "url": "http://arxiv.org/abs/2611.34934v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34934v1",
           "abstract": "AI monitors, classifiers that flag dangerous behaviour by AI agents, are often evaluated against transcripts generated by attack policies acting as proxies for dangerous behaviour in deployment. We ev",
-          "summary_zh": "发现攻击策略选择会误导AI监控评估，以OpenAI监控器为例揭示假阴性率测量偏差问题",
+          "summary_zh": "通过对比不同攻击策略发现监测器假阴性率随攻击策略变化显著，揭示用单一攻击策略评估监测器会误导评估结论",
           "authors": [
             "Charlie Griffin",
             "Oliver Makins",
@@ -495,7 +495,7 @@
           "url": "http://arxiv.org/abs/2611.34875v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34875v1",
           "abstract": "Agent patches are larger than developers', which is widely read as over-editing. But patch size does not say whether the extra edits are needed, what they are, or where they come from. We introduce De",
-          "summary_zh": "提出Delta Residue Attribution方法追踪智能体轨迹中每个代码块的来源，实证揭示仓库级编码智能体补丁中多余编辑的成因与分布",
+          "summary_zh": "提出增量残留归因方法追踪智能体轨迹中每个代码块的来源，揭示仓库级补丁中多余编辑的构成与成因",
           "authors": [
             "Aakash Goel",
             "Benjamin Steenhoek",
@@ -518,7 +518,7 @@
           "url": "http://arxiv.org/abs/2611.34935v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34935v1",
           "abstract": "Language models think in words; then multimodal models might think in images. We test whether a generated helper improves the answer to a visual question. A model describes the helper it needs and the",
-          "summary_zh": "提出让模型自述所需辅助图并联合原图与生成图作答的方法，在13个视觉语言模型上验证生成图像对视觉推理的提升效果",
+          "summary_zh": "提出让多模态模型先生成所需辅助图像再结合原图作答的自生成辅助图像推理方法，在13个视觉语言模型上验证其能提升视觉问答表现",
           "authors": [
             "Xueyang Yu",
             "Yifan Jing",
@@ -536,7 +536,7 @@
           "url": "http://arxiv.org/abs/2611.34894v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34894v1",
           "abstract": "How an object deforms when it hits the ground reveals what it is made of. From a single real video of a drop, we estimate a deformable object's density-normalized stiffness $E/ρ$, and its yield stress",
-          "summary_zh": "仅用单段真实跌落视频即可前馈预测可变形物体的密度归一化刚度与屈服应力，无需真实标注训练",
+          "summary_zh": "仅用单段真实落地视频即可前馈预测可变形物体的密度归一化刚度和屈服应力，无需真实标注训练",
           "authors": [
             "Ziyue Peng",
             "Yanxi Hu",
@@ -554,7 +554,7 @@
           "url": "http://arxiv.org/abs/2611.34881v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34881v1",
           "abstract": "Visual context is a powerful cue for object recognition: scenes inform what, where, and at what scale objects are likely to appear. Yet over-reliance on context becomes a failure mode when models pred",
-          "summary_zh": "提出Stranger Things基准揭示模型过度依赖上下文先验的失效模式并量化其影响",
+          "summary_zh": "提出反事实场景基准揭示模型依赖上下文而非物体特征，并给出缓解该偏差的方法",
           "authors": [
             "Siddhartha Gairola",
             "Jiahao Xie",
@@ -577,7 +577,7 @@
           "url": "http://arxiv.org/abs/2611.34942v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34942v1",
           "abstract": "End-to-end physical-layer learning replaces separate modulation, coding, and detection operations with an autoencoder (AE) that consists of a jointly trained encoder-decoder pair at the transmitter an",
-          "summary_zh": "提出基于迁移学习的自编码器频谱自适应方法，量化频谱偏移敏感性并实现跨频段快速适配",
+          "summary_zh": "提出基于迁移学习的AI原生自编码器频谱自适应方法，实现跨频段快速适配并量化其频谱敏感性",
           "authors": [
             "Yalin E. Sagduyu",
             "Tugba Erpek"
@@ -594,7 +594,7 @@
           "url": "http://arxiv.org/abs/2611.34938v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34938v1",
           "abstract": "In this paper, we prove that, unless P=NP, no polynomial-time algorithm can find a tokeniser whose objective is within any constant factor of the optimum, meaning that tokenisation is not in the APX c",
-          "summary_zh": "证明除非P=NP否则多项式时间算法无法找到常数因子近似的最优分词器，揭示分词问题不属于APX复杂性类",
+          "summary_zh": "证明除非P=NP否则多项式时间无法找到常数因子近似的最优分词器，表明分词问题不属于APX复杂度类",
           "authors": [
             "Violeta Kastreva",
             "Philip Whittington",
@@ -611,7 +611,7 @@
           "url": "http://arxiv.org/abs/2611.34923v1",
           "pdf_url": "https://arxiv.org/pdf/2611.34923v1",
           "abstract": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism conne",
-          "summary_zh": "提出混合循环Transformer架构，通过重新设计相邻循环间的信息传递机制突破表达力与效率的权衡边界",
+          "summary_zh": "提出混合循环Transformer架构通过动态路由相邻循环间传递的信息突破表达力与效率瓶颈显著提升循环复用效能",
           "authors": [
             "Lianghui Zhu",
             "Shijie Wang",
